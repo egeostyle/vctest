@@ -1330,6 +1330,37 @@ function selectVariant(p,idx){
     document.getElementById('modal-whatsapp-link').dataset.activeVariant=JSON.stringify({name:v.name,price:v.price});
 }
 function closeProductModal(e){if(!e||e.target===document.getElementById('product-modal'))document.getElementById('product-modal').classList.remove('open');}
+function openProductModal_v(title,cat,desc,variantsJson,baseImg){
+    var variants=JSON.parse(variantsJson||'[]');
+    document.getElementById('modal-product-title').innerText=title;
+    document.getElementById('modal-product-desc').innerText=desc;
+    var sel=document.getElementById('modal-variant-selector');
+    var chips=document.getElementById('modal-variant-chips');
+    sel.style.display=variants.length?'block':'none';
+    chips.innerHTML='';
+    variants.forEach(function(v,i){
+        var ch=document.createElement('button');
+        ch.className='vchip'+(i===0?' active':'');
+        ch.textContent=v.name;
+        ch.onclick=function(){
+            document.querySelectorAll('#modal-variant-chips .vchip').forEach(function(x){x.classList.remove('active');});
+            ch.classList.add('active');
+            document.getElementById('modal-product-meta').innerText=cat+' | '+v.price;
+            var img=v.img||variants[0].img||baseImg||'';
+            document.getElementById('modal-product-img').style.backgroundImage=img?"url('"+img+"')":'';
+            document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:v.price,variant:v.name,img:img});
+        };
+        chips.appendChild(ch);
+    });
+    if(variants.length){
+        var v0=variants[0];
+        document.getElementById('modal-product-meta').innerText=cat+' | '+v0.price;
+        var img0=v0.img||baseImg||'';
+        document.getElementById('modal-product-img').style.backgroundImage=img0?"url('"+img0+"')":'';
+        document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:v0.price,variant:v0.name,img:img0});
+    }
+    document.getElementById('product-modal').classList.add('open');
+}
 
 async function sendWhatsApp(e){
     e.preventDefault();
@@ -1916,25 +1947,32 @@ function serializeInfoLinks(){
 // ============================================================
 function saveWithEditor(){
     const clone=document.documentElement.cloneNode(true);
-    clone.querySelectorAll('.modal-overlay.open,.pe-overlay.open,.iu-overlay.open,.lo-overlay.open,.is-overlay.open,.ci-overlay.open').forEach(el=>el.classList.remove('open'));
+    // Cerrar modales abiertos
+    clone.querySelectorAll('.modal-overlay.open,.pe-overlay.open,.iu-overlay.open,.lo-overlay.open,.is-overlay.open,.ci-overlay.open,.gh-overlay.open').forEach(el=>el.classList.remove('open'));
+    // Persistir email destino
     const ei=clone.querySelector('#destEmail');if(ei)ei.value=document.getElementById('destEmail').value;
-    // Logo
+    // Persistir credenciales GitHub (para no tener que reingresarlas)
+    const ghRepoEl=clone.querySelector('#ghRepo');if(ghRepoEl)ghRepoEl.value=document.getElementById('ghRepo').value;
+    const ghTokenEl=clone.querySelector('#ghToken');if(ghTokenEl)ghTokenEl.value=document.getElementById('ghToken').value;
+    const ghBranchEl=clone.querySelector('#ghBranch');if(ghBranchEl)ghBranchEl.value=document.getElementById('ghBranch').value;
+    // Sincronizar logo
     syncLogoToClone(clone);
-    // Inyectar estado JS
+    // Inyectar estado JS actualizado
     clone.querySelectorAll('script').forEach(s=>{
-        s.textContent=s.textContent
-            .replace(/let products=\[[\s\S]*?\];/,'let products='+JSON.stringify(products)+';')
-            .replace(/let nextId=\d+;/,'let nextId='+nextId+';')
-            .replace(/let logoState=\{[^}]+\};/,'let logoState='+JSON.stringify(logoState)+';')
-            .replace(/let heroState=\{[^;]+\};/,'let heroState='+JSON.stringify(heroState)+';');
+        if(s.textContent.includes('let products=')){
+            s.textContent=s.textContent
+                .replace(/let products=\[\s\S\]*?\];/,'let products='+JSON.stringify(products)+';')
+                .replace(/let nextId=\d+;/,'let nextId='+nextId+';')
+                .replace(/let logoState=\{[^;]+?\};/,'let logoState='+JSON.stringify(logoState)+';')
+                .replace(/let heroState=\{[^;]+?\};/,'let heroState='+JSON.stringify(heroState)+';')
+                // Inyectar imágenes subidas para que el editable las conserve en memoria
+                .replace(/const uploadedImages = \{\};/,'const uploadedImages = '+JSON.stringify(uploadedImages)+';');
+        }
     });
     download('<!DOCTYPE html>\n'+clone.outerHTML,'vibra_Candela_EDITOR.html');
     setTimeout(()=>showToast('💾 Editor guardado.'),350);
 }
 
-// ============================================================
-// PUBLICAR LIMPIO
-// ============================================================
 function saveClean(){
     const clone=document.documentElement.cloneNode(true);
 
@@ -1970,21 +2008,40 @@ function saveClean(){
     clone.querySelectorAll('.info-link-icon').forEach(el=>{el.removeAttribute('onclick');el.removeAttribute('title');el.style.cursor='';});
     // 15. Ajustar margin-top
     clone.querySelectorAll('.page').forEach(el=>el.style.marginTop='70px');
-    // 16. Catálogo estático
+    // 16. Catálogo estático con soporte de variantes
     const cg=clone.querySelector('#catalogGrid');
     if(cg){
         cg.innerHTML='';
         cg.style.gridTemplateColumns='repeat(3,1fr)';
-        products.forEach(p=>{
-            const card=document.createElement('div');
-            card.className='seller-card';card.style.cursor='pointer';
-            card.setAttribute('onclick',"openProductModal_s('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.price)+"','"+escA(p.longDesc)+"','"+escA(p.img)+"')");
-            card.innerHTML='<div class="seller-img" style="background-image:'+(p.img?"url('"+escA(p.img)+"')":'none')+';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.shortDesc)+'</p><div class="seller-meta"><span class="price">'+esc(p.price)+'</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
-            cg.appendChild(card);
-        });
+
+    // Helper para construir tarjeta del catálogo (simple o con variantes)
+    function buildCatalogCard(p){
+        const hasV=p.variants&&p.variants.length>0;
+        const img=hasV?(p.variants[0].img||p.img||''):(p.img||'');
+        let priceLabel=p.price||'';
+        if(hasV){
+            const prices=p.variants.map(v=>parseFloat((v.price||'0').replace(/[^0-9.]/g,''))).filter(x=>!isNaN(x));
+            if(prices.length){const min=Math.min(...prices);const cur=(p.variants[0].price||'S/. 0').replace(/[0-9.,]/g,'').trim()||'S/.';priceLabel='Desde '+cur+' '+min.toFixed(2);}
+        }
+        const card=document.createElement('div');
+        card.className='seller-card';card.style.cursor='pointer';
+        if(hasV){
+            // onclick abre modal con variantes
+            const vdata=escA(JSON.stringify(p.variants.map(v=>({name:v.name,price:v.price,img:v.img||''}))));
+            card.setAttribute('onclick',"openProductModal_v('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.longDesc)+"','"+vdata+"','"+escA(p.img||'')+"')");
+        } else {
+            card.setAttribute('onclick',"openProductModal_s('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.price)+"','"+escA(p.longDesc)+"','"+escA(img)+"')");
+        }
+        card.innerHTML='<div class="seller-img" style="background-image:'+(img?"url('"+escA(img)+"')":'none')+';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
+            +'<div class="seller-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.shortDesc)+'</p>'
+            +'<div class="seller-meta"><span class="price">'+esc(priceLabel)+'</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
+        return card;
+    }
+
+        products.forEach(p=>cg.appendChild(buildCatalogCard(p)));
     }
     // 17. Unwrap seller-card-wrappers
-    clone.querySelectorAll('.seller-card-wrapper').forEach(w=>{const c=w.querySelector('.seller-card');if(c)w.replaceWith(c.cloneNode(true));});
+    clone.querySelectorAll('.seller-card-wrapper').forEach(w=>{const cc=w.querySelector('.seller-card');if(cc)w.replaceWith(cc.cloneNode(true));});
     // 18. Sincronizar logo
     syncLogoToClone(clone);
     // 19. Sincronizar hero — arquitectura de dos capas
@@ -2081,27 +2138,22 @@ form.addEventListener('submit', function(e) {
 });
 `;
     clone.querySelector('body').appendChild(st);
-    // 21. Limpiar CSS editor
-    clone.querySelectorAll('style').forEach(s=>{
-        s.textContent=s.textContent
-            .replace(/\.editor-toolbar\b[^}]*\}|\.tlabel\b[^}]*\}|\.tbtn\b[^}]*\}|\.tsep\b[^}]*\}|\.save-grp\b[^}]*\}|\.eml-cfg\b[^}]*\}|\.eml-note\b[^}]*\}/g,'')
-            .replace(/\[contenteditable[^\]]*\][^{]*\{[^}]*\}/g,'')
-            .replace(/\.img-editable[^{,]*\{[^}]*\}|\.img-editable::after[^{]*\{[^}]*\}|\.img-editable:hover[^{]*\{[^}]*\}/g,'')
-            .replace(/\.icon-swap-btn\b[^}]*\}/g,'')
-            .replace(/\.pe-overlay\b[^}]*\}|\.pe-modal\b[^}]*\}|\.pe-actions\b[^}]*\}|\.pe-cancel\b[^}]*\}|\.pe-del\b[^}]*\}|\.pe-ok\b[^}]*\}|\.fg\b[^}]*\}/g,'')
-            .replace(/\.card-edt\b[^}]*\}|\.seller-card-wrapper\b[^}]*\}|\.add-product-card\b[^}]*\}/g,'')
-            .replace(/\.iu-overlay\b[^}]*\}|\.iu-modal\b[^}]*\}|\.iu-hint\b[^}]*\}|\.iu-actions\b[^}]*\}/g,'')
-            .replace(/\.hero-img-section\b[^}]*\}|\.filter-row\b[^}]*\}|\.filter-presets\b[^}]*\}|\.fpreset\b[^}]*\}|\.hero-preview-bar\b[^}]*\}|\.hero-preview-tint\b[^}]*\}/g,'')
-            .replace(/\.is-overlay\b[^}]*\}|\.is-modal\b[^}]*\}|\.is-tabs\b[^}]*\}|\.is-tab\b[^}]*\}|\.is-panel\b[^}]*\}|\.is-emoji-input\b[^}]*\}|\.is-preview\b[^}]*\}|\.is-actions\b[^}]*\}/g,'')
-            .replace(/\.lo-overlay\b[^}]*\}|\.lo-modal\b[^}]*\}|\.lo-tabs\b[^}]*\}|\.lo-tab\b[^}]*\}|\.lo-panel\b[^}]*\}|\.lo-hint\b[^}]*\}|\.lo-preview\b[^}]*\}|\.lo-actions\b[^}]*\}/g,'')
-            .replace(/\.ci-overlay\b[^}]*\}|\.ci-modal\b[^}]*\}|\.ci-emoji-input\b[^}]*\}|\.ci-actions\b[^}]*\}/g,'')
-            .replace(/\.para-controls\b[^}]*\}|\.para-btn\b[^}]*\}|\.add-para-btn\b[^}]*\}/g,'')
-            .replace(/\.add-link-btn\b[^}]*\}|\.info-link-actions\b[^}]*\}|\.il-btn\b[^}]*\}/g,'')
-            .replace(/\.logo-edit-btn\b[^}]*\}/g,'')
-            .replace(/\.toast\b[^}]*\}/g,'')
-            .replace(/margin-top:\s*116px/g,'margin-top: 70px')
-            .replace(/top:\s*70px[^}]*\}[^/]*/g,s2=>s2.replace(/\.editor-toolbar[^}]*\}/g,''));
-    });
+    // 21. Override CSS seguro — oculta elementos editor sin romper el resto
+    const overrideStyle=document.createElement('style');
+    overrideStyle.textContent=`
+        #editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
+        .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
+        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
+        {display:none!important;}
+        [contenteditable]{outline:none!important;box-shadow:none!important;}
+        [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
+        .img-editable::after{display:none!important;}
+        .img-editable{cursor:default!important;pointer-events:none!important;}
+        .info-link-icon{cursor:default!important;pointer-events:none!important;}
+        .page{margin-top:80px!important;}
+        @media(max-width:900px){.page{margin-top:104px!important;}}
+    `;
+    clone.querySelector('head').appendChild(overrideStyle);
     clone.querySelector('body').classList.remove('editor-active');
     download('<!DOCTYPE html>\n'+clone.outerHTML,'vibra_Candela.html');
     setTimeout(()=>showToast('🚀 Página publicada.'),350);
@@ -2288,27 +2340,29 @@ async function runGhPublish() {
         // 2. Generar el HTML según el modo
         let htmlContent, fileName;
         if (ghMode === 'editor') {
-            // Clonar con editor activo
             const clone = document.documentElement.cloneNode(true);
-            // Inyectar estado actualizado en el script
+            clone.querySelectorAll('.gh-overlay.open,.modal-overlay.open').forEach(el=>el.classList.remove('open'));
+            const _ei=clone.querySelector('#destEmail');if(_ei)_ei.value=document.getElementById('destEmail').value;
+            const _gr=clone.querySelector('#ghRepo');if(_gr)_gr.value=document.getElementById('ghRepo').value;
+            const _gt=clone.querySelector('#ghToken');if(_gt)_gt.value=document.getElementById('ghToken').value;
+            const _gb=clone.querySelector('#ghBranch');if(_gb)_gb.value=document.getElementById('ghBranch').value;
+            syncLogoToClone(clone);
             clone.querySelectorAll('script').forEach(s => {
                 if (s.textContent.includes('let products=')) {
                     s.textContent = s.textContent
                         .replace(/let products=\[[\s\S]*?\];/, 'let products=' + JSON.stringify(products) + ';')
                         .replace(/let nextId=\d+;/, 'let nextId=' + nextId + ';')
                         .replace(/let logoState=\{[^;]+?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
-                        .replace(/let heroState=\{[^;]+?\};/, 'let heroState=' + JSON.stringify(heroState) + ';');
+                        .replace(/let heroState=\{[^;]+?\};/, 'let heroState=' + JSON.stringify(heroState) + ';')
+                        .replace(/const uploadedImages = \{\};/, 'const uploadedImages = ' + JSON.stringify(uploadedImages) + ';');
                 }
             });
             htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
             fileName = 'editable.html';
         } else {
-            // Generar versión publicada (misma lógica de saveClean)
-            saveClean_gh = true; // flag para captura
             htmlContent = generateCleanHTML();
             fileName = 'index.html';
         }
-
         ghLog('📄 Subiendo ' + fileName + '…', 'info');
         await ghPut(fileName, strToBase64(htmlContent), (ghMode==='editor'?'editor':'publish') + ': ' + fileName);
 
@@ -2346,13 +2400,32 @@ function generateCleanHTML() {
     if(cg){
         cg.innerHTML='';
         cg.style.gridTemplateColumns='repeat(3,1fr)';
-        products.forEach(p=>{
-            const card=document.createElement('div');
-            card.className='seller-card';card.style.cursor='pointer';
-            card.setAttribute('onclick',"openProductModal_s('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.price)+"','"+escA(p.longDesc)+"','"+escA(p.img)+"')");
-            card.innerHTML='<div class="seller-img" style="background-image:'+(p.img?"url('"+escA(p.img)+"')":'none')+';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.shortDesc)+'</p><div class="seller-meta"><span class="price">'+esc(p.price)+'</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
-            cg.appendChild(card);
-        });
+
+    // Helper para construir tarjeta del catálogo (simple o con variantes)
+    function buildCatalogCard(p){
+        const hasV=p.variants&&p.variants.length>0;
+        const img=hasV?(p.variants[0].img||p.img||''):(p.img||'');
+        let priceLabel=p.price||'';
+        if(hasV){
+            const prices=p.variants.map(v=>parseFloat((v.price||'0').replace(/[^0-9.]/g,''))).filter(x=>!isNaN(x));
+            if(prices.length){const min=Math.min(...prices);const cur=(p.variants[0].price||'S/. 0').replace(/[0-9.,]/g,'').trim()||'S/.';priceLabel='Desde '+cur+' '+min.toFixed(2);}
+        }
+        const card=document.createElement('div');
+        card.className='seller-card';card.style.cursor='pointer';
+        if(hasV){
+            // onclick abre modal con variantes
+            const vdata=escA(JSON.stringify(p.variants.map(v=>({name:v.name,price:v.price,img:v.img||''}))));
+            card.setAttribute('onclick',"openProductModal_v('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.longDesc)+"','"+vdata+"','"+escA(p.img||'')+"')");
+        } else {
+            card.setAttribute('onclick',"openProductModal_s('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.price)+"','"+escA(p.longDesc)+"','"+escA(img)+"')");
+        }
+        card.innerHTML='<div class="seller-img" style="background-image:'+(img?"url('"+escA(img)+"')":'none')+';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
+            +'<div class="seller-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.shortDesc)+'</p>'
+            +'<div class="seller-meta"><span class="price">'+esc(priceLabel)+'</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
+        return card;
+    }
+
+        products.forEach(p=>cg.appendChild(buildCatalogCard(p)));
     }
     clone.querySelectorAll('.seller-card-wrapper').forEach(w=>{const cc=w.querySelector('.seller-card');if(cc)w.replaceWith(cc.cloneNode(true));});
     syncLogoToClone(clone);
@@ -2373,6 +2446,22 @@ function generateCleanHTML() {
     }
     const ctaClone=clone.querySelector('#heroCTABtn');
     if(ctaClone){ctaClone.textContent=heroState.btnText;ctaClone.style.background=heroState.btnBg;ctaClone.style.color=heroState.btnColor;}
+    // Override CSS seguro (igual que saveClean)
+    const ghOverrideStyle=document.createElement('style');
+    ghOverrideStyle.textContent=`
+        #editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
+        .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
+        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
+        {display:none!important;}
+        [contenteditable]{outline:none!important;box-shadow:none!important;}
+        [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
+        .img-editable::after{display:none!important;}
+        .img-editable{cursor:default!important;pointer-events:none!important;}
+        .info-link-icon{cursor:default!important;pointer-events:none!important;}
+        .page{margin-top:80px!important;}
+        @media(max-width:900px){.page{margin-top:104px!important;}}
+    `;
+    clone.querySelector('head').appendChild(ghOverrideStyle);
     clone.querySelector('body').classList.remove('editor-active');
     return '<!DOCTYPE html>\n' + clone.outerHTML;
 }
