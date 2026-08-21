@@ -581,9 +581,9 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <!-- Enlaces de texto -->
     <nav class="nav">
         <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="active">Productos</a>
         <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto" class="active">Contacto</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -761,7 +761,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: PRODUCTOS
      ========================================================= -->
-<div id="page-productos" class="page" style="margin-top: 70px;">
+<div id="page-productos" class="page active" style="margin-top: 70px;">
     <div class="catalog-container">
         <h2 style="text-align:center;">Nuestro Catálogo</h2>
         <div class="catalog-grid" id="catalogGrid" style="grid-template-columns: repeat(3, 1fr);"><div class="seller-card" onclick="openProductModal_s('Vela Lavanda Francesa','100% Soya','S/. 450.00','Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.','vibraimgs/icono-imagen-lado-frontal_187299-39480.avif')" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/icono-imagen-lado-frontal_187299-39480.avif');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p><div class="seller-meta"><span class="price">S/. 450.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" onclick="openProductModal_v('Difusor Vainilla Dulce','Ambiental','Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.','[{&amp;quot;name&amp;quot;:&amp;quot;10ml&amp;quot;,&amp;quot;price&amp;quot;:&amp;quot;s/.35&amp;quot;,&amp;quot;img&amp;quot;:&amp;quot;vibraimgs/icono-imagen-lado-frontal_187299-39480.avif&amp;quot;},{&amp;quot;name&amp;quot;:&amp;quot;20ml&amp;quot;,&amp;quot;price&amp;quot;:&amp;quot;s/.65&amp;quot;,&amp;quot;img&amp;quot;:&amp;quot;vibraimgs/icono-imagen-parte-frontal-fondo-blanco_187299-39874.avif&amp;quot;},{&amp;quot;name&amp;quot;:&amp;quot;30ml&amp;quot;,&amp;quot;price&amp;quot;:&amp;quot;s/.95&amp;quot;,&amp;quot;img&amp;quot;:&amp;quot;vibraimgs/icono-imagen-parte-delantera-fondo-blanco_187299-40166.avif&amp;quot;}]','')" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/icono-imagen-lado-frontal_187299-39480.avif');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p><div class="seller-meta"><span class="price">Desde s/ 0.35</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" onclick="openProductModal_s('Vela Bosque de Pino','100% Soya','S/. 45.00','Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.','')" style="cursor: pointer;"><div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p><div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div></div>
@@ -837,7 +837,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: CONTACTO
      ========================================================= -->
-<div id="page-contacto" class="page active" style="margin-top: 70px;">
+<div id="page-contacto" class="page" style="margin-top: 70px;">
     <div class="contact-page">
         <h2>Cuéntanos tus Ideas</h2>
         <div class="contact-wrapper">
