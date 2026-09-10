@@ -27,16 +27,11 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .tbtn:hover{background:#555;}
 .tbtn.gh-save-btn{background:#24292e;border-color:#444;font-weight:600;}
 .tbtn.gh-save-btn:hover{background:#383f47;}
-.gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
-.gh-accordion-toggle{width:100%;background:#f1f5f9;border:none;padding:0.55rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#475569;text-align:left;transition:background 0.15s;}
-.gh-accordion-toggle:hover{background:#e2e8f0;}
-.gh-accordion-body{padding:0.85rem;border-top:1px solid #e2e8f0;background:#fff;}
-.tsep{width:1px;height:20px;background:#555;}
+.gh-accordion{border:1px solid #24292e;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
+.gh-accordion-toggle{width:100%;background:#24292e;border:none;padding:0.55rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#fff;text-align:left;transition:background 0.15s;}
+.gh-accordion-toggle:hover{background:#383f47;}
+.gh-accordion-body{padding:0.85rem;border-top:1px solid #383f47;background:#fff;}
 .save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
-.eml-cfg{display:flex;align-items:center;gap:0.45rem;}
-.eml-cfg input{background:#3a3a3a;border:1px solid #555;color:#fff;padding:0.26rem 0.55rem;border-radius:4px;font-size:0.78rem;width:190px;}
-.eml-cfg input::placeholder{color:#888;}
-.eml-note{font-size:0.68rem;color:#f59e0b;}
 
 /* PAGES */
 .page{display:none;margin-top:116px;flex:1;}
@@ -568,15 +563,6 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- EDITOR TOOLBAR -->
 <div class="editor-toolbar" id="editorToolbar">
     <span class="tlabel">Modo Editor</span>
-    <div class="tsep"></div>
-    <!--
-    <div class="eml-cfg">
-        <span style="color:#bbb;font-size:0.75rem;">📧 Correo:</span>
-        <input type="email" id="destEmail" placeholder="tucorreo@ejemplo.com">
-        <span class="eml-note" title="Configura tu dominio permitido en web3forms.com">⚠️ web3forms</span>
-    </div>
-    <div class="tsep"></div>-->
-    <button class="tbtn" onclick="toggleHints()" id="hintBtn">👁 Ocultar pistas</button>
     <div class="save-grp">
         <button class="tbtn gh-save-btn" onclick="openGhModal()"><i class="fa-solid fa-floppy-disk" style="color: rgb(255, 255, 255);"></i> Guardar</button>
     </div>
@@ -1197,7 +1183,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
         <div class="gh-accordion" id="ghConfigAccordion">
             <button type="button" class="gh-accordion-toggle" onclick="toggleGhConfigAccordion()">
-                <span id="ghAccordionLabel">⚙️ Repositorio y credenciales</span>
+                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: rgb(255, 255, 255); margin-right: 6px;"></i> Repositorio y credenciales</span>
                 <span id="ghAccordionArrow">▾</span>
             </button>
             <div class="gh-accordion-body" id="ghAccordionBody">
@@ -1927,16 +1913,6 @@ form.addEventListener('submit', function(e) {
         });
 });
 
-// ============================================================
-// HINTS
-// ============================================================
-let hintsOn=true;
-function toggleHints(){
-    hintsOn=!hintsOn;
-    document.querySelectorAll('[contenteditable]').forEach(el=>{el.style.outline=hintsOn?'':'none';});
-    document.querySelectorAll('.img-editable').forEach(el=>{el.style.pointerEvents=hintsOn?'':'none';});
-    document.getElementById('hintBtn').textContent=hintsOn?'👁 Ocultar pistas':'👁 Mostrar pistas';
-}
 
 // ============================================================
 // TOAST
@@ -2525,8 +2501,7 @@ async function runGhPublish() {
         if (ghMode === 'editor') {
             const clone = document.documentElement.cloneNode(true);
             clone.querySelectorAll('.gh-overlay.open,.modal-overlay.open').forEach(el=>el.classList.remove('open'));
-            const _ei=clone.querySelector('#destEmail');if(_ei)_ei.value=document.getElementById('destEmail').value;
-            
+
             // Limpiar inputs sensibles en el HTML para evitar cualquier exposición
             const _gt=clone.querySelector('#ghToken');if(_gt){_gt.value='';_gt.removeAttribute('value');}
             const _gp=clone.querySelector('#ghPass');if(_gp){_gp.value='';_gp.removeAttribute('value');}
