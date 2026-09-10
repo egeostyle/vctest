@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibra Candela | Editor</title>
@@ -586,8 +587,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 <header class="header">
     <div class="logo-area" onclick="navigateTo('inicio')" id="logoArea">
-        <img src="" alt="Logo" class="logo-img" id="logoImg" style="display: none;">
-        <span class="logo-text" id="logoText" contenteditable="true" onclick="event.stopPropagation()" style="display: block;">Vibra Candela</span>
+        <img src="" alt="Logo" class="logo-img" id="logoImg">
+        <span class="logo-text" id="logoText" contenteditable="true" onclick="event.stopPropagation()">Vibra Candela</span>
         <button class="logo-edit-btn" onclick="event.stopPropagation();openLogoModal()" title="Cambiar logo">🖼 Logo</button>
     </div>
 
@@ -626,7 +627,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">JELOOOOU tu espacio de forma natural</h1>
+            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
             <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
@@ -777,22 +778,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <div id="page-productos" class="page">
     <div class="catalog-container">
         <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogo</h2>
-        <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(1,event)">✏️ Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
-            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)">✏️ Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
-            <div class="seller-meta"><span class="price">S/. 55.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)">✏️ Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="add-product-card"><span class="ic">＋</span><span>Agregar producto</span></div></div>
+        <div class="catalog-grid" id="catalogGrid"></div>
     </div>
 </div>
 
@@ -801,7 +787,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="product-modal" class="modal-overlay" onclick="closeProductModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="modal-close" onclick="closeProductModal(null)">×</span>
+        <span class="modal-close" onclick="closeProductModal(null)">&times;</span>
         <div class="modal-flex">
             <div id="modal-product-img" class="modal-img"></div>
             <div class="modal-info">
@@ -1161,12 +1147,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <form action="https://api.web3forms.com/submit" method="POST" id="form">
                     <input type="hidden" name="access_key" value="8224743d-95d4-4ea0-aa7b-8cc5eb1c8c6c">
                     <input type="checkbox" name="botcheck" id="" style="display: none;">
-                    <div class="form-group"><label>Nombre</label><input type="text" id="c-name" placeholder="Ej. Ana García" name="Nombre" required=""></div>
-                    <div class="form-group"><label>Correo Electrónico</label><input type="email" id="c-email" placeholder="Ej. ana@correo.com" name="Correo" required=""></div>
-                    <div class="form-group"><label>Celular</label><input type="tel" placeholder="987654321" name="Celular" required=""></div>
+                    <div class="form-group"><label>Nombre</label><input type="text" id="c-name" placeholder="Ej. Ana García" name="Nombre" required></div>
+                    <div class="form-group"><label>Correo Electrónico</label><input type="email" id="c-email" placeholder="Ej. ana@correo.com" name="Correo" required></div>
+                    <div class="form-group"><label>Celular</label><input type="tel" placeholder="987654321" name="Celular" required></div>
                     <div class="form-group">
                         <label>¿En qué te podemos ayudar?</label>
-                        <select id="c-motivo" name="Asunto" required="">
+                        <select id="c-motivo" name="Asunto" required>
                             <option value="">Selecciona una opción</option>
                             <option value="Duda sobre un producto">Duda sobre un producto</option>
                             <option value="Pedido personalizado / Eventos">Pedido personalizado / Eventos</option>
@@ -1174,7 +1160,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                             <option value="Problemas con producto adquirido">Problemas con producto adquirido</option>
                         </select>
                     </div>
-                    <div class="form-group"><label>Tu Mensaje</label><textarea id="c-message" rows="4" placeholder="Escribe aquí los detalles..." name="Mensaje" required=""></textarea></div>
+                    <div class="form-group"><label>Tu Mensaje</label><textarea id="c-message" rows="4" placeholder="Escribe aquí los detalles..." name="Mensaje" required></textarea></div>
                     <button type="submit" class="btn" style="width:100%;" id="formSubmitBtn">Enviar Mensaje</button>
                     <div id="result"></div>
                 </form>
@@ -1184,7 +1170,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 </div>
 
 <footer class="footer">
-    <p contenteditable="true">© 2026 Vibra Candela. Todos los derechos reservados.</p>
+    <p contenteditable="true">&copy; 2026 Vibra Candela. Todos los derechos reservados.</p>
 </footer>
 
 <!-- MODAL: PUBLICAR EN GITHUB -->
@@ -1203,16 +1189,16 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <label>Token de acceso personal
                 <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;">⚙ Fine-grained token</a>
             </label>
-            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display: none;">
+            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
                 <span class="status-text"><span>🟢</span> <span>Token vinculado y activo (••••••••)</span></span>
                 <div class="gh-btn-group">
                     <button type="button" class="gh-small-btn" onclick="changeGhToken()">🔄 Cambiar</button>
                     <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()">🗑 Desvincular</button>
                 </div>
             </div>
-            <div id="ghTokenInputBox" style="display: block;">
+            <div id="ghTokenInputBox">
                 <input type="password" id="ghToken" placeholder="github_pat_...">
-                <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read &amp; Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
+                <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read & Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
             </div>
         </div>
         <div class="gh-group">
@@ -1255,13 +1241,17 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 // ESTADO GLOBAL
 // ============================================================
 const WA_NUMBER="51930246770";
-let products=[{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","img":""},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 55.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","img":""},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","img":""}];
+let products=[
+    {id:1,name:'Vela Lavanda Francesa',cat:'100% Soya',price:'S/. 45.00',shortDesc:'Calma el estrés cotidiano con notas florales suaves.',longDesc:'Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.',img:''},
+    {id:2,name:'Difusor Vainilla Dulce',cat:'Ambiental',price:'S/. 55.00',shortDesc:'Fragancia reconfortante de larga duración.',longDesc:'Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.',img:''},
+    {id:3,name:'Vela Bosque de Pino',cat:'100% Soya',price:'S/. 45.00',shortDesc:'Notas frescas y maderosas que te transportan a la naturaleza.',longDesc:'Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.',img:''}
+];
 let nextId=4;
 let editingProductId=null;
-let logoState={"mode":"text","text":"Vibra Candela","imgUrl":""};
-let heroState={"url":"","color":"#000000","opacity":30,"blend":"normal","btnText":"Explorar Catálogo","btnBg":"#6e8174","btnColor":"#ffffff"};
-let ghEncryptedToken = "{\"v\":2,\"s\":\"ab31bcc0f9c44043\",\"c\":\"ad98b8f9dece072b0806b9c815c4e0bfcfdf8df62a807de98d0938140e0b33cba57f2211bf9d78d64d7077b2962f6ce35d07dc13b614f0154c89adfcdee0231945b0a99e8d03b7a018bb90d3b2bc235dec00d1f05ee6708d4b52a4646d\",\"a\":\"501fc51d4eeb0c9067001c08200589eab081a7b871333903242795f0adcbbb42\"}";
-let ghSavedRepo = "egeostyle/vctest";
+let logoState={mode:'text',text:'Vibra Candela',imgUrl:''};
+let heroState={url:'',color:'#000000',opacity:30,blend:'normal',btnText:'Explorar Catálogo',btnBg:'#6e8174',btnColor:'#ffffff'};
+let ghEncryptedToken = "";
+let ghSavedRepo = "";
 let ghSavedBranch = "main";
 let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
 let activeGhToken = "";
@@ -2933,6 +2923,5 @@ function renderVariantRows(variants){
 renderProducts();
 navigateTo('inicio');
 </script>
-
-
-</body></html>
+</body>
+</html>
