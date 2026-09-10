@@ -27,10 +27,10 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .tbtn:hover{background:#555;}
 .tbtn.gh-save-btn{background:#24292e;border-color:#444;font-weight:600;}
 .tbtn.gh-save-btn:hover{background:#383f47;}
-.gh-accordion{border:1px solid #24292e;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
-.gh-accordion-toggle{width:100%;background:#24292e;border:none;padding:0.55rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#fff;text-align:left;transition:background 0.15s;}
-.gh-accordion-toggle:hover{background:#383f47;}
-.gh-accordion-body{padding:0.85rem;border-top:1px solid #383f47;background:#fff;}
+.gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
+.gh-accordion-toggle{width:100%;background:#f8fafc;border:none;padding:0.6rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#334155;text-align:left;transition:background 0.15s;}
+.gh-accordion-toggle:hover{background:#f1f5f9;}
+.gh-accordion-body{padding:0.85rem;border-top:1px solid #e2e8f0;background:#fff;}
 .save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
 
 /* PAGES */
@@ -343,7 +343,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 /* CONTACT LINK ICON MODAL */
 .ci-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:4500;opacity:0;pointer-events:none;transition:opacity 0.18s;}
 .ci-overlay.open{opacity:1;pointer-events:auto;}
-.ci-modal{background:#fff;border-radius:10px;padding:1.8rem;width:90%;max-width:420px;box-shadow:0 15px 40px rgba(0,0,0,0.22);transform:translateY(-14px);transition:transform 0.18s;}
+.ci-modal{background:#fff;border-radius:10px;padding:1.6rem;width:92%;max-width:440px;max-height:90vh;overflow-y:auto;box-shadow:0 15px 40px rgba(0,0,0,0.22);transform:translateY(-14px);transition:transform 0.18s;}
 .ci-overlay.open .ci-modal{transform:translateY(0);}
 .ci-modal h4{color:var(--cp);margin-bottom:0.3rem;}
 .ci-modal .ci-sub{font-size:0.76rem;color:#aaa;margin-bottom:0.9rem;}
@@ -356,6 +356,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .ci-fa-input:focus,.ci-emoji-input:focus{outline:none;border-color:var(--cp);}
 .ci-fa-hint{font-size:0.72rem;color:#aaa;margin-bottom:0.7rem;}
 .ci-fa-hint a{color:var(--cp);text-decoration:none;}
+.ci-catalog-toggle{display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;width:100%;padding:0.48rem 0.8rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;font-size:0.78rem;font-weight:600;color:#334155;cursor:pointer;margin-bottom:0.6rem;transition:all 0.15s;}
+.ci-catalog-toggle:hover{background:#e2e8f0;color:#0f172a;}
+.ci-catalog-box{border:1px solid #e2e8f0;border-radius:6px;padding:0.6rem;background:#f8fafc;margin-bottom:0.7rem;}
+.ci-catalog-search-wrap{position:relative;margin-bottom:0.45rem;}
+.ci-catalog-search-wrap .ci-search-icon{position:absolute;left:0.6rem;top:50%;transform:translateY(-50%);font-size:0.75rem;color:#94a3b8;pointer-events:none;}
+.ci-catalog-search{width:100%;padding:0.38rem 0.6rem 0.38rem 1.8rem;border:1px solid #cbd5e1;border-radius:4px;font-size:0.78rem;background:#fff;outline:none;}
+.ci-catalog-search:focus{border-color:var(--cp);}
+.ci-catalog-categories{display:flex;gap:0.25rem;flex-wrap:wrap;margin-bottom:0.5rem;}
+.ci-cat-btn{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:0.18rem 0.5rem;font-size:0.68rem;color:#64748b;cursor:pointer;transition:all 0.15s;}
+.ci-cat-btn:hover{background:#f1f5f9;color:#334155;}
+.ci-cat-btn.active{background:var(--cp);color:#fff;border-color:var(--cp);font-weight:600;}
+.ci-catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px;max-height:165px;overflow-y:auto;padding:2px;}
+.ci-icon-item{height:38px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:5px;cursor:pointer;font-size:1.05rem;color:#475569;transition:all 0.15s;}
+.ci-icon-item:hover{background:#f1f5f9;border-color:#94a3b8;color:var(--cp);transform:scale(1.06);}
+.ci-icon-item.active{background:#eaf0ec;border-color:var(--cp);color:var(--cp);box-shadow:0 0 0 2px var(--cp);}
 .ci-color-row{display:flex;align-items:center;gap:0.75rem;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #eee;}
 .ci-color-row label{font-size:0.78rem;color:#555;flex:1;}
 .ci-color-row input[type="color"]{width:36px;height:28px;border:1px solid #ddd;border-radius:4px;padding:2px;cursor:pointer;}
@@ -574,7 +589,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="logo-area" onclick="navigateTo('inicio')" id="logoArea">
         <img src="" alt="Logo" class="logo-img" id="logoImg" style="display: none;">
         <span class="logo-text" id="logoText" contenteditable="true" onclick="event.stopPropagation()" style="display: block;">Vibra Candela</span>
-        <button class="logo-edit-btn" onclick="event.stopPropagation();openLogoModal()" title="Cambiar logo">🖼 Logo</button>
+        <button class="logo-edit-btn" onclick="event.stopPropagation();openLogoModal()" title="Cambiar logo"><i class="fa-solid fa-image"></i> Logo</button>
     </div>
 
     <!-- Enlaces de texto -->
@@ -617,7 +632,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
         <!-- Botón editor (z-index:10) -->
-        <button onclick="event.stopPropagation();openHeroImgModal()" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:5px;padding:0.38rem 0.85rem;font-size:0.78rem;cursor:pointer;z-index:10;">📷 Cambiar imagen y filtro</button>
+        <button onclick="event.stopPropagation();openHeroImgModal()" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:5px;padding:0.38rem 0.85rem;font-size:0.78rem;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:5px;"><i class="fa-solid fa-camera"></i> Cambiar imagen y filtro</button>
     </section>
 
     <!-- BENEFICIOS -->
@@ -628,7 +643,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-0">🌱</span>
                     <img class="icon-img" id="bi-img-0" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',0)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('bi',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h3 contenteditable="true">100% Ecológicasda</h3>
                 <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de sdasdderivados del petróleo.</p>
@@ -637,7 +652,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-1">⏳</span>
                     <img class="icon-img" id="bi-img-1" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',1)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('bi',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h3 contenteditable="true">Mayor Duraciasdón</h3>
                 <p contenteditable="true">Quema a menor temperatura, permitiendo que tu vela dure hasta el doble asdasdque una de parafina.</p>
@@ -646,7 +661,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-2">🍃</span>
                     <img class="icon-img" id="bi-img-2" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',2)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('bi',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h3 contenteditable="true">Quemadasdaso Limpio</h3>
                 <p contenteditable="true">No produce hollín neasdasdasdgro, protegiendo tus pulmones y las paredes de tu hogar.</p>
@@ -686,7 +701,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-0">✂️</span>
                     <img class="icon-img" id="ti-img-0" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',0)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('ti',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h4 contenteditable="true">Corta la mechaasdasdas</h4>
                 <p contenteditable="true" style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.adasdasd</p>
@@ -695,7 +710,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-1">⏱️</span>
                     <img class="icon-img" id="ti-img-1" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',1)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('ti',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h4 contenteditable="true">La primera quemadaasdasdas</h4>
                 <p contenteditable="true" style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".asdasdas</p>
@@ -704,7 +719,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-2">🌬️</span>
                     <img class="icon-img" id="ti-img-2" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',2)">📷 cambiar</button>
+                    <button class="icon-swap-btn" onclick="openIconSwap('ti',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
                 <h4 contenteditable="true">No la soplesasdasd</h4>
                 <p contenteditable="true" style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.asdasdasd</p>
@@ -837,7 +852,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="img-upload-name" id="peFileName" style="display: block;">vibraimgs/tips1.png</div>
                 <div class="img-drop-zone">
                     <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
-                    <div class="dz-icon">🖼️</div>
+                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
                     <p>Haz clic o arrastra una imagen</p>
                 </div>
             </div>
@@ -859,7 +874,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="pe-actions">
             <button class="pe-cancel" onclick="closeProdEditDirect()">Cancelar</button>
             <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()" style="display: inline-block;">🗑 Eliminar</button>
-            <button class="pe-ok" onclick="applyProductEdit()">✓ Aplicar</button>
+            <button class="pe-ok" onclick="applyProductEdit()"><i class="fa-solid fa-check"></i> Aplicar</button>
         </div>
     </div>
 </div>
@@ -867,7 +882,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- MODAL: IMAGEN GENÉRICA -->
 <div id="imgUrlOverlay" class="iu-overlay" onclick="closeImgModal(event)">
     <div class="iu-modal" onclick="event.stopPropagation()">
-        <h4>📷 Cambiar imagen</h4>
+        <h4><i class="fa-solid fa-camera" style="margin-right:6px;"></i> Cambiar imagen</h4>
         <div class="img-tabs">
             <button class="img-tab" id="iuTabUrl" onclick="switchIuTab('url')">🔗 URL</button>
             <button class="img-tab active" id="iuTabFile" onclick="switchIuTab('file')">📁 Subir archivo</button>
@@ -881,7 +896,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <div class="img-upload-name" id="iuFileName" style="display: block;">vibraimgs/why1.png</div>
             <div class="img-drop-zone" id="iuDropZone">
                 <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
-                <div class="dz-icon">🖼️</div>
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
                 <p>Haz clic o arrastra una imagen aquí</p>
                 <p style="font-size:0.68rem;margin-top:0.3rem;">JPG, PNG, WebP, GIF — se guardará en <code>vibraimgs/</code></p>
             </div>
@@ -896,12 +911,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- MODAL: HERO IMAGEN + FILTRO + BOTÓN -->
 <div id="heroImgOverlay" class="iu-overlay" onclick="closeHeroImgModal(event)">
     <div class="iu-modal" style="max-width:560px;max-height:92vh;overflow-y:auto;" onclick="event.stopPropagation()">
-        <h4>🖼 Editor del banner</h4>
+        <h4><i class="fa-solid fa-image" style="margin-right:6px;"></i> Editor del banner</h4>
 
         <!-- IMAGEN -->
         <div class="img-tabs" style="margin-bottom:0.8rem;">
-            <button class="img-tab active" id="heroTabUrl" onclick="switchHeroTab('url')">🔗 URL</button>
-            <button class="img-tab" id="heroTabFile" onclick="switchHeroTab('file')">📁 Subir archivo</button>
+            <button class="img-tab active" id="heroTabUrl" onclick="switchHeroTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+            <button class="img-tab" id="heroTabFile" onclick="switchHeroTab('file')"><i class="fa-solid fa-upload"></i> Subir archivo</button>
         </div>
         <div class="img-panel active" id="heroPanelUrl">
             <input type="text" id="heroUrlInput" placeholder="https://ejemplo.com/imagen.jpg" oninput="updateHeroPreview()" style="width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;margin-bottom:0.3rem;">
@@ -912,7 +927,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <div class="img-upload-name" id="heroUploadName"></div>
             <div class="img-drop-zone" style="margin-bottom:0.5rem;">
                 <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
-                <div class="dz-icon">🖼️</div>
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
                 <p>Haz clic o arrastra la imagen del banner</p>
                 <p style="font-size:0.68rem;margin-top:0.3rem;">Se guardará en <code>vibraimgs/</code></p>
             </div>
@@ -920,7 +935,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
         <!-- FILTRO DE COLOR -->
         <div class="hero-img-section">
-            <h5>🎨 Filtro de color</h5>
+            <h5><i class="fa-solid fa-palette" style="margin-right:4px;"></i> Filtro de color</h5>
             <div class="filter-row">
                 <label>Color:</label>
                 <input type="color" id="heroFilterColor" value="#000000" oninput="updateHeroPreview()">
@@ -940,7 +955,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             </div>
 
             <!-- BLEND MODES -->
-            <h5 style="margin-top:0.8rem;">🔀 Modo de fusión (blend mode)</h5>
+            <h5 style="margin-top:0.8rem;"><i class="fa-solid fa-shuffle" style="margin-right:4px;"></i> Modo de fusión (blend mode)</h5>
             <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.5rem;">Controla cómo el color de filtro interactúa con la imagen.</p>
             <div class="blend-chips" id="blendChips">
                 <button class="bchip active" onclick="setBlendMode('normal',this)">Normal</button>
@@ -972,7 +987,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
         <!-- BOTÓN CTA -->
         <div class="hero-btn-section">
-            <h5>🔘 Botón del banner</h5>
+            <h5><i class="fa-solid fa-toggle-on" style="margin-right:4px;"></i> Botón del banner</h5>
             <div class="hero-btn-row">
                 <label>Texto:</label>
                 <input type="text" id="heroBtnText" value="Explorar Catálogo" oninput="updateHeroBtnPreview()">
@@ -998,7 +1013,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- MODAL: CAMBIAR ÍCONO (emoji o imagen) -->
 <div id="iconSwapOverlay" class="is-overlay" onclick="closeIconSwap(event)">
     <div class="is-modal" onclick="event.stopPropagation()">
-        <h4>🔄 Cambiar ícono</h4>
+        <h4><i class="fa-solid fa-arrow-rotate-right" style="margin-right:6px;"></i> Cambiar ícono</h4>
         <p>Usa un emoji o una imagen URL.</p>
         <div class="is-tabs">
             <button class="is-tab active" id="isTabEmoji" onclick="switchIsTab('emoji')">Emoji</button>
@@ -1023,7 +1038,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- MODAL: ÍCONO DE LINK DE CONTACTO -->
 <div id="ciOverlay" class="ci-overlay" onclick="closeCiModal(event)">
     <div class="ci-modal" onclick="event.stopPropagation()">
-        <h4>🔄 Cambiar ícono del ítem</h4>
+        <h4><i class="fa-solid fa-icons" style="margin-right:6px;"></i> Cambiar ícono del ítem</h4>
         <p class="ci-sub">Elige emoji o ícono de Font Awesome.</p>
         <div class="ci-tabs">
             <button class="ci-tab active" id="ciTabEmoji" onclick="switchCiTab('emoji')">Emoji</button>
@@ -1034,8 +1049,26 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <p style="font-size:0.72rem;color:#aaa;text-align:center;">Pega o escribe un emoji</p>
         </div>
         <div class="ci-panel" id="ciPanelFa">
-            <input type="text" class="ci-fa-input" id="ciFaInput" placeholder="fa-solid fa-location-dot" oninput="updateCiPreview()">
-            <p class="ci-fa-hint">Ej: <code>fa-solid fa-phone</code> — busca en <a href="https://fontawesome.com/icons" target="_blank">fontawesome.com/icons</a></p>
+            <input type="text" class="ci-fa-input" id="ciFaInput" placeholder="fa-solid fa-location-dot" oninput="updateCiPreview();highlightFaIcon(this.value)">
+            <p class="ci-fa-hint">Ej: <code>fa-solid fa-phone</code> — busca o escribe cualquier clase FA</p>
+            <button type="button" class="ci-catalog-toggle" id="ciCatalogToggle" onclick="toggleFaCatalog()">
+                <i class="fa-solid fa-icons" id="ciCatalogToggleIcon"></i> <span id="ciCatalogToggleTxt">Mostrar catálogo de íconos</span>
+            </button>
+            <div class="ci-catalog-box" id="ciCatalogBox" style="display:none;">
+                <div class="ci-catalog-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass ci-search-icon"></i>
+                    <input type="text" id="ciFaSearchInput" class="ci-catalog-search" placeholder="Buscar ícono (ej: whatsapp, teléfono, vela...)" oninput="filterFaIcons(this.value)">
+                </div>
+                <div class="ci-catalog-categories" id="ciCatalogCategories">
+                    <button type="button" class="ci-cat-btn active" data-cat="all" onclick="filterFaCategory('all')">Todos</button>
+                    <button type="button" class="ci-cat-btn" data-cat="contacto" onclick="filterFaCategory('contacto')">Contacto</button>
+                    <button type="button" class="ci-cat-btn" data-cat="redes" onclick="filterFaCategory('redes')">Redes</button>
+                    <button type="button" class="ci-cat-btn" data-cat="tienda" onclick="filterFaCategory('tienda')">Tienda</button>
+                    <button type="button" class="ci-cat-btn" data-cat="velas" onclick="filterFaCategory('velas')">Velas/Aromas</button>
+                    <button type="button" class="ci-cat-btn" data-cat="interfaz" onclick="filterFaCategory('interfaz')">General</button>
+                </div>
+                <div class="ci-catalog-grid" id="ciCatalogGrid"></div>
+            </div>
         </div>
         <div class="ci-color-row">
             <label>Color del ícono:</label>
@@ -1053,7 +1086,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- MODAL: LOGO -->
 <div id="logoOverlay" class="lo-overlay" onclick="closeLogoModal(event)">
     <div class="lo-modal" onclick="event.stopPropagation()">
-        <h4>🖼 Editar logo</h4>
+        <h4><i class="fa-solid fa-image" style="margin-right:6px;"></i> Editar logo</h4>
         <p class="sub">Elige entre texto o imagen.</p>
         <div class="lo-tabs">
             <button class="lo-tab" id="loTabText" onclick="switchLoTab('text')">Texto</button>
@@ -1092,13 +1125,13 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div class="bio-p">
                     <p contenteditable="true">Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.zxczxczxc</p>
                     <div class="para-controls">
-                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo">✕</button>
+                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
                 <div class="bio-p">
                     <p contenteditable="true">Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.zxczxczxc</p>
                     <div class="para-controls">
-                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo">✕</button>
+                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
                 <button class="add-para-btn" onclick="addPara()">＋ Agregar párrafo</button>
@@ -1123,24 +1156,24 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📍</span>
                         <span class="info-link-text" contenteditable="true">Callao, Perúzxczxc</span>
                         <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar">✕</button>
+                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <div class="info-link">
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">💬</span>
                         <span class="info-link-text" contenteditable="true">WhatsApp: +51 999 999 999zxczxc</span>
                         <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar">✕</button>
+                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <div class="info-link">
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">✉️</span>
                         <span class="info-link-text" contenteditable="true">hola@aromanatural.comzxczxc</span>
                         <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar">✕</button>
+                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
-                <div class="info-link"><span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítezxczxczxcm — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar">✕</button></div></div></div>
+                <div class="info-link"><span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítezxczxczxcm — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button></div></div></div>
                 <button class="add-link-btn" onclick="addInfoLink()">＋ Agregar ítem</button>
             </div>
             <div class="contact-form-panel">
@@ -1183,8 +1216,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
         <div class="gh-accordion" id="ghConfigAccordion">
             <button type="button" class="gh-accordion-toggle" onclick="toggleGhConfigAccordion()">
-                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: rgb(255, 255, 255); margin-right: 6px;"></i> Repositorio y credenciales</span>
-                <span id="ghAccordionArrow">▾</span>
+                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
+                <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
             </button>
             <div class="gh-accordion-body" id="ghAccordionBody">
                 <div class="gh-group">
@@ -1193,13 +1226,13 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 </div>
                 <div class="gh-group" id="ghTokenGroup">
                     <label>Token de acceso personal
-                        <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;">⚙ Fine-grained token</a>
+                        <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
                     </label>
                     <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
-                        <span class="status-text"><span>🟢</span> <span>Token vinculado y activo (••••••••)</span></span>
+                        <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
                         <div class="gh-btn-group">
-                            <button type="button" class="gh-small-btn" onclick="changeGhToken()">🔄 Cambiar</button>
-                            <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()">🗑 Desvincular</button>
+                            <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
+                            <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
                         </div>
                     </div>
                     <div id="ghTokenInputBox">
@@ -1222,7 +1255,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
         <div class="gh-pass-group">
             <div class="gh-group" style="margin-bottom:0;">
-                <label id="ghPassLabel">🔑 Contraseña de autorización</label>
+                <label id="ghPassLabel"><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización</label>
                 <input type="password" id="ghPass" placeholder="••••••••" oninput="checkAutoUnlock()">
             </div>
         </div>
@@ -1292,7 +1325,7 @@ function renderProducts(){
     products.forEach(p=>{
         const w=document.createElement('div');
         w.className='seller-card-wrapper';
-        w.innerHTML=`<button class="card-edt" onclick="openProdEdit(${p.id},event)">✏️ Editar</button>
+        w.innerHTML=`<button class="card-edt" onclick="openProdEdit(${p.id},event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
         <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(${p.id})">
             <div class="seller-img" style="background-image:${getProductImg(p)?'url(\''+getProductImg(p)+'\')':'none'};"></div>
             <div class="seller-info"><h3>${esc(p.name)}</h3><p>${esc(p.shortDesc)}</p>
@@ -1739,7 +1772,7 @@ function addPara(){
     const addBtn=bio.querySelector('.add-para-btn');
     const wrap=document.createElement('div');
     wrap.className='bio-p';
-    wrap.innerHTML='<p contenteditable="true">Nuevo párrafo — haz clic para editar este texto.</p><div class="para-controls"><button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo">✕</button></div>';
+    wrap.innerHTML='<p contenteditable="true">Nuevo párrafo — haz clic para editar este texto.</p><div class="para-controls"><button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button></div>';
     bio.insertBefore(wrap,addBtn);
     wrap.querySelector('p').focus();
 }
@@ -1758,7 +1791,7 @@ function addInfoLink(){
     const c=document.getElementById('infoLinksContainer');
     const div=document.createElement('div');
     div.className='info-link';
-    div.innerHTML='<span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítem — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar">✕</button></div>';
+    div.innerHTML='<span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítem — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button></div>';
     c.appendChild(div);
     div.querySelector('.info-link-text').focus();
 }
@@ -1767,6 +1800,141 @@ function removeInfoLink(btn){
     const c=document.getElementById('infoLinksContainer');
     if(c.querySelectorAll('.info-link').length<=1){showToast('Debe quedar al menos un ítem.');return;}
     link.remove();
+}
+
+// ============================================================
+// CATÁLOGO DE ÍCONOS FONT AWESOME (FREE)
+// ============================================================
+const FA_ICONS_LIST = [
+    // Contacto & Ubicación
+    { cls: 'fa-solid fa-phone', name: 'Teléfono', cat: 'contacto', tags: 'telefono phone llamar call fono' },
+    { cls: 'fa-solid fa-mobile-screen', name: 'Celular', cat: 'contacto', tags: 'celular movil smartphone movil' },
+    { cls: 'fa-solid fa-envelope', name: 'Correo', cat: 'contacto', tags: 'correo email mail mensaje carta' },
+    { cls: 'fa-solid fa-location-dot', name: 'Ubicación', cat: 'contacto', tags: 'ubicacion mapa direccion local gps map point' },
+    { cls: 'fa-solid fa-map-pin', name: 'Pin Mapa', cat: 'contacto', tags: 'pin mapa location' },
+    { cls: 'fa-solid fa-clock', name: 'Horario', cat: 'contacto', tags: 'horario reloj tiempo hora agenda time' },
+    { cls: 'fa-solid fa-calendar-days', name: 'Calendario', cat: 'contacto', tags: 'calendario fecha dias calendar date' },
+    { cls: 'fa-solid fa-comments', name: 'Chat', cat: 'contacto', tags: 'chat conversacion comentarios hablar mensaje' },
+    { cls: 'fa-solid fa-comment-dots', name: 'Mensajes', cat: 'contacto', tags: 'mensaje chat texto globo' },
+    { cls: 'fa-solid fa-headset', name: 'Soporte', cat: 'contacto', tags: 'soporte atencion call center audifonos' },
+
+    // Redes Sociales
+    { cls: 'fa-brands fa-whatsapp', name: 'WhatsApp', cat: 'redes', tags: 'whatsapp wsp wasap redes chat' },
+    { cls: 'fa-brands fa-instagram', name: 'Instagram', cat: 'redes', tags: 'instagram ig redes fotos social' },
+    { cls: 'fa-brands fa-facebook', name: 'Facebook', cat: 'redes', tags: 'facebook fb redes' },
+    { cls: 'fa-brands fa-tiktok', name: 'TikTok', cat: 'redes', tags: 'tiktok video redes social' },
+    { cls: 'fa-brands fa-youtube', name: 'YouTube', cat: 'redes', tags: 'youtube video canal' },
+    { cls: 'fa-brands fa-twitter', name: 'Twitter / X', cat: 'redes', tags: 'twitter x tweet redes' },
+    { cls: 'fa-brands fa-telegram', name: 'Telegram', cat: 'redes', tags: 'telegram mensaje chat' },
+    { cls: 'fa-brands fa-pinterest', name: 'Pinterest', cat: 'redes', tags: 'pinterest fotos ideas' },
+
+    // Tienda & Comercio
+    { cls: 'fa-solid fa-cart-shopping', name: 'Carrito', cat: 'tienda', tags: 'carrito compras tienda shop cart ecommerce' },
+    { cls: 'fa-solid fa-bag-shopping', name: 'Bolsa', cat: 'tienda', tags: 'bolsa compras bag shopping tienda' },
+    { cls: 'fa-solid fa-store', name: 'Tienda', cat: 'tienda', tags: 'tienda local negocio shop market' },
+    { cls: 'fa-solid fa-truck', name: 'Envío', cat: 'tienda', tags: 'envio delivery camion transporte entrega despacho' },
+    { cls: 'fa-solid fa-gift', name: 'Regalo', cat: 'tienda', tags: 'regalo present gift detalle obsequio pack sorpresa' },
+    { cls: 'fa-solid fa-credit-card', name: 'Tarjeta', cat: 'tienda', tags: 'tarjeta pago debito credito card pay' },
+    { cls: 'fa-solid fa-money-bill-wave', name: 'Efectivo', cat: 'tienda', tags: 'dinero efectivo billete pago cash plata' },
+    { cls: 'fa-solid fa-tag', name: 'Etiqueta', cat: 'tienda', tags: 'etiqueta precio oferta promocion tag' },
+    { cls: 'fa-solid fa-tags', name: 'Ofertas', cat: 'tienda', tags: 'ofertas descuentos promociones tags rebajas' },
+    { cls: 'fa-solid fa-box-open', name: 'Paquete', cat: 'tienda', tags: 'caja paquete producto box envio' },
+    { cls: 'fa-solid fa-barcode', name: 'Código', cat: 'tienda', tags: 'codigo barras producto barcode' },
+    { cls: 'fa-solid fa-receipt', name: 'Boleta', cat: 'tienda', tags: 'recibo boleta factura comprobante ticket' },
+
+    // Velas, Aromas y Naturaleza
+    { cls: 'fa-solid fa-fire-flame-curved', name: 'Llama vela', cat: 'velas', tags: 'vela fuego llama flama candela encendido' },
+    { cls: 'fa-solid fa-fire', name: 'Fuego', cat: 'velas', tags: 'fuego calor llama candela vibra' },
+    { cls: 'fa-solid fa-leaf', name: 'Hoja natural', cat: 'velas', tags: 'hoja planta natural eco vegetal soya organico leaf' },
+    { cls: 'fa-solid fa-seedling', name: 'Brote', cat: 'velas', tags: 'planta brote semilla bio naturaleza verde' },
+    { cls: 'fa-solid fa-spa', name: 'Spa', cat: 'velas', tags: 'spa relax bienestar aromaterapia masaje calma paz' },
+    { cls: 'fa-solid fa-wind', name: 'Aroma/Brisa', cat: 'velas', tags: 'aroma brisa viento fragancia olor aire frescura' },
+    { cls: 'fa-solid fa-droplet', name: 'Esencia/Gota', cat: 'velas', tags: 'aceite gota esencia perfume aroma liquido oleo' },
+    { cls: 'fa-solid fa-heart', name: 'Corazón', cat: 'velas', tags: 'corazon amor carino hecho con amor hand love' },
+    { cls: 'fa-solid fa-hand-holding-heart', name: 'Artesanal', cat: 'velas', tags: 'artesanal hecho a mano cuidado amor mano' },
+    { cls: 'fa-solid fa-star', name: 'Estrella', cat: 'velas', tags: 'estrella calidad favorito premium top calificacion' },
+    { cls: 'fa-solid fa-sun', name: 'Sol', cat: 'velas', tags: 'sol dia luz energia calidez bright' },
+    { cls: 'fa-solid fa-moon', name: 'Luna', cat: 'velas', tags: 'luna noche descanso dormir relax paz night' },
+
+    // General & Interfaz
+    { cls: 'fa-solid fa-circle-check', name: 'Aprobado', cat: 'interfaz', tags: 'check verificado seguro si ok correcto' },
+    { cls: 'fa-solid fa-circle-info', name: 'Información', cat: 'interfaz', tags: 'informacion info datos ayuda saber' },
+    { cls: 'fa-solid fa-circle-question', name: 'Pregunta', cat: 'interfaz', tags: 'pregunta duda faq ayuda question' },
+    { cls: 'fa-solid fa-shield-halved', name: 'Garantía', cat: 'interfaz', tags: 'seguridad garantia proteccion confianza shield' },
+    { cls: 'fa-solid fa-award', name: 'Premio', cat: 'interfaz', tags: 'premio certificado distincion logro calidad' },
+    { cls: 'fa-solid fa-gem', name: 'Premium', cat: 'interfaz', tags: 'joya diamante premium exclusivo lujo gem' },
+    { cls: 'fa-solid fa-wand-magic-sparkles', name: 'Especial', cat: 'interfaz', tags: 'magia brillo especial nuevo sparkle shine' },
+    { cls: 'fa-solid fa-user', name: 'Usuario', cat: 'interfaz', tags: 'usuario persona cliente perfil cuenta' },
+    { cls: 'fa-solid fa-users', name: 'Comunidad', cat: 'interfaz', tags: 'comunidad equipo clientes grupo' },
+    { cls: 'fa-solid fa-house', name: 'Inicio', cat: 'interfaz', tags: 'casa hogar inicio home domicilio' },
+    { cls: 'fa-solid fa-share-nodes', name: 'Compartir', cat: 'interfaz', tags: 'compartir share redes enlace' },
+    { cls: 'fa-solid fa-bell', name: 'Notificación', cat: 'interfaz', tags: 'campana notificaciones aviso alerta bell' }
+];
+
+let currentFaCat = 'all';
+
+function toggleFaCatalog(){
+    const box = document.getElementById('ciCatalogBox');
+    const txt = document.getElementById('ciCatalogToggleTxt');
+    const icon = document.getElementById('ciCatalogToggleIcon');
+    if (!box) return;
+    const isHidden = (box.style.display === 'none' || !box.style.display);
+    box.style.display = isHidden ? 'block' : 'none';
+    if (txt) txt.textContent = isHidden ? 'Ocultar catálogo de íconos' : 'Mostrar catálogo de íconos';
+    if (icon) icon.className = isHidden ? 'fa-solid fa-chevron-up' : 'fa-solid fa-icons';
+    if (isHidden) {
+        renderFaCatalog();
+        highlightFaIcon(document.getElementById('ciFaInput').value.trim());
+    }
+}
+
+function filterFaCategory(cat){
+    currentFaCat = cat;
+    document.querySelectorAll('.ci-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+    });
+    renderFaCatalog();
+}
+
+function filterFaIcons(query){
+    renderFaCatalog(query);
+}
+
+function renderFaCatalog(searchQuery){
+    const grid = document.getElementById('ciCatalogGrid');
+    if (!grid) return;
+    const q = (searchQuery !== undefined ? searchQuery : (document.getElementById('ciFaSearchInput') ? document.getElementById('ciFaSearchInput').value : '')).toLowerCase().trim();
+    const currentVal = document.getElementById('ciFaInput').value.trim();
+
+    const filtered = FA_ICONS_LIST.filter(item => {
+        const matchesCat = (currentFaCat === 'all' || item.cat === currentFaCat);
+        if (!matchesCat) return false;
+        if (!q) return true;
+        return item.name.toLowerCase().includes(q) || item.cls.toLowerCase().includes(q) || item.tags.toLowerCase().includes(q);
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1rem;color:#94a3b8;font-size:0.75rem;">No se encontraron íconos</div>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map(item => {
+        const isActive = item.cls === currentVal ? ' active' : '';
+        return `<button type="button" class="ci-icon-item${isActive}" data-cls="${item.cls}" onclick="selectFaIcon('${item.cls}')" title="${item.name} (${item.cls})"><i class="${item.cls}"></i></button>`;
+    }).join('');
+}
+
+function selectFaIcon(cls){
+    document.getElementById('ciFaInput').value = cls;
+    highlightFaIcon(cls);
+    updateCiPreview();
+}
+
+function highlightFaIcon(cls){
+    const items = document.querySelectorAll('.ci-icon-item');
+    items.forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-cls') === cls);
+    });
 }
 
 // ÍCONO DE ÍTEM DE CONTACTO
@@ -1779,6 +1947,9 @@ function switchCiTab(t){
     document.getElementById('ciPanelEmoji').classList.toggle('active',t==='emoji');
     document.getElementById('ciPanelFa').classList.toggle('active',t==='fa');
     updateCiPreview();
+    if(t==='fa'){
+        highlightFaIcon(document.getElementById('ciFaInput').value.trim());
+    }
 }
 function updateCiPreview(){
     const color=document.getElementById('ciColorInput').value;
@@ -1804,6 +1975,7 @@ function openCiModal(el){
         document.getElementById('ciColorInput').value=el.style.color||'#6e8174';
     }
     updateCiPreview();
+    highlightFaIcon(document.getElementById('ciFaInput').value.trim());
     document.getElementById('ciOverlay').classList.add('open');
 }
 function applyCiIcon(){
@@ -1815,7 +1987,7 @@ function applyCiIcon(){
         currentCiIcon.style.color=color;
     } else {
         const cls=document.getElementById('ciFaInput').value.trim();
-        if(!cls){showToast('Escribe la clase del ícono FontAwesome.');return;}
+        if(!cls){showToast('Escribe o selecciona la clase del ícono FontAwesome.');return;}
         currentCiIcon.innerHTML='<i class="'+cls+'" style="color:'+color+';font-size:1.2rem;"></i>';
         currentCiIcon.style.color='';
     }
@@ -2263,21 +2435,21 @@ function updateGhModalUI() {
         savedBox.style.display = 'flex';
         inputBox.style.display = 'none';
         noticeBox.style.display = 'none';
-        passLabel.textContent = '🔑 Contraseña de autorización';
+        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
     } else if (ghEncryptedToken) {
         savedBox.style.display = 'none';
         inputBox.style.display = 'none';
         noticeBox.style.display = 'block';
         noticeBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">'
-            + '<span>🔐 <strong>Token detectado en este archivo</strong>. Ingresa tu contraseña y presiona:</span>'
-            + '<button type="button" class="gh-small-btn" onclick="unlockTokenFromFile(false)" style="background:#2563eb;color:#fff;border-color:#1d4ed8;font-weight:600;padding:0.25rem 0.65rem;">🔓 Desbloquear</button>'
+            + '<span><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> <strong>Token detectado en este archivo</strong>. Ingresa tu contraseña y presiona:</span>'
+            + '<button type="button" class="gh-small-btn" onclick="unlockTokenFromFile(false)" style="background:#2563eb;color:#fff;border-color:#1d4ed8;font-weight:600;padding:0.25rem 0.65rem;"><i class="fa-solid fa-lock-open" style="margin-right: 4px;"></i> Desbloquear</button>'
             + '</div>';
-        passLabel.textContent = '🔑 Contraseña de autorización (para desbloquear y guardar)';
+        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización (para desbloquear y guardar)';
     } else {
         savedBox.style.display = 'none';
         inputBox.style.display = 'block';
         noticeBox.style.display = 'none';
-        passLabel.textContent = '🔑 Contraseña de autorización';
+        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
     }
 }
 
@@ -2288,7 +2460,7 @@ function changeGhToken() {
     document.getElementById('ghTokenSavedBox').style.display = 'none';
     document.getElementById('ghTokenInputBox').style.display = 'block';
     document.getElementById('ghNoticeBox').style.display = 'none';
-    document.getElementById('ghPassLabel').textContent = '🔑 Contraseña de autorización';
+    document.getElementById('ghPassLabel').innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
     setGhConfigAccordion(true);
     document.getElementById('ghToken').focus();
     showToast('Ingresa el nuevo token de GitHub.');
@@ -2670,7 +2842,7 @@ function addVariantRow(v){
     div.innerHTML=`
         <div class="variant-header">
             <span class="variant-label">Variante ${idx}</span>
-            <button class="variant-del" onclick="this.closest('.pe-variant-item').remove();renumberVariants();" title="Eliminar variante">✕</button>
+            <button class="variant-del" onclick="this.closest('.pe-variant-item').remove();renumberVariants();" title="Eliminar variante"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="pe-variant-row">
             <div><label>Nombre / tamaño</label><input class="v-name" type="text" placeholder="Ej. 100ml" value="${escHtml(v.name)}"></div>
@@ -2680,8 +2852,8 @@ function addVariantRow(v){
             <div>
                 <label>Imagen (opcional)</label>
                 <div class="vimg-tabs">
-                    <button class="vimg-tab active" onclick="switchVTab('${uid}','url');event.preventDefault()">🔗 URL</button>
-                    <button class="vimg-tab" onclick="switchVTab('${uid}','file');event.preventDefault()">📁 Subir</button>
+                    <button class="vimg-tab active" onclick="switchVTab('${uid}','url');event.preventDefault()"><i class="fa-solid fa-link"></i> URL</button>
+                    <button class="vimg-tab" onclick="switchVTab('${uid}','file');event.preventDefault()"><i class="fa-solid fa-upload"></i> Subir</button>
                 </div>
                 <div class="vimg-panel active" id="vurl-${uid}">
                     <input class="v-img" type="text" placeholder="https://... o vibraimgs/..." value="${escHtml(v.img)}">
@@ -2691,7 +2863,7 @@ function addVariantRow(v){
                     <div class="vimg-name" id="vname-${uid}"></div>
                     <div class="vimg-drop">
                         <input type="file" accept="image/*" onchange="handleVariantFile(this,'${uid}')">
-                        <p>📷 Clic o arrastra imagen</p>
+                        <p><i class="fa-solid fa-camera"></i> Clic o arrastra imagen</p>
                     </div>
                 </div>
             </div>
