@@ -2641,26 +2641,71 @@ async function runGhPublish() {
 
         // ── Helper: subir/actualizar archivo en GitHub ────────────
         async function ghPut(path, content64, message) {
-            ghLog('📤 ' + path + '…');
+            ghLog('🔍 Verificando ' + path + ' en GitHub…', 'info');
             let sha = null;
             try {
-                const r = await fetch(apiBase + path + '?ref=' + encodeURIComponent(branch) + '&_t=' + Date.now(), {
-                    headers,
-                    cache: 'no-store'
+                const getHeaders = {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/vnd.github+json'
+                };
+                const r = await fetch(apiBase + path + '?ref=' + encodeURIComponent(branch), {
+                    headers: getHeaders
                 });
-                if (r.ok) { const d = await r.json(); sha = d.sha; }
-            } catch(_) {}
+                if (r.ok) {
+                    const d = await r.json();
+                    sha = d.sha;
+                    ghLog('📝 ' + path + ' existe (SHA: ' + sha.substring(0, 7) + '). Actualizando…', 'info');
+                } else if (r.status === 404) {
+                    ghLog('🆕 ' + path + ' es nuevo. Creando…', 'info');
+                } else {
+                    console.warn('GET ' + path + ' status:', r.status);
+                }
+            } catch(e) {
+                console.warn('Verificación SHA:', e);
+            }
+
+            const sizeKb = Math.round(content64.length / 1024);
+            ghLog('📤 Enviando ' + path + ' (' + sizeKb + ' KB)…', 'info');
             const body = { message, content: content64, branch };
             if (sha) body.sha = sha;
-            const res = await fetch(apiBase + path, {
-                method: 'PUT', headers,
-                body: JSON.stringify(body)
-            });
-            if (!res.ok) {
-                const err = await res.json();
-                throw new Error(path + ': ' + (err.message || res.status));
+
+            const putHeaders = {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github+json'
+            };
+
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), 60000);
+
+            try {
+                const res = await fetch(apiBase + path, {
+                    method: 'PUT',
+                    headers: putHeaders,
+                    body: JSON.stringify(body),
+                    signal: controller.signal
+                });
+                clearTimeout(timer);
+
+                if (!res.ok) {
+                    let errMsg = 'HTTP ' + res.status;
+                    try {
+                        const err = await res.json();
+                        errMsg = err.message || errMsg;
+                    } catch(_) {
+                        const txt = await res.text();
+                        if (txt) errMsg = txt.substring(0, 80);
+                    }
+                    throw new Error(path + ': ' + errMsg);
+                }
+                ghLog('✅ ' + path + ' sincronizado con éxito.', 'ok');
+            } catch(fetchErr) {
+                clearTimeout(timer);
+                if (fetchErr.name === 'AbortError') {
+                    throw new Error('Tiempo de espera agotado al subir ' + path + '. Verifica tu conexión.');
+                }
+                throw fetchErr;
             }
-            ghLog('✅ ' + path, 'ok');
         }
 
         // ── Helper: dataURL → base64 puro ────────────────────────
