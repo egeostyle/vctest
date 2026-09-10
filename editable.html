@@ -47,7 +47,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 /* IMAGE BOXES */
 .img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
-.img-editable::after{content:'\f030\00a0\00a0Clic para cambiar imagen';font-family:"Font Awesome 6 Free",var(--f);font-weight:900;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;font-size:0.83rem;opacity:0;transition:opacity 0.22s;pointer-events:none;}
+.img-editable::after{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14' fill='white'%3E%3Cpath d='M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'/%3E%3C/svg%3E") '  Clic para cambiar imagen';font-family:var(--f);font-size:0.83rem;font-weight:600;text-transform:none;letter-spacing:normal;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;opacity:0;transition:opacity 0.22s;pointer-events:none;}
 .img-editable:hover::after{opacity:1;}
 
 /* ICON BOXES (beneficios/tips) */
@@ -170,8 +170,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .pe-ok{background:var(--cp);color:#fff;} .pe-ok:hover{background:#58685d;}
 
 /* CARD WRAPPER */
+.seller-card-wrapper{position:relative;}
 .card-edt{position:absolute;top:8px;right:8px;background:rgba(30,30,30,0.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:5px;padding:0.28rem 0.6rem;font-size:0.72rem;font-weight:600;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:background 0.2s,transform 0.15s;}
 .card-edt:hover{background:rgba(0,0,0,0.95);transform:scale(1.04);}
+.card-edt:active{transform:scale(0.96);}
 .add-product-card{border:2px dashed var(--ca);border-radius:8px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;color:#999;font-size:0.88rem;}
 .add-product-card:hover{border-color:var(--cp);background:rgba(110,129,116,0.05);color:var(--cp);}
 .add-product-card .ic{font-size:1.9rem;}
@@ -777,17 +779,17 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <div id="page-productos" class="page">
     <div class="catalog-container">
         <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogosadasdas</h2>
-        <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(1,event)">✏️ Editar</button>
+        <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(1,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
         <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
             <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
             <div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p>
             <div class="seller-meta"><span class="price">Desde s 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)">✏️ Editar</button>
+        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
         <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
             <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
             <div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p>
             <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)">✏️ Editar</button>
+        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
         <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
             <div class="seller-img" style="background-image:none;"></div>
             <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
