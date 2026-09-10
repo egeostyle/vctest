@@ -47,7 +47,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 /* IMAGE BOXES */
 .img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
-.img-editable::after{content:'📷 Clic para cambiar imagen';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);color:#fff;font-size:0.83rem;font-weight:600;opacity:0;transition:opacity 0.22s;pointer-events:none;}
+.img-editable::after{content:'\f030\00a0\00a0Clic para cambiar imagen';font-family:"Font Awesome 6 Free",var(--f);font-weight:900;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;font-size:0.83rem;opacity:0;transition:opacity 0.22s;pointer-events:none;}
 .img-editable:hover::after{opacity:1;}
 
 /* ICON BOXES (beneficios/tips) */
@@ -170,9 +170,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .pe-ok{background:var(--cp);color:#fff;} .pe-ok:hover{background:#58685d;}
 
 /* CARD WRAPPER */
-.seller-card-wrapper{position:relative;}
-.card-edt{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.65);color:#fff;border:none;border-radius:4px;padding:0.25rem 0.55rem;font-size:0.7rem;cursor:pointer;z-index:10;opacity:0;transition:opacity 0.18s;}
-.seller-card-wrapper:hover .card-edt{opacity:1;}
+.card-edt{position:absolute;top:8px;right:8px;background:rgba(30,30,30,0.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:5px;padding:0.28rem 0.6rem;font-size:0.72rem;font-weight:600;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:background 0.2s,transform 0.15s;}
+.card-edt:hover{background:rgba(0,0,0,0.95);transform:scale(1.04);}
 .add-product-card{border:2px dashed var(--ca);border-radius:8px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;color:#999;font-size:0.88rem;}
 .add-product-card:hover{border-color:var(--cp);background:rgba(110,129,116,0.05);color:var(--cp);}
 .add-product-card .ic{font-size:1.9rem;}
@@ -815,7 +814,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     </div>
                     <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
                 </div>
-                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="2" data-active-variant="{&quot;name&quot;:&quot;10ml&quot;,&quot;price&quot;:&quot;30s&quot;}"><span>💬</span> Solicitar por WhatsApp</a>
+                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="2" data-active-variant="{&quot;name&quot;:&quot;10ml&quot;,&quot;price&quot;:&quot;30s&quot;}"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
             </div>
         </div>
     </div>
@@ -841,15 +840,15 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="fg" id="pe-img-group" style="">
             <label>Imagen del producto</label>
             <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')">🔗 URL</button>
-                <button class="img-tab active" id="peTabFile" onclick="switchPeTab('file')">📁 Subir</button>
+                <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+                <button class="img-tab active" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
             </div>
             <div class="img-panel" id="pePanelUrl">
                 <input type="text" id="pe-img" placeholder="https://...">
             </div>
             <div class="img-panel active" id="pePanelFile">
-                <img class="img-upload-preview" id="pePreviewImg" src="" style="display:none;" alt="" style="display: block;">
-                <div class="img-upload-name" id="peFileName" style="display: block;">vibraimgs/tips1.png</div>
+                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display:none;">
+                <div class="img-upload-name" id="peFileName" style="display:none;"></div>
                 <div class="img-drop-zone">
                     <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
                     <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
@@ -884,16 +883,16 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="iu-modal" onclick="event.stopPropagation()">
         <h4><i class="fa-solid fa-camera" style="margin-right:6px;"></i> Cambiar imagen</h4>
         <div class="img-tabs">
-            <button class="img-tab" id="iuTabUrl" onclick="switchIuTab('url')">🔗 URL</button>
-            <button class="img-tab active" id="iuTabFile" onclick="switchIuTab('file')">📁 Subir archivo</button>
+            <button class="img-tab active" id="iuTabUrl" onclick="switchIuTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+            <button class="img-tab" id="iuTabFile" onclick="switchIuTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
         </div>
-        <div class="img-panel" id="iuPanelUrl">
+        <div class="img-panel active" id="iuPanelUrl">
             <input type="text" id="imgUrlInput" placeholder="https://ejemplo.com/imagen.jpg">
             <p class="iu-hint">URL completa o ruta relativa. La imagen cubrirá el área exacta.</p>
         </div>
-        <div class="img-panel active" id="iuPanelFile">
-            <img class="img-upload-preview" id="iuPreviewImg" src="" style="display:none;" alt="" style="display: block;">
-            <div class="img-upload-name" id="iuFileName" style="display: block;">vibraimgs/why1.png</div>
+        <div class="img-panel" id="iuPanelFile">
+            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="" style="display:none;">
+            <div class="img-upload-name" id="iuFileName" style="display:none;"></div>
             <div class="img-drop-zone" id="iuDropZone">
                 <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
                 <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
@@ -916,7 +915,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <!-- IMAGEN -->
         <div class="img-tabs" style="margin-bottom:0.8rem;">
             <button class="img-tab active" id="heroTabUrl" onclick="switchHeroTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-            <button class="img-tab" id="heroTabFile" onclick="switchHeroTab('file')"><i class="fa-solid fa-upload"></i> Subir archivo</button>
+            <button class="img-tab" id="heroTabFile" onclick="switchHeroTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
         </div>
         <div class="img-panel active" id="heroPanelUrl">
             <input type="text" id="heroUrlInput" placeholder="https://ejemplo.com/imagen.jpg" oninput="updateHeroPreview()" style="width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;margin-bottom:0.3rem;">
@@ -1014,18 +1013,28 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <div id="iconSwapOverlay" class="is-overlay" onclick="closeIconSwap(event)">
     <div class="is-modal" onclick="event.stopPropagation()">
         <h4><i class="fa-solid fa-arrow-rotate-right" style="margin-right:6px;"></i> Cambiar ícono</h4>
-        <p>Usa un emoji o una imagen URL.</p>
+        <p>Usa un emoji, imagen por URL o sube una imagen.</p>
         <div class="is-tabs">
             <button class="is-tab active" id="isTabEmoji" onclick="switchIsTab('emoji')">Emoji</button>
-            <button class="is-tab" id="isTabImg" onclick="switchIsTab('img')">Imagen URL</button>
+            <button class="is-tab" id="isTabImg" onclick="switchIsTab('img')"><i class="fa-solid fa-link"></i> URL</button>
+            <button class="is-tab" id="isTabFile" onclick="switchIsTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
         </div>
         <div class="is-panel active" id="isPanelEmoji">
-            <input type="text" class="is-emoji-input" id="isEmojiInput" placeholder="✂️" maxlength="4">
+            <input type="text" class="is-emoji-input" id="isEmojiInput" placeholder="🌱" maxlength="4">
             <p style="font-size:0.72rem;color:#aaa;text-align:center;margin-top:0.3rem;">Pega o escribe un emoji</p>
         </div>
         <div class="is-panel" id="isPanelImg">
             <input type="text" id="isImgInput" placeholder="https://... o ruta/icono.png" oninput="updateIsPreview()">
             <p style="font-size:0.72rem;color:#aaa;margin-top:0.3rem;">PNG, SVG, WebP — se mostrará cuadrado ~64px</p>
+        </div>
+        <div class="is-panel" id="isPanelFile">
+            <div class="img-drop-zone" id="isDropZone" style="margin-top:0.3rem;">
+                <input type="file" id="isFileInput" accept="image/*" onchange="handleIsFile(this)">
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                <p>Haz clic o arrastra un ícono/imagen aquí</p>
+                <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
+            </div>
+            <div class="img-upload-name" id="isFileName" style="display:none;margin-top:0.3rem;"></div>
         </div>
         <div class="is-preview" id="isPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
         <div class="is-actions">
@@ -1096,13 +1105,28 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">Nombre de la marca</label>
             <input type="text" id="loTextInput" placeholder="Vibra Candela">
         </div>
-        <div class="lo-panel active" id="loPanelImg">
-            <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">URL del logo</label>
-            <input type="text" id="loImgInput" placeholder="https://... o logo.png" oninput="previewLo()">
-            <p class="lo-hint">PNG transparente o SVG recomendado. Altura: 44px.</p>
-            <div class="lo-preview" id="loPreview">
+        <div class="lo-panel" id="loPanelImg">
+            <div class="img-tabs" style="margin-bottom:0.6rem;">
+                <button class="img-tab active" id="loTabUrl" onclick="switchLoSubTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+                <button class="img-tab" id="loTabFile" onclick="switchLoSubTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
+            </div>
+            <div class="img-panel active" id="loPanelUrl">
+                <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">URL del logo</label>
+                <input type="text" id="loImgInput" placeholder="https://... o logo.png" oninput="previewLo()">
+                <p class="lo-hint">PNG transparente o SVG recomendado. Altura: 44px.</p>
+            </div>
+            <div class="img-panel" id="loPanelFile">
+                <div class="img-drop-zone" id="loDropZone" style="margin-top:0.3rem;">
+                    <input type="file" id="loFileInput" accept="image/*" onchange="handleLoFile(this)">
+                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                    <p>Haz clic o arrastra el logo aquí</p>
+                    <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
+                </div>
+                <div class="img-upload-name" id="loFileName" style="display:none;margin-top:0.3rem;"></div>
+            </div>
+            <div class="lo-preview" id="loPreview" style="margin-top:0.6rem;">
                 <img id="loPreviewImg" src="" alt="" style="height:36px;max-width:140px;object-fit:contain;display:none;">
-                <span id="loPreviewEmpty" style="color: rgb(204, 204, 204); font-size: 0.8rem; display: block;">Vista previa…</span>
+                <span id="loPreviewEmpty" style="color:#ccc;font-size:0.8rem;">Vista previa…</span>
             </div>
         </div>
         <div class="lo-actions">
@@ -1712,13 +1736,21 @@ function closeHeroImgModal(e){if(e&&e.target!==document.getElementById('heroImgO
 // ============================================================
 let isTarget={prefix:'',idx:0};
 let isTab='emoji';
+let isUploadedData={dataUrl:'',safeName:''};
+
 function openIconSwap(prefix,idx){
     isTarget={prefix,idx};
+    isUploadedData={dataUrl:'',safeName:''};
     const icon=document.getElementById(prefix+'-icon-'+idx);
     const img=document.getElementById(prefix+'-img-'+idx);
+    const fn=document.getElementById('isFileName');
+    if(fn){fn.style.display='none';fn.textContent='';}
+    const fi=document.getElementById('isFileInput');
+    if(fi)fi.value='';
+
     if(img&&img.style.display!=='none'&&img.src){
         switchIsTab('img');
-        document.getElementById('isImgInput').value=img.src;
+        document.getElementById('isImgInput').value=img.dataset.publishSrc||img.src;
     } else {
         switchIsTab('emoji');
         document.getElementById('isEmojiInput').value=icon?icon.textContent:'';
@@ -1730,8 +1762,10 @@ function switchIsTab(t){
     isTab=t;
     document.getElementById('isTabEmoji').classList.toggle('active',t==='emoji');
     document.getElementById('isTabImg').classList.toggle('active',t==='img');
+    document.getElementById('isTabFile').classList.toggle('active',t==='file');
     document.getElementById('isPanelEmoji').classList.toggle('active',t==='emoji');
     document.getElementById('isPanelImg').classList.toggle('active',t==='img');
+    document.getElementById('isPanelFile').classList.toggle('active',t==='file');
     updateIsPreview();
 }
 function updateIsPreview(){
@@ -1739,9 +1773,25 @@ function updateIsPreview(){
     if(isTab==='emoji'){
         const v=document.getElementById('isEmojiInput').value||'?';
         prev.innerHTML='<span style="font-size:2.4rem;">'+v+'</span>';
-    } else {
+    } else if(isTab==='img'){
         const url=document.getElementById('isImgInput').value.trim();
         prev.innerHTML=url?'<img src="'+url+'" style="max-height:56px;max-width:120px;object-fit:contain;">':'<span style="color:#ccc;font-size:0.8rem;">Vista previa</span>';
+    } else {
+        prev.innerHTML=isUploadedData.dataUrl?'<img src="'+isUploadedData.dataUrl+'" style="max-height:56px;max-width:120px;object-fit:contain;">':'<span style="color:#ccc;font-size:0.8rem;">Vista previa</span>';
+    }
+}
+async function handleIsFile(input){
+    const file=input.files[0]; if(!file)return;
+    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
+    try {
+        const dataUrl=await compressImageFile(file, 400, 400);
+        uploadedImages[safeName]=dataUrl;
+        isUploadedData={dataUrl,safeName};
+        const fn=document.getElementById('isFileName');
+        if(fn){fn.textContent=safeName;fn.style.display='block';}
+        updateIsPreview();
+    } catch(err) {
+        console.error('Error al procesar ícono:', err);
     }
 }
 function applyIconSwap(){
@@ -1751,11 +1801,19 @@ function applyIconSwap(){
     if(isTab==='emoji'){
         const v=document.getElementById('isEmojiInput').value||'•';
         if(icon){icon.textContent=v;icon.style.display='block';}
-        if(img)img.style.display='none';
-    } else {
+        if(img){img.style.display='none';img.removeAttribute('data-publish-src');}
+    } else if(isTab==='img'){
         const url=document.getElementById('isImgInput').value.trim();
         if(!url){showToast('Ingresa la URL.');return;}
-        if(img){img.src=url;img.style.display='block';}
+        if(img){img.src=url;img.style.display='block';img.removeAttribute('data-publish-src');}
+        if(icon)icon.style.display='none';
+    } else {
+        if(!isUploadedData.safeName){showToast('Selecciona o arrastra una imagen primero.');return;}
+        if(img){
+            img.src=isUploadedData.dataUrl;
+            img.dataset.publishSrc=isUploadedData.safeName;
+            img.style.display='block';
+        }
         if(icon)icon.style.display='none';
     }
     closeIconSwapDirect();showToast('✅ Ícono actualizado.');
@@ -1999,10 +2057,21 @@ function closeCiModal(e){if(e&&e.target!==document.getElementById('ciOverlay'))r
 // LOGO
 // ============================================================
 let loTab='text';
+let loSubTab='url';
+let loUploadedData={dataUrl:'',safeName:''};
+
 function openLogoModal(){
     document.getElementById('loTextInput').value=document.getElementById('logoText').textContent;
-    document.getElementById('loImgInput').value=logoState.imgUrl||'';
-    previewLo();switchLoTab(logoState.mode==='img'?'img':'text');
+    document.getElementById('loImgInput').value=(logoState.mode==='img'&&!logoState.imgUrl.startsWith('data:'))?logoState.imgUrl:'';
+    loUploadedData={dataUrl:'',safeName:''};
+    const fn=document.getElementById('loFileName');
+    if(fn){fn.style.display='none';fn.textContent='';}
+    const fi=document.getElementById('loFileInput');
+    if(fi)fi.value='';
+
+    switchLoTab(logoState.mode==='img'?'img':'text');
+    switchLoSubTab('url');
+    previewLo();
     document.getElementById('logoOverlay').classList.add('open');
 }
 function switchLoTab(t){
@@ -2011,11 +2080,42 @@ function switchLoTab(t){
     document.getElementById('loTabImg').classList.toggle('active',t==='img');
     document.getElementById('loPanelText').classList.toggle('active',t==='text');
     document.getElementById('loPanelImg').classList.toggle('active',t==='img');
+    previewLo();
+}
+function switchLoSubTab(t){
+    loSubTab=t;
+    document.getElementById('loTabUrl').classList.toggle('active',t==='url');
+    document.getElementById('loTabFile').classList.toggle('active',t==='file');
+    document.getElementById('loPanelUrl').classList.toggle('active',t==='url');
+    document.getElementById('loPanelFile').classList.toggle('active',t==='file');
+    previewLo();
+}
+async function handleLoFile(input){
+    const file=input.files[0];
+    if(!file)return;
+    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
+    try{
+        const dataUrl=await compressImageFile(file,600,300);
+        uploadedImages[safeName]=dataUrl;
+        loUploadedData={dataUrl,safeName};
+        const fn=document.getElementById('loFileName');
+        if(fn){fn.textContent=safeName;fn.style.display='block';}
+        previewLo();
+    }catch(err){
+        console.error('Error procesando logo:',err);
+    }
 }
 function previewLo(){
-    const url=document.getElementById('loImgInput').value.trim();
     const pi=document.getElementById('loPreviewImg'),pe=document.getElementById('loPreviewEmpty');
-    if(url){pi.src=url;pi.style.display='block';pe.style.display='none';}
+    if(!pi||!pe)return;
+    if(loTab!=='img'){pi.style.display='none';pe.style.display='block';return;}
+    let src='';
+    if(loSubTab==='url'){
+        src=document.getElementById('loImgInput').value.trim();
+    }else{
+        src=loUploadedData.dataUrl;
+    }
+    if(src){pi.src=src;pi.style.display='block';pe.style.display='none';}
     else{pi.style.display='none';pe.style.display='block';}
 }
 function applyLogo(){
@@ -2023,19 +2123,31 @@ function applyLogo(){
     if(loTab==='text'){
         const t=document.getElementById('loTextInput').value.trim()||'Vibra Candela';
         lt.textContent=t;lt.style.display='block';li.style.display='none';
+        li.removeAttribute('data-publish-src');
         logoState={mode:'text',text:t,imgUrl:''};
-    } else {
-        const url=document.getElementById('loImgInput').value.trim();
-        if(!url){showToast('Ingresa la URL del logo.');return;}
-        li.src=url;li.style.display='block';lt.style.display='none';
-        logoState={mode:'img',text:'',imgUrl:url};
+    }else{
+        if(loSubTab==='url'){
+            const url=document.getElementById('loImgInput').value.trim();
+            if(!url){showToast('Ingresa la URL del logo.');return;}
+            li.src=url;li.style.display='block';lt.style.display='none';
+            li.removeAttribute('data-publish-src');
+            logoState={mode:'img',text:'',imgUrl:url};
+        }else{
+            if(!loUploadedData.safeName){showToast('Selecciona o arrastra una imagen para el logo.');return;}
+            li.src=loUploadedData.dataUrl;
+            li.dataset.publishSrc=loUploadedData.safeName;
+            li.style.display='block';lt.style.display='none';
+            logoState={mode:'img',text:'',imgUrl:loUploadedData.safeName};
+        }
     }
     closeLogoModalDirect();showToast('✅ Logo actualizado.');
 }
 function resetLogo(){
-    document.getElementById('logoImg').style.display='none';
-    document.getElementById('logoText').style.display='block';
-    document.getElementById('logoText').textContent='Vibra Candela';
+    const li=document.getElementById('logoImg'),lt=document.getElementById('logoText');
+    li.style.display='none';
+    li.removeAttribute('data-publish-src');
+    lt.style.display='block';
+    lt.textContent='Vibra Candela';
     logoState={mode:'text',text:'Vibra Candela',imgUrl:''};
     closeLogoModalDirect();showToast('Logo restablecido.');
 }
@@ -2821,7 +2933,11 @@ async function runGhPublish() {
             clone.querySelectorAll('[data-publish-src]').forEach(el => {
                 const src = el.dataset.publishSrc;
                 if (src) {
-                    el.style.backgroundImage = "url('" + src + "')";
+                    if (el.tagName === 'IMG') {
+                        el.src = src;
+                    } else {
+                        el.style.backgroundImage = "url('" + src + "')";
+                    }
                     delete el.dataset.publishSrc;
                     el.removeAttribute('data-publish-src');
                 }
@@ -2851,7 +2967,7 @@ async function runGhPublish() {
             }
 
             // Limpiar previsualizaciones temporales y atributos Base64 en el clon
-            ['#pePreviewImg', '#iuPreviewImg', '#heroUploadPreview'].forEach(sel => {
+            ['#pePreviewImg', '#iuPreviewImg', '#heroUploadPreview', '#loPreviewImg'].forEach(sel => {
                 const im = clone.querySelector(sel);
                 if (im) { im.src = ''; im.style.display = 'none'; }
             });
@@ -2930,7 +3046,11 @@ function generateCleanHTML() {
     clone.querySelectorAll('[data-publish-src]').forEach(el => {
         const src = el.dataset.publishSrc;
         if (src) {
-            el.style.backgroundImage = "url('" + src + "')";
+            if (el.tagName === 'IMG') {
+                el.src = src;
+            } else {
+                el.style.backgroundImage = "url('" + src + "')";
+            }
             el.removeAttribute('data-publish-src');
         }
     });
