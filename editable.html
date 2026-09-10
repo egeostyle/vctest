@@ -593,10 +593,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- Enlaces de texto -->
     <nav class="nav">
-        <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
+        <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
         <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
         <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto" class="active">Contacto</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -616,7 +616,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: INICIO
      ========================================================= -->
-<main id="page-inicio" class="page">
+<main id="page-inicio" class="page active">
 
     <!-- HERO -->
     <section class="hero" id="hero-bg">
@@ -626,7 +626,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu sdasdasd de forma natural</h1>
+            <h1 contenteditable="true" onclick="event.stopPropagation()">sample¡¡¡!!!! tu sdasdasd de forma natural</h1>
             <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soyasdasdasdaa y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
@@ -1125,7 +1125,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: CONTACTO
      ========================================================= -->
-<div id="page-contacto" class="page active">
+<div id="page-contacto" class="page">
     <div class="contact-page">
         <h2 contenteditable="true">Cuéntanos tus Ideaszxczxczxc</h2>
         <div class="contact-wrapper">
@@ -1203,7 +1203,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <label>Token de acceso personal
                 <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;">⚙ Fine-grained token</a>
             </label>
-            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
+            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display: none;">
                 <span class="status-text"><span>🟢</span> <span>Token vinculado y activo (••••••••)</span></span>
                 <div class="gh-btn-group">
                     <button type="button" class="gh-small-btn" onclick="changeGhToken()">🔄 Cambiar</button>
@@ -1260,7 +1260,7 @@ let nextId=4;
 let editingProductId=null;
 let logoState={"mode":"text","text":"Vibra Candela","imgUrl":""};
 let heroState={"url":"","color":"#000000","opacity":30,"blend":"normal","btnText":"Explorar Catálogo","btnBg":"#6e8174","btnColor":"#ffffff"};
-let ghEncryptedToken = "{\"v\":2,\"s\":\"c8f6197dbbd4cb1a\",\"c\":\"ed878be746aed665eb6a30380930320a3fec4c4fccb4389d85cffe63508071527fccd6aa0bf01472760c59c88aa12540b4e691f60eb1424c08812eba2d24f06ab46cda5a8401edd13b173bb398872e45004f8f20537eec5022ee477b34\",\"a\":\"390add4e36d4932ff057eb93caac430202e334b52e07c1295d7534ce5d94d5a8\"}";
+let ghEncryptedToken = "{\"v\":2,\"s\":\"2fc94477ee4ecfd1\",\"c\":\"9f09f5d53dd0096af0dcd4f0ce49040b347ca824e91b6660dbf6f0c9bdacaaccbbd385edbb36ee673d1bd5e8caad4b84328e4b3d37f13073531a9f3b83e80ce29088f0e589f8fcf84ccb32693b390615ee838acc4356b5106fe90a5f12\",\"a\":\"4e9d306b0332224026061d7754eff2ac0aa13cc71f0190b8b29b1bc57513c6fe\"}";
 let ghSavedRepo = "egeostyle/vctest";
 let ghSavedBranch = "main";
 let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
