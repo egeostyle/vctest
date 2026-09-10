@@ -626,7 +626,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">holii tu espacio de forma natural</h1>
+            <h1 contenteditable="true" onclick="event.stopPropagation()">JELOOOOU tu espacio de forma natural</h1>
             <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
@@ -1203,7 +1203,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <label>Token de acceso personal
                 <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;">⚙ Fine-grained token</a>
             </label>
-            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
+            <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display: none;">
                 <span class="status-text"><span>🟢</span> <span>Token vinculado y activo (••••••••)</span></span>
                 <div class="gh-btn-group">
                     <button type="button" class="gh-small-btn" onclick="changeGhToken()">🔄 Cambiar</button>
@@ -1239,11 +1239,11 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             </div>
         </div>
 
-        <div class="gh-log show" id="ghLog"><div class="ok">🔑 Credenciales verificadas correctamente.</div></div>
+        <div class="gh-log" id="ghLog"></div>
 
         <div class="gh-actions">
             <button class="gh-cancel" onclick="closeGhModal(null)">Cancelar</button>
-            <button class="gh-submit" onclick="runGhPublish()" disabled="">Subir a GitHub</button>
+            <button class="gh-submit" onclick="runGhPublish()">Subir a GitHub</button>
         </div>
     </div>
 </div>
@@ -1260,7 +1260,7 @@ let nextId=4;
 let editingProductId=null;
 let logoState={"mode":"text","text":"Vibra Candela","imgUrl":""};
 let heroState={"url":"","color":"#000000","opacity":30,"blend":"normal","btnText":"Explorar Catálogo","btnBg":"#6e8174","btnColor":"#ffffff"};
-let ghEncryptedToken = "{\"v\":2,\"s\":\"4961bb4c41a4e076\",\"c\":\"12e4ee74da1e40241e20aac38d9c97989f06a990b81e8cfdd50e38db394f4bede1ed60b47564ea934216c78e9adf8316919c0d43170f6030f3c5e9f9ac9c870c44127cb5067a5c01136722b54ee8a3c7e6d8c2f18557f48d96188ecc64\",\"a\":\"17d55f186007664c53dfc06b52f4b9b12cfc4e49be988e739519165b78dd4408\"}";
+let ghEncryptedToken = "{\"v\":2,\"s\":\"ab31bcc0f9c44043\",\"c\":\"ad98b8f9dece072b0806b9c815c4e0bfcfdf8df62a807de98d0938140e0b33cba57f2211bf9d78d64d7077b2962f6ce35d07dc13b614f0154c89adfcdee0231945b0a99e8d03b7a018bb90d3b2bc235dec00d1f05ee6708d4b52a4646d\",\"a\":\"501fc51d4eeb0c9067001c08200589eab081a7b871333903242795f0adcbbb42\"}";
 let ghSavedRepo = "egeostyle/vctest";
 let ghSavedBranch = "main";
 let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
@@ -1989,6 +1989,16 @@ function saveWithEditor(){
     // Limpiar inputs sensibles en el HTML para evitar fugas en texto plano
     const _gt=clone.querySelector('#ghToken');if(_gt){_gt.value='';_gt.removeAttribute('value');}
     const _gp=clone.querySelector('#ghPass');if(_gp){_gp.value='';_gp.removeAttribute('value');}
+    const _gr=clone.querySelector('#ghRepo');if(_gr){_gr.value='';_gr.removeAttribute('value');}
+
+    // Asegurar que el botón de publicar y el modal de GitHub queden limpios y activos
+    const _subBtn=clone.querySelector('.gh-submit');if(_subBtn){_subBtn.disabled=false;_subBtn.removeAttribute('disabled');}
+    const _log=clone.querySelector('#ghLog');if(_log){_log.className='gh-log';_log.innerHTML='';}
+    const _nb=clone.querySelector('#ghNoticeBox');if(_nb){_nb.style.display='none';_nb.innerHTML='';}
+    const _tsb=clone.querySelector('#ghTokenSavedBox');if(_tsb)_tsb.style.display='none';
+    const _tib=clone.querySelector('#ghTokenInputBox');if(_tib)_tib.style.display='block';
+    const _toast=clone.querySelector('#toast');if(_toast){_toast.className='toast';_toast.textContent='';}
+
     // Sincronizar logo
     syncLogoToClone(clone);
     // Inyectar estado JS actualizado
@@ -1997,9 +2007,9 @@ function saveWithEditor(){
             s.textContent=s.textContent
                 .replace(/let products=\[[\s\S]*?\];/, 'let products=' + JSON.stringify(products) + ';')
                 .replace(/let nextId=\d+;/, 'let nextId=' + nextId + ';')
-                .replace(/let logoState=\{[^;]+?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
-                .replace(/let heroState=\{[^;]+?\};/, 'let heroState=' + JSON.stringify(heroState) + ';')
-                .replace(/const uploadedImages = \{\};/, 'const uploadedImages = ' + JSON.stringify(uploadedImages) + ';')
+                .replace(/let logoState\s*=\s*\{[\s\S]*?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
+                .replace(/let heroState\s*=\s*\{[\s\S]*?\};/, 'let heroState=' + JSON.stringify(heroState) + ';')
+                .replace(/(?:const|let) uploadedImages\s*=\s*\{[\s\S]*?\};/, 'const uploadedImages = ' + JSON.stringify(uploadedImages) + ';')
                 .replace(/let ghEncryptedToken\s*=\s*".*?";/, 'let ghEncryptedToken = ' + JSON.stringify(ghEncryptedToken) + ';')
                 .replace(/let ghSavedRepo\s*=\s*".*?";/, 'let ghSavedRepo = ' + JSON.stringify(ghSavedRepo) + ';')
                 .replace(/let ghSavedBranch\s*=\s*".*?";/, 'let ghSavedBranch = ' + JSON.stringify(ghSavedBranch) + ';')
@@ -2474,6 +2484,9 @@ function updateGhModalUI() {
     if (localRepo) document.getElementById('ghRepo').value = localRepo;
     if (localBranch) document.getElementById('ghBranch').value = localBranch;
 
+    const submitBtn = document.querySelector('.gh-submit');
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
+
     const noticeBox = document.getElementById('ghNoticeBox');
     const savedBox = document.getElementById('ghTokenSavedBox');
     const inputBox = document.getElementById('ghTokenInputBox');
@@ -2532,6 +2545,8 @@ function openGhModal() {
     document.getElementById('ghLog').className = 'gh-log';
     document.getElementById('ghLog').innerHTML = '';
     document.getElementById('ghPass').value = '';
+    const submitBtn = document.querySelector('.gh-submit');
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
     updateGhModalUI();
     document.getElementById('ghOverlay').classList.add('open');
 }
@@ -2602,7 +2617,8 @@ async function runGhPublish() {
         }
 
         ghLog('🔑 Credenciales verificadas correctamente.', 'ok');
-        document.querySelector('.gh-submit').disabled = true;
+        const submitBtn = document.querySelector('.gh-submit');
+        if (submitBtn) submitBtn.disabled = true;
 
         // Guardar en localStorage del equipo actual
         localStorage.setItem('vibra_gh_repo', repo);
@@ -2628,7 +2644,10 @@ async function runGhPublish() {
             ghLog('📤 ' + path + '…');
             let sha = null;
             try {
-                const r = await fetch(apiBase + path + '?ref=' + branch, {headers});
+                const r = await fetch(apiBase + path + '?ref=' + encodeURIComponent(branch) + '&_t=' + Date.now(), {
+                    headers,
+                    cache: 'no-store'
+                });
                 if (r.ok) { const d = await r.json(); sha = d.sha; }
             } catch(_) {}
             const body = { message, content: content64, branch };
@@ -2675,15 +2694,23 @@ async function runGhPublish() {
             const _gp=clone.querySelector('#ghPass');if(_gp){_gp.value='';_gp.removeAttribute('value');}
             const _gr=clone.querySelector('#ghRepo');if(_gr){_gr.value='';_gr.removeAttribute('value');}
 
+            // Asegurar que el botón de publicar y el modal de GitHub queden limpios y activos
+            const _sub=clone.querySelector('.gh-submit');if(_sub){_sub.disabled=false;_sub.removeAttribute('disabled');}
+            const _log=clone.querySelector('#ghLog');if(_log){_log.className='gh-log';_log.innerHTML='';}
+            const _nb=clone.querySelector('#ghNoticeBox');if(_nb){_nb.style.display='none';_nb.innerHTML='';}
+            const _tsb=clone.querySelector('#ghTokenSavedBox');if(_tsb)_tsb.style.display='none';
+            const _tib=clone.querySelector('#ghTokenInputBox');if(_tib)_tib.style.display='block';
+            const _toast=clone.querySelector('#toast');if(_toast){_toast.className='toast';_toast.textContent='';}
+
             syncLogoToClone(clone);
             clone.querySelectorAll('script').forEach(s => {
                 if (s.textContent.includes('let products=')) {
                     s.textContent = s.textContent
                         .replace(/let products=\[[\s\S]*?\];/, 'let products=' + JSON.stringify(products) + ';')
                         .replace(/let nextId=\d+;/, 'let nextId=' + nextId + ';')
-                        .replace(/let logoState=\{[^;]+?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
-                        .replace(/let heroState=\{[^;]+?\};/, 'let heroState=' + JSON.stringify(heroState) + ';')
-                        .replace(/const uploadedImages = \{\};/, 'const uploadedImages = ' + JSON.stringify(uploadedImages) + ';')
+                        .replace(/let logoState\s*=\s*\{[\s\S]*?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
+                        .replace(/let heroState\s*=\s*\{[\s\S]*?\};/, 'let heroState=' + JSON.stringify(heroState) + ';')
+                        .replace(/(?:const|let) uploadedImages\s*=\s*\{[\s\S]*?\};/, 'const uploadedImages = ' + JSON.stringify(uploadedImages) + ';')
                         .replace(/let ghEncryptedToken\s*=\s*".*?";/, 'let ghEncryptedToken = ' + JSON.stringify(encryptedTokenStr) + ';')
                         .replace(/let ghSavedRepo\s*=\s*".*?";/, 'let ghSavedRepo = ' + JSON.stringify(repo) + ';')
                         .replace(/let ghSavedBranch\s*=\s*".*?";/, 'let ghSavedBranch = ' + JSON.stringify(branch) + ';')
@@ -2706,7 +2733,8 @@ async function runGhPublish() {
         ghLog('❌ ' + err.message, 'err');
         showToast('❌ Error: ' + err.message);
     } finally {
-        document.querySelector('.gh-submit').disabled = false;
+        const submitBtn = document.querySelector('.gh-submit');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
     }
 }
 
