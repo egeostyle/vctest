@@ -803,6 +803,203 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     to { opacity: 1; transform: translateY(0); }
 }
 
+
+
+/* =========================================================
+   SELECTOR MODAL DE PRODUCTO DESTACADO (MOCKUP BOCETO)
+   ========================================================= */
+.fps-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(20, 28, 24, 0.65) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99999 !important;
+    padding: 1.25rem !important;
+}
+.fps-overlay.open {
+    display: flex !important;
+}
+.fps-dialog {
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    max-height: 85vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
+    overflow: hidden !important;
+    animation: fpsPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-sizing: border-box !important;
+}
+@keyframes fpsPopIn {
+    0% { opacity: 0; transform: scale(0.94) translateY(8px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.fps-header {
+    padding: 1.35rem 1.5rem 0.85rem !important;
+    border-bottom: 1px solid #f0ebe4 !important;
+    text-align: left !important;
+}
+.fps-header h3 {
+    margin: 0 !important;
+    font-size: 1.2rem !important;
+    color: #2c3e35 !important;
+    font-weight: 700 !important;
+}
+.fps-header p {
+    margin: 4px 0 0 !important;
+    font-size: 0.84rem !important;
+    color: #777 !important;
+}
+.fps-list {
+    padding: 0.9rem 1.25rem !important;
+    overflow-y: auto !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    max-height: 380px !important;
+    box-sizing: border-box !important;
+}
+.fps-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.9rem !important;
+    padding: 0.75rem 0.9rem !important;
+    border-radius: 14px !important;
+    border: 1.5px solid #eae5de !important;
+    cursor: pointer !important;
+    background: #fff !important;
+    transition: all 0.15s ease !important;
+    user-select: none !important;
+    box-sizing: border-box !important;
+}
+.fps-item:hover {
+    border-color: #baa89b !important;
+    background: #faf8f5 !important;
+}
+.fps-item.selected {
+    border-color: #2c3e35 !important;
+    background: #f7f3ee !important;
+    box-shadow: 0 0 0 1.5px #2c3e35 !important;
+}
+.fps-thumb {
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 12px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-color: #e4ddd5 !important;
+    flex-shrink: 0 !important;
+    border: 1px solid rgba(0,0,0,0.06) !important;
+}
+.fps-info {
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+}
+.fps-title {
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: #222 !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+.fps-desc {
+    font-size: 0.8rem !important;
+    color: #666 !important;
+    margin-top: 3px !important;
+    line-height: 1.3 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+}
+.fps-tag {
+    font-size: 0.73rem !important;
+    color: var(--cp) !important;
+    font-weight: 600 !important;
+    margin-top: 4px !important;
+}
+.fps-footer {
+    padding: 1rem 1.5rem !important;
+    border-top: 1px solid #f0ebe4 !important;
+    display: flex !important;
+    gap: 0.75rem !important;
+    justify-content: flex-start !important;
+    background: #faf8f5 !important;
+}
+.fps-btn-confirm {
+    background: #4caf50 !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 0.65rem 1.5rem !important;
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-size: 0.92rem !important;
+    transition: background 0.15s ease, transform 0.1s ease !important;
+}
+.fps-btn-confirm:hover {
+    background: #43a047 !important;
+    transform: translateY(-1px) !important;
+}
+.fps-btn-cancel {
+    background: #b0b0b0 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 0.65rem 1.5rem !important;
+    border-radius: 12px !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-size: 0.92rem !important;
+    transition: background 0.15s ease !important;
+}
+.fps-btn-cancel:hover {
+    background: #9e9e9e !important;
+}
+
+/* ESTILOS DE TARJETAS DESTACADAS EN MODO EDITOR */
+.featured-slot {
+    position: relative !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.featured-slot:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 24px rgba(44, 62, 53, 0.15) !important;
+}
+.featured-edit-badge {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    background: rgba(44, 62, 53, 0.92) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    color: #fff !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    z-index: 10 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    cursor: pointer !important;
+}
+.featured-edit-badge:hover {
+    background: #1e2b24 !important;
+    transform: scale(1.03) !important;
+}
+
 </style>
 </head>
 <body class="editor-active">
@@ -875,8 +1072,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-0" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">100% Ecológicasda</h3>
-                <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de sdasdderivados del petróleo.</p>
+                <h3 contenteditable="true">100% Ecológica</h3>
+                <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de derivados del petróleo.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
@@ -904,25 +1101,25 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <h2 contenteditable="true">Nuestros Favoritos de la Temporada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card featured-slot" id="featured-card-1" data-featured-slot="1" data-product-id="1" onclick="openFeaturedSelector(1)">
-                <div class="featured-edit-badge" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
-                <div class="seller-img" id="bs1" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
-                <div class="seller-info">
-                    <h3 contenteditable="true">Vela Lavanda Francesa</h3>
-                    <p contenteditable="true">Calma el estrés cotidiano con notas florales suaves.</p>
+                <div class="featured-edit-badge" onclick="event.stopPropagation();openFeaturedSelector(1)" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
+                <div class="seller-img" id="bs1" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;" onclick="openFeaturedSelector(1)"></div>
+                <div class="seller-info" onclick="openFeaturedSelector(1)">
+                    <h3>Vela Lavanda Francesa</h3>
+                    <p>Calma el estrés cotidiano con notas florales suaves.</p>
                     <div class="seller-meta">
-                        <span class="price" contenteditable="true">100% Soya</span>
+                        <span class="price">100% Soya</span>
                         <a href="https://egeostyle.github.io/vctest/p/vela-lavanda-francesa" onclick="event.preventDefault();event.stopPropagation();navigateTo('productos');openProductModal(1);" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Pedir</a>
                     </div>
                 </div>
             </div>
             <div class="seller-card featured-slot" id="featured-card-2" data-featured-slot="2" data-product-id="2" onclick="openFeaturedSelector(2)">
-                <div class="featured-edit-badge" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
-                <div class="seller-img" id="bs2" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
-                <div class="seller-info">
-                    <h3 contenteditable="true">Difusor Vainilla Dulce</h3>
-                    <p contenteditable="true">Fragancia reconfortante de larga duración.</p>
+                <div class="featured-edit-badge" onclick="event.stopPropagation();openFeaturedSelector(2)" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
+                <div class="seller-img" id="bs2" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;" onclick="openFeaturedSelector(2)"></div>
+                <div class="seller-info" onclick="openFeaturedSelector(2)">
+                    <h3>Difusor Vainilla Dulce</h3>
+                    <p>Fragancia reconfortante de larga duración.</p>
                     <div class="seller-meta">
-                        <span class="price" contenteditable="true">Ambiental</span>
+                        <span class="price">Ambiental</span>
                         <a href="https://egeostyle.github.io/vctest/p/difusor-vainilla-dulce" onclick="event.preventDefault();event.stopPropagation();navigateTo('productos');openProductModal(2);" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Pedir</a>
                     </div>
                 </div>
@@ -993,7 +1190,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="benefits-grid" style="margin-top:2rem;">
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
                 <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."</p>
-                <strong contenteditable="true">- Camila R.asasd</strong>
+                <strong contenteditable="true">- Camila R.</strong>
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">��★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
@@ -1426,7 +1623,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <h2 contenteditable="true">Nuestra Historia</h2>
         <div class="about-wrapper">
             <div class="about-bio" id="aboutBio">
-                <h3 contenteditable="true">Hola, soy la creadoraxczxczx</h3>
+                <h3 contenteditable="true">Hola, soy la creadora</h3>
                 <div class="bio-p">
                     <p contenteditable="true">Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.</p>
                     <div class="para-controls">
