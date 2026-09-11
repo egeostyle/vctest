@@ -1408,10 +1408,25 @@ function selectVariant(p,idx){
     document.getElementById('modal-product-img').style.backgroundImage=img?"url('"+img+"')":'';
     // Actualizar chips
     document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i)=>c.classList.toggle('active',i===idx));
-    // Guardar variante activa para WA
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant=JSON.stringify({name:v.name,price:v.price});
+    // Guardar variante activa para WA (incluyendo la foto de la variante)
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant=JSON.stringify({name:v.name,price:v.price,img:v.img||img});
 }
 function closeProductModal(e){if(!e||e.target===document.getElementById('product-modal'))document.getElementById('product-modal').classList.remove('open');}
+function openProductModal_s(title,cat,price,desc,img){
+    document.getElementById('modal-product-title').innerText=title;
+    document.getElementById('modal-product-desc').innerText=desc;
+    document.getElementById('modal-product-meta').innerText=cat+' | '+price;
+    const sel=document.getElementById('modal-variant-selector');
+    if(sel)sel.style.display='none';
+    const chips=document.getElementById('modal-variant-chips');
+    if(chips)chips.innerHTML='';
+    const imgEl=document.getElementById('modal-product-img');
+    if(imgEl)imgEl.style.backgroundImage=img?"url('"+img+"')":'none';
+    document.getElementById('modal-whatsapp-link').dataset.productId='';
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
+    document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:price,variant:'',img:img});
+    document.getElementById('product-modal').classList.add('open');
+}
 function openProductModal_v(title,cat,desc,variantsJson,baseImg){
     var variants=JSON.parse(variantsJson||'[]');
     document.getElementById('modal-product-title').innerText=title;
@@ -1444,37 +1459,75 @@ function openProductModal_v(title,cat,desc,variantsJson,baseImg){
     document.getElementById('product-modal').classList.add('open');
 }
 
-async function sendWhatsApp(e){
+// Convertir rutas relativas (ej. vibraimgs/...) a URLs absolutas públicas para WhatsApp
+function toAbsoluteUrl(url){
+    if(!url||url.startsWith('data:'))return '';
+    if(url.startsWith('http://')||url.startsWith('https://'))return url;
+    try{
+        return new URL(url,window.location.href).href;
+    }catch(_){
+        return url;
+    }
+}
+
+function sendWhatsApp(e){
     e.preventDefault();
-    const id=parseInt(document.getElementById('modal-whatsapp-link').dataset.productId);
-    const p=products.find(x=>x.id===id); if(!p)return;
+    const btn=document.getElementById('modal-whatsapp-link');
+    const id=parseInt(btn.dataset.productId);
 
-    // Incluir variante si el producto la tiene
-    let variantInfo='';
-    const activeVar=document.getElementById('modal-whatsapp-link').dataset.activeVariant;
-    if(activeVar){try{const av=JSON.parse(activeVar);variantInfo='\n *Variante:* '+av.name+'\n *Precio:* '+av.price;}catch(_){}}
-    const priceDisplay=variantInfo?'':('\n *Precio:* '+p.price);
-    const textMsg='¡Hola Vibra Candela! Me interesa:\n\n *Producto:* '+p.name+'\n *Categoría:* '+p.cat+priceDisplay+variantInfo+'\n\n¿Tienen stock disponible?';
-    const waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(textMsg);
+    let prodName='';
+    let prodCat='';
+    let prodPrice='';
+    let prodVariant='';
+    let prodImg='';
 
-    // Intentar Web Share API con imagen (solo móvil/compatible)
-    if(p.img && navigator.share && navigator.canShare){
+    // 1. Intentar leer desde dataset.productInfo (catálogo limpio / exportado)
+    if(btn.dataset.productInfo){
         try{
-            // Descargar la imagen como File para compartir
-            const resp=await fetch(p.img);
-            const blob=await resp.blob();
-            const ext=blob.type.split('/')[1]||'jpg';
-            const file=new File([blob],p.name.replace(/\s+/g,'_')+'.'+ext,{type:blob.type});
-            const shareData={title:p.name,text:textMsg,files:[file]};
-            if(navigator.canShare(shareData)){
-                await navigator.share(shareData);
-                return; // compartido con imagen, no abrir wa.me
+            const pi=JSON.parse(btn.dataset.productInfo);
+            prodName=pi.name||'';
+            prodCat=pi.cat||'';
+            prodPrice=pi.price||'';
+            prodVariant=pi.variant||'';
+            prodImg=pi.img||'';
+        }catch(_){}
+    }
+
+    // 2. Si estamos en modo editor con array products cargado
+    if(typeof products!=='undefined'&&Array.isArray(products)&&!isNaN(id)){
+        const p=products.find(x=>x.id===id);
+        if(p){
+            prodName=p.name||prodName;
+            prodCat=p.cat||prodCat;
+            prodPrice=p.price||prodPrice;
+            prodImg=p.img||prodImg;
+
+            const activeVar=btn.dataset.activeVariant;
+            if(activeVar){
+                try{
+                    const av=JSON.parse(activeVar);
+                    prodVariant=av.name||prodVariant;
+                    prodPrice=av.price||prodPrice;
+                    if(av.img)prodImg=av.img;
+                }catch(_){}
             }
-        } catch(err){
-            // Si falla (CORS, cancelado, etc.) cae al fallback de wa.me
         }
     }
-    // Fallback: abrir wa.me con texto (incluye URL de imagen en el texto)
+
+    let textMsg='¡Hola Vibra Candela! 👋 Me interesa solicitar este producto:\n\n';
+    textMsg+='🛍️ *Producto:* '+prodName+'\n';
+    if(prodCat)textMsg+='🏷️ *Categoría:* '+prodCat+'\n';
+    if(prodVariant)textMsg+='📦 *Variante:* '+prodVariant+'\n';
+    if(prodPrice)textMsg+='💰 *Precio:* '+prodPrice+'\n';
+
+    const fullImgUrl=toAbsoluteUrl(prodImg);
+    if(fullImgUrl){
+        textMsg+='🖼️ *Ver foto:* '+fullImgUrl+'\n';
+    }
+
+    textMsg+='\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
+
+    const waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(textMsg);
     window.open(waUrl,'_blank');
 }
 function openProdEdit(id,e){
