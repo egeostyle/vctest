@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibra Candela | Catálogo Artesanal</title>
@@ -19,49 +18,25 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .logo-area{display:flex;align-items:center;gap:0.6rem;cursor:pointer;}
 .logo-img{height:44px;width:auto;max-width:150px;object-fit:contain;display:none;}
 .logo-text{font-size:1.4rem;font-weight:bold;color:var(--cp);}
-.logo-edit-btn{background:transparent;border:1px dashed var(--ca);color:#aaa;border-radius:4px;padding:0.12rem 0.45rem;font-size:0.68rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
-.logo-edit-btn:hover{border-color:var(--cp);color:var(--cp);}
+
+
 .nav{display:flex;flex-wrap:wrap;gap:0.2rem;}
 .nav a{text-decoration:none;color:var(--cd);margin-left:1.2rem;font-weight:500;transition:color 0.3s;cursor:pointer;font-size:0.95rem;}
 .nav a:hover,.nav a.active{color:var(--cp);}
 
-/* EDITOR TOOLBAR */
-.editor-toolbar{position:fixed;top:70px;width:100%;background:#2d2d2d;color:#fff;padding:0.5rem 8%;display:flex;align-items:center;gap:0.65rem;z-index:999;font-size:0.82rem;box-shadow:0 2px 8px rgba(0,0,0,0.25);flex-wrap:wrap;}
-.tlabel{color:#aaa;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
-.tbtn{background:#444;border:1px solid #555;color:#fff;padding:0.3rem 0.8rem;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:background 0.2s;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;}
-.tbtn:hover{background:#555;}
-.tbtn.gh-save-btn{background:#24292e;border-color:#444;font-weight:600;}
-.tbtn.gh-save-btn:hover{background:#383f47;}
-.gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
-.gh-accordion-toggle{width:100%;background:#f8fafc;border:none;padding:0.6rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#334155;text-align:left;transition:background 0.15s;}
-.gh-accordion-toggle:hover{background:#f1f5f9;}
-.gh-accordion-body{padding:0.85rem;border-top:1px solid #e2e8f0;background:#fff;}
-.save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
-
 /* PAGES */
-.page{display:none;margin-top:116px;flex:1;}
+.page{display:none;margin-top:70px;flex:1;}
 .page.active{display:block;}
 section{padding:3.5rem 8%;text-align:center;}
 h2{font-size:2.3rem;color:var(--cp);margin-bottom:3rem;position:relative;}
 h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);margin:0.4rem auto 0;}
 
-/* EDITABLE TEXT */
-[contenteditable="true"]{outline:none;border-radius:3px;transition:background 0.2s,box-shadow 0.2s;}
-[contenteditable="true"]:hover{background:rgba(110,129,116,0.08);box-shadow:0 0 0 2px rgba(110,129,116,0.3);cursor:text;}
-[contenteditable="true"]:focus{background:rgba(110,129,116,0.13);box-shadow:0 0 0 2px var(--cp);}
-
-/* IMAGE BOXES */
-.img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
-.img-editable::after{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14' fill='white'%3E%3Cpath d='M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'/%3E%3C/svg%3E") '  Clic para cambiar imagen';font-family:var(--f);font-size:0.83rem;font-weight:600;text-transform:none;letter-spacing:normal;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;opacity:0;transition:opacity 0.22s;pointer-events:none;}
-.img-editable:hover::after{opacity:1;}
-
 /* ICON BOXES (beneficios/tips) */
 .icon-box{position:relative;display:flex;justify-content:center;margin-bottom:1rem;}
 .icon-img{width:72px;height:72px;object-fit:contain;display:none;}
 .icon-emoji{font-size:2.5rem;line-height:1;}
-.icon-swap-btn{position:absolute;bottom:-6px;right:calc(50% - 42px);background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:3px;padding:0.12rem 0.45rem;font-size:0.65rem;cursor:pointer;opacity:0;transition:opacity 0.18s;white-space:nowrap;}
-.icon-box:hover .icon-swap-btn{opacity:1;}
-@media (max-width: 768px){.icon-swap-btn{opacity:0.85;}}
+
+.icon-box:hover 
 
 /* TIPS icon is smaller */
 .tips-section .icon-emoji{font-size:2rem;}
@@ -110,11 +85,11 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .about-bio{flex:1;}
 .about-bio h3{font-size:1.7rem;margin-bottom:1rem;color:var(--cp);}
 .about-bio .bio-p{margin-bottom:1.2rem;color:#555;position:relative;padding-right:2.2rem;}
-.para-controls{position:absolute;right:0;top:0;display:flex;gap:4px;opacity:0;transition:opacity 0.18s;}
-.about-bio .bio-p:hover .para-controls{opacity:1;}
+
+.about-bio .bio-p:hover 
 .para-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.4rem;font-size:0.65rem;cursor:pointer;white-space:nowrap;}
-.add-para-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.5rem;padding:0.4rem 0.9rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;}
-.add-para-btn:hover{border-color:var(--cp);color:var(--cp);}
+
+
 .about-img{flex:0 0 380px;width:380px;min-height:400px;align-self:stretch;border-radius:12px;box-shadow:10px 10px 0 var(--ca);background:#c5b8aa center/cover no-repeat;}
 
 /* CONTACT */
@@ -126,14 +101,14 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .contact-info-intro{margin-bottom:1.5rem;color:#555;font-size:0.93rem;}
 .info-link{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem;position:relative;padding-right:2.2rem;}
 .info-link-icon{font-size:1.2rem;border-radius:4px;padding:0.1rem 0.2rem;}
-.editor-active .info-link-icon{cursor:pointer;transition:background 0.18s;}
-.editor-active .info-link-icon:hover{background:rgba(110,129,116,0.15);}
+
+
 .info-link-text{flex:1;}
-.info-link-actions{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;gap:3px;opacity:0;transition:opacity 0.18s;}
-.info-link:hover .info-link-actions{opacity:1;}
+
+.info-link:hover 
 .il-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.38rem;font-size:0.65rem;cursor:pointer;}
-.add-link-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.3rem;padding:0.35rem 0.8rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:all 0.2s;}
-.add-link-btn:hover{border-color:var(--cp);color:var(--cp);}
+
+
 .contact-form-panel{background:#fff;padding:2.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
 .form-group{margin-bottom:1.3rem;}
 .form-group label{display:block;margin-bottom:0.4rem;font-weight:500;font-size:0.88rem;}
@@ -177,12 +152,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 /* CARD WRAPPER */
 .seller-card-wrapper{position:relative;}
-.card-edt{position:absolute;top:8px;right:8px;background:rgba(30,30,30,0.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:5px;padding:0.28rem 0.6rem;font-size:0.72rem;font-weight:600;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:background 0.2s,transform 0.15s;}
-.card-edt:hover{background:rgba(0,0,0,0.95);transform:scale(1.04);}
-.card-edt:active{transform:scale(0.96);}
-.add-product-card{border:2px dashed var(--ca);border-radius:8px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;color:#999;font-size:0.88rem;}
-.add-product-card:hover{border-color:var(--cp);background:rgba(110,129,116,0.05);color:var(--cp);}
-.add-product-card .ic{font-size:1.9rem;}
+
+
+
+
+
+
 
 /* IMAGE URL MODAL */
 .iu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:4000;opacity:0;pointer-events:none;transition:opacity 0.18s;}
@@ -361,7 +336,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .ci-emoji-input{font-size:1.8rem;width:100%;text-align:center;padding:0.4rem;border:1px solid #ddd;border-radius:4px;margin-bottom:0.3rem;}
 .ci-fa-input{width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;font-family:monospace;margin-bottom:0.3rem;}
 .ci-fa-input:focus,.ci-emoji-input:focus{outline:none;border-color:var(--cp);}
-.ci-fa-hint{font-size:0.72rem;color:#aaa;margin-bottom:0.6rem;}
+.ci-fa-hint{font-size:0.72rem;color:#aaa;margin-bottom:0.7rem;}
 .ci-fa-hint a{color:var(--cp);text-decoration:none;}
 .ci-catalog-toggle{display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;width:100%;padding:0.48rem 0.8rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;font-size:0.78rem;font-weight:600;color:#334155;cursor:pointer;margin-bottom:0.6rem;transition:all 0.15s;}
 .ci-catalog-toggle:hover{background:#e2e8f0;color:#0f172a;}
@@ -410,7 +385,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     .header{flex-direction:column;gap:0.6rem;padding:0.9rem 5%;}
     .nav a{margin:0 0.45rem;}
     .page{margin-top:160px;}
-    .editor-toolbar{top:105px;}
+    
     section{padding:3.5rem 5%;}
     .catalog-container{padding:3.5rem 5%;}
     .contact-page{padding:3.5rem 5%;}
@@ -566,37 +541,23 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     }
 }
 /* Para resoluciones menores o iguales a 900px */
-@media (max-width: 900px) {
-    .page {
-        margin-top: 104px !important;
-    }
-}
+@media(max-width:900px){.page{margin-top:104px!important;}}
 
 /* Para resoluciones mayores o iguales a 901px */
-@media (min-width: 901px) {
-    .page {
-        margin-top: 80px !important;
-    }
-}
+@media(min-width:901px){.page{margin-top:70px!important;}}
 </style>
 </head>
-<body class="editor-active">
+<body>
 
-<!-- EDITOR TOOLBAR -->
-<div class="editor-toolbar" id="editorToolbar">
-    <span class="tlabel">Modo Editor</span>
-    <div class="save-grp">
-        <button class="tbtn gh-save-btn" onclick="openGhModal()"><i class="fa-solid fa-floppy-disk" style="color: rgb(255, 255, 255);"></i> Guardar</button>
-    </div>
-</div>
+
 
 <!-- HEADER -->
 
 <header class="header">
     <div class="logo-area" onclick="navigateTo('inicio')" id="logoArea">
-        <img src="" alt="Logo" class="logo-img" id="logoImg">
-        <span class="logo-text" id="logoText" contenteditable="true" onclick="event.stopPropagation()">Vibra Candela</span>
-        <button class="logo-edit-btn" onclick="event.stopPropagation();openLogoModal()" title="Cambiar logo"><i class="fa-solid fa-image"></i> Logo</button>
+        <img src="" alt="Logo" class="logo-img" id="logoImg" style="display: none;">
+        <span class="logo-text" id="logoText" onclick="event.stopPropagation()" style="display: block;">Vibra Candela</span>
+        
     </div>
 
     <!-- Enlaces de texto -->
@@ -634,66 +595,65 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
-            <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
+            <h1 onclick="event.stopPropagation()">Ilumina tu sdasdasd de forma natural</h1>
+            <p onclick="event.stopPropagation()">Velas artesanales de cera de soyasdasdasdaa y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
-        <!-- Botón editor (z-index:10) -->
-        <button onclick="event.stopPropagation();openHeroImgModal()" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:5px;padding:0.38rem 0.85rem;font-size:0.78rem;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:5px;"><i class="fa-solid fa-camera"></i> Cambiar imagen y filtro</button>
+        
     </section>
 
     <!-- BENEFICIOS -->
     <section class="benefits">
-        <h2 contenteditable="true">¿Por qué elegir Cera de Soya?</h2>
+        <h2>¿Por qué elegasdasdir Cera de Soya?</h2>
         <div class="benefits-grid" id="benefitsGrid">
             <div class="benefit-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-0">🌱</span>
                     <img class="icon-img" id="bi-img-0" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h3 contenteditable="true">100% Ecológica</h3>
-                <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de derivados del petróleo.</p>
+                <h3>100% Ecológicasda</h3>
+                <p>Derivada de fuentes renovables, biodegradable y libre de sdasdderivados del petróleo.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-1">⏳</span>
                     <img class="icon-img" id="bi-img-1" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h3 contenteditable="true">Mayor Duración</h3>
-                <p contenteditable="true">Quema a menor temperatura, permitiendo que tu vela dure hasta el doble que una de parafina.</p>
+                <h3>Mayor Duraciasdón</h3>
+                <p>Quema a menor temperatura, permitiendo que tu vela dure hasta el doble asdasdque una de parafina.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="bi-icon-2">🍃</span>
                     <img class="icon-img" id="bi-img-2" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('bi',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h3 contenteditable="true">Quemado Limpio</h3>
-                <p contenteditable="true">No produce hollín negro, protegiendo tus pulmones y las paredes de tu hogar.</p>
+                <h3>Quemadasdaso Limpio</h3>
+                <p>No produce hollín neasdasdasdgro, protegiendo tus pulmones y las paredes de tu hogar.</p>
             </div>
         </div>
     </section>
 
     <!-- BESTSELLERS -->
     <section class="bestsellers">
-        <h2 contenteditable="true">Nuestros Favoritos de la Temporada</h2>
+        <h2>Nuestros Favoritos de la Tempasdasdasdorada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card">
-                <div class="seller-img img-editable" id="bs1" onclick="openImgModal('bs1')"></div>
+                <div class="seller-img " id="bs1" ></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Vela Lavanda Relajante</h3>
-                    <p contenteditable="true">Infusionada con aceite esencial puro, ideal para meditar o antes de dormir.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Edición Vidrio</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3>Vela Lavanda Relajanteasdasdasd</h3>
+                    <p>Infusionada con aceite esencial puro, ideal para meditaasdasdasdasdasdr o antes de dormir.</p>
+                    <div class="seller-meta"><span class="price">Edición Vidrioasdasdasdasd</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
             <div class="seller-card">
-                <div class="seller-img img-editable" id="bs2" onclick="openImgModal('bs2')"></div>
+                <div class="seller-img " id="bs2" ></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Difusor Citrus Mood</h3>
-                    <p contenteditable="true">Notas vibrantes de mandarina y bergamota para activar la energía de tu sala.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Varillas de Bambú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3>Difusor Citrus Moodasdasdasd</h3>
+                    <p>Notas vibrantes de mandarina y bergamota para activaasdasdasdasdasdr la energía de tu sala.</p>
+                    <div class="seller-meta"><span class="price">Varillas de Bambasdasdasdasdú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
         </div>
@@ -701,79 +661,79 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- TIPS -->
     <section class="tips-section" style="background:var(--cs);">
-        <h2 contenteditable="true">Tips para Cuidar tu Vela</h2>
-        <p contenteditable="true" style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren más y quemen de forma uniforme.</p>
+        <h2>Tips para Cuidar tu Velaasdasdasd</h2>
+        <p style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren máasdasdaasdass y quemen de forma uniforme.</p>
         <div class="benefits-grid">
             <div class="tips-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-0">✂️</span>
                     <img class="icon-img" id="ti-img-0" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h4 contenteditable="true">Corta la mecha</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.</p>
+                <h4>Corta la mechaasdasdas</h4>
+                <p style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.adasdasd</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-1">⏱️</span>
                     <img class="icon-img" id="ti-img-1" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h4 contenteditable="true">La primera quemada</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".</p>
+                <h4>La primera quemadaasdasdas</h4>
+                <p style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".asdasdas</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
                     <span class="icon-emoji" id="ti-icon-2">🌬️</span>
                     <img class="icon-img" id="ti-img-2" src="" alt="">
-                    <button class="icon-swap-btn" onclick="openIconSwap('ti',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
+                    
                 </div>
-                <h4 contenteditable="true">No la soples</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.</p>
+                <h4>No la soplesasdasd</h4>
+                <p style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.asdasdasd</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
     <section>
-        <h2 contenteditable="true">Preguntas Frecuentes</h2>
+        <h2>Preguntas Frecuentesasdasda</h2>
         <div style="display:flex;align-items:flex-start;gap:3rem;max-width:1100px;margin:0 auto;text-align:left;flex-wrap:wrap;padding:1rem 0;">
             <div style="flex:1;min-width:280px;">
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.</p>
+                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?asdasd</strong>
+                    <p style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.sadasdas</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.</p>
+                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?sadasd</strong>
+                    <p style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.asdasda</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.</p>
+                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?asdasdasd</strong>
+                    <p style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.asdasd</p>
                 </div>
             </div>
-            <div class="faq-img img-editable" id="faq-img" onclick="openImgModal('faq-img')" style="flex:1;min-width:260px;"></div>
+            <div class="faq-img " id="faq-img"  style="flex:1;min-width:260px;"></div>
         </div>
     </section>
 
     <!-- TESTIMONIOS -->
     <section style="background:var(--cl);border-top:1px solid #eee;">
-        <h2 contenteditable="true">Lo que dicen de Vibra Candela</h2>
+        <h2>Lo que dicen de Vibra Candelaasdasda</h2>
         <div class="benefits-grid" style="margin-top:2rem;">
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."</p>
-                <strong contenteditable="true">- Camila R.</strong>
-                <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
+                <p style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."asdasd</p>
+                <strong>- Camila R.asasd</strong>
+                <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."</p>
-                <strong contenteditable="true">- Mateo S.</strong>
-                <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
+                <p style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."asdasdas</p>
+                <strong>- Mateo S.asdasd</strong>
+                <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."</p>
-                <strong contenteditable="true">- Mateo S.</strong>
-                <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
+                <p style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."sadasdas</p>
+                <strong>- Mateo S.asdasda</strong>
+                <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
         </div>
     </section>
@@ -784,8 +744,24 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="page-productos" class="page">
     <div class="catalog-container">
-        <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogo</h2>
-        <div class="catalog-grid" id="catalogGrid"></div>
+        <h2 style="text-align:center;">Nuestro Catálogosadasdas</h2>
+        <div class="catalog-grid" id="catalogGrid">
+            <div class="seller-card" id="product-card-1" data-product-id="1" style="cursor:pointer;" onclick="openProductModal(1)">
+                <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
+                <div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p>
+                <div class="seller-meta"><span class="price">Desde s 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+            </div>
+            <div class="seller-card" id="product-card-2" data-product-id="2" style="cursor:pointer;" onclick="openProductModal(2)">
+                <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
+                <div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p>
+                <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+            </div>
+            <div class="seller-card" id="product-card-3" data-product-id="3" style="cursor:pointer;" onclick="openProductModal(3)">
+                <div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
+                <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
+                <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -794,18 +770,18 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="product-modal" class="modal-overlay" onclick="closeProductModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <span class="modal-close" onclick="closeProductModal(null)">&times;</span>
+        <span class="modal-close" onclick="closeProductModal(null)">×</span>
         <div class="modal-flex">
-            <div id="modal-product-img" class="modal-img"></div>
+            <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title"></h3>
-                    <div id="modal-product-meta" class="mprice"></div>
-                    <div class="variant-selector" id="modal-variant-selector" style="display:none;">
+                    <h3 id="modal-product-title">Difusor Vainilla Dulceasdasdas</h3>
+                    <div id="modal-product-meta" class="mprice">Ambientalasdasdad | S/. 99.00</div>
+                    <div class="variant-selector" id="modal-variant-selector" style="display: none;">
                         <label>Selecciona una variante:</label>
-                        <div class="variant-chips" id="modal-variant-chips"></div>
+                        <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
                     </div>
-                    <p id="modal-product-desc"></p>
+                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
                 </div>
                 <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
             </div>
@@ -814,348 +790,43 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 </div>
 
 <!-- MODAL: EDITAR PRODUCTO -->
-<div id="prodEditOverlay" class="pe-overlay" onclick="closeProdEdit(event)">
-    <div class="pe-modal" onclick="event.stopPropagation()">
-        <h3 id="prodEditTitle">Editar producto</h3>
-        <div class="fg"><label>Nombre</label><input type="text" id="pe-name" placeholder="Vela Lavanda"></div>
-        <div class="fg"><label>Categoría</label><input type="text" id="pe-cat" placeholder="100% Soya"></div>
 
-        <!-- PRECIO (oculto cuando hay variantes) -->
-        <div class="fg" id="pe-price-group">
-            <label>Precio</label>
-            <input type="text" id="pe-price" placeholder="S/. 45.00">
-        </div>
-
-        <div class="fg"><label>Descripción corta (tarjeta)</label><input type="text" id="pe-short" placeholder="Breve descripción..."></div>
-        <div class="fg"><label>Descripción larga (modal)</label><textarea id="pe-long" rows="3" placeholder="Descripción detallada..."></textarea></div>
-
-        <!-- IMAGEN BASE (oculta cuando hay variantes con imagen propia) -->
-        <div class="fg" id="pe-img-group">
-            <label>Imagen del producto</label>
-            <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab active" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="img-tab" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
-            </div>
-            <div class="img-panel active" id="pePanelUrl">
-                <input type="text" id="pe-img" placeholder="https://...">
-            </div>
-            <div class="img-panel" id="pePanelFile">
-                <img class="img-upload-preview" id="pePreviewImg" src="" alt="">
-                <div class="img-upload-name" id="peFileName"></div>
-                <div class="img-drop-zone">
-                    <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
-                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                    <p>Haz clic o arrastra una imagen</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CHECKBOX VARIANTES -->
-        <div class="fg-check">
-            <input type="checkbox" id="peVariantsCheck" onchange="toggleVariants()">
-            <label for="peVariantsCheck">Este producto tiene variantes <span style="font-weight:400;color:#888;">(ej: tamaños, aromas)</span></label>
-        </div>
-
-        <!-- SECCIÓN VARIANTES -->
-        <div class="pe-variants-section" id="peVariantsSection">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
-                <span style="font-size:0.85rem;font-weight:600;color:#333;">Lista de variantes</span>
-                <button class="pe-add-vbtn" onclick="addVariantRow();event.preventDefault();"><i class="fa-solid fa-plus"></i> Agregar variante</button>
-            </div>
-            <div id="peVariantsList"></div>
-        </div>
-
-        <div class="pe-actions">
-            <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()"><i class="fa-solid fa-trash"></i> Eliminar</button>
-            <button class="pe-cancel" onclick="closeProdEditDirect()">Cancelar</button>
-            <button class="pe-ok" onclick="applyProductEdit()"><i class="fa-solid fa-check"></i> Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: IMAGEN GENÉRICA -->
-<div id="imgUrlOverlay" class="iu-overlay" onclick="closeImgModal(event)">
-    <div class="iu-modal" onclick="event.stopPropagation()">
-        <h4><i class="fa-solid fa-camera" style="margin-right:6px;"></i> Cambiar imagen</h4>
-        <div class="img-tabs">
-            <button class="img-tab active" id="iuTabUrl" onclick="switchIuTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-            <button class="img-tab" id="iuTabFile" onclick="switchIuTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
-        </div>
-        <div class="img-panel active" id="iuPanelUrl">
-            <input type="text" id="imgUrlInput" placeholder="https://ejemplo.com/imagen.jpg">
-            <p class="iu-hint">URL completa o ruta relativa. La imagen cubrirá el área exacta.</p>
-        </div>
-        <div class="img-panel" id="iuPanelFile">
-            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="">
-            <div class="img-upload-name" id="iuFileName"></div>
-            <div class="img-drop-zone" id="iuDropZone">
-                <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra una imagen aquí</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">JPG, PNG, WebP, GIF — se guardará en <code>vibraimgs/</code></p>
-            </div>
-        </div>
-        <div class="iu-actions">
-            <button style="background:#eee;color:#333;" onclick="closeImgModalDirect()">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyImgUrl()">Aplicar</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- MODAL: HERO IMAGEN + FILTRO + BOTÓN -->
-<div id="heroImgOverlay" class="iu-overlay" onclick="closeHeroImgModal(event)">
-    <div class="iu-modal" style="max-width:560px;max-height:92vh;overflow-y:auto;" onclick="event.stopPropagation()">
-        <h4><i class="fa-solid fa-image" style="margin-right:6px;"></i> Editor del banner</h4>
 
-        <!-- IMAGEN -->
-        <div class="img-tabs" style="margin-bottom:0.8rem;">
-            <button class="img-tab active" id="heroTabUrl" onclick="switchHeroTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-            <button class="img-tab" id="heroTabFile" onclick="switchHeroTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
-        </div>
-        <div class="img-panel active" id="heroPanelUrl">
-            <input type="text" id="heroUrlInput" placeholder="https://ejemplo.com/imagen.jpg" oninput="updateHeroPreview()" style="width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;margin-bottom:0.3rem;">
-            <p class="iu-hint">URL completa o ruta relativa a la imagen del banner.</p>
-        </div>
-        <div class="img-panel" id="heroPanelFile">
-            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height:80px;">
-            <div class="img-upload-name" id="heroUploadName"></div>
-            <div class="img-drop-zone" style="margin-bottom:0.5rem;">
-                <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra la imagen del banner</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">Se guardará en <code>vibraimgs/</code></p>
-            </div>
-        </div>
-
-        <!-- FILTRO DE COLOR -->
-        <div class="hero-img-section">
-            <h5><i class="fa-solid fa-palette" style="margin-right:4px;"></i> Filtro de color</h5>
-            <div class="filter-row">
-                <label>Color:</label>
-                <input type="color" id="heroFilterColor" value="#000000" oninput="updateHeroPreview()">
-                <label>Opacidad:</label>
-                <input type="range" id="heroFilterOpacity" min="0" max="100" value="30" oninput="updateHeroPreview()">
-                <span id="heroOpacityVal">30%</span>
-            </div>
-            <div class="filter-presets">
-                <span style="font-size:0.72rem;color:#aaa;align-self:center;margin-right:2px;">Presets:</span>
-                <button class="fpreset" style="background:#000;" onclick="setHeroPreset('#000000',30)">Oscuro</button>
-                <button class="fpreset" style="background:#6e8174;" onclick="setHeroPreset('#6e8174',45)">Verde</button>
-                <button class="fpreset" style="background:#8b5e3c;" onclick="setHeroPreset('#8b5e3c',40)">Tierra</button>
-                <button class="fpreset" style="background:#3b5998;" onclick="setHeroPreset('#3b5998',40)">Azul</button>
-                <button class="fpreset" style="background:#7e22ce;" onclick="setHeroPreset('#7e22ce',35)">Morado</button>
-                <button class="fpreset" style="background:#be185d;" onclick="setHeroPreset('#be185d',35)">Rosa</button>
-                <button class="fpreset" style="background:transparent;color:#555;border:1px solid #ccc;" onclick="setHeroPreset('#000000',0)">Sin filtro</button>
-            </div>
-
-            <!-- BLEND MODES -->
-            <h5 style="margin-top:0.8rem;"><i class="fa-solid fa-shuffle" style="margin-right:4px;"></i> Modo de fusión (blend mode)</h5>
-            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.5rem;">Controla cómo el color de filtro interactúa con la imagen.</p>
-            <div class="blend-chips" id="blendChips">
-                <button class="bchip active" onclick="setBlendMode('normal',this)">Normal</button>
-                <button class="bchip" onclick="setBlendMode('multiply',this)">Multiply</button>
-                <button class="bchip" onclick="setBlendMode('screen',this)">Screen</button>
-                <button class="bchip" onclick="setBlendMode('overlay',this)">Overlay</button>
-                <button class="bchip" onclick="setBlendMode('darken',this)">Darken</button>
-                <button class="bchip" onclick="setBlendMode('lighten',this)">Lighten</button>
-                <button class="bchip" onclick="setBlendMode('color-dodge',this)">Color Dodge</button>
-                <button class="bchip" onclick="setBlendMode('color-burn',this)">Color Burn</button>
-                <button class="bchip" onclick="setBlendMode('hard-light',this)">Hard Light</button>
-                <button class="bchip" onclick="setBlendMode('soft-light',this)">Soft Light</button>
-                <button class="bchip" onclick="setBlendMode('difference',this)">Difference</button>
-                <button class="bchip" onclick="setBlendMode('exclusion',this)">Exclusion</button>
-                <button class="bchip" onclick="setBlendMode('hue',this)">Hue</button>
-                <button class="bchip" onclick="setBlendMode('saturation',this)">Saturation</button>
-                <button class="bchip" onclick="setBlendMode('color',this)">Color</button>
-                <button class="bchip" onclick="setBlendMode('luminosity',this)">Luminosity</button>
-            </div>
-
-            <!-- PREVIEW -->
-            <div class="hero-preview-bar" id="heroPreviewBar">
-                <div class="hero-preview-tint" id="heroPreviewTint"></div>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                    <span style="color:#fff;font-size:0.7rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,0.8);opacity:0.7;letter-spacing:0.05em;">VISTA PREVIA</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTÓN CTA -->
-        <div class="hero-btn-section">
-            <h5><i class="fa-solid fa-toggle-on" style="margin-right:4px;"></i> Botón del banner</h5>
-            <div class="hero-btn-row">
-                <label>Texto:</label>
-                <input type="text" id="heroBtnText" value="Explorar Catálogo" oninput="updateHeroBtnPreview()">
-            </div>
-            <div class="hero-btn-row">
-                <label>Color fondo:</label>
-                <input type="color" id="heroBtnColor" value="#6e8174" oninput="updateHeroBtnPreview()">
-                <label>Color texto:</label>
-                <input type="color" id="heroBtnTextColor" value="#ffffff" oninput="updateHeroBtnPreview()">
-            </div>
-            <div style="text-align:center;padding:0.6rem 0 0.2rem;">
-                <span class="hero-btn-preview" id="heroBtnPreview">Explorar Catálogo</span>
-            </div>
-        </div>
-
-        <div class="iu-actions" style="margin-top:1.2rem;">
-            <button style="background:#eee;color:#333;" onclick="closeHeroImgModal(null)">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyHeroImg()">Aplicar todo</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: CAMBIAR ÍCONO (emoji o imagen) -->
-<div id="iconSwapOverlay" class="is-overlay" onclick="closeIconSwap(event)">
-    <div class="is-modal" onclick="event.stopPropagation()">
-        <h4><i class="fa-solid fa-arrow-rotate-right" style="margin-right:6px;"></i> Cambiar ícono</h4>
-        <p>Usa un emoji, imagen por URL o sube una imagen.</p>
-        <div class="is-tabs">
-            <button class="is-tab active" id="isTabEmoji" onclick="switchIsTab('emoji')">Emoji</button>
-            <button class="is-tab" id="isTabImg" onclick="switchIsTab('img')"><i class="fa-solid fa-link"></i> URL</button>
-            <button class="is-tab" id="isTabFile" onclick="switchIsTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
-        </div>
-        <div class="is-panel active" id="isPanelEmoji">
-            <input type="text" class="is-emoji-input" id="isEmojiInput" placeholder="🌱" maxlength="4">
-            <p style="font-size:0.72rem;color:#aaa;text-align:center;margin-top:0.3rem;">Pega o escribe un emoji</p>
-        </div>
-        <div class="is-panel" id="isPanelImg">
-            <input type="text" id="isImgInput" placeholder="https://... o ruta/icono.png" oninput="updateIsPreview()">
-            <p style="font-size:0.72rem;color:#aaa;margin-top:0.3rem;">PNG, SVG, WebP — se mostrará cuadrado ~64px</p>
-        </div>
-        <div class="is-panel" id="isPanelFile">
-            <div class="img-drop-zone" id="isDropZone" style="margin-top:0.3rem;">
-                <input type="file" id="isFileInput" accept="image/*" onchange="handleIsFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra un ícono/imagen aquí</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
-            </div>
-            <div class="img-upload-name" id="isFileName" style="display:none;margin-top:0.3rem;"></div>
-        </div>
-        <div class="is-preview" id="isPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
-        <div class="is-actions">
-            <button style="background:#eee;color:#333;" onclick="closeIconSwapDirect()">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyIconSwap()">Aplicar</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- MODAL: ÍCONO DE LINK DE CONTACTO -->
-<div id="ciOverlay" class="ci-overlay" onclick="closeCiModal(event)">
-    <div class="ci-modal" onclick="event.stopPropagation()">
-        <h4><i class="fa-solid fa-icons" style="margin-right:6px;"></i> Cambiar ícono del ítem</h4>
-        <p class="ci-sub">Elige emoji o ícono de Font Awesome.</p>
-        <div class="ci-tabs">
-            <button class="ci-tab active" id="ciTabEmoji" onclick="switchCiTab('emoji')">Emoji</button>
-            <button class="ci-tab" id="ciTabFa" onclick="switchCiTab('fa')">Font Awesome</button>
-        </div>
-        <div class="ci-panel active" id="ciPanelEmoji">
-            <input type="text" class="ci-emoji-input" id="ciEmojiInput" placeholder="📍" oninput="updateCiPreview()">
-            <p style="font-size:0.72rem;color:#aaa;text-align:center;">Pega o escribe un emoji</p>
-        </div>
-        <div class="ci-panel" id="ciPanelFa">
-            <input type="text" class="ci-fa-input" id="ciFaInput" placeholder="fa-solid fa-location-dot" oninput="updateCiPreview();highlightFaIcon(this.value)">
-            <p class="ci-fa-hint">Ej: <code>fa-solid fa-phone</code> — busca o escribe cualquier clase FA</p>
-            <button type="button" class="ci-catalog-toggle" id="ciCatalogToggle" onclick="toggleFaCatalog()">
-                <i class="fa-solid fa-icons" id="ciCatalogToggleIcon"></i> <span id="ciCatalogToggleTxt">Mostrar catálogo de íconos</span>
-            </button>
-            <div class="ci-catalog-box" id="ciCatalogBox" style="display:none;">
-                <div class="ci-catalog-search-wrap">
-                    <i class="fa-solid fa-magnifying-glass ci-search-icon"></i>
-                    <input type="text" id="ciFaSearchInput" class="ci-catalog-search" placeholder="Buscar ícono (ej: whatsapp, teléfono, vela...)" oninput="filterFaIcons(this.value)">
-                </div>
-                <div class="ci-catalog-categories" id="ciCatalogCategories">
-                    <button type="button" class="ci-cat-btn active" data-cat="all" onclick="filterFaCategory('all')">Todos</button>
-                    <button type="button" class="ci-cat-btn" data-cat="contacto" onclick="filterFaCategory('contacto')">Contacto</button>
-                    <button type="button" class="ci-cat-btn" data-cat="redes" onclick="filterFaCategory('redes')">Redes</button>
-                    <button type="button" class="ci-cat-btn" data-cat="tienda" onclick="filterFaCategory('tienda')">Tienda</button>
-                    <button type="button" class="ci-cat-btn" data-cat="velas" onclick="filterFaCategory('velas')">Velas/Aromas</button>
-                    <button type="button" class="ci-cat-btn" data-cat="interfaz" onclick="filterFaCategory('interfaz')">General</button>
-                </div>
-                <div class="ci-catalog-grid" id="ciCatalogGrid"></div>
-            </div>
-        </div>
-        <div class="ci-color-row">
-            <label>Color del ícono:</label>
-            <input type="color" id="ciColorInput" value="#6e8174" oninput="updateCiPreview()">
-            <button onclick="document.getElementById('ciColorInput').value='#6e8174';updateCiPreview()">Reset</button>
-        </div>
-        <div class="ci-preview" id="ciPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
-        <div class="ci-actions">
-            <button style="background:#eee;color:#333;" onclick="closeCiModal(null)">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyCiIcon()">Aplicar</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- MODAL: LOGO -->
-<div id="logoOverlay" class="lo-overlay" onclick="closeLogoModal(event)">
-    <div class="lo-modal" onclick="event.stopPropagation()">
-        <h4><i class="fa-solid fa-image" style="margin-right:6px;"></i> Editar logo</h4>
-        <p class="sub">Elige entre texto o imagen.</p>
-        <div class="lo-tabs">
-            <button class="lo-tab active" id="loTabText" onclick="switchLoTab('text')">Texto</button>
-            <button class="lo-tab" id="loTabImg" onclick="switchLoTab('img')">Imagen</button>
-        </div>
-        <div class="lo-panel active" id="loPanelText">
-            <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">Nombre de la marca</label>
-            <input type="text" id="loTextInput" placeholder="Vibra Candela">
-        </div>
-        <div class="lo-panel" id="loPanelImg">
-            <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab active" id="loTabUrl" onclick="switchLoSubTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="img-tab" id="loTabFile" onclick="switchLoSubTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
-            </div>
-            <div class="img-panel active" id="loPanelUrl">
-                <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">URL del logo</label>
-                <input type="text" id="loImgInput" placeholder="https://... o logo.png" oninput="previewLo()">
-                <p class="lo-hint">PNG transparente o SVG recomendado. Altura: 44px.</p>
-            </div>
-            <div class="img-panel" id="loPanelFile">
-                <div class="img-drop-zone" id="loDropZone" style="margin-top:0.3rem;">
-                    <input type="file" id="loFileInput" accept="image/*" onchange="handleLoFile(this)">
-                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                    <p>Haz clic o arrastra el logo aquí</p>
-                    <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
-                </div>
-                <div class="img-upload-name" id="loFileName" style="display:none;margin-top:0.3rem;"></div>
-            </div>
-            <div class="lo-preview" id="loPreview" style="margin-top:0.6rem;">
-                <img id="loPreviewImg" src="" alt="" style="height:36px;max-width:140px;object-fit:contain;display:none;">
-                <span id="loPreviewEmpty" style="color:#ccc;font-size:0.8rem;">Vista previa…</span>
-            </div>
-        </div>
-        <div class="lo-actions">
-            <button style="background:#eee;color:#333;" onclick="closeLogoModalDirect()">Cancelar</button>
-            <button style="background:#fee2e2;color:#b91c1c;" onclick="resetLogo()">Restablecer</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyLogo()">Aplicar</button>
-        </div>
-    </div>
-</div>
+
 
 <!-- =========================================================
      PÁGINA: ACERCA DE
      ========================================================= -->
 <div id="page-acerca" class="page">
     <section>
-        <h2 contenteditable="true">Nuestra Historia</h2>
+        <h2>Nuestra Historiazxczxczxc</h2>
         <div class="about-wrapper">
             <div class="about-bio" id="aboutBio">
-                <h3 contenteditable="true">Hola, soy la creadora</h3>
+                <h3>Hola, soy la creadoraxczxczx</h3>
                 <div class="bio-p">
-                    <p contenteditable="true">Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.</p>
-                    <div class="para-controls">
-                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
+                    <p>Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.zxczxczxc</p>
+                    
                 </div>
                 <div class="bio-p">
-                    <p contenteditable="true">Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.</p>
-                    <div class="para-controls">
-                        <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
+                    <p>Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.zxczxczxc</p>
+                    
                 </div>
-                <button class="add-para-btn" onclick="addPara()">＋ Agregar párrafo</button>
+                
             </div>
-            <div class="about-img img-editable" id="about-img" onclick="openImgModal('about-img')"></div>
+            <div class="about-img " id="about-img"  style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
         </div>
     </section>
 </div>
@@ -1165,46 +836,40 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="page-contacto" class="page">
     <div class="contact-page">
-        <h2 contenteditable="true">Cuéntanos tus Ideas</h2>
+        <h2>Cuéntanos tus Ideaszxczxczxc</h2>
         <div class="contact-wrapper">
             <div class="contact-info-panel">
-                <h3 contenteditable="true">Información de Contacto</h3>
-                <p class="contact-info-intro" contenteditable="true">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!</p>
+                <h3>Información de Contacto</h3>
+                <p class="contact-info-intro">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!zxczxc</p>
                 <div id="infoLinksContainer">
                     <div class="info-link">
-                        <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📍</span>
-                        <span class="info-link-text" contenteditable="true">Callao, Perú</span>
-                        <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
+                        <span class="info-link-icon"  >📍</span>
+                        <span class="info-link-text">Callao, Perúzxczxc</span>
+                        
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">💬</span>
-                        <span class="info-link-text" contenteditable="true">WhatsApp: +51 999 999 999</span>
-                        <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
+                        <span class="info-link-icon"  >💬</span>
+                        <span class="info-link-text">WhatsApp: +51 999 999 999zxczxc</span>
+                        
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">✉️</span>
-                        <span class="info-link-text" contenteditable="true">hola@aromanatural.com</span>
-                        <div class="info-link-actions">
-                            <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
+                        <span class="info-link-icon"  >✉️</span>
+                        <span class="info-link-text">hola@aromanatural.comzxczxc</span>
+                        
                     </div>
-                </div>
-                <button class="add-link-btn" onclick="addInfoLink()">＋ Agregar ítem</button>
+                <div class="info-link"><span class="info-link-icon"  >📌</span><span class="info-link-text">Nuevo ítezxczxczxcm — edita este texto</span></div></div>
+                
             </div>
             <div class="contact-form-panel">
                 <form action="https://api.web3forms.com/submit" method="POST" id="form">
                     <input type="hidden" name="access_key" value="8224743d-95d4-4ea0-aa7b-8cc5eb1c8c6c">
                     <input type="checkbox" name="botcheck" id="" style="display: none;">
-                    <div class="form-group"><label>Nombre</label><input type="text" id="c-name" placeholder="Ej. Ana García" name="Nombre" required></div>
-                    <div class="form-group"><label>Correo Electrónico</label><input type="email" id="c-email" placeholder="Ej. ana@correo.com" name="Correo" required></div>
-                    <div class="form-group"><label>Celular</label><input type="tel" placeholder="987654321" name="Celular" required></div>
+                    <div class="form-group"><label>Nombre</label><input type="text" id="c-name" placeholder="Ej. Ana García" name="Nombre" required=""></div>
+                    <div class="form-group"><label>Correo Electrónico</label><input type="email" id="c-email" placeholder="Ej. ana@correo.com" name="Correo" required=""></div>
+                    <div class="form-group"><label>Celular</label><input type="tel" placeholder="987654321" name="Celular" required=""></div>
                     <div class="form-group">
                         <label>¿En qué te podemos ayudar?</label>
-                        <select id="c-motivo" name="Asunto" required>
+                        <select id="c-motivo" name="Asunto" required="">
                             <option value="">Selecciona una opción</option>
                             <option value="Duda sobre un producto">Duda sobre un producto</option>
                             <option value="Pedido personalizado / Eventos">Pedido personalizado / Eventos</option>
@@ -1212,7 +877,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                             <option value="Problemas con producto adquirido">Problemas con producto adquirido</option>
                         </select>
                     </div>
-                    <div class="form-group"><label>Tu Mensaje</label><textarea id="c-message" rows="4" placeholder="Escribe aquí los detalles..." name="Mensaje" required></textarea></div>
+                    <div class="form-group"><label>Tu Mensaje</label><textarea id="c-message" rows="4" placeholder="Escribe aquí los detalles..." name="Mensaje" required=""></textarea></div>
                     <button type="submit" class="btn" style="width:100%;" id="formSubmitBtn">Enviar Mensaje</button>
                     <div id="result"></div>
                 </form>
@@ -1222,2110 +887,325 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 </div>
 
 <footer class="footer">
-    <p contenteditable="true">&copy; 2026 Vibra Candela. Todos los derechos reservados.</p>
+    <p>© 2026 Vibra Candela. Todos los derechos reservados.</p>
 </footer>
 
 <!-- MODAL: GUARDAR -->
-<div id="ghOverlay" class="gh-overlay" onclick="closeGhModal(event)">
-    <div class="gh-modal" onclick="event.stopPropagation()">
-        <h3>Guardar</h3>
-        <p class="gh-sub">Sincroniza el editor o la web directamente con GitHub Pages.</p>
 
-        <div id="ghNoticeBox" class="gh-notice" style="display:none;"></div>
 
-        <div class="gh-accordion" id="ghConfigAccordion">
-            <button type="button" class="gh-accordion-toggle" onclick="toggleGhConfigAccordion()">
-                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
-                <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
-            </button>
-            <div class="gh-accordion-body" id="ghAccordionBody">
-                <div class="gh-group">
-                    <label>Repositorio <span style="color:#aaa;font-weight:400;">(usuario/nombre-repo)</span></label>
-                    <input type="text" id="ghRepo" placeholder="usuario/mi-web">
-                </div>
-                <div class="gh-group" id="ghTokenGroup">
-                    <label>Token de acceso personal
-                        <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
-                    </label>
-                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
-                        <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
-                        <div class="gh-btn-group">
-                            <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
-                            <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
-                        </div>
-                    </div>
-                    <div id="ghTokenInputBox">
-                        <input type="password" id="ghToken" placeholder="github_pat_...">
-                        <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read & Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
-                    </div>
-                </div>
-                <div class="gh-group" style="margin-bottom:0;">
-                    <label>Rama</label>
-                    <input type="text" id="ghBranch" value="main" placeholder="main">
-                </div>
-            </div>
-        </div>
 
-        <label style="font-size:0.78rem;font-weight:700;color:#555;display:block;margin-bottom:0.5rem;">¿Qué quieres guardar?</label>
-        <div class="gh-mode-group">
-            <button class="gh-mode-btn active" id="ghModeEditor" onclick="selectGhMode('editor')">editor</button>
-            <button class="gh-mode-btn" id="ghModePublish" onclick="selectGhMode('publish')">web</button>
-        </div>
-
-        <div class="gh-pass-group">
-            <div class="gh-group" style="margin-bottom:0;">
-                <label id="ghPassLabel"><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización</label>
-                <input type="password" id="ghPass" placeholder="••••••••" oninput="checkAutoUnlock()">
-            </div>
-        </div>
-
-        <div class="gh-log" id="ghLog"></div>
-
-        <div class="gh-actions">
-            <button class="gh-cancel" onclick="closeGhModal(null)">Cancelar</button>
-            <button class="gh-submit" onclick="runGhPublish()">Guardar</button>
-        </div>
-    </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script>
 // ============================================================
-// ESTADO GLOBAL
+// CONFIGURACIÓN PÚBLICA
 // ============================================================
-const WA_NUMBER="51930246770";
-let products=[
-    {id:1,name:'Vela Lavanda Francesa',cat:'100% Soya',price:'S/. 45.00',shortDesc:'Calma el estrés cotidiano con notas florales suaves.',longDesc:'Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.',img:''},
-    {id:2,name:'Difusor Vainilla Dulce',cat:'Ambiental',price:'S/. 55.00',shortDesc:'Fragancia reconfortante de larga duración.',longDesc:'Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.',img:''},
-    {id:3,name:'Vela Bosque de Pino',cat:'100% Soya',price:'S/. 45.00',shortDesc:'Notas frescas y maderosas que te transportan a la naturaleza.',longDesc:'Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.',img:''}
+const WA_NUMBER = "51930246770";
+let products = [
+    {
+        "id": 1,
+        "name": "Vela Lavanda Francesaasdad",
+        "cat": "100% Soyaasdasdas",
+        "price": "",
+        "shortDesc": "Calma el estrés cotidiano con notas florales suaves.asdasd",
+        "longDesc": "Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas",
+        "img": "",
+        "variants": [
+            {
+                "name": "10ml",
+                "price": "30s",
+                "img": "vibraimgs/faq.jpg"
+            },
+            {
+                "name": "20ml",
+                "price": "20s",
+                "img": "vibraimgs/tips3.png"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Difusor Vainilla Dulceasdasdas",
+        "cat": "Ambientalasdasdad",
+        "price": "S/. 99.00",
+        "shortDesc": "Fragancia reconfortante de larga duración.asdasdasd",
+        "longDesc": "Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd",
+        "img": "vibraimgs/tips1.png",
+        "variants": []
+    },
+    {
+        "id": 3,
+        "name": "Vela Bosque de Pino",
+        "cat": "100% Soya",
+        "price": "S/. 45.00",
+        "shortDesc": "Notas frescas y maderosas que te transportan a la naturaleza.",
+        "longDesc": "Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.",
+        "img": "",
+        "variants": []
+    }
 ];
-let nextId=4;
-let editingProductId=null;
-let logoState={mode:'text',text:'Vibra Candela',imgUrl:''};
-let heroState={url:'',color:'#000000',opacity:30,blend:'normal',btnText:'Explorar Catálogo',btnBg:'#6e8174',btnColor:'#ffffff'};
-let ghEncryptedToken = "";
-let ghSavedRepo = "";
-let ghSavedBranch = "main";
-let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
-let activeGhToken = "";
 
 // ============================================================
-// NAV
+// NAVEGACIÓN
 // ============================================================
 function navigateTo(p){
-    document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
-    var pg=document.getElementById('page-'+p); if(pg)pg.classList.add('active');
-    var lk=document.getElementById('nav-'+p); if(lk)lk.classList.add('active');
-    window.scrollTo(0,0);
+    document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+    var pg = document.getElementById('page-' + p); if(pg) pg.classList.add('active');
+    var lk = document.getElementById('nav-' + p); if(lk) lk.classList.add('active');
+    window.scrollTo(0, 0);
 }
 
 // ============================================================
-// PRODUCTOS
+// CATÁLOGO DE PRODUCTOS (MODO PÚBLICO)
 // ============================================================
 function getProductImg(p){
-    if(p.variants&&p.variants.length>0){
-        const v1=p.variants[0];
-        return v1.imgData||v1.img||p.imgData||p.img||'';
+    if(p.variants && p.variants.length > 0){
+        const v1 = p.variants[0];
+        return v1.img || p.img || '';
     }
-    return p.imgData||p.img||'';
+    return p.img || '';
 }
+
 function getProductPriceLabel(p){
-    if(p.variants&&p.variants.length>0){
-        const prices=p.variants.map(v=>parseFloat((v.price||'0').replace(/[^0-9.]/g,''))).filter(x=>!isNaN(x));
+    if(p.variants && p.variants.length > 0){
+        const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g, ''))).filter(x => !isNaN(x));
         if(prices.length){
-            const min=Math.min(...prices);
-            const currency=(p.variants[0].price||'S/. 0').replace(/[0-9.,]/g,'').trim()||'S/.';
-            return 'Desde '+currency+' '+min.toFixed(2);
+            const min = Math.min(...prices);
+            const currency = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g, '').trim() || 'S/.';
+            return 'Desde ' + currency + ' ' + min.toFixed(2);
         }
     }
-    return p.price||'';
+    return p.price || '';
 }
-function renderProducts(){
-    const g=document.getElementById('catalogGrid');
-    g.innerHTML='';
-    products.forEach(p=>{
-        const w=document.createElement('div');
-        w.className='seller-card-wrapper';
-        w.innerHTML=`<button class="card-edt" onclick="openProdEdit(${p.id},event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" id="product-card-${p.id}" data-product-id="${p.id}" style="cursor:pointer;" onclick="openProductModal(${p.id})">
-            <div class="seller-img" style="background-image:${getProductImg(p)?'url(\''+getProductImg(p)+'\')':'none'};"></div>
-            <div class="seller-info"><h3>${esc(p.name)}</h3><p>${esc(p.shortDesc)}</p>
-            <div class="seller-meta"><span class="price">${esc(getProductPriceLabel(p))}</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div>`;
-        g.appendChild(w);
-    });
-    const a=document.createElement('div');
-    a.className='add-product-card';
-    a.onclick=()=>openProdEdit(null,null);
-    a.innerHTML='<span class="ic">＋</span><span>Agregar producto</span>';
-    g.appendChild(a);
-}
-function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function escA(s){return(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
-function openProductModal(id){
-    const p=products.find(x=>x.id===id); if(!p)return;
-    document.getElementById('modal-product-title').innerText=p.name;
-    document.getElementById('modal-product-desc').innerText=p.longDesc;
-    document.getElementById('modal-whatsapp-link').dataset.productId=id;
 
-    const hasVariants=p.variants&&p.variants.length>0;
-    const varSelector=document.getElementById('modal-variant-selector');
-    const chipsEl=document.getElementById('modal-variant-chips');
-    const metaEl=document.getElementById('modal-product-meta');
-    const imgEl=document.getElementById('modal-product-img');
+function esc(s){ return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escA(s){ return (s || '').replace(/'/g,"\'").replace(/"/g,'&quot;'); }
+
+function renderProducts(){
+    const g = document.getElementById('catalogGrid');
+    if(!g) return;
+    g.innerHTML = '';
+    products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'seller-card';
+        card.id = 'product-card-' + p.id;
+        card.dataset.productId = p.id;
+        card.style.cursor = 'pointer';
+        card.onclick = () => openProductModal(p.id);
+        const img = getProductImg(p);
+        card.innerHTML = '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
+            + '<div class="seller-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.shortDesc) + '</p>'
+            + '<div class="seller-meta"><span class="price">' + esc(getProductPriceLabel(p)) + '</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
+        g.appendChild(card);
+    });
+}
+
+// ============================================================
+// MODAL DE PRODUCTO Y SELECCIÓN DE VARIANTES
+// ============================================================
+function openProductModal(id){
+    const p = products.find(x => x.id === id); if(!p) return;
+    document.getElementById('modal-product-title').innerText = p.name;
+    document.getElementById('modal-product-desc').innerText = p.longDesc;
+    document.getElementById('modal-whatsapp-link').dataset.productId = id;
+
+    const hasVariants = p.variants && p.variants.length > 0;
+    const varSelector = document.getElementById('modal-variant-selector');
+    const chipsEl = document.getElementById('modal-variant-chips');
+    const metaEl = document.getElementById('modal-product-meta');
+    const imgEl = document.getElementById('modal-product-img');
 
     if(hasVariants){
-        // Mostrar selector de variantes
-        varSelector.style.display='block';
-        chipsEl.innerHTML='';
-        p.variants.forEach((v,i)=>{
-            const chip=document.createElement('button');
-            chip.className='vchip'+(i===0?' active':'');
-            chip.textContent=v.name;
-            chip.onclick=()=>selectVariant(p,i);
+        varSelector.style.display = 'block';
+        chipsEl.innerHTML = '';
+        p.variants.forEach((v, i) => {
+            const chip = document.createElement('button');
+            chip.className = 'vchip' + (i === 0 ? ' active' : '');
+            chip.textContent = v.name;
+            chip.onclick = () => selectVariant(p, i);
             chipsEl.appendChild(chip);
         });
-        // Mostrar primera variante por defecto
-        selectVariant(p,0);
+        selectVariant(p, 0);
     } else {
-        varSelector.style.display='none';
-        chipsEl.innerHTML='';
-        metaEl.innerText=p.cat+' | '+p.price;
-        const baseImg=p.imgData||p.img||'';
-        imgEl.style.backgroundImage=baseImg?"url('"+baseImg+"')":'';
-        document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:p.name,cat:p.cat,price:p.price,variant:'',img:p.img||''});
+        varSelector.style.display = 'none';
+        chipsEl.innerHTML = '';
+        metaEl.innerText = p.cat + ' | ' + p.price;
+        const baseImg = p.img || '';
+        imgEl.style.backgroundImage = baseImg ? "url('" + baseImg + "')" : 'none';
+        document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
+        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: p.price, variant: '', img: p.img || '' });
     }
     document.getElementById('product-modal').classList.add('open');
 }
-function selectVariant(p,idx){
-    const v=p.variants[idx];
-    document.getElementById('modal-product-meta').innerText=p.cat+' | '+v.price;
-    // Imagen: variante si tiene, si no la de la variante 1, si no la base
-    const img=v.imgData||v.img||(p.variants[0]&&(p.variants[0].imgData||p.variants[0].img))||p.imgData||p.img||'';
-    document.getElementById('modal-product-img').style.backgroundImage=img?"url('"+img+"')":'';
-    // Actualizar chips
-    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i)=>c.classList.toggle('active',i===idx));
-    // Guardar variante activa para WA (incluyendo la foto de la variante)
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant=JSON.stringify({name:v.name,price:v.price,img:v.img||img});
-    document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:p.name,cat:p.cat,price:v.price,variant:v.name,img:v.img||img});
+
+function selectVariant(p, idx){
+    const v = p.variants[idx];
+    document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + v.price;
+    const img = v.img || (p.variants[0] && p.variants[0].img) || p.img || '';
+    document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
+    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c, i) => c.classList.toggle('active', i === idx));
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({ name: v.name, price: v.price, img: v.img || img });
+    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: v.price, variant: v.name, img: v.img || img });
 }
-function closeProductModal(e){if(!e||e.target===document.getElementById('product-modal'))document.getElementById('product-modal').classList.remove('open');}
-function openProductModal_s(title,cat,price,desc,img){
-    document.getElementById('modal-product-title').innerText=title;
-    document.getElementById('modal-product-desc').innerText=desc;
-    document.getElementById('modal-product-meta').innerText=cat+' | '+price;
-    const sel=document.getElementById('modal-variant-selector');
-    if(sel)sel.style.display='none';
-    const chips=document.getElementById('modal-variant-chips');
-    if(chips)chips.innerHTML='';
-    const imgEl=document.getElementById('modal-product-img');
-    if(imgEl)imgEl.style.backgroundImage=img?"url('"+img+"')":'none';
-    document.getElementById('modal-whatsapp-link').dataset.productId='';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
-    document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:price,variant:'',img:img});
+
+function closeProductModal(e){
+    if(!e || e.target === document.getElementById('product-modal')) document.getElementById('product-modal').classList.remove('open');
+}
+
+function openProductModal_s(title, cat, price, desc, img){
+    document.getElementById('modal-product-title').innerText = title;
+    document.getElementById('modal-product-desc').innerText = desc;
+    document.getElementById('modal-product-meta').innerText = cat + ' | ' + price;
+    const sel = document.getElementById('modal-variant-selector'); if(sel) sel.style.display = 'none';
+    const chips = document.getElementById('modal-variant-chips'); if(chips) chips.innerHTML = '';
+    const imgEl = document.getElementById('modal-product-img'); if(imgEl) imgEl.style.backgroundImage = img ? "url('" + img + "')" : 'none';
+    document.getElementById('modal-whatsapp-link').dataset.productId = '';
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
+    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: price, variant: '', img: img });
     document.getElementById('product-modal').classList.add('open');
 }
-function openProductModal_v(title,cat,desc,variantsJson,baseImg){
-    var variants=JSON.parse(variantsJson||'[]');
-    document.getElementById('modal-product-title').innerText=title;
-    document.getElementById('modal-product-desc').innerText=desc;
-    var sel=document.getElementById('modal-variant-selector');
-    var chips=document.getElementById('modal-variant-chips');
-    sel.style.display=variants.length?'block':'none';
-    chips.innerHTML='';
-    document.getElementById('modal-whatsapp-link').dataset.productId='';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
-    variants.forEach(function(v,i){
-        var ch=document.createElement('button');
-        ch.className='vchip'+(i===0?' active':'');
-        ch.textContent=v.name;
-        ch.onclick=function(){
-            document.querySelectorAll('#modal-variant-chips .vchip').forEach(function(x){x.classList.remove('active');});
+
+function openProductModal_v(title, cat, desc, variantsJson, baseImg){
+    var variants = JSON.parse(variantsJson || '[]');
+    document.getElementById('modal-product-title').innerText = title;
+    document.getElementById('modal-product-desc').innerText = desc;
+    var sel = document.getElementById('modal-variant-selector');
+    var chips = document.getElementById('modal-variant-chips');
+    sel.style.display = variants.length ? 'block' : 'none';
+    chips.innerHTML = '';
+    document.getElementById('modal-whatsapp-link').dataset.productId = '';
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
+    variants.forEach(function(v, i){
+        var ch = document.createElement('button');
+        ch.className = 'vchip' + (i === 0 ? ' active' : '');
+        ch.textContent = v.name;
+        ch.onclick = function(){
+            document.querySelectorAll('#modal-variant-chips .vchip').forEach(function(x){ x.classList.remove('active'); });
             ch.classList.add('active');
-            document.getElementById('modal-product-meta').innerText=cat+' | '+v.price;
-            var img=v.img||variants[0].img||baseImg||'';
-            document.getElementById('modal-product-img').style.backgroundImage=img?"url('"+img+"')":'';
-            document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:v.price,variant:v.name,img:img});
+            document.getElementById('modal-product-meta').innerText = cat + ' | ' + v.price;
+            var img = v.img || variants[0].img || baseImg || '';
+            document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
+            document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v.price, variant: v.name, img: img });
         };
         chips.appendChild(ch);
     });
     if(variants.length){
-        var v0=variants[0];
-        document.getElementById('modal-product-meta').innerText=cat+' | '+v0.price;
-        var img0=v0.img||baseImg||'';
-        document.getElementById('modal-product-img').style.backgroundImage=img0?"url('"+img0+"')":'';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:title,cat:cat,price:v0.price,variant:v0.name,img:img0});
+        var v0 = variants[0];
+        document.getElementById('modal-product-meta').innerText = cat + ' | ' + v0.price;
+        var img0 = v0.img || baseImg || '';
+        document.getElementById('modal-product-img').style.backgroundImage = img0 ? "url('" + img0 + "')" : 'none';
+        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v0.price, variant: v0.name, img: img0 });
     }
     document.getElementById('product-modal').classList.add('open');
 }
 
-// Convertir rutas relativas (ej. vibraimgs/...) a URLs absolutas públicas para WhatsApp
+// Convertir rutas relativas a URLs absolutas públicas para WhatsApp
 function toAbsoluteUrl(url){
-    if(!url||url.startsWith('data:'))return '';
-    if(url.startsWith('http://')||url.startsWith('https://'))return url;
-    const base=(window.location.protocol==='file:'||window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1'||!window.location.origin||window.location.origin==='null')
-        ?'https://egeostyle.github.io/vctest/'
-        :window.location.href;
-    try{
-        return new URL(url,base).href;
-    }catch(_){
-        return 'https://egeostyle.github.io/vctest/'+url.replace(/^\.?\//,'');
+    if(!url || url.startsWith('data:')) return '';
+    if(url.startsWith('http://') || url.startsWith('https://')) return url;
+    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null')
+        ? 'https://egeostyle.github.io/vctest/'
+        : window.location.href;
+    try {
+        return new URL(url, base).href;
+    } catch(_) {
+        return 'https://egeostyle.github.io/vctest/' + url.replace(/^\.?\//, '');
     }
 }
 
+// ============================================================
+// SOLICITAR POR WHATSAPP
+// ============================================================
 function sendWhatsApp(e){
     e.preventDefault();
-    const btn=document.getElementById('modal-whatsapp-link');
-    const id=parseInt(btn.dataset.productId);
+    const btn = document.getElementById('modal-whatsapp-link');
+    const id = parseInt(btn.dataset.productId);
 
-    let prodName='';
-    let prodCat='';
-    let prodPrice='';
-    let prodVariant='';
-    let prodImg='';
+    let prodName = '';
+    let prodCat = '';
+    let prodPrice = '';
+    let prodVariant = '';
+    let prodImg = '';
 
-    // 1. Intentar leer desde dataset.productInfo (catálogo limpio / exportado)
     if(btn.dataset.productInfo){
-        try{
-            const pi=JSON.parse(btn.dataset.productInfo);
-            prodName=pi.name||'';
-            prodCat=pi.cat||'';
-            prodPrice=pi.price||'';
-            prodVariant=pi.variant||'';
-            prodImg=pi.img||'';
-        }catch(_){}
+        try {
+            const pi = JSON.parse(btn.dataset.productInfo);
+            prodName = pi.name || '';
+            prodCat = pi.cat || '';
+            prodPrice = pi.price || '';
+            prodVariant = pi.variant || '';
+            prodImg = pi.img || '';
+        } catch(_) {}
     }
 
-    // 2. Si estamos en modo editor con array products cargado
-    if(typeof products!=='undefined'&&Array.isArray(products)&&!isNaN(id)&&id){
-        const p=products.find(x=>x.id===id);
+    if(typeof products !== 'undefined' && Array.isArray(products) && !isNaN(id) && id){
+        const p = products.find(x => x.id === id);
         if(p){
-            prodName=p.name||prodName;
-            prodCat=p.cat||prodCat;
-            prodPrice=p.price||prodPrice;
-            prodImg=p.img||prodImg;
+            prodName = p.name || prodName;
+            prodCat = p.cat || prodCat;
+            prodPrice = p.price || prodPrice;
+            prodImg = p.img || prodImg;
 
-            const activeVar=btn.dataset.activeVariant;
+            const activeVar = btn.dataset.activeVariant;
             if(activeVar){
-                try{
-                    const av=JSON.parse(activeVar);
-                    if(av&&av.name){
-                        prodVariant=av.name;
-                        prodPrice=av.price||prodPrice;
-                        if(av.img)prodImg=av.img;
+                try {
+                    const av = JSON.parse(activeVar);
+                    if(av && av.name){
+                        prodVariant = av.name;
+                        prodPrice = av.price || prodPrice;
+                        if(av.img) prodImg = av.img;
                     }
-                }catch(_){}
+                } catch(_) {}
             }
         }
     }
 
-    let textMsg='¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
-    textMsg+='• *Producto:* '+prodName+'\n';
-    if(prodCat)textMsg+='• *Categoría:* '+prodCat+'\n';
-    if(prodVariant)textMsg+='• *Variante:* '+prodVariant+'\n';
-    if(prodPrice)textMsg+='• *Precio:* '+prodPrice+'\n';
+    let textMsg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
+    textMsg += '• *Producto:* ' + prodName + '\n';
+    if(prodCat) textMsg += '• *Categoría:* ' + prodCat + '\n';
+    if(prodVariant) textMsg += '• *Variante:* ' + prodVariant + '\n';
+    if(prodPrice) textMsg += '• *Precio:* ' + prodPrice + '\n';
 
-    const fullImgUrl=toAbsoluteUrl(prodImg);
+    const fullImgUrl = toAbsoluteUrl(prodImg);
     if(fullImgUrl){
-        // Omitir https:// para que WhatsApp NO genere la mini-ventana (tarjeta flotante molesta) y muestre solo texto limpio con enlace azul clickeable
-        const cleanImgUrl=fullImgUrl.replace(/^https?:\/\//,'');
-        textMsg+='• *Ver foto:* '+cleanImgUrl+'\n';
+        const cleanImgUrl = fullImgUrl.replace(/^https?:\/\//, '');
+        textMsg += '• *Ver foto:* ' + cleanImgUrl + '\n';
     }
 
-    textMsg+='\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
+    textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
 
-    const waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(textMsg);
-    window.open(waUrl,'_blank');
-}
-function openProdEdit(id,e){
-    if(e)e.stopPropagation();
-    editingProductId=id;
-    document.getElementById('prodEditTitle').textContent=id===null?'Agregar producto':'Editar producto';
-    document.getElementById('peDeleteBtn').style.display=id===null?'none':'inline-block';
-    const p=id!==null?products.find(x=>x.id===id):{};
-    document.getElementById('pe-name').value=p.name||'';
-    document.getElementById('pe-cat').value=p.cat||'';
-    document.getElementById('pe-price').value=p.price||'';
-    document.getElementById('pe-short').value=p.shortDesc||'';
-    document.getElementById('pe-long').value=p.longDesc||'';
-    const peImgField=document.getElementById('pe-img');
-    peImgField.value=p.img||'';
-    // Restaurar dataURL: del producto guardado, o de uploadedImages si la ruta existe
-    peImgField.dataset.dataUrl=p.imgData||uploadedImages[p.img||'']||'';
-    // Reset imagen upload tab
-    peTab='url';
-    document.getElementById('peTabUrl').classList.add('active');
-    document.getElementById('peTabFile').classList.remove('active');
-    document.getElementById('pePanelUrl').classList.add('active');
-    document.getElementById('pePanelFile').classList.remove('active');
-    document.getElementById('pePreviewImg').style.display='none';
-    document.getElementById('peFileName').style.display='none';
-    document.getElementById('peFileName').textContent='';
-    document.getElementById('peFileInput').value='';
-
-    // Variantes
-    const hasV=!!(p.variants&&p.variants.length>0);
-    document.getElementById('peVariantsCheck').checked=hasV;
-    document.getElementById('peVariantsSection').classList.toggle('active',hasV);
-    document.getElementById('pe-price-group').style.display=hasV?'none':'';
-    document.getElementById('pe-img-group').style.display=hasV?'none':'';
-    renderVariantRows(p.variants||[]);
-
-    document.getElementById('prodEditOverlay').classList.add('open');
-}
-function applyProductEdit(){
-    const name=document.getElementById('pe-name').value.trim();
-    if(!name){showToast('El nombre es obligatorio.');return;}
-    const useVariants=document.getElementById('peVariantsCheck').checked;
-
-    // ── Imagen producto simple ──────────────────────────────
-    let imgVal=document.getElementById('pe-img').value.trim();
-    if(peTab==='file'){
-        const fname=document.getElementById('peFileName').textContent;
-        if(fname) imgVal=fname;
-    }
-    const peImgEl=document.getElementById('pe-img');
-    // Preservar imgData: del dataset si fue subida esta sesión,
-    // o de uploadedImages si la ruta ya estaba guardada de antes
-    const imgData=peImgEl.dataset.dataUrl||uploadedImages[imgVal]||
-        (editingProductId!==null?(products.find(x=>x.id===editingProductId)||{}).imgData||'':'');
-
-    // ── Variantes ───────────────────────────────────────────
-    let variants=[];
-    if(useVariants){
-        document.querySelectorAll('.pe-variant-item').forEach(row=>{
-            const vname=row.querySelector('.v-name').value.trim();
-            const vprice=row.querySelector('.v-price').value.trim();
-            const vimgEl=row.querySelector('.v-img');
-            const vimg=vimgEl?vimgEl.value.trim():'';
-            // Preservar imgData de variante igual que el producto base
-            const vimgData=vimgEl&&vimgEl.dataset.dataUrl?vimgEl.dataset.dataUrl:uploadedImages[vimg]||'';
-            if(vname) variants.push({name:vname,price:vprice,img:vimg,imgData:vimgData});
-        });
-    }
-
-    const data={name,cat:document.getElementById('pe-cat').value.trim(),price:useVariants?'':document.getElementById('pe-price').value.trim(),shortDesc:document.getElementById('pe-short').value.trim(),longDesc:document.getElementById('pe-long').value.trim(),img:useVariants?'':imgVal,imgData:useVariants?'':imgData,variants:variants};
-    if(editingProductId===null){products.push({id:nextId++,...data});showToast('✅ Producto agregado.');}
-    else{Object.assign(products.find(x=>x.id===editingProductId),data);showToast('✅ Producto actualizado.');}
-    closeProdEditDirect();renderProducts();
-}
-function deleteProduct(){if(!confirm('¿Eliminar este producto?'))return;products=products.filter(x=>x.id!==editingProductId);closeProdEditDirect();renderProducts();showToast('🗑 Producto eliminado.');}
-function closeProdEdit(e){if(e&&e.target!==document.getElementById('prodEditOverlay'))return;closeProdEditDirect();}
-function closeProdEditDirect(){document.getElementById('prodEditOverlay').classList.remove('open');}
-
-// ============================================================
-// IMAGEN GENÉRICA
-// ============================================================
-let currentImgEl=null;
-function openImgModal(id){
-    currentImgEl=document.getElementById(id);
-    const bg=currentImgEl.style.backgroundImage||'';
-    // Si tiene dataURL (imagen subida), no pre-llenar; si es URL normal sí
-    const val=bg.replace(/^url\(['"]?/,'').replace(/['"]?\)$/,'');
-    document.getElementById('imgUrlInput').value=val.startsWith('data:')?'':val;
-    // Reset tabs
-    iuTab='url';
-    document.getElementById('iuTabUrl').classList.add('active');
-    document.getElementById('iuTabFile').classList.remove('active');
-    document.getElementById('iuPanelUrl').classList.add('active');
-    document.getElementById('iuPanelFile').classList.remove('active');
-    document.getElementById('iuPreviewImg').style.display='none';
-    document.getElementById('iuFileName').style.display='none';
-    document.getElementById('iuFileName').textContent='';
-    document.getElementById('iuFileInput').value='';
-    document.getElementById('imgUrlOverlay').classList.add('open');
-    setTimeout(()=>document.getElementById('imgUrlInput').focus(),160);
-}
-function applyImgUrl(){
-    let displayUrl, saveUrl;
-    if(iuTab==='file'){
-        const name=document.getElementById('iuFileName').textContent;
-        if(!name){showToast('Selecciona una imagen primero.');return;}
-        displayUrl=uploadedImages[name]; // dataURL para mostrar en el editor
-        saveUrl=name;                    // ruta relativa para el HTML publicado
-    } else {
-        displayUrl=document.getElementById('imgUrlInput').value.trim();
-        saveUrl=displayUrl;
-    }
-    if(currentImgEl){
-        currentImgEl.style.backgroundImage=displayUrl?"url('"+displayUrl+"')":'';
-        currentImgEl.style.backgroundSize='cover';
-        currentImgEl.style.backgroundPosition='center';
-        if(saveUrl!==displayUrl) currentImgEl.dataset.publishSrc=saveUrl; // guardar ruta para publicar
-    }
-    closeImgModalDirect();showToast('✅ Imagen actualizada.');
-}
-function closeImgModal(e){if(e&&e.target!==document.getElementById('imgUrlOverlay'))return;closeImgModalDirect();}
-function closeImgModalDirect(){document.getElementById('imgUrlOverlay').classList.remove('open');currentImgEl=null;}
-document.getElementById('imgUrlInput').addEventListener('keydown',e=>{if(e.key==='Enter')applyImgUrl();if(e.key==='Escape')closeImgModalDirect();});
-
-// ============================================================
-// HERO IMAGEN + FILTRO + BLEND + BOTÓN
-// ============================================================
-function openHeroImgModal(){
-    document.getElementById('heroUrlInput').value=heroState.url&&!heroState.url.startsWith('data:')?heroState.url:'';
-    document.getElementById('heroFilterColor').value=heroState.color;
-    document.getElementById('heroFilterOpacity').value=heroState.opacity;
-    document.getElementById('heroOpacityVal').textContent=heroState.opacity+'%';
-    document.querySelectorAll('.bchip').forEach(ch=>{
-        ch.classList.toggle('active', ch.getAttribute('onclick').includes("'"+heroState.blend+"'"));
-    });
-    document.getElementById('heroBtnText').value=heroState.btnText;
-    document.getElementById('heroBtnColor').value=heroState.btnBg;
-    document.getElementById('heroBtnTextColor').value=heroState.btnColor;
-    // Reset upload tab
-    heroUploadTab='url';
-    document.getElementById('heroTabUrl').classList.add('active');
-    document.getElementById('heroTabFile').classList.remove('active');
-    document.getElementById('heroPanelUrl').classList.add('active');
-    document.getElementById('heroPanelFile').classList.remove('active');
-    document.getElementById('heroUploadPreview').style.display='none';
-    document.getElementById('heroUploadName').style.display='none';
-    document.getElementById('heroUploadName').textContent='';
-    document.getElementById('heroFileInput').value='';
-    updateHeroPreview();
-    updateHeroBtnPreview();
-    document.getElementById('heroImgOverlay').classList.add('open');
-}
-
-function updateHeroPreview(){
-    // Usar dataURL si hay imagen subida, si no la URL del campo
-    const urlField=document.getElementById('heroUrlInput').value.trim();
-    const previewUrl=heroState._uploadDataUrl||urlField||null;
-    const color=document.getElementById('heroFilterColor').value;
-    const op=parseInt(document.getElementById('heroFilterOpacity').value);
-    document.getElementById('heroOpacityVal').textContent=op+'%';
-    const hex=color;
-    const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-    const alpha=(op/100).toFixed(2);
-    const bar=document.getElementById('heroPreviewBar');
-    bar.style.backgroundImage=previewUrl?"url('"+previewUrl+"')":'none';
-    bar.style.backgroundColor=previewUrl?'#888':'#9aafa0';
-    bar.style.isolation='';
-    const tint=document.getElementById('heroPreviewTint');
-    tint.style.backgroundColor=`rgba(${r},${g},${b},${alpha})`;
-    tint.style.mixBlendMode=heroState.blend||'normal';
-}
-
-function setHeroPreset(color,op){
-    document.getElementById('heroFilterColor').value=color;
-    document.getElementById('heroFilterOpacity').value=op;
-    updateHeroPreview();
-}
-
-function setBlendMode(mode, btn){
-    heroState.blend=mode;
-    document.querySelectorAll('.bchip').forEach(c=>c.classList.remove('active'));
-    btn.classList.add('active');
-    updateHeroPreview();
-}
-
-function updateHeroBtnPreview(){
-    const text=document.getElementById('heroBtnText').value||'Botón';
-    const bg=document.getElementById('heroBtnColor').value;
-    const col=document.getElementById('heroBtnTextColor').value;
-    const prev=document.getElementById('heroBtnPreview');
-    prev.textContent=text;
-    prev.style.background=bg;
-    prev.style.color=col;
-}
-
-function applyHeroImg(){
-    const urlField=document.getElementById('heroUrlInput').value.trim();
-    const color=document.getElementById('heroFilterColor').value;
-    const op=parseInt(document.getElementById('heroFilterOpacity').value);
-    const btnText=document.getElementById('heroBtnText').value.trim()||'Explorar Catálogo';
-    const btnBg=document.getElementById('heroBtnColor').value;
-    const btnColor=document.getElementById('heroBtnTextColor').value;
-    // Si hay imagen subida: URL de DOM = dataURL, URL de publicación = ruta vibraimgs/
-    const hasUpload=heroState._uploadDataUrl && document.getElementById('heroUploadName').textContent;
-    const displayUrl=hasUpload?heroState._uploadDataUrl:urlField;
-    const publishUrl=hasUpload?document.getElementById('heroUploadName').textContent:urlField;
-    heroState={url:displayUrl,publishUrl:publishUrl,color,opacity:op,blend:heroState.blend||'normal',btnText,btnBg,btnColor,_uploadDataUrl:hasUpload?heroState._uploadDataUrl:null};
-    applyHeroToDOM();
-    applyHeroBtnToDOM();
-    closeHeroImgModal(null);
-    showToast('✅ Banner actualizado.');
-}
-
-function applyHeroToDOM(){
-    // Capa de imagen — solo recibe la foto, sin blend
-    const bgImg=document.getElementById('heroBgImg');
-    if(heroState.url){
-        bgImg.style.backgroundImage="url('"+heroState.url+"')";
-    } else {
-        bgImg.style.backgroundImage='none';
-    }
-
-    // Capa de tinte — aplica color + blend mode SOLO sobre la imagen (z-index entre bg e img y content)
-    const layer=document.getElementById('heroFilterLayer');
-    const hex=heroState.color;
-    const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-    const alpha=(heroState.opacity/100).toFixed(2);
-    layer.style.backgroundColor=`rgba(${r},${g},${b},${alpha})`;
-
-    const blend=heroState.blend||'normal';
-    if(blend==='normal'){
-        // Normal: sin mix-blend-mode, solo color plano sobre la imagen
-        layer.style.mixBlendMode='normal';
-    } else {
-        layer.style.mixBlendMode=blend;
-    }
-
-    // El hero contenedor solo define el color base de fondo (cuando no hay imagen)
-    const hero=document.getElementById('hero-bg');
-    hero.style.background='';      // limpiar shorthand previo
-    hero.style.backgroundImage=''; // limpiar imagen previa en el contenedor
-    hero.style.backgroundColor=heroState.url?'':'#a0b0a6';
-    // Quitar isolation del hero — el blend solo aplica entre heroBgImg y heroFilterLayer
-    hero.style.isolation='';
-}
-
-function applyHeroBtnToDOM(){
-    const btn=document.getElementById('heroCTABtn');
-    if(!btn)return;
-    btn.textContent=heroState.btnText;
-    btn.style.background=heroState.btnBg;
-    btn.style.color=heroState.btnColor;
-    btn.style.borderColor=heroState.btnBg;
-    // re-add click handler (textContent wipes it for btn, but onclick attr is separate)
-}
-
-function closeHeroImgModal(e){if(e&&e.target!==document.getElementById('heroImgOverlay'))return;document.getElementById('heroImgOverlay').classList.remove('open');}
-
-// ============================================================
-// ICONOS BENEFICIOS / TIPS
-// ============================================================
-let isTarget={prefix:'',idx:0};
-let isTab='emoji';
-let isUploadedData={dataUrl:'',safeName:''};
-
-function openIconSwap(prefix,idx){
-    isTarget={prefix,idx};
-    isUploadedData={dataUrl:'',safeName:''};
-    const icon=document.getElementById(prefix+'-icon-'+idx);
-    const img=document.getElementById(prefix+'-img-'+idx);
-    const fn=document.getElementById('isFileName');
-    if(fn){fn.style.display='none';fn.textContent='';}
-    const fi=document.getElementById('isFileInput');
-    if(fi)fi.value='';
-
-    if(img&&img.style.display!=='none'&&img.src){
-        switchIsTab('img');
-        document.getElementById('isImgInput').value=img.dataset.publishSrc||img.src;
-    } else {
-        switchIsTab('emoji');
-        document.getElementById('isEmojiInput').value=icon?icon.textContent:'';
-    }
-    updateIsPreview();
-    document.getElementById('iconSwapOverlay').classList.add('open');
-}
-function switchIsTab(t){
-    isTab=t;
-    document.getElementById('isTabEmoji').classList.toggle('active',t==='emoji');
-    document.getElementById('isTabImg').classList.toggle('active',t==='img');
-    document.getElementById('isTabFile').classList.toggle('active',t==='file');
-    document.getElementById('isPanelEmoji').classList.toggle('active',t==='emoji');
-    document.getElementById('isPanelImg').classList.toggle('active',t==='img');
-    document.getElementById('isPanelFile').classList.toggle('active',t==='file');
-    updateIsPreview();
-}
-function updateIsPreview(){
-    const prev=document.getElementById('isPreview');
-    if(isTab==='emoji'){
-        const v=document.getElementById('isEmojiInput').value||'?';
-        prev.innerHTML='<span style="font-size:2.4rem;">'+v+'</span>';
-    } else if(isTab==='img'){
-        const url=document.getElementById('isImgInput').value.trim();
-        prev.innerHTML=url?'<img src="'+url+'" style="max-height:56px;max-width:120px;object-fit:contain;">':'<span style="color:#ccc;font-size:0.8rem;">Vista previa</span>';
-    } else {
-        prev.innerHTML=isUploadedData.dataUrl?'<img src="'+isUploadedData.dataUrl+'" style="max-height:56px;max-width:120px;object-fit:contain;">':'<span style="color:#ccc;font-size:0.8rem;">Vista previa</span>';
-    }
-}
-async function handleIsFile(input){
-    const file=input.files[0]; if(!file)return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try {
-        const dataUrl=await compressImageFile(file, 400, 400);
-        uploadedImages[safeName]=dataUrl;
-        isUploadedData={dataUrl,safeName};
-        const fn=document.getElementById('isFileName');
-        if(fn){fn.textContent=safeName;fn.style.display='block';}
-        updateIsPreview();
-    } catch(err) {
-        console.error('Error al procesar ícono:', err);
-    }
-}
-function applyIconSwap(){
-    const {prefix,idx}=isTarget;
-    const icon=document.getElementById(prefix+'-icon-'+idx);
-    const img=document.getElementById(prefix+'-img-'+idx);
-    if(isTab==='emoji'){
-        const v=document.getElementById('isEmojiInput').value||'•';
-        if(icon){icon.textContent=v;icon.style.display='block';}
-        if(img){img.style.display='none';img.removeAttribute('data-publish-src');}
-    } else if(isTab==='img'){
-        const url=document.getElementById('isImgInput').value.trim();
-        if(!url){showToast('Ingresa la URL.');return;}
-        if(img){img.src=url;img.style.display='block';img.removeAttribute('data-publish-src');}
-        if(icon)icon.style.display='none';
-    } else {
-        if(!isUploadedData.safeName){showToast('Selecciona o arrastra una imagen primero.');return;}
-        if(img){
-            img.src=isUploadedData.dataUrl;
-            img.dataset.publishSrc=isUploadedData.safeName;
-            img.style.display='block';
-        }
-        if(icon)icon.style.display='none';
-    }
-    closeIconSwapDirect();showToast('✅ Ícono actualizado.');
-}
-function closeIconSwap(e){if(e&&e.target!==document.getElementById('iconSwapOverlay'))return;closeIconSwapDirect();}
-function closeIconSwapDirect(){document.getElementById('iconSwapOverlay').classList.remove('open');}
-document.getElementById('isEmojiInput').addEventListener('input',updateIsPreview);
-
-// ============================================================
-// PÁRRAFOS ACERCA DE
-// ============================================================
-function addPara(){
-    const bio=document.getElementById('aboutBio');
-    const addBtn=bio.querySelector('.add-para-btn');
-    const wrap=document.createElement('div');
-    wrap.className='bio-p';
-    wrap.innerHTML='<p contenteditable="true">Nuevo párrafo — haz clic para editar este texto.</p><div class="para-controls"><button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button></div>';
-    bio.insertBefore(wrap,addBtn);
-    wrap.querySelector('p').focus();
-}
-function removePara(btn){
-    const wrap=btn.closest('.bio-p');
-    const bio=document.getElementById('aboutBio');
-    const paras=bio.querySelectorAll('.bio-p');
-    if(paras.length<=1){showToast('Debe quedar al menos un párrafo.');return;}
-    if(confirm('¿Eliminar este párrafo?'))wrap.remove();
+    const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(textMsg);
+    window.open(waUrl, '_blank');
 }
 
 // ============================================================
-// INFO LINKS CONTACTO
+// INICIALIZACIÓN Y DEEP LINKING (?prod=ID o #prod-ID)
 // ============================================================
-function addInfoLink(){
-    const c=document.getElementById('infoLinksContainer');
-    const div=document.createElement('div');
-    div.className='info-link';
-    div.innerHTML='<span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítem — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button></div>';
-    c.appendChild(div);
-    div.querySelector('.info-link-text').focus();
-}
-function removeInfoLink(btn){
-    const link=btn.closest('.info-link');
-    const c=document.getElementById('infoLinksContainer');
-    if(c.querySelectorAll('.info-link').length<=1){showToast('Debe quedar al menos un ítem.');return;}
-    link.remove();
-}
-
-// ============================================================
-// CATÁLOGO DE ÍCONOS FONT AWESOME (FREE)
-// ============================================================
-const FA_ICONS_LIST = [
-    // Contacto & Ubicación
-    { cls: 'fa-solid fa-phone', name: 'Teléfono', cat: 'contacto', tags: 'telefono phone llamar call fono' },
-    { cls: 'fa-solid fa-mobile-screen', name: 'Celular', cat: 'contacto', tags: 'celular movil smartphone movil' },
-    { cls: 'fa-solid fa-envelope', name: 'Correo', cat: 'contacto', tags: 'correo email mail mensaje carta' },
-    { cls: 'fa-solid fa-location-dot', name: 'Ubicación', cat: 'contacto', tags: 'ubicacion mapa direccion local gps map point' },
-    { cls: 'fa-solid fa-map-pin', name: 'Pin Mapa', cat: 'contacto', tags: 'pin mapa location' },
-    { cls: 'fa-solid fa-clock', name: 'Horario', cat: 'contacto', tags: 'horario reloj tiempo hora agenda time' },
-    { cls: 'fa-solid fa-calendar-days', name: 'Calendario', cat: 'contacto', tags: 'calendario fecha dias calendar date' },
-    { cls: 'fa-solid fa-comments', name: 'Chat', cat: 'contacto', tags: 'chat conversacion comentarios hablar mensaje' },
-    { cls: 'fa-solid fa-comment-dots', name: 'Mensajes', cat: 'contacto', tags: 'mensaje chat texto globo' },
-    { cls: 'fa-solid fa-headset', name: 'Soporte', cat: 'contacto', tags: 'soporte atencion call center audifonos' },
-
-    // Redes Sociales
-    { cls: 'fa-brands fa-whatsapp', name: 'WhatsApp', cat: 'redes', tags: 'whatsapp wsp wasap redes chat' },
-    { cls: 'fa-brands fa-instagram', name: 'Instagram', cat: 'redes', tags: 'instagram ig redes fotos social' },
-    { cls: 'fa-brands fa-facebook', name: 'Facebook', cat: 'redes', tags: 'facebook fb redes' },
-    { cls: 'fa-brands fa-tiktok', name: 'TikTok', cat: 'redes', tags: 'tiktok video redes social' },
-    { cls: 'fa-brands fa-youtube', name: 'YouTube', cat: 'redes', tags: 'youtube video canal' },
-    { cls: 'fa-brands fa-twitter', name: 'Twitter / X', cat: 'redes', tags: 'twitter x tweet redes' },
-    { cls: 'fa-brands fa-telegram', name: 'Telegram', cat: 'redes', tags: 'telegram mensaje chat' },
-    { cls: 'fa-brands fa-pinterest', name: 'Pinterest', cat: 'redes', tags: 'pinterest fotos ideas' },
-
-    // Tienda & Comercio
-    { cls: 'fa-solid fa-cart-shopping', name: 'Carrito', cat: 'tienda', tags: 'carrito compras tienda shop cart ecommerce' },
-    { cls: 'fa-solid fa-bag-shopping', name: 'Bolsa', cat: 'tienda', tags: 'bolsa compras bag shopping tienda' },
-    { cls: 'fa-solid fa-store', name: 'Tienda', cat: 'tienda', tags: 'tienda local negocio shop market' },
-    { cls: 'fa-solid fa-truck', name: 'Envío', cat: 'tienda', tags: 'envio delivery camion transporte entrega despacho' },
-    { cls: 'fa-solid fa-gift', name: 'Regalo', cat: 'tienda', tags: 'regalo present gift detalle obsequio pack sorpresa' },
-    { cls: 'fa-solid fa-credit-card', name: 'Tarjeta', cat: 'tienda', tags: 'tarjeta pago debito credito card pay' },
-    { cls: 'fa-solid fa-money-bill-wave', name: 'Efectivo', cat: 'tienda', tags: 'dinero efectivo billete pago cash plata' },
-    { cls: 'fa-solid fa-tag', name: 'Etiqueta', cat: 'tienda', tags: 'etiqueta precio oferta promocion tag' },
-    { cls: 'fa-solid fa-tags', name: 'Ofertas', cat: 'tienda', tags: 'ofertas descuentos promociones tags rebajas' },
-    { cls: 'fa-solid fa-box-open', name: 'Paquete', cat: 'tienda', tags: 'caja paquete producto box envio' },
-    { cls: 'fa-solid fa-barcode', name: 'Código', cat: 'tienda', tags: 'codigo barras producto barcode' },
-    { cls: 'fa-solid fa-receipt', name: 'Boleta', cat: 'tienda', tags: 'recibo boleta factura comprobante ticket' },
-
-    // Velas, Aromas y Naturaleza
-    { cls: 'fa-solid fa-fire-flame-curved', name: 'Llama vela', cat: 'velas', tags: 'vela fuego llama flama candela encendido' },
-    { cls: 'fa-solid fa-fire', name: 'Fuego', cat: 'velas', tags: 'fuego calor llama candela vibra' },
-    { cls: 'fa-solid fa-leaf', name: 'Hoja natural', cat: 'velas', tags: 'hoja planta natural eco vegetal soya organico leaf' },
-    { cls: 'fa-solid fa-seedling', name: 'Brote', cat: 'velas', tags: 'planta brote semilla bio naturaleza verde' },
-    { cls: 'fa-solid fa-spa', name: 'Spa', cat: 'velas', tags: 'spa relax bienestar aromaterapia masaje calma paz' },
-    { cls: 'fa-solid fa-wind', name: 'Aroma/Brisa', cat: 'velas', tags: 'aroma brisa viento fragancia olor aire frescura' },
-    { cls: 'fa-solid fa-droplet', name: 'Esencia/Gota', cat: 'velas', tags: 'aceite gota esencia perfume aroma liquido oleo' },
-    { cls: 'fa-solid fa-heart', name: 'Corazón', cat: 'velas', tags: 'corazon amor carino hecho con amor hand love' },
-    { cls: 'fa-solid fa-hand-holding-heart', name: 'Artesanal', cat: 'velas', tags: 'artesanal hecho a mano cuidado amor mano' },
-    { cls: 'fa-solid fa-star', name: 'Estrella', cat: 'velas', tags: 'estrella calidad favorito premium top calificacion' },
-    { cls: 'fa-solid fa-sun', name: 'Sol', cat: 'velas', tags: 'sol dia luz energia calidez bright' },
-    { cls: 'fa-solid fa-moon', name: 'Luna', cat: 'velas', tags: 'luna noche descanso dormir relax paz night' },
-
-    // General & Interfaz
-    { cls: 'fa-solid fa-circle-check', name: 'Aprobado', cat: 'interfaz', tags: 'check verificado seguro si ok correcto' },
-    { cls: 'fa-solid fa-circle-info', name: 'Información', cat: 'interfaz', tags: 'informacion info datos ayuda saber' },
-    { cls: 'fa-solid fa-circle-question', name: 'Pregunta', cat: 'interfaz', tags: 'pregunta duda faq ayuda question' },
-    { cls: 'fa-solid fa-shield-halved', name: 'Garantía', cat: 'interfaz', tags: 'seguridad garantia proteccion confianza shield' },
-    { cls: 'fa-solid fa-award', name: 'Premio', cat: 'interfaz', tags: 'premio certificado distincion logro calidad' },
-    { cls: 'fa-solid fa-gem', name: 'Premium', cat: 'interfaz', tags: 'joya diamante premium exclusivo lujo gem' },
-    { cls: 'fa-solid fa-wand-magic-sparkles', name: 'Especial', cat: 'interfaz', tags: 'magia brillo especial nuevo sparkle shine' },
-    { cls: 'fa-solid fa-user', name: 'Usuario', cat: 'interfaz', tags: 'usuario persona cliente perfil cuenta' },
-    { cls: 'fa-solid fa-users', name: 'Comunidad', cat: 'interfaz', tags: 'comunidad equipo clientes grupo' },
-    { cls: 'fa-solid fa-house', name: 'Inicio', cat: 'interfaz', tags: 'casa hogar inicio home domicilio' },
-    { cls: 'fa-solid fa-share-nodes', name: 'Compartir', cat: 'interfaz', tags: 'compartir share redes enlace' },
-    { cls: 'fa-solid fa-bell', name: 'Notificación', cat: 'interfaz', tags: 'campana notificaciones aviso alerta bell' }
-];
-
-let currentFaCat = 'all';
-
-function toggleFaCatalog(){
-    const box = document.getElementById('ciCatalogBox');
-    const txt = document.getElementById('ciCatalogToggleTxt');
-    const icon = document.getElementById('ciCatalogToggleIcon');
-    if (!box) return;
-    const isHidden = (box.style.display === 'none' || !box.style.display);
-    box.style.display = isHidden ? 'block' : 'none';
-    if (txt) txt.textContent = isHidden ? 'Ocultar catálogo de íconos' : 'Mostrar catálogo de íconos';
-    if (icon) icon.className = isHidden ? 'fa-solid fa-chevron-up' : 'fa-solid fa-icons';
-    if (isHidden) {
-        renderFaCatalog();
-        highlightFaIcon(document.getElementById('ciFaInput').value.trim());
-    }
-}
-
-function filterFaCategory(cat){
-    currentFaCat = cat;
-    document.querySelectorAll('.ci-cat-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
-    });
-    renderFaCatalog();
-}
-
-function filterFaIcons(query){
-    renderFaCatalog(query);
-}
-
-function renderFaCatalog(searchQuery){
-    const grid = document.getElementById('ciCatalogGrid');
-    if (!grid) return;
-    const q = (searchQuery !== undefined ? searchQuery : (document.getElementById('ciFaSearchInput') ? document.getElementById('ciFaSearchInput').value : '')).toLowerCase().trim();
-    const currentVal = document.getElementById('ciFaInput').value.trim();
-
-    const filtered = FA_ICONS_LIST.filter(item => {
-        const matchesCat = (currentFaCat === 'all' || item.cat === currentFaCat);
-        if (!matchesCat) return false;
-        if (!q) return true;
-        return item.name.toLowerCase().includes(q) || item.cls.toLowerCase().includes(q) || item.tags.toLowerCase().includes(q);
-    });
-
-    if (filtered.length === 0) {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:1rem;color:#94a3b8;font-size:0.75rem;">No se encontraron íconos</div>';
-        return;
-    }
-
-    grid.innerHTML = filtered.map(item => {
-        const isActive = item.cls === currentVal ? ' active' : '';
-        return `<button type="button" class="ci-icon-item${isActive}" data-cls="${item.cls}" onclick="selectFaIcon('${item.cls}')" title="${item.name} (${item.cls})"><i class="${item.cls}"></i></button>`;
-    }).join('');
-}
-
-function selectFaIcon(cls){
-    document.getElementById('ciFaInput').value = cls;
-    highlightFaIcon(cls);
-    updateCiPreview();
-}
-
-function highlightFaIcon(cls){
-    const items = document.querySelectorAll('.ci-icon-item');
-    items.forEach(el => {
-        el.classList.toggle('active', el.getAttribute('data-cls') === cls);
-    });
-}
-
-// ÍCONO DE ÍTEM DE CONTACTO
-let currentCiIcon=null;
-let ciTab='emoji';
-function switchCiTab(t){
-    ciTab=t;
-    document.getElementById('ciTabEmoji').classList.toggle('active',t==='emoji');
-    document.getElementById('ciTabFa').classList.toggle('active',t==='fa');
-    document.getElementById('ciPanelEmoji').classList.toggle('active',t==='emoji');
-    document.getElementById('ciPanelFa').classList.toggle('active',t==='fa');
-    updateCiPreview();
-    if(t==='fa'){
-        highlightFaIcon(document.getElementById('ciFaInput').value.trim());
-    }
-}
-function updateCiPreview(){
-    const color=document.getElementById('ciColorInput').value;
-    const prev=document.getElementById('ciPreview');
-    if(ciTab==='emoji'){
-        const v=document.getElementById('ciEmojiInput').value||'📍';
-        prev.innerHTML='<span style="font-size:1.8rem;color:'+color+'">'+v+'</span>';
-    } else {
-        const cls=document.getElementById('ciFaInput').value.trim();
-        prev.innerHTML=cls?'<i class="'+cls+'" style="font-size:1.6rem;color:'+color+'"></i>':'<span style="color:#ccc;font-size:0.8rem;">Escribe una clase FA</span>';
-    }
-}
-function openCiModal(el){
-    currentCiIcon=el;
-    const i=el.querySelector('i');
-    if(i){
-        switchCiTab('fa');
-        document.getElementById('ciFaInput').value=i.className;
-        document.getElementById('ciColorInput').value=i.style.color||'#6e8174';
-    } else {
-        switchCiTab('emoji');
-        document.getElementById('ciEmojiInput').value=el.textContent.trim();
-        document.getElementById('ciColorInput').value=el.style.color||'#6e8174';
-    }
-    updateCiPreview();
-    highlightFaIcon(document.getElementById('ciFaInput').value.trim());
-    document.getElementById('ciOverlay').classList.add('open');
-}
-function applyCiIcon(){
-    if(!currentCiIcon)return;
-    const color=document.getElementById('ciColorInput').value;
-    if(ciTab==='emoji'){
-        const v=document.getElementById('ciEmojiInput').value.trim()||'📌';
-        currentCiIcon.innerHTML=v;
-        currentCiIcon.style.color=color;
-    } else {
-        const cls=document.getElementById('ciFaInput').value.trim();
-        if(!cls){showToast('Escribe o selecciona la clase del ícono FontAwesome.');return;}
-        currentCiIcon.innerHTML='<i class="'+cls+'" style="color:'+color+';font-size:1.2rem;"></i>';
-        currentCiIcon.style.color='';
-    }
-    closeCiModal(null);showToast('✅ Ícono actualizado.');
-}
-function closeCiModal(e){if(e&&e.target!==document.getElementById('ciOverlay'))return;document.getElementById('ciOverlay').classList.remove('open');currentCiIcon=null;}
-
-// ============================================================
-// LOGO
-// ============================================================
-let loTab='text';
-let loSubTab='url';
-let loUploadedData={dataUrl:'',safeName:''};
-
-function openLogoModal(){
-    document.getElementById('loTextInput').value=document.getElementById('logoText').textContent;
-    document.getElementById('loImgInput').value=(logoState.mode==='img'&&!logoState.imgUrl.startsWith('data:'))?logoState.imgUrl:'';
-    loUploadedData={dataUrl:'',safeName:''};
-    const fn=document.getElementById('loFileName');
-    if(fn){fn.style.display='none';fn.textContent='';}
-    const fi=document.getElementById('loFileInput');
-    if(fi)fi.value='';
-
-    switchLoTab(logoState.mode==='img'?'img':'text');
-    switchLoSubTab('url');
-    previewLo();
-    document.getElementById('logoOverlay').classList.add('open');
-}
-function switchLoTab(t){
-    loTab=t;
-    document.getElementById('loTabText').classList.toggle('active',t==='text');
-    document.getElementById('loTabImg').classList.toggle('active',t==='img');
-    document.getElementById('loPanelText').classList.toggle('active',t==='text');
-    document.getElementById('loPanelImg').classList.toggle('active',t==='img');
-    previewLo();
-}
-function switchLoSubTab(t){
-    loSubTab=t;
-    document.getElementById('loTabUrl').classList.toggle('active',t==='url');
-    document.getElementById('loTabFile').classList.toggle('active',t==='file');
-    document.getElementById('loPanelUrl').classList.toggle('active',t==='url');
-    document.getElementById('loPanelFile').classList.toggle('active',t==='file');
-    previewLo();
-}
-async function handleLoFile(input){
-    const file=input.files[0];
-    if(!file)return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try{
-        const dataUrl=await compressImageFile(file,600,300);
-        uploadedImages[safeName]=dataUrl;
-        loUploadedData={dataUrl,safeName};
-        const fn=document.getElementById('loFileName');
-        if(fn){fn.textContent=safeName;fn.style.display='block';}
-        previewLo();
-    }catch(err){
-        console.error('Error procesando logo:',err);
-    }
-}
-function previewLo(){
-    const pi=document.getElementById('loPreviewImg'),pe=document.getElementById('loPreviewEmpty');
-    if(!pi||!pe)return;
-    if(loTab!=='img'){pi.style.display='none';pe.style.display='block';return;}
-    let src='';
-    if(loSubTab==='url'){
-        src=document.getElementById('loImgInput').value.trim();
-    }else{
-        src=loUploadedData.dataUrl;
-    }
-    if(src){pi.src=src;pi.style.display='block';pe.style.display='none';}
-    else{pi.style.display='none';pe.style.display='block';}
-}
-function applyLogo(){
-    const li=document.getElementById('logoImg'),lt=document.getElementById('logoText');
-    if(loTab==='text'){
-        const t=document.getElementById('loTextInput').value.trim()||'Vibra Candela';
-        lt.textContent=t;lt.style.display='block';li.style.display='none';
-        li.removeAttribute('data-publish-src');
-        logoState={mode:'text',text:t,imgUrl:''};
-    }else{
-        if(loSubTab==='url'){
-            const url=document.getElementById('loImgInput').value.trim();
-            if(!url){showToast('Ingresa la URL del logo.');return;}
-            li.src=url;li.style.display='block';lt.style.display='none';
-            li.removeAttribute('data-publish-src');
-            logoState={mode:'img',text:'',imgUrl:url};
-        }else{
-            if(!loUploadedData.safeName){showToast('Selecciona o arrastra una imagen para el logo.');return;}
-            li.src=loUploadedData.dataUrl;
-            li.dataset.publishSrc=loUploadedData.safeName;
-            li.style.display='block';lt.style.display='none';
-            logoState={mode:'img',text:'',imgUrl:loUploadedData.safeName};
-        }
-    }
-    closeLogoModalDirect();showToast('✅ Logo actualizado.');
-}
-function resetLogo(){
-    const li=document.getElementById('logoImg'),lt=document.getElementById('logoText');
-    li.style.display='none';
-    li.removeAttribute('data-publish-src');
-    lt.style.display='block';
-    lt.textContent='Vibra Candela';
-    logoState={mode:'text',text:'Vibra Candela',imgUrl:''};
-    closeLogoModalDirect();showToast('Logo restablecido.');
-}
-function closeLogoModal(e){if(e&&e.target!==document.getElementById('logoOverlay'))return;closeLogoModalDirect();}
-function closeLogoModalDirect(){document.getElementById('logoOverlay').classList.remove('open');}
-
-// ============================================================
-// FORMULARIO CONTACTO
-// ============================================================
-
-const form = document.getElementById('form');
-const result = document.getElementById('result');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
-  result.innerHTML = "Por favor espera..."
-
-    fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                result.innerHTML = "¡Gracias! Tu mensaje ha sido enviado con éxito.";
-            } else {
-                console.log(response);
-                result.innerHTML = json.message;
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            result.innerHTML = "Algo malo pasó - Intenta nuevamente!";
-        })
-        .then(function() {
-            form.reset();
-            setTimeout(() => {
-                result.style.display = "none";
-            }, 3000);
-        });
-});
-
-
-// ============================================================
-// TOAST
-// ============================================================
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);}
-
-// ============================================================
-// SERIALIZAR ESTADO DE ÍCONOS
-// ============================================================
-function serializeIcons(){
-    const icons={};
-    ['bi','ti'].forEach(prefix=>{
-        for(let i=0;i<3;i++){
-            const em=document.getElementById(prefix+'-icon-'+i);
-            const im=document.getElementById(prefix+'-img-'+i);
-            icons[prefix+'-'+i]={emoji:em?em.textContent:'',imgUrl:(im&&im.style.display!=='none')?im.src:'',mode:(im&&im.style.display!=='none'&&im.src)?'img':'emoji'};
-        }
-    });
-    return icons;
-}
-function restoreIcons(icons){
-    if(!icons)return;
-    Object.keys(icons).forEach(k=>{
-        const parts=k.split('-'),prefix=parts[0]+'-'+parts[1],idx=parts[2];
-        const d=icons[k];
-        const em=document.getElementById(prefix+'-icon-'+idx);
-        const im=document.getElementById(prefix+'-img-'+idx);
-        if(d.mode==='img'&&d.imgUrl){if(im){im.src=d.imgUrl;im.style.display='block';}if(em)em.style.display='none';}
-        else{if(em){em.textContent=d.emoji;em.style.display='block';}if(im)im.style.display='none';}
-    });
-}
-
-// ============================================================
-// SERIALIZAR INFO LINKS
-// ============================================================
-function serializeInfoLinks(){
-    return Array.from(document.querySelectorAll('#infoLinksContainer .info-link')).map(el=>({
-        icon:el.querySelector('.info-link-icon').textContent,
-        text:el.querySelector('.info-link-text').textContent
-    }));
-}
-
-// ============================================================
-// SINCRONIZAR LOGO AL CLON
-// ============================================================
-function syncLogoToClone(clone){
-    const ci=clone.querySelector('#logoImg'),ct=clone.querySelector('#logoText');
-    if(logoState.mode==='img'){if(ci){ci.src=logoState.imgUrl;ci.style.display='block';}if(ct)ct.style.display='none';}
-    else{if(ct){ct.textContent=logoState.text;ct.style.display='block';}if(ci)ci.style.display='none';}
-}
-
-
-
-// ============================================================
-// ALMACÉN DE IMÁGENES SUBIDAS  {ruta: dataURL}
-// ============================================================
-const uploadedImages = {};
-
-// ============================================================
-// COMPRESIÓN CLIENT-SIDE DE IMÁGENES (Móvil / Desktop)
-// Reduce fotos de 4MB-10MB a ~100-180 KB en el navegador
-// ============================================================
-function compressImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.82) {
-    return new Promise((resolve, reject) => {
-        if (!file || !file.type.startsWith('image/') || file.type === 'image/svg+xml' || file.type === 'image/gif') {
-            const reader = new FileReader();
-            reader.onload = ev => resolve(ev.target.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-            return;
-        }
-        const reader = new FileReader();
-        reader.onload = ev => {
-            const img = new Image();
-            img.onload = () => {
-                let width = img.width;
-                let height = img.height;
-                if (width > maxWidth || height > maxHeight) {
-                    if (width / height > maxWidth / maxHeight) {
-                        height = Math.round((height * maxWidth) / width);
-                        width = maxWidth;
-                    } else {
-                        width = Math.round((width * maxHeight) / height);
-                        height = maxHeight;
-                    }
-                }
-                const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.imageSmoothingEnabled = true;
-                ctx.imageSmoothingQuality = 'high';
-                ctx.drawImage(img, 0, 0, width, height);
-
-                let outputType = file.type;
-                if (file.type === 'image/jpeg' || /\.(jpe?g)$/i.test(file.name)) {
-                    outputType = 'image/jpeg';
-                } else if (file.type === 'image/webp') {
-                    outputType = 'image/webp';
-                } else {
-                    outputType = 'image/png';
-                }
-
-                const dataUrl = (outputType === 'image/jpeg' || outputType === 'image/webp')
-                    ? canvas.toDataURL(outputType, quality)
-                    : canvas.toDataURL('image/png');
-                resolve(dataUrl);
-            };
-            img.onerror = () => resolve(ev.target.result);
-            img.src = ev.target.result;
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
-}
-
-let iuTab = 'url';
-function switchIuTab(t){
-    iuTab=t;
-    ['Url','File'].forEach(x=>{
-        document.getElementById('iuTab'+x).classList.toggle('active',t===x.toLowerCase());
-        document.getElementById('iuPanel'+x).classList.toggle('active',t===x.toLowerCase());
-    });
-}
-async function handleIuFile(input){
-    const file=input.files[0]; if(!file) return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try {
-        const dataUrl=await compressImageFile(file);
-        uploadedImages[safeName]=dataUrl;
-        document.getElementById('iuPreviewImg').src=dataUrl;
-        document.getElementById('iuPreviewImg').style.display='block';
-        document.getElementById('iuFileName').textContent=safeName;
-        document.getElementById('iuFileName').style.display='block';
-    } catch(err) {
-        console.error('Error procesando imagen:', err);
-    }
-}
-
-let peTab = 'url';
-function switchPeTab(t){
-    peTab=t;
-    ['Url','File'].forEach(x=>{
-        document.getElementById('peTab'+x).classList.toggle('active',t===x.toLowerCase());
-        document.getElementById('pePanel'+x).classList.toggle('active',t===x.toLowerCase());
-    });
-}
-async function handlePeFile(input){
-    const file=input.files[0]; if(!file) return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try {
-        const dataUrl=await compressImageFile(file);
-        uploadedImages[safeName]=dataUrl;
-        document.getElementById('pePreviewImg').src=dataUrl;
-        document.getElementById('pePreviewImg').style.display='block';
-        document.getElementById('peFileName').textContent=safeName;
-        document.getElementById('peFileName').style.display='block';
-        document.getElementById('pe-img').value=safeName;
-        // Guardar dataURL en el input para que applyProductEdit lo recoja
-        document.getElementById('pe-img').dataset.dataUrl=dataUrl;
-    } catch(err) {
-        console.error('Error procesando imagen:', err);
-    }
-}
-
-// Hero upload
-let heroUploadTab = 'url';
-function switchHeroTab(t){
-    heroUploadTab=t;
-    ['Url','File'].forEach(x=>{
-        document.getElementById('heroTab'+x).classList.toggle('active',t===x.toLowerCase());
-        document.getElementById('heroPanel'+x).classList.toggle('active',t===x.toLowerCase());
-    });
-}
-async function handleHeroFile(input){
-    const file=input.files[0]; if(!file) return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try {
-        const dataUrl=await compressImageFile(file);
-        uploadedImages[safeName]=dataUrl;
-        document.getElementById('heroUploadPreview').src=dataUrl;
-        document.getElementById('heroUploadPreview').style.display='block';
-        document.getElementById('heroUploadName').textContent=safeName;
-        document.getElementById('heroUploadName').style.display='block';
-        // Actualizar preview del banner con el dataURL
-        document.getElementById('heroUrlInput').value=safeName;
-        heroState._uploadDataUrl=dataUrl;
-        updateHeroPreview();
-    } catch(err) {
-        console.error('Error procesando imagen:', err);
-    }
-}
-
-// ══════════════════════════════════════════════════════════════
-// GITHUB MODAL Y CRIPTOGRAFÍA PURA (COMPATIBLE CON file://)
-// ══════════════════════════════════════════════════════════════
-let ghMode = 'editor';
-
-// ── SHA-1 puro y cálculo de Git Blob SHA (compatible con file://) ──
-function sha1(binaryStr) {
-    function rotateLeft(n, s) { return (n << s) | (n >>> (32 - s)); }
-    function cvtHex(val) {
-        let str = '';
-        for (let i = 7; i >= 0; i--) {
-            str += ((val >>> (i * 4)) & 0x0f).toString(16);
-        }
-        return str;
-    }
-    const blockCount = Math.floor((binaryStr.length + 8) / 64) + 1;
-    const words = new Array(blockCount * 16).fill(0);
-    for (let i = 0; i < binaryStr.length; i++) {
-        words[i >> 2] |= (binaryStr.charCodeAt(i) & 0xff) << (24 - (i % 4) * 8);
-    }
-    words[binaryStr.length >> 2] |= 0x80 << (24 - (binaryStr.length % 4) * 8);
-    words[words.length - 1] = binaryStr.length * 8;
-    let h0 = 0x67452301, h1 = 0xefcdab89, h2 = 0x98badcfe, h3 = 0x10325476, h4 = 0xc3d2e1f0;
-    const w = new Array(80);
-    for (let i = 0; i < words.length; i += 16) {
-        for (let j = 0; j < 16; j++) w[j] = words[i + j];
-        for (let j = 16; j < 80; j++) w[j] = rotateLeft(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
-        let a = h0, b = h1, c = h2, d = h3, e = h4;
-        for (let j = 0; j < 80; j++) {
-            let f, k;
-            if (j < 20) { f = (b & c) | ((~b) & d); k = 0x5a827999; }
-            else if (j < 40) { f = b ^ c ^ d; k = 0x6ed9eba1; }
-            else if (j < 60) { f = (b & c) | (b & d) | (c & d); k = 0x8f1bbcdc; }
-            else { f = b ^ c ^ d; k = 0xca62c1d6; }
-            const temp = (rotateLeft(a, 5) + f + e + k + w[j]) | 0;
-            e = d; d = c; c = rotateLeft(b, 30); b = a; a = temp;
-        }
-        h0 = (h0 + a) | 0;
-        h1 = (h1 + b) | 0;
-        h2 = (h2 + c) | 0;
-        h3 = (h3 + d) | 0;
-        h4 = (h4 + e) | 0;
-    }
-    return [h0, h1, h2, h3, h4].map(cvtHex).join('');
-}
-
-function calculateGitBlobSha(binaryStr) {
-    return sha1('blob ' + binaryStr.length + '\0' + binaryStr);
-}
-
-// ── SHA-256 Universal en JS puro (funciona en file://, http y https) ──
-function sha256(ascii) {
-    function rightRotate(value, amount) {
-        return (value >>> amount) | (value << (32 - amount));
-    }
-    var mathPow = Math.pow;
-    var maxWord = mathPow(2, 32);
-    var lengthProperty = 'length';
-    var i, j;
-    var result = '';
-    var words = [];
-    var asciiBitLength = ascii[lengthProperty] * 8;
-    var hash = [];
-    var k = [];
-    var primeCounter = 0;
-    var isComposite = {};
-    for (var candidate = 2; primeCounter < 64; candidate++) {
-        if (!isComposite[candidate]) {
-            for (i = 0; i < 313; i += candidate) {
-                isComposite[i] = candidate;
-            }
-            hash[primeCounter] = (mathPow(candidate, .5) * maxWord) | 0;
-            k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
-        }
-    }
-    ascii += '\x80';
-    while (ascii[lengthProperty] % 64 - 56) ascii += '\x00';
-    for (i = 0; i < ascii[lengthProperty]; i++) {
-        j = ascii.charCodeAt(i);
-        words[i >> 2] |= j << ((3 - i) % 4) * 8;
-    }
-    words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
-    words[words[lengthProperty]] = (asciiBitLength);
-    for (j = 0; j < words[lengthProperty];) {
-        var w = words.slice(j, j += 16);
-        var oldHash = hash.slice(0);
-        for (i = 0; i < 64; i++) {
-            var w15 = w[i - 15], w2 = w[i - 2];
-            var s0 = rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3);
-            var s1 = rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10);
-            var ch = (hash[4] & hash[5]) ^ (~hash[4] & hash[6]);
-            var temp1 = hash[7] + (rightRotate(hash[4], 6) ^ rightRotate(hash[4], 11) ^ rightRotate(hash[4], 25)) + ch + k[i] + (w[i] = (i < 16) ? w[i] : (w[i - 16] + s0 + w[i - 7] + s1) | 0);
-            var temp2 = (rightRotate(hash[0], 2) ^ rightRotate(hash[0], 13) ^ rightRotate(hash[0], 22)) + ((hash[0] & hash[1]) ^ (hash[0] & hash[2]) ^ (hash[1] & hash[2]));
-            hash = [(temp1 + temp2) | 0].concat(hash.slice(0, 7));
-            hash[4] = (hash[4] + temp1) | 0;
-        }
-        for (i = 0; i < 8; i++) {
-            hash[i] = (hash[i] + oldHash[i]) | 0;
-        }
-    }
-    for (i = 0; i < 8; i++) {
-        for (j = 3; j + 1; j--) {
-            var b = (hash[i] >> (j * 8)) & 255;
-            result += ((b < 16) ? '0' : '') + b.toString(16);
-        }
-    }
-    return result;
-}
-
-// ── Cifrado/Descifrado simétrico en JS puro ──────────────────
-function deriveKey(password, salt) {
-    var k = password + salt;
-    for (var i = 0; i < 1000; i++) {
-        k = sha256(k + password + salt);
-    }
-    return k;
-}
-
-function encryptData(plainText, password) {
-    var salt = '';
-    for (var i = 0; i < 16; i++) {
-        salt += Math.floor(Math.random() * 16).toString(16);
-    }
-    var key = deriveKey(password, salt);
-    var bytes = new TextEncoder().encode(plainText);
-    var hex = '';
-    var block = '';
-    var bIdx = 0;
-    for (var i = 0; i < bytes.length; i++) {
-        if (i % 32 === 0) {
-            block = sha256(key + '_' + (i / 32));
-            bIdx = 0;
-        }
-        var kByte = parseInt(block.substr(bIdx * 2, 2), 16);
-        bIdx++;
-        var cipherByte = bytes[i] ^ kByte;
-        hex += (cipherByte < 16 ? '0' : '') + cipherByte.toString(16);
-    }
-    var auth = sha256(key + '_auth_' + hex);
-    return JSON.stringify({ v: 2, s: salt, c: hex, a: auth });
-}
-
-async function decryptData(cipherStr, password) {
-    if (!cipherStr) return null;
-    try {
-        var obj = JSON.parse(cipherStr);
-        // Formato v2 (Puro JS)
-        if (obj.v === 2 && obj.s && obj.c && obj.a) {
-            var key = deriveKey(password, obj.s);
-            var expectedAuth = sha256(key + '_auth_' + obj.c);
-            if (expectedAuth !== obj.a) return null; // Clave errónea
-            var hex = obj.c;
-            var bytes = new Uint8Array(hex.length / 2);
-            var block = '';
-            var bIdx = 0;
-            for (var i = 0; i < bytes.length; i++) {
-                if (i % 32 === 0) {
-                    block = sha256(key + '_' + (i / 32));
-                    bIdx = 0;
-                }
-                var kByte = parseInt(block.substr(bIdx * 2, 2), 16);
-                bIdx++;
-                var cipherByte = parseInt(hex.substr(i * 2, 2), 16);
-                bytes[i] = cipherByte ^ kByte;
-            }
-            return new TextDecoder().decode(bytes);
-        }
-        // Fallback para v1 (Web Crypto) si está disponible en este entorno
-        if (window.crypto && window.crypto.subtle && obj.salt && obj.iv && obj.data) {
-            var enc = new TextEncoder();
-            var keyMaterial = await crypto.subtle.importKey(
-                'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']
-            );
-            var subtleKey = await crypto.subtle.deriveKey(
-                { name: 'PBKDF2', salt: new Uint8Array(obj.salt), iterations: 100000, hash: 'SHA-256' },
-                keyMaterial,
-                { name: 'AES-GCM', length: 256 },
-                false,
-                ['decrypt']
-            );
-            var decrypted = await crypto.subtle.decrypt(
-                { name: 'AES-GCM', iv: new Uint8Array(obj.iv) },
-                subtleKey,
-                new Uint8Array(obj.data)
-            );
-            return new TextDecoder().decode(decrypted);
-        }
-    } catch(e) {}
-    return null;
-}
-
-// ── Desbloqueo Interactivo ───────────────────────────────────
-function checkAutoUnlock() {
-    const pass = document.getElementById('ghPass').value;
-    if (!pass) return;
-    if (sha256(pass) === ghAuthHash) {
-        if (ghEncryptedToken && !localStorage.getItem('vibra_gh_token')) {
-            unlockTokenFromFile(true);
-        }
-    }
-}
-
-async function unlockTokenFromFile(isAuto) {
-    const pass = document.getElementById('ghPass').value;
-    if (!pass) {
-        if (!isAuto) showToast('Ingresa la contraseña primero.');
-        return;
-    }
-    if (sha256(pass) !== ghAuthHash) {
-        if (!isAuto) showToast('❌ Contraseña incorrecta.');
-        return;
-    }
-    const token = await decryptData(ghEncryptedToken, pass);
-    if (!token) {
-        if (!isAuto) showToast('❌ No se pudo descifrar el token.');
-        return;
-    }
-    activeGhToken = token;
-    localStorage.setItem('vibra_gh_token', token);
-    if (ghSavedRepo) localStorage.setItem('vibra_gh_repo', ghSavedRepo);
-    if (ghSavedBranch) localStorage.setItem('vibra_gh_branch', ghSavedBranch);
-    updateGhModalUI();
-    showToast('✅ Token desbloqueado y guardado en este equipo.');
-}
-
-// ── Acordeón de Configuración ────────────────────────────────
-let ghAccordionOpen = false;
-function setGhConfigAccordion(open) {
-    ghAccordionOpen = open;
-    const body = document.getElementById('ghAccordionBody');
-    const arrow = document.getElementById('ghAccordionArrow');
-    if (body) body.style.display = open ? 'block' : 'none';
-    if (arrow) arrow.textContent = open ? '▴' : '▾';
-}
-function toggleGhConfigAccordion() {
-    setGhConfigAccordion(!ghAccordionOpen);
-}
-
-// ── UI del Modal de GitHub ────────────────────────────────────
-function updateGhModalUI() {
-    const localToken = localStorage.getItem('vibra_gh_token') || activeGhToken;
-    const localRepo = localStorage.getItem('vibra_gh_repo') || ghSavedRepo;
-    const localBranch = localStorage.getItem('vibra_gh_branch') || ghSavedBranch || 'main';
-
-    if (localRepo) document.getElementById('ghRepo').value = localRepo;
-    if (localBranch) document.getElementById('ghBranch').value = localBranch;
-
-    const submitBtn = document.querySelector('.gh-submit');
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
-
-    const noticeBox = document.getElementById('ghNoticeBox');
-    const savedBox = document.getElementById('ghTokenSavedBox');
-    const inputBox = document.getElementById('ghTokenInputBox');
-    const passLabel = document.getElementById('ghPassLabel');
-
-    const hasToken = !!(localToken || ghEncryptedToken);
-    setGhConfigAccordion(!hasToken);
-
-    if (localToken) {
-        savedBox.style.display = 'flex';
-        inputBox.style.display = 'none';
-        noticeBox.style.display = 'none';
-        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
-    } else if (ghEncryptedToken) {
-        savedBox.style.display = 'none';
-        inputBox.style.display = 'none';
-        noticeBox.style.display = 'block';
-        noticeBox.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;">'
-            + '<span><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> <strong>Token detectado en este archivo</strong>. Ingresa tu contraseña y presiona:</span>'
-            + '<button type="button" class="gh-small-btn" onclick="unlockTokenFromFile(false)" style="background:#2563eb;color:#fff;border-color:#1d4ed8;font-weight:600;padding:0.25rem 0.65rem;"><i class="fa-solid fa-lock-open" style="margin-right: 4px;"></i> Desbloquear</button>'
-            + '</div>';
-        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización (para desbloquear y guardar)';
-    } else {
-        savedBox.style.display = 'none';
-        inputBox.style.display = 'block';
-        noticeBox.style.display = 'none';
-        passLabel.innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
-    }
-}
-
-function changeGhToken() {
-    activeGhToken = '';
-    localStorage.removeItem('vibra_gh_token');
-    document.getElementById('ghToken').value = '';
-    document.getElementById('ghTokenSavedBox').style.display = 'none';
-    document.getElementById('ghTokenInputBox').style.display = 'block';
-    document.getElementById('ghNoticeBox').style.display = 'none';
-    document.getElementById('ghPassLabel').innerHTML = '<i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización';
-    setGhConfigAccordion(true);
-    document.getElementById('ghToken').focus();
-    showToast('Ingresa el nuevo token de GitHub.');
-}
-
-function clearGhCredentials() {
-    if (!confirm('¿Deseas desvincular y eliminar las credenciales guardadas en este equipo y archivo?')) return;
-    activeGhToken = '';
-    ghEncryptedToken = '';
-    ghSavedRepo = '';
-    localStorage.removeItem('vibra_gh_token');
-    localStorage.removeItem('vibra_gh_repo');
-    localStorage.removeItem('vibra_gh_branch');
-    document.getElementById('ghRepo').value = '';
-    document.getElementById('ghToken').value = '';
-    document.getElementById('ghBranch').value = 'main';
-    setGhConfigAccordion(true);
-    updateGhModalUI();
-    showToast('🗑 Credenciales eliminadas.');
-}
-
-function openGhModal() {
-    document.getElementById('ghLog').className = 'gh-log';
-    document.getElementById('ghLog').innerHTML = '';
-    document.getElementById('ghPass').value = '';
-    const submitBtn = document.querySelector('.gh-submit');
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
-    updateGhModalUI();
-    document.getElementById('ghOverlay').classList.add('open');
-}
-
-function closeGhModal(e) {
-    if (e && e.target !== document.getElementById('ghOverlay')) return;
-    document.getElementById('ghOverlay').classList.remove('open');
-}
-
-function selectGhMode(mode) {
-    ghMode = mode;
-    document.getElementById('ghModeEditor').classList.toggle('active', mode==='editor');
-    document.getElementById('ghModePublish').classList.toggle('active', mode==='publish');
-}
-
-function ghLog(msg, type='info') {
-    const log = document.getElementById('ghLog');
-    log.classList.add('show');
-    log.innerHTML += '<div class="' + type + '">' + msg + '</div>';
-    log.scrollTop = log.scrollHeight;
-}
-
-async function runGhPublish() {
-    const log = document.getElementById('ghLog');
-    log.className = 'gh-log show';
-    log.innerHTML = '';
-
-    try {
-        const pass = document.getElementById('ghPass').value;
-        if (!pass) {
-            showToast('Ingresa la contraseña de autorización.');
-            ghLog('❌ Ingresa la contraseña de autorización.', 'err');
-            return;
-        }
-        const passHash = sha256(pass);
-        if (passHash !== ghAuthHash) {
-            showToast('❌ Contraseña incorrecta.');
-            ghLog('❌ Contraseña incorrecta.', 'err');
-            return;
-        }
-
-        const repo = document.getElementById('ghRepo').value.trim();
-        const branch = document.getElementById('ghBranch').value.trim() || 'main';
-
-        let token = '';
-        const tokenInputBox = document.getElementById('ghTokenInputBox');
-        const tokenInputVal = document.getElementById('ghToken').value.trim();
-
-        if (tokenInputBox.style.display !== 'none' && tokenInputVal) {
-            token = tokenInputVal;
-        } else {
-            token = localStorage.getItem('vibra_gh_token') || activeGhToken;
-            if (!token && ghEncryptedToken) {
-                ghLog('🔓 Descifrando token guardado...', 'info');
-                token = await decryptData(ghEncryptedToken, pass);
-                if (!token) {
-                    showToast('❌ No se pudo descifrar el token con esta contraseña.');
-                    ghLog('❌ No se pudo descifrar el token con esta contraseña.', 'err');
-                    return;
-                }
-            }
-        }
-
-        if (!repo || !token) {
-            showToast('Completa repositorio y token.');
-            ghLog('❌ Faltan datos: Completa repositorio y token.', 'err');
-            return;
-        }
-
-        ghLog('🔑 Credenciales verificadas correctamente.', 'ok');
-        const submitBtn = document.querySelector('.gh-submit');
-        if (submitBtn) submitBtn.disabled = true;
-
-        // Guardar en localStorage del equipo actual
-        localStorage.setItem('vibra_gh_repo', repo);
-        localStorage.setItem('vibra_gh_token', token);
-        localStorage.setItem('vibra_gh_branch', branch);
-        activeGhToken = token;
-        ghSavedRepo = repo;
-        ghSavedBranch = branch;
-
-        // Cifrar el token con el algoritmo universal para incrustarlo en editable.html
-        const encryptedTokenStr = encryptData(token, pass);
-        ghEncryptedToken = encryptedTokenStr;
-
-        const apiBase = 'https://api.github.com/repos/' + repo + '/contents/';
-        const headers = {
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github+json'
-        };
-
-        // ── Helper: subir/actualizar archivo en GitHub ────────────
-        async function ghPut(path, content64, message) {
-            ghLog('🔍 Verificando ' + path + ' en GitHub…', 'info');
-            let sha = null;
-            let binaryData = '';
-            try {
-                binaryData = atob(content64);
-            } catch(e) {
-                binaryData = '';
-            }
-            const localByteLen = binaryData.length;
-            const localSha = localByteLen > 0 ? calculateGitBlobSha(binaryData) : null;
-
-            try {
-                const getHeaders = {
-                    'Authorization': 'Bearer ' + token,
-                    'Accept': 'application/vnd.github+json'
-                };
-                const r = await fetch(apiBase + path + '?ref=' + encodeURIComponent(branch), {
-                    headers: getHeaders
-                });
-                if (r.ok) {
-                    const d = await r.json();
-                    sha = d.sha;
-                    // Sincronización diferencial inteligente: verificar si es idéntico por Git SHA y peso
-                    if (localSha && d.sha === localSha && d.size === localByteLen) {
-                        const sizeKb = Math.round(localByteLen / 1024);
-                        ghLog('⚡ ' + path + ' ya está al día en GitHub (' + sizeKb + ' KB). Omitiendo…', 'ok');
-                        return; // Omitir PUT, ya está idéntico en el repositorio
-                    }
-                    ghLog('📝 ' + path + ' modificado (SHA: ' + sha.substring(0, 7) + '). Actualizando…', 'info');
-                } else if (r.status === 404) {
-                    ghLog('🆕 ' + path + ' es nuevo. Creando…', 'info');
-                } else {
-                    console.warn('GET ' + path + ' status:', r.status);
-                }
-            } catch(e) {
-                console.warn('Verificación SHA:', e);
-            }
-
-            const sizeKb = Math.round(localByteLen / 1024) || Math.round(content64.length / 1024);
-            ghLog('📤 Enviando ' + path + ' (' + sizeKb + ' KB)…', 'info');
-            const body = { message, content: content64, branch };
-            if (sha) body.sha = sha;
-
-            const putHeaders = {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json',
-                'Accept': 'application/vnd.github+json'
-            };
-
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), 60000);
-
-            try {
-                const res = await fetch(apiBase + path, {
-                    method: 'PUT',
-                    headers: putHeaders,
-                    body: JSON.stringify(body),
-                    signal: controller.signal
-                });
-                clearTimeout(timer);
-
-                if (!res.ok) {
-                    let errMsg = 'HTTP ' + res.status;
-                    try {
-                        const err = await res.json();
-                        errMsg = err.message || errMsg;
-                    } catch(_) {
-                        const txt = await res.text();
-                        if (txt) errMsg = txt.substring(0, 80);
-                    }
-                    throw new Error(path + ': ' + errMsg);
-                }
-                ghLog('✅ ' + path + ' sincronizado con éxito.', 'ok');
-            } catch(fetchErr) {
-                clearTimeout(timer);
-                if (fetchErr.name === 'AbortError') {
-                    throw new Error('Tiempo de espera agotado al subir ' + path + '. Verifica tu conexión.');
-                }
-                throw fetchErr;
-            }
-        }
-
-        // ── Helper: dataURL → base64 puro ────────────────────────
-        function dataUrlToBase64(dataUrl) {
-            return dataUrl.split(',')[1];
-        }
-
-        // ── Helper: texto → base64 ───────────────────────────────
-        function strToBase64(str) {
-            return btoa(unescape(encodeURIComponent(str)));
-        }
-
-        // 1. Subir imágenes locales
-        const imgKeys = Object.keys(uploadedImages);
-        if (imgKeys.length) {
-            ghLog('🖼 Sincronizando ' + imgKeys.length + ' imagen(es)…', 'info');
-            for (const path of imgKeys) {
-                await ghPut(path, dataUrlToBase64(uploadedImages[path]), 'upload: ' + path);
-            }
-        }
-
-        // 2. Generar el HTML según el modo
-        let htmlContent, fileName;
-        if (ghMode === 'editor') {
-            const clone = document.documentElement.cloneNode(true);
-            clone.querySelectorAll('.gh-overlay.open,.modal-overlay.open').forEach(el=>el.classList.remove('open'));
-
-            // Limpiar inputs sensibles en el HTML para evitar cualquier exposición
-            const _gt=clone.querySelector('#ghToken');if(_gt){_gt.value='';_gt.removeAttribute('value');}
-            const _gp=clone.querySelector('#ghPass');if(_gp){_gp.value='';_gp.removeAttribute('value');}
-            const _gr=clone.querySelector('#ghRepo');if(_gr){_gr.value='';_gr.removeAttribute('value');}
-
-            // Asegurar que el botón de publicar y el modal de GitHub queden limpios y activos
-            const _sub=clone.querySelector('.gh-submit');if(_sub){_sub.disabled=false;_sub.removeAttribute('disabled');}
-            const _log=clone.querySelector('#ghLog');if(_log){_log.className='gh-log';_log.innerHTML='';}
-            const _nb=clone.querySelector('#ghNoticeBox');if(_nb){_nb.style.display='none';_nb.innerHTML='';}
-            const _tsb=clone.querySelector('#ghTokenSavedBox');if(_tsb)_tsb.style.display='none';
-            const _tib=clone.querySelector('#ghTokenInputBox');if(_tib)_tib.style.display='block';
-            const _ab=clone.querySelector('#ghAccordionBody');if(_ab)_ab.style.display='none';
-            const _aa=clone.querySelector('#ghAccordionArrow');if(_aa)_aa.textContent='▾';
-            const _toast=clone.querySelector('#toast');if(_toast){_toast.className='toast';_toast.textContent='';}
-
-            // Preparar versión limpia de products (sin Base64, usando rutas relativas vibraimgs/...)
-            const cleanProducts = products.map(p => ({
-                ...p,
-                imgData: '',
-                variants: (p.variants || []).map(v => ({ ...v, imgData: '' }))
-            }));
-
-            // Limpiar imágenes genéricas con data-publish-src
-            clone.querySelectorAll('[data-publish-src]').forEach(el => {
-                const src = el.dataset.publishSrc;
-                if (src) {
-                    if (el.tagName === 'IMG') {
-                        el.src = src;
-                    } else {
-                        el.style.backgroundImage = "url('" + src + "')";
-                    }
-                    delete el.dataset.publishSrc;
-                    el.removeAttribute('data-publish-src');
-                }
-            });
-
-            // Reconstruir catálogo en el clon con imágenes relativas limpias (sin Base64)
-            const cleanGrid = clone.querySelector('#catalogGrid');
-            if (cleanGrid) {
-                cleanGrid.innerHTML = '';
-                cleanProducts.forEach(p => {
-                    const imgPath = (p.variants && p.variants.length > 0) ? (p.variants[0].img || p.img || '') : (p.img || '');
-                    const w = document.createElement('div');
-                    w.className = 'seller-card-wrapper';
-                    w.innerHTML = `<button class="card-edt" onclick="openProdEdit(${p.id},event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(${p.id})">
-                        <div class="seller-img" style="background-image:${imgPath ? 'url(\'' + esc(imgPath) + '\')' : 'none'};"></div>
-                        <div class="seller-info"><h3>${esc(p.name)}</h3><p>${esc(p.shortDesc)}</p>
-                        <div class="seller-meta"><span class="price">${esc(getProductPriceLabel(p))}</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-                    </div>`;
-                    cleanGrid.appendChild(w);
-                });
-                const a = document.createElement('div');
-                a.className = 'add-product-card';
-                a.onclick = () => openProdEdit(null, null);
-                a.innerHTML = '<span class="ic">＋</span><span>Agregar producto</span>';
-                cleanGrid.appendChild(a);
-            }
-
-            // Limpiar previsualizaciones temporales y atributos Base64 en el clon
-            ['#pePreviewImg', '#iuPreviewImg', '#heroUploadPreview', '#loPreviewImg'].forEach(sel => {
-                const im = clone.querySelector(sel);
-                if (im) { im.src = ''; im.style.display = 'none'; }
-            });
-            clone.querySelectorAll('.vimg-preview').forEach(im => { im.src = ''; im.style.display = 'none'; });
-            clone.querySelectorAll('[data-data-url]').forEach(el => el.removeAttribute('data-data-url'));
-            const modalImg = clone.querySelector('#modal-product-img');
-            if (modalImg) modalImg.style.backgroundImage = '';
-
-            const cleanHeroState = { ...heroState };
-            delete cleanHeroState._uploadDataUrl;
-            const heroBg = clone.querySelector('#heroBgImg');
-            if (heroBg && heroState.url) {
-                heroBg.style.backgroundImage = "url('" + heroState.url + "')";
-            }
-
-            syncLogoToClone(clone);
-            clone.querySelectorAll('script').forEach(s => {
-                if (s.textContent.includes('let products=')) {
-                    s.textContent = s.textContent
-                        .replace(/let products=\[[\s\S]*?\];/, 'let products=' + JSON.stringify(cleanProducts) + ';')
-                        .replace(/let nextId=\d+;/, 'let nextId=' + nextId + ';')
-                        .replace(/let logoState\s*=\s*\{[\s\S]*?\};/, 'let logoState=' + JSON.stringify(logoState) + ';')
-                        .replace(/let heroState\s*=\s*\{[\s\S]*?\};/, 'let heroState=' + JSON.stringify(cleanHeroState) + ';')
-                        .replace(/(?:const|let) uploadedImages\s*=\s*\{[\s\S]*?\};/, 'const uploadedImages = {};')
-                        .replace(/let ghEncryptedToken\s*=\s*".*?";/, 'let ghEncryptedToken = ' + JSON.stringify(encryptedTokenStr) + ';')
-                        .replace(/let ghSavedRepo\s*=\s*".*?";/, 'let ghSavedRepo = ' + JSON.stringify(repo) + ';')
-                        .replace(/let ghSavedBranch\s*=\s*".*?";/, 'let ghSavedBranch = ' + JSON.stringify(branch) + ';')
-                        .replace(/let ghAuthHash\s*=\s*".*?";/, 'let ghAuthHash = ' + JSON.stringify(ghAuthHash) + ';');
-                }
-            });
-            htmlContent = '<!DOCTYPE html>\n' + clone.outerHTML;
-            // Purga final de seguridad: asegurar que no quede ninguna cadena Base64 en el HTML
-            htmlContent = htmlContent.replace(/url\((?:&quot;|['\"])?data:image\/[^;]+;base64,[^&'\")]+(?:&quot;|['\"])?\)/g, 'none');
-            htmlContent = htmlContent.replace(/\s*data-data-url=\"[^\"]*\"/g, '');
-            fileName = 'editable.html';
-
-            // Actualizar memoria activa de la sesión: limpiar Base64 ya sincronizado
-            products = cleanProducts;
-            for (const k in uploadedImages) delete uploadedImages[k];
-            if (heroState._uploadDataUrl) delete heroState._uploadDataUrl;
-        } else {
-            htmlContent = generateCleanHTML();
-            fileName = 'index.html';
-        }
-        ghLog('📄 Subiendo ' + fileName + '…', 'info');
-        await ghPut(fileName, strToBase64(htmlContent), (ghMode==='editor'?'editor':'publish') + ': ' + fileName);
-
-        ghLog('🎉 ¡Listo! Cambios subidos a ' + repo, 'ok');
-        showToast('🐙 Guardado en GitHub correctamente.');
-        updateGhModalUI();
-    } catch(err) {
-        ghLog('❌ ' + err.message, 'err');
-        showToast('❌ Error: ' + err.message);
-    } finally {
-        const submitBtn = document.querySelector('.gh-submit');
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('disabled'); }
-    }
-}
-
-// ── Genera el HTML limpio (igual que saveClean pero devuelve string) ──
-function generateCleanHTML() {
-    const clone = document.documentElement.cloneNode(true);
-    const tb=clone.querySelector('#editorToolbar');if(tb)tb.remove();
-    ['prodEditOverlay','imgUrlOverlay','heroImgOverlay','iconSwapOverlay','ciOverlay','logoOverlay','ghOverlay'].forEach(id=>{
-        const el=clone.querySelector('#'+id);if(el)el.remove();
-    });
-    const t=clone.querySelector('#toast');if(t)t.remove();
-    clone.querySelectorAll('.logo-edit-btn').forEach(b=>b.remove());
-    clone.querySelectorAll('.hero button').forEach(b=>{if(b.textContent.includes('Cambiar imagen'))b.remove();});
-    clone.querySelectorAll('.icon-swap-btn').forEach(b=>b.remove());
-    clone.querySelectorAll('.para-controls,.add-para-btn').forEach(el=>el.remove());
-    clone.querySelectorAll('.info-link-actions,.add-link-btn').forEach(el=>el.remove());
-    clone.querySelectorAll('.card-edt').forEach(el=>el.remove());
-    clone.querySelectorAll('.add-product-card').forEach(el=>el.remove());
-    clone.querySelectorAll('[contenteditable]').forEach(el=>{el.removeAttribute('contenteditable');el.style.outline='';el.style.boxShadow='';el.style.cursor='';el.style.background='';});
-    clone.querySelectorAll('[data-publish-src]').forEach(el => {
-        const src = el.dataset.publishSrc;
-        if (src) {
-            if (el.tagName === 'IMG') {
-                el.src = src;
-            } else {
-                el.style.backgroundImage = "url('" + src + "')";
-            }
-            el.removeAttribute('data-publish-src');
-        }
-    });
-    clone.querySelectorAll('.img-editable').forEach(el=>{el.classList.remove('img-editable');el.removeAttribute('onclick');el.removeAttribute('title');el.style.cursor='';});
-    clone.querySelectorAll('.icon-box').forEach(el=>el.removeAttribute('onclick'));
-    clone.querySelectorAll('.info-link-icon').forEach(el=>{el.removeAttribute('onclick');el.removeAttribute('title');el.style.cursor='';});
-    clone.querySelectorAll('.page').forEach(el=>el.style.marginTop='70px');
-    const cg=clone.querySelector('#catalogGrid');
-    if(cg){
-        cg.innerHTML='';
-        cg.style.gridTemplateColumns='repeat(3,1fr)';
-
-    // Helper para construir tarjeta del catálogo (simple o con variantes)
-    function buildCatalogCard(p){
-        const hasV=p.variants&&p.variants.length>0;
-        const img=hasV?(p.variants[0].img||p.img||''):(p.img||'');
-        let priceLabel=p.price||'';
-        if(hasV){
-            const prices=p.variants.map(v=>parseFloat((v.price||'0').replace(/[^0-9.]/g,''))).filter(x=>!isNaN(x));
-            if(prices.length){const min=Math.min(...prices);const cur=(p.variants[0].price||'S/. 0').replace(/[0-9.,]/g,'').trim()||'S/.';priceLabel='Desde '+cur+' '+min.toFixed(2);}
-        }
-        const card=document.createElement('div');
-        card.className='seller-card';card.style.cursor='pointer';
-        card.id='product-card-'+p.id;
-        card.dataset.productId=p.id;
-        if(hasV){
-            // onclick abre modal con variantes
-            const vdata=escA(JSON.stringify(p.variants.map(v=>({name:v.name,price:v.price,img:v.img||''}))));
-            card.setAttribute('onclick',"openProductModal_v('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.longDesc)+"','"+vdata+"','"+escA(p.img||'')+"')");
-        } else {
-            card.setAttribute('onclick',"openProductModal_s('"+escA(p.name)+"','"+escA(p.cat)+"','"+escA(p.price)+"','"+escA(p.longDesc)+"','"+escA(img)+"')");
-        }
-        card.innerHTML='<div class="seller-img" style="background-image:'+(img?"url('"+escA(img)+"')":'none')+';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
-            +'<div class="seller-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.shortDesc)+'</p>'
-            +'<div class="seller-meta"><span class="price">'+esc(priceLabel)+'</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
-        return card;
-    }
-
-        products.forEach(p=>cg.appendChild(buildCatalogCard(p)));
-    }
-    clone.querySelectorAll('.seller-card-wrapper').forEach(w=>{const cc=w.querySelector('.seller-card');if(cc)w.replaceWith(cc.cloneNode(true));});
-    syncLogoToClone(clone);
-    const heroClone=clone.querySelector('#hero-bg');
-    if(heroClone){
-        heroClone.removeAttribute('onclick');
-        heroClone.querySelectorAll('button').forEach(b=>{if(b.textContent.includes('Cambiar imagen'))b.remove();});
-        heroClone.style.background='';heroClone.style.backgroundImage='';heroClone.style.isolation='';
-        heroClone.style.backgroundColor=heroState.url?'':'#a0b0a6';
-        const bgImgClone=heroClone.querySelector('#heroBgImg');
-        if(bgImgClone)bgImgClone.style.backgroundImage=heroState.url?"url('"+heroState.url+"')":'none';
-        const hex=heroState.color;
-        const r2=parseInt(hex.slice(1,3),16),g2=parseInt(hex.slice(3,5),16),b2=parseInt(hex.slice(5,7),16);
-        const alpha2=(heroState.opacity/100).toFixed(2);
-        const blend=heroState.blend||'normal';
-        const layerClone=heroClone.querySelector('#heroFilterLayer');
-        if(layerClone){layerClone.style.backgroundColor='rgba('+r2+','+g2+','+b2+','+alpha2+')';layerClone.style.mixBlendMode=blend;}
-    }
-    const ctaClone=clone.querySelector('#heroCTABtn');
-    if(ctaClone){ctaClone.textContent=heroState.btnText;ctaClone.style.background=heroState.btnBg;ctaClone.style.color=heroState.btnColor;}
-    // Override CSS seguro (igual que saveClean)
-    const ghOverrideStyle=document.createElement('style');
-    ghOverrideStyle.textContent=`
-        #editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
-        .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
-        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
-        {display:none!important;}
-        [contenteditable]{outline:none!important;box-shadow:none!important;}
-        [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
-        .img-editable::after{display:none!important;}
-        .img-editable{cursor:default!important;pointer-events:none!important;}
-        .info-link-icon{cursor:default!important;pointer-events:none!important;}
-        .page{margin-top:80px!important;}
-        @media(max-width:900px){.page{margin-top:104px!important;}}
-    `;
-    clone.querySelector('head').appendChild(ghOverrideStyle);
-    clone.querySelector('body').classList.remove('editor-active');
-    let cleanOutput = '<!DOCTYPE html>\n' + clone.outerHTML;
-    cleanOutput = cleanOutput.replace(/url\((?:&quot;|['\"])?data:image\/[^;]+;base64,[^&'\")]+(?:&quot;|['\"])?\)/g, 'none');
-    cleanOutput = cleanOutput.replace(/\s*data-data-url=\"[^\"]*\"/g, '');
-    return cleanOutput;
-}
-
-
-
-// ============================================================
-// VARIANTES DE PRODUCTO
-// ============================================================
-function toggleVariants(){
-    const check=document.getElementById('peVariantsCheck');
-    const section=document.getElementById('peVariantsSection');
-    const priceGroup=document.getElementById('pe-price-group');
-    const imgGroup=document.getElementById('pe-img-group');
-    const on=check.checked;
-    section.classList.toggle('active',on);
-    priceGroup.style.display=on?'none':'';
-    imgGroup.style.display=on?'none':'';
-    if(on && document.querySelectorAll('.pe-variant-item').length===0) addVariantRow();
-}
-function addVariantRow(v){
-    v=v||{name:'',price:'',img:''};
-    const list=document.getElementById('peVariantsList');
-    const idx=list.children.length+1;
-    const uid='vr'+(Date.now())+idx; // ID único por fila
-    const div=document.createElement('div');
-    div.className='pe-variant-item';
-    div.dataset.uid=uid;
-    div.innerHTML=`
-        <div class="variant-header">
-            <span class="variant-label">Variante ${idx}</span>
-            <button class="variant-del" onclick="this.closest('.pe-variant-item').remove();renumberVariants();" title="Eliminar variante"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="pe-variant-row">
-            <div><label>Nombre / tamaño</label><input class="v-name" type="text" placeholder="Ej. 100ml" value="${escHtml(v.name)}"></div>
-            <div><label>Precio</label><input class="v-price" type="text" placeholder="S/. 35.00" value="${escHtml(v.price)}"></div>
-        </div>
-        <div class="pe-variant-row full">
-            <div>
-                <label>Imagen (opcional)</label>
-                <div class="vimg-tabs">
-                    <button class="vimg-tab active" onclick="switchVTab('${uid}','url');event.preventDefault()"><i class="fa-solid fa-link"></i> URL</button>
-                    <button class="vimg-tab" onclick="switchVTab('${uid}','file');event.preventDefault()"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
-                </div>
-                <div class="vimg-panel active" id="vurl-${uid}">
-                    <input class="v-img" type="text" placeholder="https://... o vibraimgs/..." value="${escHtml(v.img)}">
-                </div>
-                <div class="vimg-panel" id="vfile-${uid}">
-                    <img class="vimg-preview" id="vprev-${uid}" src="" alt="">
-                    <div class="vimg-name" id="vname-${uid}"></div>
-                    <div class="vimg-drop">
-                        <input type="file" accept="image/*" onchange="handleVariantFile(this,'${uid}')">
-                        <p><i class="fa-solid fa-camera"></i> Clic o arrastra imagen</p>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-    list.appendChild(div);
-}
-function switchVTab(uid, tab){
-    const item=document.querySelector('[data-uid="'+uid+'"]');
-    if(!item)return;
-    item.querySelectorAll('.vimg-tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&tab==='url')||(i===1&&tab==='file')));
-    item.querySelector('#vurl-'+uid).classList.toggle('active',tab==='url');
-    item.querySelector('#vfile-'+uid).classList.toggle('active',tab==='file');
-}
-async function handleVariantFile(input, uid){
-    const file=input.files[0]; if(!file)return;
-    const safeName='vibraimgs/'+file.name.replace(/\s+/g,'_');
-    try {
-        const dataUrl=await compressImageFile(file);
-        uploadedImages[safeName]=dataUrl;
-        const prev=document.getElementById('vprev-'+uid);
-        const nameEl=document.getElementById('vname-'+uid);
-        if(prev){prev.src=dataUrl;prev.style.display='block';}
-        if(nameEl){nameEl.textContent=safeName;nameEl.style.display='block';}
-        // Guardar ruta Y dataURL en el input de esa fila
-        const item=document.querySelector('[data-uid="'+uid+'"]');
-        if(item){
-            const vi=item.querySelector('.v-img');
-            if(vi){vi.value=safeName; vi.dataset.dataUrl=dataUrl;}
-        }
-    } catch(err) {
-        console.error('Error procesando imagen de variante:', err);
-    }
-}
-function escHtml(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function renumberVariants(){
-    document.querySelectorAll('.pe-variant-item .variant-label').forEach((el,i)=>{el.textContent='Variante '+(i+1);});
-}
-function renderVariantRows(variants){
-    const list=document.getElementById('peVariantsList');
-    list.innerHTML='';
-    variants.forEach(v=>{
-        addVariantRow(v);
-        // Restaurar dataURL en el último input .v-img añadido
-        const rows=list.querySelectorAll('.pe-variant-item');
-        const lastRow=rows[rows.length-1];
-        if(lastRow){
-            const vi=lastRow.querySelector('.v-img');
-            if(vi) vi.dataset.dataUrl=v.imgData||uploadedImages[v.img||'']||'';
-        }
-    });
-}
-
-// INIT
 renderProducts();
 navigateTo('inicio');
 
-// Soporte para abrir producto por URL (?prod=id o #prod-id)
 (function checkUrlDeepLink(){
-    try{
-        var params=new URLSearchParams(window.location.search);
-        var pid=params.get('prod');
-        if(!pid&&window.location.hash){
-            var m=window.location.hash.match(/#prod-(\d+)/);
-            if(m)pid=m[1];
+    try {
+        var params = new URLSearchParams(window.location.search);
+        var pid = params.get('prod');
+        if(!pid && window.location.hash){
+            var m = window.location.hash.match(/#prod-(\d+)/);
+            if(m) pid = m[1];
         }
         if(pid){
-            var nid=parseInt(pid);
+            var nid = parseInt(pid);
             if(!isNaN(nid)){
                 setTimeout(function(){
-                    if(typeof openProductModal==='function'&&typeof products!=='undefined'&&products.some(function(x){return x.id===nid;})){
+                    if(typeof openProductModal === 'function' && typeof products !== 'undefined' && products.some(function(x){ return x.id === nid; })){
                         openProductModal(nid);
-                    }else{
-                        var card=document.getElementById('product-card-'+nid)||document.querySelector('[data-product-id="'+nid+'"]');
-                        if(card)card.click();
+                    } else {
+                        var card = document.getElementById('product-card-' + nid) || document.querySelector('[data-product-id="' + nid + '"]');
+                        if(card) card.click();
                     }
-                },300);
+                }, 300);
             }
         }
-    }catch(_){}
+    } catch(_) {}
 })();
 </script>
-</body>
-</html>
+</body></html>
