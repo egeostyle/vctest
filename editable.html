@@ -37,6 +37,7 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 }
 body:has(.modal-overlay.open) .editor-fab-save,
 body:has(.pe-overlay.open) .editor-fab-save,
+body:has(.fps-overlay.open) .editor-fab-save,
 body:has(.iu-overlay.open) .editor-fab-save,
 body:has(.gh-overlay.open) .editor-fab-save {
     display: none !important;
@@ -883,7 +884,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-1" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">Mayor Duraciasdón</h3>
+                <h3 contenteditable="true">Mayor Duración</h3>
                 <p contenteditable="true">Quema a menor temperatura, permitiendo que tu vela dure hasta el doble que una de parafina.</p>
             </div>
             <div class="benefit-item">
@@ -892,7 +893,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-2" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">Quemadasdaso Limpio</h3>
+                <h3 contenteditable="true">Quemado Limpio</h3>
                 <p contenteditable="true">No produce hollín negro, protegiendo tus pulmones y las paredes de tu hogar.</p>
             </div>
         </div>
@@ -902,20 +903,28 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <section class="bestsellers">
         <h2 contenteditable="true">Nuestros Favoritos de la Temporada</h2>
         <div class="bestsellers-grid">
-            <div class="seller-card">
-                <div class="seller-img img-editable" id="bs1" onclick="openImgModal('bs1')"></div>
+            <div class="seller-card featured-slot" id="featured-card-1" data-featured-slot="1" data-product-id="1" onclick="openFeaturedSelector(1)">
+                <div class="featured-edit-badge" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
+                <div class="seller-img" id="bs1" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Vela Lavanda Relajante</h3>
-                    <p contenteditable="true">Infusionada con aceite esencial puro, ideal para meditar o antes de dormir.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Edición Vidrio</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3 contenteditable="true">Vela Lavanda Francesa</h3>
+                    <p contenteditable="true">Calma el estrés cotidiano con notas florales suaves.</p>
+                    <div class="seller-meta">
+                        <span class="price" contenteditable="true">100% Soya</span>
+                        <a href="https://egeostyle.github.io/vctest/p/vela-lavanda-francesa" onclick="event.preventDefault();event.stopPropagation();navigateTo('productos');openProductModal(1);" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Pedir</a>
+                    </div>
                 </div>
             </div>
-            <div class="seller-card">
-                <div class="seller-img img-editable" id="bs2" onclick="openImgModal('bs2')"></div>
+            <div class="seller-card featured-slot" id="featured-card-2" data-featured-slot="2" data-product-id="2" onclick="openFeaturedSelector(2)">
+                <div class="featured-edit-badge" title="Toca para cambiar producto"><i class="fa-solid fa-arrows-rotate"></i> Cambiar Producto</div>
+                <div class="seller-img" id="bs2" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Difusor Citrus Mood</h3>
-                    <p contenteditable="true">Notas vibrantes de mandarina y bergamota para activar la energía de tu sala.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Varillas de Bambú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3 contenteditable="true">Difusor Vainilla Dulce</h3>
+                    <p contenteditable="true">Fragancia reconfortante de larga duración.</p>
+                    <div class="seller-meta">
+                        <span class="price" contenteditable="true">Ambiental</span>
+                        <a href="https://egeostyle.github.io/vctest/p/difusor-vainilla-dulce" onclick="event.preventDefault();event.stopPropagation();navigateTo('productos');openProductModal(2);" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">Pedir</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -963,10 +972,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <div style="flex:1;min-width:280px;">
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
                     <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.sadasdas</p>
+                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?sadasd</strong>
+                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?</strong>
                     <p contenteditable="true" style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
@@ -993,8 +1002,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."sadasdas</p>
-                <strong contenteditable="true">- Mateo S.a</strong>
+                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"La calidad de los aromas es inigualable. Transforma cualquier habitación en un espacio de paz y tranquilidad."</p>
+                <strong contenteditable="true">- Camila R.</strong>
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
         </div>
@@ -1062,6 +1071,23 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <button type="button" class="modal-btn-close" onclick="closeProductModal(null)">Cerrar</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: SELECCIONAR PRODUCTO DESTACADO -->
+<div id="featuredProductOverlay" class="fps-overlay" onclick="closeFeaturedSelector(event)">
+    <div class="fps-dialog" onclick="event.stopPropagation()">
+        <div class="fps-header">
+            <h3>Seleccionar Producto Destacado</h3>
+            <p>Elige el producto que se mostrará en esta tarjeta de favoritos:</p>
+        </div>
+        <div class="fps-list" id="fpsList">
+            <!-- Renderizado dinámicamente con renderFeaturedSelectorList() -->
+        </div>
+        <div class="fps-footer">
+            <button type="button" class="fps-btn-confirm" id="fpsConfirmBtn" onclick="confirmFeaturedProduct()">Confirmar</button>
+            <button type="button" class="fps-btn-cancel" id="fpsCancelBtn" onclick="closeFeaturedSelector(null)">Cancelar</button>
         </div>
     </div>
 </div>
@@ -1863,6 +1889,120 @@ function sendWhatsApp(e){
     const waUrl='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
     window.open(waUrl,'_blank');
 }
+
+// =========================================================
+// GESTOR DE PRODUCTOS DESTACADOS (NUESTROS FAVORITOS)
+// =========================================================
+let currentFeaturedSlot = 1;
+let selectedFeaturedProductId = null;
+
+function _slug(s){
+    return (s || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/[\s_-]+/g, '-').replace(/[^\w-]+/g, '').replace(/^-+|-+$/g, '');
+}
+
+function openFeaturedSelector(slotNum) {
+    currentFeaturedSlot = slotNum;
+    const card = document.getElementById('featured-card-' + slotNum);
+    let curId = card ? parseInt(card.dataset.productId) : null;
+    if (!curId || isNaN(curId)) {
+        curId = (products[slotNum - 1] ? products[slotNum - 1].id : (products[0] ? products[0].id : null));
+    }
+    selectedFeaturedProductId = curId;
+    renderFeaturedSelectorList();
+    const overlay = document.getElementById('featuredProductOverlay');
+    if (overlay) overlay.classList.add('open');
+}
+
+function closeFeaturedSelector(e) {
+    if (e && e.target !== document.getElementById('featuredProductOverlay') && e.target !== document.getElementById('fpsCancelBtn')) return;
+    const overlay = document.getElementById('featuredProductOverlay');
+    if (overlay) overlay.classList.remove('open');
+}
+
+function renderFeaturedSelectorList() {
+    const list = document.getElementById('fpsList');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    products.forEach(p => {
+        const item = document.createElement('div');
+        const isSelected = p.id === selectedFeaturedProductId;
+        item.className = 'fps-item' + (isSelected ? ' selected' : '');
+        item.onclick = () => {
+            selectedFeaturedProductId = p.id;
+            renderFeaturedSelectorList();
+        };
+        
+        const img = getProductImg(p);
+        const thumb = document.createElement('div');
+        thumb.className = 'fps-thumb';
+        if (img) thumb.style.backgroundImage = "url('" + esc(img) + "')";
+        
+        const info = document.createElement('div');
+        info.className = 'fps-info';
+        
+        const isSold = !!p.soldOut;
+        const soldBadge = isSold ? ' <span style="font-size:0.72rem;background:#eee;color:#777;padding:1px 6px;border-radius:6px;margin-left:4px;">Agotado</span>' : '';
+        const priceLabel = getProductPriceLabel(p);
+        const descText = esc(p.shortDesc || p.longDesc || '');
+        const metaTag = esc(p.cat || 'Vibra Candela') + (priceLabel ? ' • ' + esc(priceLabel) : '');
+        
+        info.innerHTML = '<div class="fps-title">' + esc(p.name) + soldBadge + '</div>'
+            + '<div class="fps-desc">' + descText + '</div>'
+            + '<div class="fps-tag">' + metaTag + '</div>';
+            
+        item.appendChild(thumb);
+        item.appendChild(info);
+        list.appendChild(item);
+    });
+}
+
+function applyFeaturedProduct(slotNum, product) {
+    const card = document.getElementById('featured-card-' + slotNum);
+    if (!card || !product) return;
+    card.dataset.productId = product.id;
+    
+    const img = getProductImg(product);
+    const imgEl = card.querySelector('.seller-img');
+    if (imgEl) {
+        imgEl.style.backgroundImage = img ? "url('" + esc(img) + "')" : 'none';
+        imgEl.style.backgroundSize = 'cover';
+        imgEl.style.backgroundPosition = 'center';
+        imgEl.style.backgroundColor = '#e8e0d8';
+    }
+    
+    const titleEl = card.querySelector('.seller-info h3');
+    if (titleEl) titleEl.textContent = product.name;
+    
+    const descEl = card.querySelector('.seller-info p');
+    if (descEl) descEl.textContent = product.shortDesc || product.longDesc || '';
+    
+    const metaCatEl = card.querySelector('.seller-meta .price');
+    if (metaCatEl) metaCatEl.textContent = product.cat || '100% Soya';
+    
+    const slug = _slug(product.name) || ('prod-' + product.id);
+    const btnEl = card.querySelector('.seller-meta .btn, .seller-meta a');
+    if (btnEl) {
+        btnEl.href = 'https://egeostyle.github.io/vctest/p/' + slug;
+        btnEl.setAttribute('onclick', "event.preventDefault(); event.stopPropagation(); navigateTo('productos'); openProductModal(" + product.id + ");");
+    }
+}
+
+function confirmFeaturedProduct() {
+    if (!selectedFeaturedProductId) {
+        closeFeaturedSelector(null);
+        return;
+    }
+    const p = products.find(x => x.id === selectedFeaturedProductId);
+    if (p) {
+        applyFeaturedProduct(currentFeaturedSlot, p);
+        showToast('✨ Producto destacado #' + currentFeaturedSlot + ' actualizado.');
+    }
+    const overlay = document.getElementById('featuredProductOverlay');
+    if (overlay) overlay.classList.remove('open');
+}
+
+
 function openProdEdit(id,e){
     if(e)e.stopPropagation();
     editingProductId=id;
@@ -3585,9 +3725,24 @@ async function runGhPublish() {
 function generateCleanHTML() {
     const clone = document.documentElement.cloneNode(true);
     clone.querySelectorAll('#editorFloatingSave, #editorToolbar').forEach(el => el.remove());
-    ['prodEditOverlay','imgUrlOverlay','heroImgOverlay','iconSwapOverlay','ciOverlay','logoOverlay','ghOverlay'].forEach(id=>{
+    ['prodEditOverlay','imgUrlOverlay','heroImgOverlay','iconSwapOverlay','ciOverlay','logoOverlay','ghOverlay','featuredProductOverlay'].forEach(id=>{
         const el=clone.querySelector('#'+id);if(el)el.remove();
     });
+    
+    clone.querySelectorAll('.featured-edit-badge').forEach(b => b.remove());
+    clone.querySelectorAll('.featured-slot').forEach(el => {
+        el.classList.remove('featured-slot');
+        el.removeAttribute('onclick');
+        el.style.cursor = '';
+    });
+    clone.querySelectorAll('.bestsellers .seller-meta a, .bestsellers .seller-meta button').forEach(b => {
+        const oc = b.getAttribute('onclick') || '';
+        const m = oc.match(/openProductModal\((\d+)\)/);
+        if (m) {
+            b.setAttribute('onclick', "event.preventDefault(); navigateTo('productos'); openProductModal(" + m[1] + ");");
+        }
+    });
+
     const t=clone.querySelector('#toast');if(t)t.remove();
     clone.querySelectorAll('.logo-edit-btn').forEach(b=>b.remove());
     clone.querySelectorAll('.hero button').forEach(b=>{if(b.textContent.includes('Cambiar imagen'))b.remove();});
@@ -3667,7 +3822,7 @@ function generateCleanHTML() {
     ghOverrideStyle.textContent=`
         #editorFloatingSave,#editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
         .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
-        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
+        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay,.fps-overlay,.featured-edit-badge
         {display:none!important;}
         [contenteditable]{outline:none!important;box-shadow:none!important;}
         [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
