@@ -1166,12 +1166,13 @@ function sendWhatsApp(e){
     if(prodVariant) textMsg += '• *Variante:* ' + prodVariant + '\n';
     if(prodPrice) textMsg += '• *Precio:* ' + prodPrice + '\n';
 
-    function _slg(s){return (s||'').trim().replace(/[\s]+/g,'_').replace(/[^\w]/g,'');}
-    let prodSlug = prodName ? _slg(prodName) : (id || '');
-    let prodUrl = 'https://egeostyle.github.io/vctest/?prod=' + encodeURIComponent(prodSlug);
+    function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/[^\w-]+/g,'').replace(/^-+|-+$/g,'');}
+    let prodSlug = _slug(prodName) || ('prod-' + id);
+    let pageSlug = prodSlug;
     if(prodVariant){
-        prodUrl += '&var=' + encodeURIComponent(prodVariant);
+        pageSlug = prodSlug + '-' + _slug(prodVariant);
     }
+    let prodUrl = 'https://egeostyle.github.io/vctest/p/' + pageSlug;
     textMsg += '• *Enlace:* ' + prodUrl + '\n';
 
     textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
