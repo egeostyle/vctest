@@ -2,7 +2,7 @@
 <html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibra Candela | Editor</title>
+<title>Vibra Candela | Catálogo Artesanal</title>
 <meta property="og:title" content="Vibra Candela | Velas y Difusores Artesanales">
 <meta property="og:description" content="Catálogo artesanal de velas de cera de soja, difusores aromáticos y home spray hechos a mano.">
 <meta property="og:type" content="website">
@@ -58,8 +58,9 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .icon-box{position:relative;display:flex;justify-content:center;margin-bottom:1rem;}
 .icon-img{width:72px;height:72px;object-fit:contain;display:none;}
 .icon-emoji{font-size:2.5rem;line-height:1;}
-.icon-swap-btn{position:absolute;bottom:-6px;right:calc(50% - 42px);background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.12rem 0.4rem;font-size:0.65rem;cursor:pointer;opacity:0;transition:opacity 0.18s;white-space:nowrap;}
+.icon-swap-btn{position:absolute;bottom:-6px;right:calc(50% - 42px);background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:3px;padding:0.12rem 0.45rem;font-size:0.65rem;cursor:pointer;opacity:0;transition:opacity 0.18s;white-space:nowrap;}
 .icon-box:hover .icon-swap-btn{opacity:1;}
+@media (max-width: 768px){.icon-swap-btn{opacity:0.85;}}
 
 /* TIPS icon is smaller */
 .tips-section .icon-emoji{font-size:2rem;}
@@ -359,7 +360,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .ci-emoji-input{font-size:1.8rem;width:100%;text-align:center;padding:0.4rem;border:1px solid #ddd;border-radius:4px;margin-bottom:0.3rem;}
 .ci-fa-input{width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;font-family:monospace;margin-bottom:0.3rem;}
 .ci-fa-input:focus,.ci-emoji-input:focus{outline:none;border-color:var(--cp);}
-.ci-fa-hint{font-size:0.72rem;color:#aaa;margin-bottom:0.7rem;}
+.ci-fa-hint{font-size:0.72rem;color:#aaa;margin-bottom:0.6rem;}
 .ci-fa-hint a{color:var(--cp);text-decoration:none;}
 .ci-catalog-toggle{display:inline-flex;align-items:center;justify-content:center;gap:0.45rem;width:100%;padding:0.48rem 0.8rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;font-size:0.78rem;font-weight:600;color:#334155;cursor:pointer;margin-bottom:0.6rem;transition:all 0.15s;}
 .ci-catalog-toggle:hover{background:#e2e8f0;color:#0f172a;}
@@ -600,9 +601,9 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <!-- Enlaces de texto -->
     <nav class="nav">
         <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
-        <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto" class="active">Contacto</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="active">Productos</a>
+        <a onclick="navigateTo('acerca')" id="nav-acerca">Acerca de</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -632,8 +633,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu sdasdasd de forma natural</h1>
-            <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soyasdasdasdaa y difusores ambientales para tu bienestar.</p>
+            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
+            <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
         <!-- Botón editor (z-index:10) -->
@@ -642,7 +643,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- BENEFICIOS -->
     <section class="benefits">
-        <h2 contenteditable="true">¿Por qué elegasdasdir Cera de Soya?</h2>
+        <h2 contenteditable="true">¿Por qué elegir Cera de Soya?</h2>
         <div class="benefits-grid" id="benefitsGrid">
             <div class="benefit-item">
                 <div class="icon-box">
@@ -650,8 +651,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-0" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">100% Ecológicasda</h3>
-                <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de sdasdderivados del petróleo.</p>
+                <h3 contenteditable="true">100% Ecológica</h3>
+                <p contenteditable="true">Derivada de fuentes renovables, biodegradable y libre de derivados del petróleo.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
@@ -659,8 +660,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-1" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">Mayor Duraciasdón</h3>
-                <p contenteditable="true">Quema a menor temperatura, permitiendo que tu vela dure hasta el doble asdasdque una de parafina.</p>
+                <h3 contenteditable="true">Mayor Duración</h3>
+                <p contenteditable="true">Quema a menor temperatura, permitiendo que tu vela dure hasta el doble que una de parafina.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
@@ -668,30 +669,30 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="bi-img-2" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('bi',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h3 contenteditable="true">Quemadasdaso Limpio</h3>
-                <p contenteditable="true">No produce hollín neasdasdasdgro, protegiendo tus pulmones y las paredes de tu hogar.</p>
+                <h3 contenteditable="true">Quemado Limpio</h3>
+                <p contenteditable="true">No produce hollín negro, protegiendo tus pulmones y las paredes de tu hogar.</p>
             </div>
         </div>
     </section>
 
     <!-- BESTSELLERS -->
     <section class="bestsellers">
-        <h2 contenteditable="true">Nuestros Favoritos de la Tempasdasdasdorada</h2>
+        <h2 contenteditable="true">Nuestros Favoritos de la Temporada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card">
                 <div class="seller-img img-editable" id="bs1" onclick="openImgModal('bs1')"></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Vela Lavanda Relajanteasdasdasd</h3>
-                    <p contenteditable="true">Infusionada con aceite esencial puro, ideal para meditaasdasdasdasdasdr o antes de dormir.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Edición Vidrioasdasdasdasd</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3 contenteditable="true">Vela Lavanda Relajante</h3>
+                    <p contenteditable="true">Infusionada con aceite esencial puro, ideal para meditar o antes de dormir.</p>
+                    <div class="seller-meta"><span class="price" contenteditable="true">Edición Vidrio</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
             <div class="seller-card">
                 <div class="seller-img img-editable" id="bs2" onclick="openImgModal('bs2')"></div>
                 <div class="seller-info">
-                    <h3 contenteditable="true">Difusor Citrus Moodasdasdasd</h3>
-                    <p contenteditable="true">Notas vibrantes de mandarina y bergamota para activaasdasdasdasdasdr la energía de tu sala.</p>
-                    <div class="seller-meta"><span class="price" contenteditable="true">Varillas de Bambasdasdasdasdú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3 contenteditable="true">Difusor Citrus Mood</h3>
+                    <p contenteditable="true">Notas vibrantes de mandarina y bergamota para activar la energía de tu sala.</p>
+                    <div class="seller-meta"><span class="price" contenteditable="true">Varillas de Bambú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
         </div>
@@ -699,8 +700,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- TIPS -->
     <section class="tips-section" style="background:var(--cs);">
-        <h2 contenteditable="true">Tips para Cuidar tu Velaasdasdasd</h2>
-        <p contenteditable="true" style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren máasdasdaasdass y quemen de forma uniforme.</p>
+        <h2 contenteditable="true">Tips para Cuidar tu Vela</h2>
+        <p contenteditable="true" style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren más y quemen de forma uniforme.</p>
         <div class="benefits-grid">
             <div class="tips-item">
                 <div class="icon-box">
@@ -708,8 +709,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-0" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('ti',0)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h4 contenteditable="true">Corta la mechaasdasdas</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.adasdasd</p>
+                <h4 contenteditable="true">Corta la mecha</h4>
+                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
@@ -717,8 +718,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-1" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('ti',1)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h4 contenteditable="true">La primera quemadaasdasdas</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".asdasdas</p>
+                <h4 contenteditable="true">La primera quemada</h4>
+                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
@@ -726,28 +727,28 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-2" src="" alt="">
                     <button class="icon-swap-btn" onclick="openIconSwap('ti',2)"><i class="fa-solid fa-camera"></i> cambiar</button>
                 </div>
-                <h4 contenteditable="true">No la soplesasdasd</h4>
-                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.asdasdasd</p>
+                <h4 contenteditable="true">No la soples</h4>
+                <p contenteditable="true" style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
     <section>
-        <h2 contenteditable="true">Preguntas Frecuentesasdasda</h2>
+        <h2 contenteditable="true">Preguntas Frecuentes</h2>
         <div style="display:flex;align-items:flex-start;gap:3rem;max-width:1100px;margin:0 auto;text-align:left;flex-wrap:wrap;padding:1rem 0;">
             <div style="flex:1;min-width:280px;">
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?asdasd</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.sadasdas</p>
+                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?</strong>
+                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?sadasd</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.asdasda</p>
+                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?</strong>
+                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?asdasdasd</strong>
-                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.asdasd</p>
+                    <strong contenteditable="true" style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?</strong>
+                    <p contenteditable="true" style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.</p>
                 </div>
             </div>
             <div class="faq-img img-editable" id="faq-img" onclick="openImgModal('faq-img')" style="flex:1;min-width:260px;"></div>
@@ -756,21 +757,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- TESTIMONIOS -->
     <section style="background:var(--cl);border-top:1px solid #eee;">
-        <h2 contenteditable="true">Lo que dicen de Vibra Candelaasdasda</h2>
+        <h2 contenteditable="true">Lo que dicen de Vibra Candela</h2>
         <div class="benefits-grid" style="margin-top:2rem;">
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."asdasd</p>
-                <strong contenteditable="true">- Camila R.asasd</strong>
+                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."</p>
+                <strong contenteditable="true">- Camila R.</strong>
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."asdasdas</p>
-                <strong contenteditable="true">- Mateo S.asdasd</strong>
+                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."</p>
+                <strong contenteditable="true">- Mateo S.</strong>
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."sadasdas</p>
-                <strong contenteditable="true">- Mateo S.asdasda</strong>
+                <p contenteditable="true" style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."</p>
+                <strong contenteditable="true">- Mateo S.</strong>
                 <div contenteditable="true" style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
         </div>
@@ -780,25 +781,25 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: PRODUCTOS
      ========================================================= -->
-<div id="page-productos" class="page">
+<div id="page-productos" class="page active">
     <div class="catalog-container">
-        <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogosadasdas</h2>
+        <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogo</h2>
         <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(1,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
-            <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
-            <div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p>
-            <div class="seller-meta"><span class="price">Desde s 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
-            <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
-            <div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p>
-            <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="add-product-card"><span class="ic">＋</span><span>Agregar producto</span></div></div>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
+                        <div class="seller-img" style="background-image:none;"></div>
+                        <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
+                        <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
+                        <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
+                        <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
+                        <div class="seller-meta"><span class="price">S/. 55.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
+                        <div class="seller-img" style="background-image:none;"></div>
+                        <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
+                        <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="add-product-card"><span class="ic">＋</span><span>Agregar producto</span></div></div>
     </div>
 </div>
 
@@ -809,18 +810,18 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="modal-close" onclick="closeProductModal(null)">×</span>
         <div class="modal-flex">
-            <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
+            <div id="modal-product-img" class="modal-img"></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title">Difusor Vainilla Dulceasdasdas</h3>
-                    <div id="modal-product-meta" class="mprice">Ambientalasdasdad | S/. 99.00</div>
-                    <div class="variant-selector" id="modal-variant-selector" style="display: none;">
+                    <h3 id="modal-product-title">Difusor Vainilla Dulce</h3>
+                    <div id="modal-product-meta" class="mprice">Ambiental | S/. 55.00</div>
+                    <div class="variant-selector" id="modal-variant-selector" style="display:none;">
                         <label>Selecciona una variante:</label>
-                        <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
+                        <div class="variant-chips" id="modal-variant-chips"></div>
                     </div>
-                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
+                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.</p>
                 </div>
-                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
+                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="2" data-active-variant="" data-product-info="{&quot;name&quot;:&quot;Difusor Vainilla Dulce&quot;,&quot;cat&quot;:&quot;Ambiental&quot;,&quot;price&quot;:&quot;S/. 55.00&quot;,&quot;variant&quot;:&quot;&quot;,&quot;img&quot;:&quot;&quot;}"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
             </div>
         </div>
     </div>
@@ -834,7 +835,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="fg"><label>Categoría</label><input type="text" id="pe-cat" placeholder="100% Soya"></div>
 
         <!-- PRECIO (oculto cuando hay variantes) -->
-        <div class="fg" id="pe-price-group" style="">
+        <div class="fg" id="pe-price-group">
             <label>Precio</label>
             <input type="text" id="pe-price" placeholder="S/. 45.00">
         </div>
@@ -843,7 +844,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="fg"><label>Descripción larga (modal)</label><textarea id="pe-long" rows="3" placeholder="Descripción detallada..."></textarea></div>
 
         <!-- IMAGEN BASE (oculta cuando hay variantes con imagen propia) -->
-        <div class="fg" id="pe-img-group" style="">
+        <div class="fg" id="pe-img-group">
             <label>Imagen del producto</label>
             <div class="img-tabs" style="margin-bottom:0.6rem;">
                 <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
@@ -853,8 +854,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <input type="text" id="pe-img" placeholder="https://...">
             </div>
             <div class="img-panel active" id="pePanelFile">
-                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display:none;">
-                <div class="img-upload-name" id="peFileName" style="display:none;"></div>
+                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display: none;">
+                <div class="img-upload-name" id="peFileName" style="display: block;">vibraimgs/faq.jpg</div>
                 <div class="img-drop-zone">
                     <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
                     <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
@@ -863,22 +864,24 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             </div>
         </div>
 
-        <!-- TOGGLE VARIANTES -->
-        <label class="pe-variants-toggle" onclick="toggleVariants()">
-            <input type="checkbox" id="peVariantsCheck" onclick="event.stopPropagation();toggleVariants()">
-            <span>Activar variantes (tallas, tamaños, volúmenes…)</span>
-        </label>
+        <!-- CHECKBOX VARIANTES -->
+        <div class="fg-check">
+            <input type="checkbox" id="peVariantsCheck" onchange="toggleVariants()">
+            <label for="peVariantsCheck">Este producto tiene variantes <span style="font-weight:400;color:#888;">(ej: tamaños, aromas)</span></label>
+        </div>
 
         <!-- SECCIÓN VARIANTES -->
         <div class="pe-variants-section" id="peVariantsSection">
-            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.75rem;">Cada variante puede tener su propio precio e imagen. La imagen de la variante 1 se usa como imagen principal si las demás no tienen.</p>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem;">
+                <span style="font-size:0.85rem;font-weight:600;color:#333;">Lista de variantes</span>
+                <button class="pe-add-vbtn" onclick="addVariantRow();event.preventDefault();"><i class="fa-solid fa-plus"></i> Agregar variante</button>
+            </div>
             <div id="peVariantsList"></div>
-            <button class="add-variant-btn" onclick="addVariantRow()">＋ Agregar variante</button>
         </div>
 
         <div class="pe-actions">
+            <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()" style="display: inline-block;"><i class="fa-solid fa-trash"></i> Eliminar</button>
             <button class="pe-cancel" onclick="closeProdEditDirect()">Cancelar</button>
-            <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()" style="display: inline-block;">🗑 Eliminar</button>
             <button class="pe-ok" onclick="applyProductEdit()"><i class="fa-solid fa-check"></i> Aplicar</button>
         </div>
     </div>
@@ -897,8 +900,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <p class="iu-hint">URL completa o ruta relativa. La imagen cubrirá el área exacta.</p>
         </div>
         <div class="img-panel" id="iuPanelFile">
-            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="" style="display:none;">
-            <div class="img-upload-name" id="iuFileName" style="display:none;"></div>
+            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="" style="display: none;">
+            <div class="img-upload-name" id="iuFileName"></div>
             <div class="img-drop-zone" id="iuDropZone">
                 <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
                 <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
@@ -928,7 +931,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <p class="iu-hint">URL completa o ruta relativa a la imagen del banner.</p>
         </div>
         <div class="img-panel" id="heroPanelFile">
-            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height:80px;">
+            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height: 80px; display: none;">
             <div class="img-upload-name" id="heroUploadName"></div>
             <div class="img-drop-zone" style="margin-bottom:0.5rem;">
                 <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
@@ -1090,7 +1093,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <input type="color" id="ciColorInput" value="#6e8174" oninput="updateCiPreview()">
             <button onclick="document.getElementById('ciColorInput').value='#6e8174';updateCiPreview()">Reset</button>
         </div>
-        <div class="ci-preview" id="ciPreview"><span style="font-size:1.8rem;color:#6e8174">📌</span></div>
+        <div class="ci-preview" id="ciPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
         <div class="ci-actions">
             <button style="background:#eee;color:#333;" onclick="closeCiModal(null)">Cancelar</button>
             <button style="background:var(--cp);color:#fff;" onclick="applyCiIcon()">Aplicar</button>
@@ -1104,10 +1107,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <h4><i class="fa-solid fa-image" style="margin-right:6px;"></i> Editar logo</h4>
         <p class="sub">Elige entre texto o imagen.</p>
         <div class="lo-tabs">
-            <button class="lo-tab" id="loTabText" onclick="switchLoTab('text')">Texto</button>
-            <button class="lo-tab active" id="loTabImg" onclick="switchLoTab('img')">Imagen</button>
+            <button class="lo-tab active" id="loTabText" onclick="switchLoTab('text')">Texto</button>
+            <button class="lo-tab" id="loTabImg" onclick="switchLoTab('img')">Imagen</button>
         </div>
-        <div class="lo-panel" id="loPanelText">
+        <div class="lo-panel active" id="loPanelText">
             <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">Nombre de la marca</label>
             <input type="text" id="loTextInput" placeholder="Vibra Candela">
         </div>
@@ -1148,25 +1151,25 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="page-acerca" class="page">
     <section>
-        <h2 contenteditable="true">Nuestra Historiazxczxczxc</h2>
+        <h2 contenteditable="true">Nuestra Historia</h2>
         <div class="about-wrapper">
             <div class="about-bio" id="aboutBio">
-                <h3 contenteditable="true">Hola, soy la creadoraxczxczx</h3>
+                <h3 contenteditable="true">Hola, soy la creadora</h3>
                 <div class="bio-p">
-                    <p contenteditable="true">Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.zxczxczxc</p>
+                    <p contenteditable="true">Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.</p>
                     <div class="para-controls">
                         <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
                 <div class="bio-p">
-                    <p contenteditable="true">Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.zxczxczxc</p>
+                    <p contenteditable="true">Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.</p>
                     <div class="para-controls">
                         <button class="para-btn" onclick="removePara(this)" title="Eliminar párrafo"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
                 <button class="add-para-btn" onclick="addPara()">＋ Agregar párrafo</button>
             </div>
-            <div class="about-img img-editable" id="about-img" onclick="openImgModal('about-img')" style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
+            <div class="about-img img-editable" id="about-img" onclick="openImgModal('about-img')"></div>
         </div>
     </section>
 </div>
@@ -1174,36 +1177,36 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: CONTACTO
      ========================================================= -->
-<div id="page-contacto" class="page active">
+<div id="page-contacto" class="page">
     <div class="contact-page">
-        <h2 contenteditable="true">Cuéntanos tus Ideaszxczxczxc</h2>
+        <h2 contenteditable="true">Cuéntanos tus Ideas</h2>
         <div class="contact-wrapper">
             <div class="contact-info-panel">
                 <h3 contenteditable="true">Información de Contacto</h3>
-                <p class="contact-info-intro" contenteditable="true">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!zxczxc</p>
+                <p class="contact-info-intro" contenteditable="true">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!</p>
                 <div id="infoLinksContainer">
                     <div class="info-link">
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📍</span>
-                        <span class="info-link-text" contenteditable="true">Callao, Perúzxczxc</span>
+                        <span class="info-link-text" contenteditable="true">Callao, Perú</span>
                         <div class="info-link-actions">
                             <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <div class="info-link">
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">💬</span>
-                        <span class="info-link-text" contenteditable="true">WhatsApp: +51 999 999 999zxczxc</span>
+                        <span class="info-link-text" contenteditable="true">WhatsApp: +51 999 999 999</span>
                         <div class="info-link-actions">
                             <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <div class="info-link">
                         <span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">✉️</span>
-                        <span class="info-link-text" contenteditable="true">hola@aromanatural.comzxczxc</span>
+                        <span class="info-link-text" contenteditable="true">hola@aromanatural.com</span>
                         <div class="info-link-actions">
                             <button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
-                <div class="info-link"><span class="info-link-icon" onclick="openCiModal(this)" title="Clic para cambiar ícono">📌</span><span class="info-link-text" contenteditable="true">Nuevo ítezxczxczxcm — edita este texto</span><div class="info-link-actions"><button class="il-btn" onclick="removeInfoLink(this)" title="Eliminar"><i class="fa-solid fa-xmark"></i></button></div></div></div>
+                </div>
                 <button class="add-link-btn" onclick="addInfoLink()">＋ Agregar ítem</button>
             </div>
             <div class="contact-form-panel">
@@ -1249,7 +1252,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
                 <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
             </button>
-            <div class="gh-accordion-body" id="ghAccordionBody">
+            <div class="gh-accordion-body" id="ghAccordionBody" style="display: none;">
                 <div class="gh-group">
                     <label>Repositorio <span style="color:#aaa;font-weight:400;">(usuario/nombre-repo)</span></label>
                     <input type="text" id="ghRepo" placeholder="usuario/mi-web">
@@ -1258,14 +1261,14 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <label>Token de acceso personal
                         <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
                     </label>
-                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
+                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display: none;">
                         <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
                         <div class="gh-btn-group">
                             <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
                             <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
                         </div>
                     </div>
-                    <div id="ghTokenInputBox">
+                    <div id="ghTokenInputBox" style="display: block;">
                         <input type="password" id="ghToken" placeholder="github_pat_...">
                         <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read &amp; Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
                     </div>
@@ -1306,12 +1309,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 // ESTADO GLOBAL
 // ============================================================
 const WA_NUMBER="51930246770";
-let products=[{"id":1,"name":"Vela Lavanda Francesaasdad","cat":"100% Soyaasdasdas","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.asdasd","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas","img":"","imgData":"","variants":[{"name":"10ml","price":"30s","img":"vibraimgs/faq.jpg","imgData":""},{"name":"20ml","price":"20s","img":"vibraimgs/tips3.png","imgData":""}]},{"id":2,"name":"Difusor Vainilla Dulceasdasdas","cat":"Ambientalasdasdad","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.asdasdasd","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd","img":"vibraimgs/tips1.png","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","img":"","imgData":""}];
+let products=[{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","img":"","imgData":"","variants":[]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 55.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","img":"vibraimgs/faq.jpg","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","img":"","imgData":"","variants":[]}];
 let nextId=4;
 let editingProductId=null;
 let logoState={"mode":"text","text":"Vibra Candela","imgUrl":""};
 let heroState={"url":"","color":"#000000","opacity":30,"blend":"normal","btnText":"Explorar Catálogo","btnBg":"#6e8174","btnColor":"#ffffff"};
-let ghEncryptedToken = "{\"v\":2,\"s\":\"c8f6197dbbd4cb1a\",\"c\":\"ed878be746aed665eb6a30380930320a3fec4c4fccb4389d85cffe63508071527fccd6aa0bf01472760c59c88aa12540b4e691f60eb1424c08812eba2d24f06ab46cda5a8401edd13b173bb398872e45004f8f20537eec5022ee477b34\",\"a\":\"390add4e36d4932ff057eb93caac430202e334b52e07c1295d7534ce5d94d5a8\"}";
+let ghEncryptedToken = "{\"v\":2,\"s\":\"563f2518d9dd60e4\",\"c\":\"c8a7d17d264ffc55f4fda7017867bddfc6f8812498420028dd9959ebdf8453e02306f7a9708ad58635872bc8c1cc316f7b9be7178f7ce17a4d46aebc7da92a96ce3532f2539964957cc187c65d757823abc92d8ba84003d013093fda25\",\"a\":\"2d3597a6ac65c414deeb11618309a29368b57fc9fa2fea2b623690de844b412d\"}";
 let ghSavedRepo = "egeostyle/vctest";
 let ghSavedBranch = "main";
 let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
@@ -2513,7 +2516,6 @@ function calculateGitBlobSha(binaryStr) {
 }
 
 // ── SHA-256 Universal en JS puro (funciona en file://, http y https) ──
-// ── SHA-256 Universal en JS puro (funciona en file://, http y https) ──
 function sha256(ascii) {
     function rightRotate(value, amount) {
         return (value >>> amount) | (value << (32 - amount));
@@ -3199,129 +3201,6 @@ function generateCleanHTML() {
     `;
     clone.querySelector('head').appendChild(ghOverrideStyle);
     clone.querySelector('body').classList.remove('editor-active');
-
-    // Limpiar scripts: remover scripts del editor y reemplazar por script limpio público
-    clone.querySelectorAll('script').forEach(s => s.remove());
-    const cleanProductsData = products.map(p => ({
-        id: p.id,
-        name: p.name,
-        cat: p.cat,
-        price: p.price,
-        shortDesc: p.shortDesc,
-        longDesc: p.longDesc,
-        img: p.img || '',
-        variants: (p.variants || []).map(v => ({ name: v.name, price: v.price, img: v.img || '' }))
-    }));
-
-    const cleanScriptEl = document.createElement('script');
-    cleanScriptEl.textContent = `
-const WA_NUMBER = "${WA_NUMBER}";
-let products = ` + JSON.stringify(cleanProductsData) + `;
-function navigateTo(p){
-    document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
-    document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
-    var pg = document.getElementById('page-' + p); if(pg) pg.classList.add('active');
-    var lk = document.getElementById('nav-' + p); if(lk) lk.classList.add('active');
-    window.scrollTo(0,0);
-}
-function getProductImg(p){if(p.variants && p.variants.length > 0){return p.variants[0].img || p.img || '';}return p.img || '';}
-function getProductPriceLabel(p){if(p.variants && p.variants.length > 0){const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g,''))).filter(x => !isNaN(x));if(prices.length){const min = Math.min(...prices);const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g,'').trim() || 'S/.';return 'Desde ' + cur + ' ' + min.toFixed(2);}}return p.price || '';}
-function esc(s){return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function escA(s){return (s || '').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
-function renderProducts(){
-    const g = document.getElementById('catalogGrid'); if(!g) return; g.innerHTML = '';
-    products.forEach(p => {
-        const card = document.createElement('div'); card.className = 'seller-card'; card.id = 'product-card-' + p.id; card.dataset.productId = p.id; card.style.cursor = 'pointer';
-        card.onclick = () => openProductModal(p.id);
-        const img = getProductImg(p);
-        card.innerHTML = '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
-            + '<div class="seller-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.shortDesc) + '</p>'
-            + '<div class="seller-meta"><span class="price">' + esc(getProductPriceLabel(p)) + '</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
-        g.appendChild(card);
-    });
-}
-function openProductModal(id){
-    const p = products.find(x => x.id === id); if(!p) return;
-    document.getElementById('modal-product-title').innerText = p.name;
-    document.getElementById('modal-product-desc').innerText = p.longDesc;
-    document.getElementById('modal-whatsapp-link').dataset.productId = id;
-    const hasV = p.variants && p.variants.length > 0;
-    const vs = document.getElementById('modal-variant-selector'); const ce = document.getElementById('modal-variant-chips');
-    const me = document.getElementById('modal-product-meta'); const ie = document.getElementById('modal-product-img');
-    if(hasV){
-        vs.style.display = 'block'; ce.innerHTML = '';
-        p.variants.forEach((v,i) => {const b = document.createElement('button'); b.className = 'vchip' + (i === 0 ? ' active' : ''); b.textContent = v.name; b.onclick = () => selectVariant(p,i); ce.appendChild(b);});
-        selectVariant(p,0);
-    } else {
-        vs.style.display = 'none'; ce.innerHTML = ''; me.innerText = p.cat + ' | ' + p.price;
-        const bi = p.img || ''; ie.style.backgroundImage = bi ? "url('" + bi + "')" : 'none';
-        document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:p.price, variant:'', img:bi});
-    }
-    document.getElementById('product-modal').classList.add('open');
-}
-function selectVariant(p,idx){
-    const v = p.variants[idx]; document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + v.price;
-    const img = v.img || (p.variants[0] && p.variants[0].img) || p.img || '';
-    document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
-    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i) => c.classList.toggle('active', i === idx));
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({name:v.name, price:v.price, img:img});
-    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:v.price, variant:v.name, img:img});
-}
-function closeProductModal(e){if(!e || e.target === document.getElementById('product-modal')) document.getElementById('product-modal').classList.remove('open');}
-function toAbsoluteUrl(url){
-    if(!url || url.startsWith('data:')) return '';
-    if(url.startsWith('http://') || url.startsWith('https://')) return url;
-    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null') ? 'https://egeostyle.github.io/vctest/' : window.location.href;
-    try{return new URL(url,base).href;}catch(_){return 'https://egeostyle.github.io/vctest/' + url.replace(/^\\.?\\//,'');}
-}
-function sendWhatsApp(e){
-    e.preventDefault();
-    const btn = document.getElementById('modal-whatsapp-link');
-    const id = parseInt(btn.dataset.productId);
-    let n='', c='', p='', v='', img='';
-    if(btn.dataset.productInfo){try{const pi=JSON.parse(btn.dataset.productInfo); n=pi.name||''; c=pi.cat||''; p=pi.price||''; v=pi.variant||''; img=pi.img||'';}catch(_){}}
-    if(typeof products !== 'undefined' && Array.isArray(products) && !isNaN(id) && id){
-        const prod = products.find(x => x.id === id);
-        if(prod){ n = prod.name||n; c = prod.cat||c; p = prod.price||p; img = prod.img||img;
-            const av = btn.dataset.activeVariant; if(av){try{const a=JSON.parse(av); if(a && a.name){v=a.name; p=a.price||p; if(a.img) img=a.img;}}catch(_){}}
-        }
-    }
-    let msg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\\n\\n';
-    msg += '• *Producto:* ' + n + '\\n';
-    if(c) msg += '• *Categoría:* ' + c + '\\n';
-    if(v) msg += '• *Variante:* ' + v + '\\n';
-    if(p) msg += '• *Precio:* ' + p + '\\n';
-    const full = toAbsoluteUrl(img);
-    if(full){const clean = full.replace(/^https?:\\/\\//,''); msg += '• *Ver foto:* ' + clean + '\\n';}
-    msg += '\\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
-    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
-}
-renderProducts();
-navigateTo('inicio');
-(function checkUrlDeepLink(){
-    try{
-        var params = new URLSearchParams(window.location.search);
-        var pid = params.get('prod');
-        if(!pid && window.location.hash){var m = window.location.hash.match(/#prod-(\\d+)/); if(m) pid = m[1];}
-        if(pid){
-            var nid = parseInt(pid);
-            if(!isNaN(nid)){
-                setTimeout(function(){
-                    if(typeof openProductModal === 'function' && typeof products !== 'undefined' && products.some(function(x){return x.id === nid;})){
-                        openProductModal(nid);
-                    } else {
-                        var card = document.getElementById('product-card-' + nid) || document.querySelector('[data-product-id="' + nid + '"]');
-                        if(card) card.click();
-                    }
-                }, 300);
-            }
-        }
-    }catch(_){}
-})();
-    `;
-    clone.querySelector('body').appendChild(cleanScriptEl);
-
     let cleanOutput = '<!DOCTYPE html>\n' + clone.outerHTML;
     cleanOutput = cleanOutput.replace(/url\((?:&quot;|['\"])?data:image\/[^;]+;base64,[^&'\")]+(?:&quot;|['\"])?\)/g, 'none');
     cleanOutput = cleanOutput.replace(/\s*data-data-url=\"[^\"]*\"/g, '');
@@ -3366,7 +3245,7 @@ function addVariantRow(v){
                 <label>Imagen (opcional)</label>
                 <div class="vimg-tabs">
                     <button class="vimg-tab active" onclick="switchVTab('${uid}','url');event.preventDefault()"><i class="fa-solid fa-link"></i> URL</button>
-                    <button class="vimg-tab" onclick="switchVTab('${uid}','file');event.preventDefault()"><i class="fa-solid fa-upload"></i> Subir</button>
+                    <button class="vimg-tab" onclick="switchVTab('${uid}','file');event.preventDefault()"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
                 </div>
                 <div class="vimg-panel active" id="vurl-${uid}">
                     <input class="v-img" type="text" placeholder="https://... o vibraimgs/..." value="${escHtml(v.img)}">
