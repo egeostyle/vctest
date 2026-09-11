@@ -2,7 +2,7 @@
 <html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibra Candela | Catálogo Artesanal</title>
+<title>Vibra Candela | Editor</title>
 <meta property="og:title" content="Vibra Candela | Velas y Difusores Artesanales">
 <meta property="og:description" content="Catálogo artesanal de velas de cera de soja, difusores aromáticos y home spray hechos a mano.">
 <meta property="og:type" content="website">
@@ -18,11 +18,34 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .logo-area{display:flex;align-items:center;gap:0.6rem;cursor:pointer;}
 .logo-img{height:44px;width:auto;max-width:150px;object-fit:contain;display:none;}
 .logo-text{font-size:1.4rem;font-weight:bold;color:var(--cp);}
-
-
+.logo-edit-btn{background:transparent;border:1px dashed var(--ca);color:#aaa;border-radius:4px;padding:0.12rem 0.45rem;font-size:0.68rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.logo-edit-btn:hover{border-color:var(--cp);color:var(--cp);}
 .nav{display:flex;flex-wrap:wrap;gap:0.2rem;}
 .nav a{text-decoration:none;color:var(--cd);margin-left:1.2rem;font-weight:500;transition:color 0.3s;cursor:pointer;font-size:0.95rem;}
 .nav a:hover,.nav a.active{color:var(--cp);}
+
+/* BOTÓN FLOTANTE GUARDAR (FAB) */
+.editor-fab-save{position:fixed;bottom:28px;right:28px;width:60px;height:60px;border-radius:50%;background:#1e293b;color:#ffffff;border:2px solid rgba(255,255,255,0.25);box-shadow:0 8px 24px rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:990;transition:all 0.25s cubic-bezier(0.4,0,0.2,1);outline:none;}
+.editor-fab-save i{font-size:1.25rem;color:#ffffff;}
+.editor-fab-save .fab-text{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;color:#f1f5f9;}
+.editor-fab-save:hover{background:#0f172a;transform:scale(1.08);box-shadow:0 10px 28px rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.5);}
+.editor-fab-save:active{transform:scale(0.95);}
+@media(max-width:560px){
+    .editor-fab-save{bottom:20px;right:20px;width:54px;height:54px;}
+    .editor-fab-save i{font-size:1.15rem;}
+    .editor-fab-save .fab-text{font-size:0.52rem;}
+}
+body:has(.modal-overlay.open) .editor-fab-save,
+body:has(.pe-overlay.open) .editor-fab-save,
+body:has(.iu-overlay.open) .editor-fab-save,
+body:has(.gh-overlay.open) .editor-fab-save {
+    display: none !important;
+}
+.gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
+.gh-accordion-toggle{width:100%;background:#f8fafc;border:none;padding:0.6rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#334155;text-align:left;transition:background 0.15s;}
+.gh-accordion-toggle:hover{background:#f1f5f9;}
+.gh-accordion-body{padding:0.85rem;border-top:1px solid #e2e8f0;background:#fff;}
+.save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
 
 /* PAGES */
 .page{display:none;margin-top:70px;flex:1;}
@@ -31,12 +54,22 @@ section{padding:3.5rem 8%;text-align:center;}
 h2{font-size:2.3rem;color:var(--cp);margin-bottom:3rem;position:relative;}
 h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);margin:0.4rem auto 0;}
 
+/* EDITABLE TEXT */
+[]{outline:none;border-radius:3px;transition:background 0.2s,box-shadow 0.2s;}
+[]:hover{background:rgba(110,129,116,0.08);box-shadow:0 0 0 2px rgba(110,129,116,0.3);cursor:text;}
+[]:focus{background:rgba(110,129,116,0.13);box-shadow:0 0 0 2px var(--cp);}
+
+/* IMAGE BOXES */
+.img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
+.img-editable::after{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14' fill='white'%3E%3Cpath d='M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'/%3E%3C/svg%3E") '  Clic para cambiar imagen';font-family:var(--f);font-size:0.83rem;font-weight:600;text-transform:none;letter-spacing:normal;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;opacity:0;transition:opacity 0.22s;pointer-events:none;}
+.img-editable:hover::after{opacity:1;}
+
 /* ICON BOXES (beneficios/tips) */
 .icon-box{position:relative;display:flex;justify-content:center;margin-bottom:1rem;}
 .icon-img{width:72px;height:72px;object-fit:contain;display:none;}
 .icon-emoji{font-size:2.5rem;line-height:1;}
-
-.icon-box:hover 
+.icon-swap-btn{position:absolute;bottom:-6px;right:calc(50% - 42px);background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.12rem 0.4rem;font-size:0.65rem;cursor:pointer;opacity:0;transition:opacity 0.18s;white-space:nowrap;}
+.icon-box:hover .icon-swap-btn{opacity:1;}
 
 /* TIPS icon is smaller */
 .tips-section .icon-emoji{font-size:2rem;}
@@ -86,11 +119,11 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .about-bio{flex:1;}
 .about-bio h3{font-size:1.7rem;margin-bottom:1rem;color:var(--cp);}
 .about-bio .bio-p{margin-bottom:1.2rem;color:#555;position:relative;padding-right:2.2rem;}
-
-.about-bio .bio-p:hover 
+.para-controls{position:absolute;right:0;top:0;display:flex;gap:4px;opacity:0;transition:opacity 0.18s;}
+.about-bio .bio-p:hover .para-controls{opacity:1;}
 .para-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.4rem;font-size:0.65rem;cursor:pointer;white-space:nowrap;}
-
-
+.add-para-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.5rem;padding:0.4rem 0.9rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;}
+.add-para-btn:hover{border-color:var(--cp);color:var(--cp);}
 .about-img{flex:0 0 380px;width:380px;min-height:400px;align-self:stretch;border-radius:12px;box-shadow:10px 10px 0 var(--ca);background:#c5b8aa center/cover no-repeat;}
 
 /* CONTACT */
@@ -102,14 +135,14 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .contact-info-intro{margin-bottom:1.5rem;color:#555;font-size:0.93rem;}
 .info-link{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem;position:relative;padding-right:2.2rem;}
 .info-link-icon{font-size:1.2rem;border-radius:4px;padding:0.1rem 0.2rem;}
-
-
+.editor-active .info-link-icon{cursor:pointer;transition:background 0.18s;}
+.editor-active .info-link-icon:hover{background:rgba(110,129,116,0.15);}
 .info-link-text{flex:1;}
-
-.info-link:hover 
+.info-link-actions{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;gap:3px;opacity:0;transition:opacity 0.18s;}
+.info-link:hover .info-link-actions{opacity:1;}
 .il-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.38rem;font-size:0.65rem;cursor:pointer;}
-
-
+.add-link-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.3rem;padding:0.35rem 0.8rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:all 0.2s;}
+.add-link-btn:hover{border-color:var(--cp);color:var(--cp);}
 .contact-form-panel{background:#fff;padding:2.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
 .form-group{margin-bottom:1.3rem;}
 .form-group label{display:block;margin-bottom:0.4rem;font-weight:500;font-size:0.88rem;}
@@ -167,12 +200,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 /* CARD WRAPPER */
 .seller-card-wrapper{position:relative;}
-
-
-
-
-
-
+.card-edt{position:absolute;top:8px;right:8px;background:rgba(30,30,30,0.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:5px;padding:0.28rem 0.6rem;font-size:0.72rem;font-weight:600;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:background 0.2s,transform 0.15s;}
+.card-edt:hover{background:rgba(0,0,0,0.95);transform:scale(1.04);}
+.card-edt:active{transform:scale(0.96);}
+.add-product-card{border:2px dashed var(--ca);border-radius:8px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;color:#999;font-size:0.88rem;}
+.add-product-card:hover{border-color:var(--cp);background:rgba(110,129,116,0.05);color:var(--cp);}
+.add-product-card .ic{font-size:1.9rem;}
 
 /* IMAGE URL MODAL */
 .iu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:4000;opacity:0;pointer-events:none;transition:opacity 0.18s;}
@@ -399,8 +432,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     .contact-wrapper{grid-template-columns:1fr;gap:1.8rem;}
     .header{flex-direction:column;gap:0.6rem;padding:0.9rem 5%;}
     .nav a{margin:0 0.45rem;}
-    .page{margin-top:160px;}
-    
+    .page{margin-top:104px;}
     section{padding:3.5rem 5%;}
     .catalog-container{padding:3.5rem 5%;}
     .contact-page{padding:3.5rem 5%;}
@@ -556,14 +588,225 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     }
 }
 /* Para resoluciones menores o iguales a 900px */
-@media(max-width:900px){.page{margin-top:104px!important;}}
+@media (max-width: 900px) {
+    .page {
+        margin-top: 104px !important;
+    }
+}
 
 /* Para resoluciones mayores o iguales a 901px */
-@media(min-width:901px){.page{margin-top:70px!important;}}
+@media (min-width: 901px) {
+    .page {
+        margin-top: 70px !important;
+    }
+}
+
+/* =========================================================
+   BUSCADOR Y FILTROS DEL CATÁLOGO
+   ========================================================= */
+.catalog-toolbar {
+    max-width: 860px;
+    margin: 0 auto 2.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+}
+.catalog-search-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+}
+.catalog-search-input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 2.8rem;
+    border: 1.5px solid #d6cfc7;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-family: var(--f);
+    background: #ffffff;
+    color: var(--cd);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.catalog-search-input:focus {
+    outline: none;
+    border-color: var(--cp);
+    box-shadow: 0 4px 14px rgba(107, 124, 114, 0.2);
+}
+.catalog-search-wrap .search-icon {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8c857b;
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+.catalog-search-clear {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #e2ddd8;
+    color: #555;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+.catalog-search-clear:hover {
+    background: #ccc4bd;
+    color: #111;
+}
+.catalog-cat-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    width: 100%;
+}
+.cat-pill {
+    padding: 0.5rem 1.15rem;
+    border-radius: 50px;
+    border: 1.5px solid #d6cfc7;
+    background: #ffffff;
+    color: #555;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--f);
+}
+.cat-pill:hover {
+    border-color: var(--cp);
+    color: var(--cp);
+    background: #fbf9f6;
+}
+.cat-pill.active {
+    background: var(--cp);
+    color: #ffffff;
+    border-color: var(--cp);
+    box-shadow: 0 3px 10px rgba(107, 124, 114, 0.28);
+}
+.catalog-empty {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: #666;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+.catalog-empty p {
+    font-size: 1.08rem;
+    margin-bottom: 0.8rem;
+}
+.catalog-empty-btn {
+    background: transparent;
+    border: 1.5px solid var(--cp);
+    color: var(--cp);
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--f);
+    transition: all 0.2s;
+}
+.catalog-empty-btn:hover {
+    background: var(--cp);
+    color: #fff;
+}
+
+/* =========================================================
+   ESTADO PRODUCTO AGOTADO
+   ========================================================= */
+.seller-card.is-sold-out .seller-img {
+    filter: grayscale(100%);
+    opacity: 0.55;
+}
+.seller-card.is-sold-out {
+    position: relative;
+}
+.badge-sold-out {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(30, 41, 59, 0.9);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.seller-card.is-sold-out .price {
+    color: #888 !important;
+}
+.modal-sold-out-badge {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+.btn-wa-soldout {
+    background: #475569 !important;
+}
+.btn-wa-soldout:hover {
+    background: #334155 !important;
+}
+
+/* =========================================================
+   WEB3FORMS NOTIFICACIONES
+   ========================================================= */
+.form-alert {
+    padding: 0.9rem 1.1rem;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    margin-top: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
+}
+.form-alert.success {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c8e6c9;
+}
+.form-alert.error {
+    background: #ffebee;
+    color: #b71c1c;
+    border: 1px solid #ffcdd2;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 </head>
-<body>
+<body >
 
+<!-- BOTÓN FLOTANTE MODO EDITOR -->
 
 
 <!-- HEADER -->
@@ -578,9 +821,9 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <!-- Enlaces de texto -->
     <nav class="nav">
         <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos">Productos</a>
-        <a onclick="navigateTo('acerca')" id="nav-acerca">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto">Contacto</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
+        <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -610,16 +853,17 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 onclick="event.stopPropagation()">Ilumina tu sdasdasd de forma natural</h1>
-            <p onclick="event.stopPropagation()">Velas artesanales de cera de soyasdasdasdaa y difusores ambientales para tu bienestar.</p>
+            <h1 onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
+            <p onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
-        
+        <!-- Botón editor (z-index:10) -->
+        <button onclick="event.stopPropagation();openHeroImgModal()" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:5px;padding:0.38rem 0.85rem;font-size:0.78rem;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:5px;"><i class="fa-solid fa-camera"></i> Cambiar imagen y filtro</button>
     </section>
 
     <!-- BENEFICIOS -->
     <section class="benefits">
-        <h2>¿Por qué elegasdasdir Cera de Soya?</h2>
+        <h2>¿Por qué elegir Cera de Soya?</h2>
         <div class="benefits-grid" id="benefitsGrid">
             <div class="benefit-item">
                 <div class="icon-box">
@@ -637,7 +881,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     
                 </div>
                 <h3>Mayor Duraciasdón</h3>
-                <p>Quema a menor temperatura, permitiendo que tu vela dure hasta el doble asdasdque una de parafina.</p>
+                <p>Quema a menor temperatura, permitiendo que tu vela dure hasta el doble que una de parafina.</p>
             </div>
             <div class="benefit-item">
                 <div class="icon-box">
@@ -646,29 +890,29 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     
                 </div>
                 <h3>Quemadasdaso Limpio</h3>
-                <p>No produce hollín neasdasdasdgro, protegiendo tus pulmones y las paredes de tu hogar.</p>
+                <p>No produce hollín negro, protegiendo tus pulmones y las paredes de tu hogar.</p>
             </div>
         </div>
     </section>
 
     <!-- BESTSELLERS -->
     <section class="bestsellers">
-        <h2>Nuestros Favoritos de la Tempasdasdasdorada</h2>
+        <h2>Nuestros Favoritos de la Temporada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card">
-                <div class="seller-img " id="bs1" ></div>
+                <div class="seller-img " id="bs1"></div>
                 <div class="seller-info">
-                    <h3>Vela Lavanda Relajanteasdasdasd</h3>
-                    <p>Infusionada con aceite esencial puro, ideal para meditaasdasdasdasdasdr o antes de dormir.</p>
-                    <div class="seller-meta"><span class="price">Edición Vidrioasdasdasdasd</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3>Vela Lavanda Relajante</h3>
+                    <p>Infusionada con aceite esencial puro, ideal para meditar o antes de dormir.</p>
+                    <div class="seller-meta"><span class="price">Edición Vidrio</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
             <div class="seller-card">
-                <div class="seller-img " id="bs2" ></div>
+                <div class="seller-img " id="bs2"></div>
                 <div class="seller-info">
-                    <h3>Difusor Citrus Moodasdasdasd</h3>
-                    <p>Notas vibrantes de mandarina y bergamota para activaasdasdasdasdasdr la energía de tu sala.</p>
-                    <div class="seller-meta"><span class="price">Varillas de Bambasdasdasdasdú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
+                    <h3>Difusor Citrus Mood</h3>
+                    <p>Notas vibrantes de mandarina y bergamota para activar la energía de tu sala.</p>
+                    <div class="seller-meta"><span class="price">Varillas de Bambú</span><button onclick="navigateTo('contacto')" class="btn" style="padding:0.35rem 0.9rem;font-size:0.82rem">Pedir</button></div>
                 </div>
             </div>
         </div>
@@ -676,8 +920,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- TIPS -->
     <section class="tips-section" style="background:var(--cs);">
-        <h2>Tips para Cuidar tu Velaasdasdasd</h2>
-        <p style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren máasdasdaasdass y quemen de forma uniforme.</p>
+        <h2>Tips para Cuidar tu Vela</h2>
+        <p style="max-width:580px;margin:-1.5rem auto 2.5rem;color:#555;">Sigue estas recomendaciones para que tus velas duren más y quemen de forma uniforme.</p>
         <div class="benefits-grid">
             <div class="tips-item">
                 <div class="icon-box">
@@ -685,8 +929,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-0" src="" alt="">
                     
                 </div>
-                <h4>Corta la mechaasdasdas</h4>
-                <p style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.adasdasd</p>
+                <h4>Corta la mecha</h4>
+                <p style="font-size:0.88rem;color:#555;">Recorta a 5mm antes de cada encendido para evitar llamas altas y humo innecesario.</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
@@ -694,8 +938,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-1" src="" alt="">
                     
                 </div>
-                <h4>La primera quemadaasdasdas</h4>
-                <p style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".asdasdas</p>
+                <h4>La primera quemada</h4>
+                <p style="font-size:0.88rem;color:#555;">Deja encendida hasta que toda la superficie sea líquida para evitar el efecto "túnel".</p>
             </div>
             <div class="tips-item">
                 <div class="icon-box">
@@ -703,51 +947,51 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <img class="icon-img" id="ti-img-2" src="" alt="">
                     
                 </div>
-                <h4>No la soplesasdasd</h4>
-                <p style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.asdasdasd</p>
+                <h4>No la soples</h4>
+                <p style="font-size:0.88rem;color:#555;">Usa un apagavelas o pon la tapa. Soplar desplaza la mecha y altera el aroma.</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
     <section>
-        <h2>Preguntas Frecuentesasdasda</h2>
+        <h2>Preguntas Frecuentes</h2>
         <div style="display:flex;align-items:flex-start;gap:3rem;max-width:1100px;margin:0 auto;text-align:left;flex-wrap:wrap;padding:1rem 0;">
             <div style="flex:1;min-width:280px;">
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?asdasd</strong>
+                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Cuánto tiempo dura encendida una vela de soya?</strong>
                     <p style="color:#555;font-size:0.92rem;">Nuestras velas medianas rinden entre 35 y 40 horas gracias al bajo punto de fusión de la cera orgánica.sadasdas</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
                     <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Los difusores contienen alcohol?sadasd</strong>
-                    <p style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.asdasda</p>
+                    <p style="color:#555;font-size:0.92rem;">No. Usamos base difusora eco-amigable libre de alcohol para una evaporación lenta y uniforme.</p>
                 </div>
                 <div style="margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid #ddd;">
-                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?asdasdasd</strong>
-                    <p style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.asdasd</p>
+                    <strong style="color:var(--cp);display:block;margin-bottom:0.45rem;">¿Hacen envíos a todo el país?</strong>
+                    <p style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.</p>
                 </div>
             </div>
-            <div class="faq-img " id="faq-img"  style="flex:1;min-width:260px;"></div>
+            <div class="faq-img " id="faq-img" style="flex:1;min-width:260px;"></div>
         </div>
     </section>
 
     <!-- TESTIMONIOS -->
     <section style="background:var(--cl);border-top:1px solid #eee;">
-        <h2>Lo que dicen de Vibra Candelaasdasda</h2>
+        <h2>Lo que dicen de Vibra Candela</h2>
         <div class="benefits-grid" style="margin-top:2rem;">
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."asdasd</p>
+                <p style="font-style:italic;margin-bottom:1rem;">"La vela de lavanda cambió mis noches. Su aroma es muy natural y no me da dolor de cabeza."</p>
                 <strong>- Camila R.asasd</strong>
-                <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
+                <div style="color:#ffc107;margin-top:0.3rem;">��★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
-                <p style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."asdasdas</p>
-                <strong>- Mateo S.asdasd</strong>
+                <p style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."</p>
+                <strong>- Mateo S.</strong>
                 <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
             <div class="benefit-item" style="text-align:left;border-left:4px solid var(--cp);">
                 <p style="font-style:italic;margin-bottom:1rem;">"El difusor Citrus Mood es increíble. Dura meses y el diseño minimalista combina con todo."sadasdas</p>
-                <strong>- Mateo S.asdasda</strong>
+                <strong>- Mateo S.a</strong>
                 <div style="color:#ffc107;margin-top:0.3rem;">★★★★★</div>
             </div>
         </div>
@@ -759,24 +1003,36 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="page-productos" class="page">
     <div class="catalog-container">
-        <h2 style="text-align:center;">Nuestro Catálogosadasdas</h2>
-        <div class="catalog-grid" id="catalogGrid">
-            <div class="seller-card" id="product-card-1" data-product-id="1" style="cursor:pointer;" onclick="openProductModal(1)">
-                <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
-                <div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p>
-                <div class="seller-meta"><span class="price">Desde S/. 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+        <h2 style="text-align:center;">Nuestro Catálogo</h2>
+        <!-- TOOLBAR: BUSCADOR Y PÍLDORAS DE CATEGORÍA -->
+        <div class="catalog-toolbar">
+            <div class="catalog-search-wrap">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="catalogSearchInput" class="catalog-search-input" placeholder="Buscar por nombre, aroma o categoría..." oninput="handleCatalogSearch(this.value)">
+                <button type="button" id="catalogSearchClear" class="catalog-search-clear" onclick="clearCatalogSearch()" title="Limpiar búsqueda" style="display:none;">×</button>
             </div>
-            <div class="seller-card" id="product-card-2" data-product-id="2" style="cursor:pointer;" onclick="openProductModal(2)">
-                <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
-                <div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p>
-                <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-            </div>
-            <div class="seller-card" id="product-card-3" data-product-id="3" style="cursor:pointer;" onclick="openProductModal(3)">
-                <div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;"></div>
-                <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-                <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-            </div>
+            <div class="catalog-cat-pills" id="catalogCategoryPills"></div>
         </div>
+        <div id="catalogEmptyMsg" class="catalog-empty" style="display:none;">
+            <p>No encontramos productos que coincidan con tu búsqueda.</p>
+            <button type="button" class="catalog-empty-btn" onclick="resetCatalogFilters()">Ver todos los productos</button>
+        </div>
+        <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper">
+        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
+            <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
+            <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
+            <div class="seller-meta"><span class="price">Desde S/. 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+        </div></div><div class="seller-card-wrapper">
+        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
+            <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
+            <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
+            <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+        </div></div><div class="seller-card-wrapper">
+        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
+            <div class="seller-img" style="background-image:none;"></div>
+            <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
+            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+        </div></div></div>
     </div>
 </div>
 
@@ -790,13 +1046,13 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title">Difusor Vainilla Dulceasdasdas</h3>
-                    <div id="modal-product-meta" class="mprice">Ambientalasdasdad | S/. 99.00</div>
+                    <h3 id="modal-product-title">Difusor Vainilla Dulce</h3>
+                    <div id="modal-product-meta" class="mprice">Ambiental | S/. 99.00</div>
                     <div class="variant-selector" id="modal-variant-selector" style="display: none;">
                         <label>Selecciona una variante:</label>
                         <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
                     </div>
-                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
+                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.</p>
                 </div>
                 <div class="modal-actions-grp">
                     <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
@@ -809,42 +1065,311 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 <!-- MODAL: EDITAR PRODUCTO -->
 
+        <div class="fg"><label>Categoría</label><input type="text" id="pe-cat" placeholder="100% Soya"></div>
+
+        <!-- PRECIO (oculto cuando hay variantes) -->
+        <div class="fg" id="pe-price-group" style="">
+            <label>Precio</label>
+            <input type="text" id="pe-price" placeholder="S/. 45.00" onblur="if(this.value.trim()) this.value=formatPrice(this.value)" onchange="if(this.value.trim()) this.value=formatPrice(this.value)">
+        </div>
+
+        <div class="fg"><label>Descripción corta (tarjeta)</label><input type="text" id="pe-short" placeholder="Breve descripción..."></div>
+        <div class="fg"><label>Descripción larga (modal)</label><textarea id="pe-long" rows="3" placeholder="Descripción detallada..."></textarea></div>
+
+        <!-- IMAGEN BASE (oculta cuando hay variantes con imagen propia) -->
+        <div class="fg" id="pe-img-group" style="">
+            <label>Imagen del producto</label>
+            <div class="img-tabs" style="margin-bottom:0.6rem;">
+                <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+                <button class="img-tab active" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
+            </div>
+            <div class="img-panel" id="pePanelUrl">
+                <input type="text" id="pe-img" placeholder="https://...">
+            </div>
+            <div class="img-panel active" id="pePanelFile">
+                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display:none;">
+                <div class="img-upload-name" id="peFileName" style="display:none;"></div>
+                <div class="img-drop-zone">
+                    <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
+                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                    <p>Haz clic o arrastra una imagen</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOGGLE VARIANTES -->
+        <label class="pe-variants-toggle" onclick="toggleVariants()">
+            <input type="checkbox" id="peVariantsCheck" onclick="event.stopPropagation();toggleVariants()">
+            <span>Activar variantes (tallas, tamaños, volúmenes…)</span>
+        </label>
+
+        <!-- SECCIÓN VARIANTES -->
+        <div class="pe-variants-section" id="peVariantsSection">
+            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.75rem;">Cada variante puede tener su propio precio e imagen. La imagen de la variante 1 se usa como imagen principal si las demás no tienen.</p>
+            <div id="peVariantsList"></div>
+            <button class="add-variant-btn" onclick="addVariantRow()">＋ Agregar variante</button>
+        </div>
+
+        <!-- TOGGLE AGOTADO -->
+        <div class="fg" style="margin-top:0.8rem;">
+            <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.9rem;font-weight:600;color:#c0392b;">
+                <input type="checkbox" id="peSoldOutCheck" style="width:18px;height:18px;cursor:pointer;accent-color:#c0392b;">
+                <span>Marcar como Agotado (Sin stock)</span>
+            </label>
+            <p style="font-size:0.75rem;color:#777;margin:0.2rem 0 0 1.7rem;">El producto se colocará al final del catálogo con la imagen atenuada y un badge de "Agotado".</p>
+        </div>
+
+        <div class="pe-actions">
+            <button class="pe-cancel" onclick="closeProdEditDirect()">Cancelar</button>
+            <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()" style="display: inline-block;">🗑 Eliminar</button>
+            <button class="pe-ok" onclick="applyProductEdit()"><i class="fa-solid fa-check"></i> Aplicar</button>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL: IMAGEN GENÉRICA -->
 
+        <div class="img-panel active" id="iuPanelUrl">
+            <input type="text" id="imgUrlInput" placeholder="https://ejemplo.com/imagen.jpg">
+            <p class="iu-hint">URL completa o ruta relativa. La imagen cubrirá el área exacta.</p>
+        </div>
+        <div class="img-panel" id="iuPanelFile">
+            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="" style="display:none;">
+            <div class="img-upload-name" id="iuFileName" style="display:none;"></div>
+            <div class="img-drop-zone" id="iuDropZone">
+                <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                <p>Haz clic o arrastra una imagen aquí</p>
+                <p style="font-size:0.68rem;margin-top:0.3rem;">JPG, PNG, WebP, GIF — se guardará en <code>vibraimgs/</code></p>
+            </div>
+        </div>
+        <div class="iu-actions">
+            <button style="background:#eee;color:#333;" onclick="closeImgModalDirect()">Cancelar</button>
+            <button style="background:var(--cp);color:#fff;" onclick="applyImgUrl()">Aplicar</button>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL: HERO IMAGEN + FILTRO + BOTÓN -->
 
+        <div class="img-panel active" id="heroPanelUrl">
+            <input type="text" id="heroUrlInput" placeholder="https://ejemplo.com/imagen.jpg" oninput="updateHeroPreview()" style="width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;margin-bottom:0.3rem;">
+            <p class="iu-hint">URL completa o ruta relativa a la imagen del banner.</p>
+        </div>
+        <div class="img-panel" id="heroPanelFile">
+            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height:80px;">
+            <div class="img-upload-name" id="heroUploadName"></div>
+            <div class="img-drop-zone" style="margin-bottom:0.5rem;">
+                <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                <p>Haz clic o arrastra la imagen del banner</p>
+                <p style="font-size:0.68rem;margin-top:0.3rem;">Se guardará en <code>vibraimgs/</code></p>
+            </div>
+        </div>
+
+        <!-- FILTRO DE COLOR -->
+        <div class="hero-img-section">
+            <h5><i class="fa-solid fa-palette" style="margin-right:4px;"></i> Filtro de color</h5>
+            <div class="filter-row">
+                <label>Color:</label>
+                <input type="color" id="heroFilterColor" value="#000000" oninput="updateHeroPreview()">
+                <label>Opacidad:</label>
+                <input type="range" id="heroFilterOpacity" min="0" max="100" value="30" oninput="updateHeroPreview()">
+                <span id="heroOpacityVal">30%</span>
+            </div>
+            <div class="filter-presets">
+                <span style="font-size:0.72rem;color:#aaa;align-self:center;margin-right:2px;">Presets:</span>
+                <button class="fpreset" style="background:#000;" onclick="setHeroPreset('#000000',30)">Oscuro</button>
+                <button class="fpreset" style="background:#6e8174;" onclick="setHeroPreset('#6e8174',45)">Verde</button>
+                <button class="fpreset" style="background:#8b5e3c;" onclick="setHeroPreset('#8b5e3c',40)">Tierra</button>
+                <button class="fpreset" style="background:#3b5998;" onclick="setHeroPreset('#3b5998',40)">Azul</button>
+                <button class="fpreset" style="background:#7e22ce;" onclick="setHeroPreset('#7e22ce',35)">Morado</button>
+                <button class="fpreset" style="background:#be185d;" onclick="setHeroPreset('#be185d',35)">Rosa</button>
+                <button class="fpreset" style="background:transparent;color:#555;border:1px solid #ccc;" onclick="setHeroPreset('#000000',0)">Sin filtro</button>
+            </div>
+
+            <!-- BLEND MODES -->
+            <h5 style="margin-top:0.8rem;"><i class="fa-solid fa-shuffle" style="margin-right:4px;"></i> Modo de fusión (blend mode)</h5>
+            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.5rem;">Controla cómo el color de filtro interactúa con la imagen.</p>
+            <div class="blend-chips" id="blendChips">
+                <button class="bchip active" onclick="setBlendMode('normal',this)">Normal</button>
+                <button class="bchip" onclick="setBlendMode('multiply',this)">Multiply</button>
+                <button class="bchip" onclick="setBlendMode('screen',this)">Screen</button>
+                <button class="bchip" onclick="setBlendMode('overlay',this)">Overlay</button>
+                <button class="bchip" onclick="setBlendMode('darken',this)">Darken</button>
+                <button class="bchip" onclick="setBlendMode('lighten',this)">Lighten</button>
+                <button class="bchip" onclick="setBlendMode('color-dodge',this)">Color Dodge</button>
+                <button class="bchip" onclick="setBlendMode('color-burn',this)">Color Burn</button>
+                <button class="bchip" onclick="setBlendMode('hard-light',this)">Hard Light</button>
+                <button class="bchip" onclick="setBlendMode('soft-light',this)">Soft Light</button>
+                <button class="bchip" onclick="setBlendMode('difference',this)">Difference</button>
+                <button class="bchip" onclick="setBlendMode('exclusion',this)">Exclusion</button>
+                <button class="bchip" onclick="setBlendMode('hue',this)">Hue</button>
+                <button class="bchip" onclick="setBlendMode('saturation',this)">Saturation</button>
+                <button class="bchip" onclick="setBlendMode('color',this)">Color</button>
+                <button class="bchip" onclick="setBlendMode('luminosity',this)">Luminosity</button>
+            </div>
+
+            <!-- PREVIEW -->
+            <div class="hero-preview-bar" id="heroPreviewBar">
+                <div class="hero-preview-tint" id="heroPreviewTint"></div>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                    <span style="color:#fff;font-size:0.7rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,0.8);opacity:0.7;letter-spacing:0.05em;">VISTA PREVIA</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÓN CTA -->
+        <div class="hero-btn-section">
+            <h5><i class="fa-solid fa-toggle-on" style="margin-right:4px;"></i> Botón del banner</h5>
+            <div class="hero-btn-row">
+                <label>Texto:</label>
+                <input type="text" id="heroBtnText" value="Explorar Catálogo" oninput="updateHeroBtnPreview()">
+            </div>
+            <div class="hero-btn-row">
+                <label>Color fondo:</label>
+                <input type="color" id="heroBtnColor" value="#6e8174" oninput="updateHeroBtnPreview()">
+                <label>Color texto:</label>
+                <input type="color" id="heroBtnTextColor" value="#ffffff" oninput="updateHeroBtnPreview()">
+            </div>
+            <div style="text-align:center;padding:0.6rem 0 0.2rem;">
+                <span class="hero-btn-preview" id="heroBtnPreview">Explorar Catálogo</span>
+            </div>
+        </div>
+
+        <div class="iu-actions" style="margin-top:1.2rem;">
+            <button style="background:#eee;color:#333;" onclick="closeHeroImgModal(null)">Cancelar</button>
+            <button style="background:var(--cp);color:#fff;" onclick="applyHeroImg()">Aplicar todo</button>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL: CAMBIAR ÍCONO (emoji o imagen) -->
 
+        <div class="is-panel active" id="isPanelEmoji">
+            <input type="text" class="is-emoji-input" id="isEmojiInput" placeholder="🌱" maxlength="4">
+            <p style="font-size:0.72rem;color:#aaa;text-align:center;margin-top:0.3rem;">Pega o escribe un emoji</p>
+        </div>
+        <div class="is-panel" id="isPanelImg">
+            <input type="text" id="isImgInput" placeholder="https://... o ruta/icono.png" oninput="updateIsPreview()">
+            <p style="font-size:0.72rem;color:#aaa;margin-top:0.3rem;">PNG, SVG, WebP — se mostrará cuadrado ~64px</p>
+        </div>
+        <div class="is-panel" id="isPanelFile">
+            <div class="img-drop-zone" id="isDropZone" style="margin-top:0.3rem;">
+                <input type="file" id="isFileInput" accept="image/*" onchange="handleIsFile(this)">
+                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                <p>Haz clic o arrastra un ícono/imagen aquí</p>
+                <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
+            </div>
+            <div class="img-upload-name" id="isFileName" style="display:none;margin-top:0.3rem;"></div>
+        </div>
+        <div class="is-preview" id="isPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
+        <div class="is-actions">
+            <button style="background:#eee;color:#333;" onclick="closeIconSwapDirect()">Cancelar</button>
+            <button style="background:var(--cp);color:#fff;" onclick="applyIconSwap()">Aplicar</button>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL: ÍCONO DE LINK DE CONTACTO -->
 
+        <div class="ci-panel active" id="ciPanelEmoji">
+            <input type="text" class="ci-emoji-input" id="ciEmojiInput" placeholder="📍" oninput="updateCiPreview()">
+            <p style="font-size:0.72rem;color:#aaa;text-align:center;">Pega o escribe un emoji</p>
+        </div>
+        <div class="ci-panel" id="ciPanelFa">
+            <input type="text" class="ci-fa-input" id="ciFaInput" placeholder="fa-solid fa-location-dot" oninput="updateCiPreview();highlightFaIcon(this.value)">
+            <p class="ci-fa-hint">Ej: <code>fa-solid fa-phone</code> — busca o escribe cualquier clase FA</p>
+            <button type="button" class="ci-catalog-toggle" id="ciCatalogToggle" onclick="toggleFaCatalog()">
+                <i class="fa-solid fa-icons" id="ciCatalogToggleIcon"></i> <span id="ciCatalogToggleTxt">Mostrar catálogo de íconos</span>
+            </button>
+            <div class="ci-catalog-box" id="ciCatalogBox" style="display:none;">
+                <div class="ci-catalog-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass ci-search-icon"></i>
+                    <input type="text" id="ciFaSearchInput" class="ci-catalog-search" placeholder="Buscar ícono (ej: whatsapp, teléfono, vela...)" oninput="filterFaIcons(this.value)">
+                </div>
+                <div class="ci-catalog-categories" id="ciCatalogCategories">
+                    <button type="button" class="ci-cat-btn active" data-cat="all" onclick="filterFaCategory('all')">Todos</button>
+                    <button type="button" class="ci-cat-btn" data-cat="contacto" onclick="filterFaCategory('contacto')">Contacto</button>
+                    <button type="button" class="ci-cat-btn" data-cat="redes" onclick="filterFaCategory('redes')">Redes</button>
+                    <button type="button" class="ci-cat-btn" data-cat="tienda" onclick="filterFaCategory('tienda')">Tienda</button>
+                    <button type="button" class="ci-cat-btn" data-cat="velas" onclick="filterFaCategory('velas')">Velas/Aromas</button>
+                    <button type="button" class="ci-cat-btn" data-cat="interfaz" onclick="filterFaCategory('interfaz')">General</button>
+                </div>
+                <div class="ci-catalog-grid" id="ciCatalogGrid"></div>
+            </div>
+        </div>
+        <div class="ci-color-row">
+            <label>Color del ícono:</label>
+            <input type="color" id="ciColorInput" value="#6e8174" oninput="updateCiPreview()">
+            <button onclick="document.getElementById('ciColorInput').value='#6e8174';updateCiPreview()">Reset</button>
+        </div>
+        <div class="ci-preview" id="ciPreview"><span style="font-size:1.8rem;color:#6e8174">📌</span></div>
+        <div class="ci-actions">
+            <button style="background:#eee;color:#333;" onclick="closeCiModal(null)">Cancelar</button>
+            <button style="background:var(--cp);color:#fff;" onclick="applyCiIcon()">Aplicar</button>
+        </div>
+    </div>
+</div>
 
 <!-- MODAL: LOGO -->
 
+        <div class="lo-panel" id="loPanelText">
+            <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">Nombre de la marca</label>
+            <input type="text" id="loTextInput" placeholder="Vibra Candela">
+        </div>
+        <div class="lo-panel" id="loPanelImg">
+            <div class="img-tabs" style="margin-bottom:0.6rem;">
+                <button class="img-tab active" id="loTabUrl" onclick="switchLoSubTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+                <button class="img-tab" id="loTabFile" onclick="switchLoSubTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
+            </div>
+            <div class="img-panel active" id="loPanelUrl">
+                <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">URL del logo</label>
+                <input type="text" id="loImgInput" placeholder="https://... o logo.png" oninput="previewLo()">
+                <p class="lo-hint">PNG transparente o SVG recomendado. Altura: 44px.</p>
+            </div>
+            <div class="img-panel" id="loPanelFile">
+                <div class="img-drop-zone" id="loDropZone" style="margin-top:0.3rem;">
+                    <input type="file" id="loFileInput" accept="image/*" onchange="handleLoFile(this)">
+                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
+                    <p>Haz clic o arrastra el logo aqu��</p>
+                    <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
+                </div>
+                <div class="img-upload-name" id="loFileName" style="display:none;margin-top:0.3rem;"></div>
+            </div>
+            <div class="lo-preview" id="loPreview" style="margin-top:0.6rem;">
+                <img id="loPreviewImg" src="" alt="" style="height:36px;max-width:140px;object-fit:contain;display:none;">
+                <span id="loPreviewEmpty" style="color:#ccc;font-size:0.8rem;">Vista previa…</span>
+            </div>
+        </div>
+        <div class="lo-actions">
+            <button style="background:#eee;color:#333;" onclick="closeLogoModalDirect()">Cancelar</button>
+            <button style="background:#fee2e2;color:#b91c1c;" onclick="resetLogo()">Restablecer</button>
+            <button style="background:var(--cp);color:#fff;" onclick="applyLogo()">Aplicar</button>
+        </div>
+    </div>
+</div>
 
 <!-- =========================================================
      PÁGINA: ACERCA DE
      ========================================================= -->
 <div id="page-acerca" class="page">
     <section>
-        <h2>Nuestra Historiazxczxczxc</h2>
+        <h2>Nuestra Historia</h2>
         <div class="about-wrapper">
             <div class="about-bio" id="aboutBio">
                 <h3>Hola, soy la creadoraxczxczx</h3>
                 <div class="bio-p">
-                    <p>Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.zxczxczxc</p>
+                    <p>Este proyecto nació de una búsqueda personal por transformar mi hogar en un santuario de paz sin comprometer mi salud. Al descubrir que las velas de parafina liberaban toxinas al quemarse, decidí investigar alternativas conscientes.</p>
                     
                 </div>
                 <div class="bio-p">
-                    <p>Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.zxczxczxc</p>
+                    <p>Vibra Candela fusiona diseño minimalista, botánica y respeto al medio ambiente. Cada pieza se diseña, mezcla y vierte a mano, cuidando la procedencia de los insumos y asegurando un producto ético.</p>
                     
                 </div>
                 
             </div>
-            <div class="about-img " id="about-img"  style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
+            <div class="about-img " id="about-img" style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
         </div>
     </section>
 </div>
@@ -854,28 +1379,28 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
      ========================================================= -->
 <div id="page-contacto" class="page">
     <div class="contact-page">
-        <h2>Cuéntanos tus Ideaszxczxczxc</h2>
+        <h2>Cuéntanos tus Ideas</h2>
         <div class="contact-wrapper">
             <div class="contact-info-panel">
                 <h3>Información de Contacto</h3>
-                <p class="contact-info-intro">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!zxczxc</p>
+                <p class="contact-info-intro">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!</p>
                 <div id="infoLinksContainer">
                     <div class="info-link">
-                        <span class="info-link-icon"  >📍</span>
-                        <span class="info-link-text">Callao, Perúzxczxc</span>
+                        <span class="info-link-icon">📍</span>
+                        <span class="info-link-text">Callao, Perú</span>
                         
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon"  >💬</span>
-                        <span class="info-link-text">WhatsApp: +51 999 999 999zxczxc</span>
+                        <span class="info-link-icon">💬</span>
+                        <span class="info-link-text">WhatsApp: +51 930 246 770</span>
                         
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon"  >✉️</span>
-                        <span class="info-link-text">hola@aromanatural.comzxczxc</span>
+                        <span class="info-link-icon">✉️</span>
+                        <span class="info-link-text">contacto@vibracandela.com</span>
                         
                     </div>
-                <div class="info-link"><span class="info-link-icon"  >📌</span><span class="info-link-text">Nuevo ítezxczxczxcm — edita este texto</span></div></div>
+                </div>
                 
             </div>
             <div class="contact-form-panel">
@@ -910,76 +1435,75 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 <!-- MODAL: GUARDAR -->
 
+        <div class="gh-accordion" id="ghConfigAccordion">
+            <button type="button" class="gh-accordion-toggle" onclick="toggleGhConfigAccordion()">
+                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
+                <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
+            </button>
+            <div class="gh-accordion-body" id="ghAccordionBody">
+                <div class="gh-group">
+                    <label>Repositorio <span style="color:#aaa;font-weight:400;">(usuario/nombre-repo)</span></label>
+                    <input type="text" id="ghRepo" placeholder="usuario/mi-web">
+                </div>
+                <div class="gh-group" id="ghTokenGroup">
+                    <label>Token de acceso personal
+                        <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
+                    </label>
+                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
+                        <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
+                        <div class="gh-btn-group">
+                            <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
+                            <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
+                        </div>
+                    </div>
+                    <div id="ghTokenInputBox">
+                        <input type="password" id="ghToken" placeholder="github_pat_...">
+                        <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read &amp; Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
+                    </div>
+                </div>
+                <div class="gh-group" style="margin-bottom:0;">
+                    <label>Rama</label>
+                    <input type="text" id="ghBranch" value="main" placeholder="main">
+                </div>
+            </div>
+        </div>
 
+        <label style="font-size:0.78rem;font-weight:700;color:#555;display:block;margin-bottom:0.5rem;">¿Qué quieres guardar?</label>
+        <div class="gh-mode-group">
+            <button class="gh-mode-btn active" id="ghModeEditor" onclick="selectGhMode('editor')">editor</button>
+            <button class="gh-mode-btn" id="ghModePublish" onclick="selectGhMode('publish')">web</button>
+        </div>
 
+        <div class="gh-pass-group">
+            <div class="gh-group" style="margin-bottom:0;">
+                <label id="ghPassLabel"><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización</label>
+                <input type="password" id="ghPass" placeholder="••••••••" oninput="checkAutoUnlock()">
+            </div>
+        </div>
 
+        <div class="gh-log" id="ghLog"></div>
+
+        <div class="gh-actions">
+            <button class="gh-cancel" onclick="closeGhModal(null)">Cancelar</button>
+            <button class="gh-submit" onclick="runGhPublish()">Guardar</button>
+        </div>
+    </div>
+</div>
 <script>
-// ============================================================
-// CONFIGURACIÓN PÚBLICA
-// ============================================================
+let products = [{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","soldOut":false,"img":"","imgData":"","variants":[{"name":"10ml","price":"S/. 30.00","img":"vibraimgs/faq.jpg","imgData":""},{"name":"20ml","price":"S/. 20.00","img":"vibraimgs/tips3.png","imgData":""}]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","soldOut":false,"img":"vibraimgs/tips1.png","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","soldOut":false,"img":"","imgData":"","variants":[]}];
 const WA_NUMBER = "51930246770";
-let products = [
-    {
-        "id": 1,
-        "name": "Vela Lavanda Francesaasdad",
-        "cat": "100% Soyaasdasdas",
-        "price": "",
-        "shortDesc": "Calma el estrés cotidiano con notas florales suaves.asdasd",
-        "longDesc": "Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas",
-        "img": "",
-        "variants": [
-            {
-                "name": "10ml",
-                "price": "S/. 30.00",
-                "img": "vibraimgs/faq.jpg"
-            },
-            {
-                "name": "20ml",
-                "price": "S/. 20.00",
-                "img": "vibraimgs/tips3.png"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Difusor Vainilla Dulceasdasdas",
-        "cat": "Ambientalasdasdad",
-        "price": "S/. 99.00",
-        "shortDesc": "Fragancia reconfortante de larga duración.asdasdasd",
-        "longDesc": "Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd",
-        "img": "vibraimgs/tips1.png",
-        "variants": []
-    },
-    {
-        "id": 3,
-        "name": "Vela Bosque de Pino",
-        "cat": "100% Soya",
-        "price": "S/. 45.00",
-        "shortDesc": "Notas frescas y maderosas que te transportan a la naturaleza.",
-        "longDesc": "Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.",
-        "img": "",
-        "variants": []
-    }
-];
 
-// ============================================================
-// NAVEGACIÓN
-// ============================================================
 function navigateTo(p){
     document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
     document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
     var pg = document.getElementById('page-' + p); if(pg) pg.classList.add('active');
     var lk = document.getElementById('nav-' + p); if(lk) lk.classList.add('active');
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 }
 
-// ============================================================
-// CATÁLOGO DE PRODUCTOS (MODO PÚBLICO)
-// ============================================================
 function getProductImg(p){
     if(p.variants && p.variants.length > 0){
-        const v1 = p.variants[0];
-        return v1.img || p.img || '';
+        return p.variants[0].img || p.img || '';
     }
     return p.img || '';
 }
@@ -1013,62 +1537,142 @@ function getProductPriceLabel(p){
     return formatPrice(p.price) || '';
 }
 
-function esc(s){ return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function escA(s){ return (s || '').replace(/'/g,"\'").replace(/"/g,'&quot;'); }
+function esc(s){return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escA(s){return (s || '').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
 
-function renderProducts(){
-    const g = document.getElementById('catalogGrid');
-    if(!g) return;
-    g.innerHTML = '';
+let currentCatalogCategory = 'all';
+let currentCatalogQuery = '';
+
+function renderCategoryPills() {
+    const container = document.getElementById('catalogCategoryPills');
+    if (!container) return;
+    const cats = ['all'];
     products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'seller-card';
-        card.id = 'product-card-' + p.id;
-        card.dataset.productId = p.id;
-        card.style.cursor = 'pointer';
-        card.onclick = () => openProductModal(p.id);
-        const img = getProductImg(p);
-        card.innerHTML = '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;"></div>'
-            + '<div class="seller-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.shortDesc) + '</p>'
-            + '<div class="seller-meta"><span class="price">' + esc(getProductPriceLabel(p)) + '</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
-        g.appendChild(card);
+        const c = (p.cat || '').trim();
+        if (c && !cats.includes(c)) cats.push(c);
+    });
+    container.innerHTML = '';
+    cats.forEach(c => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cat-pill' + (currentCatalogCategory === c ? ' active' : '');
+        btn.textContent = c === 'all' ? 'Todos' : c;
+        btn.onclick = () => filterByCategory(c);
+        container.appendChild(btn);
     });
 }
 
-// ============================================================
-// MODAL DE PRODUCTO Y SELECCIÓN DE VARIANTES
-// ============================================================
+function filterByCategory(cat) {
+    currentCatalogCategory = cat;
+    renderCategoryPills();
+    renderProducts();
+}
+
+function handleCatalogSearch(val) {
+    currentCatalogQuery = (val || '').toLowerCase().trim();
+    const clearBtn = document.getElementById('catalogSearchClear');
+    if (clearBtn) clearBtn.style.display = currentCatalogQuery ? 'flex' : 'none';
+    renderProducts();
+}
+
+function clearCatalogSearch() {
+    const input = document.getElementById('catalogSearchInput');
+    if (input) input.value = '';
+    handleCatalogSearch('');
+}
+
+function resetCatalogFilters() {
+    currentCatalogCategory = 'all';
+    clearCatalogSearch();
+}
+
+function renderProducts(){
+    renderCategoryPills();
+    const g = document.getElementById('catalogGrid');
+    const emptyMsg = document.getElementById('catalogEmptyMsg');
+    if(!g) return;
+    g.innerHTML = '';
+
+    let filtered = products.filter(p => {
+        if (currentCatalogCategory !== 'all' && (p.cat || '').trim().toLowerCase() !== currentCatalogCategory.toLowerCase()) {
+            return false;
+        }
+        if (currentCatalogQuery) {
+            const hay = ((p.name || '') + ' ' + (p.cat || '') + ' ' + (p.shortDesc || '') + ' ' + (p.longDesc || '')).toLowerCase();
+            if (!hay.includes(currentCatalogQuery)) return false;
+        }
+        return true;
+    });
+
+    filtered.sort((a, b) => {
+        const aSold = a.soldOut ? 1 : 0;
+        const bSold = b.soldOut ? 1 : 0;
+        return aSold - bSold;
+    });
+
+    if (filtered.length === 0) {
+        if (emptyMsg) emptyMsg.style.display = 'block';
+    } else {
+        if (emptyMsg) emptyMsg.style.display = 'none';
+        filtered.forEach(p => {
+            const card = document.createElement('div');
+            const isSold = !!p.soldOut;
+            card.className = 'seller-card' + (isSold ? ' is-sold-out' : '');
+            card.id = 'product-card-' + p.id;
+            card.dataset.productId = p.id;
+            card.style.cursor = 'pointer';
+            card.onclick = () => openProductModal(p.id);
+            const img = getProductImg(p);
+            card.innerHTML = (isSold ? '<span class="badge-sold-out">Agotado</span>' : '')
+                + '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;"></div>'
+                + '<div class="seller-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.shortDesc) + '</p>'
+                + '<div class="seller-meta"><span class="price">' + esc(getProductPriceLabel(p)) + '</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
+            g.appendChild(card);
+        });
+    }
+}
+
 function openProductModal(id){
     const p = products.find(x => x.id === id); if(!p) return;
+    const isSold = !!p.soldOut;
     document.getElementById('modal-product-title').innerText = p.name;
     document.getElementById('modal-product-desc').innerText = p.longDesc;
-    document.getElementById('modal-whatsapp-link').dataset.productId = id;
+    const waLink = document.getElementById('modal-whatsapp-link');
+    waLink.dataset.productId = id;
 
-    const hasVariants = p.variants && p.variants.length > 0;
-    const varSelector = document.getElementById('modal-variant-selector');
-    const chipsEl = document.getElementById('modal-variant-chips');
-    const metaEl = document.getElementById('modal-product-meta');
-    const imgEl = document.getElementById('modal-product-img');
+    if (isSold) {
+        waLink.className = 'btn btn-wa btn-wa-soldout';
+        waLink.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Consultar reposición por WhatsApp';
+    } else {
+        waLink.className = 'btn btn-wa';
+        waLink.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp';
+    }
 
-    if(hasVariants){
-        varSelector.style.display = 'block';
-        chipsEl.innerHTML = '';
+    const hasV = p.variants && p.variants.length > 0;
+    const vs = document.getElementById('modal-variant-selector');
+    const ce = document.getElementById('modal-variant-chips');
+    const me = document.getElementById('modal-product-meta');
+    const ie = document.getElementById('modal-product-img');
+
+    if(hasV){
+        vs.style.display = 'block';
+        ce.innerHTML = '';
         p.variants.forEach((v, i) => {
-            const chip = document.createElement('button');
-            chip.className = 'vchip' + (i === 0 ? ' active' : '');
-            chip.textContent = v.name;
-            chip.onclick = () => selectVariant(p, i);
-            chipsEl.appendChild(chip);
+            const b = document.createElement('button');
+            b.className = 'vchip' + (i === 0 ? ' active' : '');
+            b.textContent = v.name;
+            b.onclick = () => selectVariant(p, i);
+            ce.appendChild(b);
         });
         selectVariant(p, 0);
     } else {
-        varSelector.style.display = 'none';
-        chipsEl.innerHTML = '';
-        metaEl.innerText = p.cat + ' | ' + formatPrice(p.price);
-        const baseImg = p.img || '';
-        imgEl.style.backgroundImage = baseImg ? "url('" + baseImg + "')" : 'none';
-        document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: p.price, variant: '', img: p.img || '' });
+        vs.style.display = 'none';
+        ce.innerHTML = '';
+        me.innerHTML = esc(p.cat) + ' | ' + esc(formatPrice(p.price)) + (isSold ? ' <span class="modal-sold-out-badge">Agotado</span>' : '');
+        const bi = p.img || '';
+        ie.style.backgroundImage = bi ? "url('" + bi + "')" : 'none';
+        waLink.dataset.activeVariant = '';
+        waLink.dataset.productInfo = JSON.stringify({name: p.name, cat: p.cat, price: formatPrice(p.price), variant: '', img: bi, soldOut: isSold});
     }
     document.getElementById('product-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1076,12 +1680,14 @@ function openProductModal(id){
 
 function selectVariant(p, idx){
     const v = p.variants[idx];
-    document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + formatPrice(v.price);
+    const isSold = !!p.soldOut;
+    document.getElementById('modal-product-meta').innerHTML = esc(p.cat) + ' | ' + esc(formatPrice(v.price)) + (isSold ? ' <span class="modal-sold-out-badge">Agotado</span>' : '');
     const img = v.img || (p.variants[0] && p.variants[0].img) || p.img || '';
     document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
     document.querySelectorAll('#modal-variant-chips .vchip').forEach((c, i) => c.classList.toggle('active', i === idx));
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({ name: v.name, price: v.price, img: v.img || img });
-    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: v.price, variant: v.name, img: v.img || img });
+    const waLink = document.getElementById('modal-whatsapp-link');
+    waLink.dataset.activeVariant = JSON.stringify({name: v.name, price: formatPrice(v.price), img: img});
+    waLink.dataset.productInfo = JSON.stringify({name: p.name, cat: p.cat, price: formatPrice(v.price), variant: v.name, img: img, soldOut: isSold});
 }
 
 function closeProductModal(e){
@@ -1093,145 +1699,131 @@ function closeProductModal(e){
 }
 window.addEventListener('keydown', function(e){ if(e.key === 'Escape' || e.key === 'Esc') closeProductModal(null); });
 
-function openProductModal_s(title, cat, price, desc, img){
-    document.getElementById('modal-product-title').innerText = title;
-    document.getElementById('modal-product-desc').innerText = desc;
-    document.getElementById('modal-product-meta').innerText = cat + ' | ' + price;
-    const sel = document.getElementById('modal-variant-selector'); if(sel) sel.style.display = 'none';
-    const chips = document.getElementById('modal-variant-chips'); if(chips) chips.innerHTML = '';
-    const imgEl = document.getElementById('modal-product-img'); if(imgEl) imgEl.style.backgroundImage = img ? "url('" + img + "')" : 'none';
-    document.getElementById('modal-whatsapp-link').dataset.productId = '';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: price, variant: '', img: img });
-    document.getElementById('product-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function openProductModal_v(title, cat, desc, variantsJson, baseImg){
-    var variants = JSON.parse(variantsJson || '[]');
-    document.getElementById('modal-product-title').innerText = title;
-    document.getElementById('modal-product-desc').innerText = desc;
-    var sel = document.getElementById('modal-variant-selector');
-    var chips = document.getElementById('modal-variant-chips');
-    sel.style.display = variants.length ? 'block' : 'none';
-    chips.innerHTML = '';
-    document.getElementById('modal-whatsapp-link').dataset.productId = '';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-    variants.forEach(function(v, i){
-        var ch = document.createElement('button');
-        ch.className = 'vchip' + (i === 0 ? ' active' : '');
-        ch.textContent = v.name;
-        ch.onclick = function(){
-            document.querySelectorAll('#modal-variant-chips .vchip').forEach(function(x){ x.classList.remove('active'); });
-            ch.classList.add('active');
-            document.getElementById('modal-product-meta').innerText = cat + ' | ' + v.price;
-            var img = v.img || variants[0].img || baseImg || '';
-            document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
-            document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v.price, variant: v.name, img: img });
-        };
-        chips.appendChild(ch);
-    });
-    if(variants.length){
-        var v0 = variants[0];
-        document.getElementById('modal-product-meta').innerText = cat + ' | ' + v0.price;
-        var img0 = v0.img || baseImg || '';
-        document.getElementById('modal-product-img').style.backgroundImage = img0 ? "url('" + img0 + "')" : 'none';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v0.price, variant: v0.name, img: img0 });
-    }
-    document.getElementById('product-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-// Convertir rutas relativas a URLs absolutas públicas para WhatsApp
-function toAbsoluteUrl(url){
-    if(!url || url.startsWith('data:')) return '';
-    if(url.startsWith('http://') || url.startsWith('https://')) return url;
-    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null')
-        ? 'https://egeostyle.github.io/vctest/'
-        : window.location.href;
-    try {
-        return new URL(url, base).href;
-    } catch(_) {
-        return 'https://egeostyle.github.io/vctest/' + url.replace(/^\.?\//, '');
-    }
-}
-
-// ============================================================
-// SOLICITAR POR WHATSAPP
-// ============================================================
 function sendWhatsApp(e){
     e.preventDefault();
     const btn = document.getElementById('modal-whatsapp-link');
     const id = parseInt(btn.dataset.productId);
-
-    let prodName = '';
-    let prodCat = '';
-    let prodPrice = '';
-    let prodVariant = '';
-    let prodImg = '';
-
+    let n='', c='', p='', v='', img='', isSold=false;
     if(btn.dataset.productInfo){
-        try {
+        try{
             const pi = JSON.parse(btn.dataset.productInfo);
-            prodName = pi.name || '';
-            prodCat = pi.cat || '';
-            prodPrice = pi.price || '';
-            prodVariant = pi.variant || '';
-            prodImg = pi.img || '';
-        } catch(_) {}
+            n = pi.name || '';
+            c = pi.cat || '';
+            p = pi.price || '';
+            v = pi.variant || '';
+            img = pi.img || '';
+            isSold = !!pi.soldOut;
+        }catch(_){}
     }
-
     if(typeof products !== 'undefined' && Array.isArray(products) && !isNaN(id) && id){
-        const p = products.find(x => x.id === id);
-        if(p){
-            prodName = p.name || prodName;
-            prodCat = p.cat || prodCat;
-            prodPrice = p.price || prodPrice;
-            prodImg = p.img || prodImg;
-
-            const activeVar = btn.dataset.activeVariant;
-            if(activeVar){
-                try {
-                    const av = JSON.parse(activeVar);
-                    if(av && av.name){
-                        prodVariant = av.name;
-                        prodPrice = av.price || prodPrice;
-                        if(av.img) prodImg = av.img;
+        const prod = products.find(x => x.id === id);
+        if(prod){
+            n = prod.name || n;
+            c = prod.cat || c;
+            p = prod.price || p;
+            img = prod.img || img;
+            isSold = !!prod.soldOut;
+            const av = btn.dataset.activeVariant;
+            if(av){
+                try{
+                    const a = JSON.parse(av);
+                    if(a && a.name){
+                        v = a.name;
+                        p = a.price || p;
+                        if(a.img) img = a.img;
                     }
-                } catch(_) {}
+                }catch(_){}
             }
         }
     }
-
-    let textMsg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
-    textMsg += '• *Producto:* ' + prodName + '\n';
-    if(prodCat) textMsg += '• *Categoría:* ' + prodCat + '\n';
-    if(prodVariant) textMsg += '• *Variante:* ' + prodVariant + '\n';
-    if(prodPrice) textMsg += '• *Precio:* ' + prodPrice + '\n';
-
-    function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/[^\w-]+/g,'').replace(/^-+|-+$/g,'');}
-    let prodSlug = _slug(prodName) || ('prod-' + id);
+    function _slug(s){return (s || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().replace(/[\s_-]+/g, '-').replace(/[^\w-]+/g, '').replace(/^-+|-+$/g, '');}
+    let prodSlug = _slug(n) || ('prod-' + id);
     let pageSlug = prodSlug;
-    if(prodVariant){
-        pageSlug = prodSlug + '-' + _slug(prodVariant);
+    if(v){
+        pageSlug = prodSlug + '-' + _slug(v);
     }
     let prodUrl = 'https://egeostyle.github.io/vctest/p/' + pageSlug;
-    textMsg += '• *Enlace:* ' + prodUrl + '\n';
 
-    textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
-
-    const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(textMsg);
-    window.open(waUrl, '_blank');
+    let msg = '';
+    if(isSold) {
+        msg = '¡Hola *Vibra Candela*! Vi que este producto se encuentra agotado en su tienda:\n\n';
+        msg += '• *Producto:* ' + n + '\n';
+        if(c) msg += '• *Categoría:* ' + c + '\n';
+        if(v) msg += '• *Variante:* ' + v + '\n';
+        msg += '• *Enlace:* ' + prodUrl + '\n\n';
+        msg += '¿Tienen una fecha estimada de reposición? ¡Muchas gracias!';
+    } else {
+        msg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
+        msg += '• *Producto:* ' + n + '\n';
+        if(c) msg += '• *Categoría:* ' + c + '\n';
+        if(v) msg += '• *Variante:* ' + v + '\n';
+        if(p) msg += '• *Precio:* ' + formatPrice(p) + '\n';
+        msg += '• *Enlace:* ' + prodUrl + '\n\n';
+        msg += '¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
+    }
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
-// ============================================================
-// INICIALIZACIÓN Y DEEP LINKING (?prod=ID o ?prod=Nombre o #prod-ID)
-// ============================================================
+// WEB3FORMS AJAX CON FEEDBACK VISUAL
+(function initContactForm(){
+    const form = document.getElementById('form');
+    if(!form) return;
+    const submitBtn = document.getElementById('formSubmitBtn') || form.querySelector('button[type="submit"]');
+    let result = document.getElementById('result');
+    if(!result){
+        result = document.createElement('div');
+        result.id = 'result';
+        form.appendChild(result);
+    }
+    
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Enviar Mensaje';
+        if(submitBtn){
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+        }
+        result.style.display = 'block';
+        result.innerHTML = '<p style="color:#666;font-size:0.88rem;margin-top:0.8rem;text-align:center;"><i class="fa-solid fa-spinner fa-spin"></i> Enviando tu mensaje...</p>';
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let res = await response.json();
+            if (response.status === 200) {
+                result.innerHTML = '<div class="form-alert success"><i class="fa-solid fa-circle-check" style="font-size:1.3rem;"></i><span><strong>¡Mensaje enviado con éxito!</strong> Nos comunicaremos contigo muy pronto.</span></div>';
+                form.reset();
+            } else {
+                result.innerHTML = '<div class="form-alert error"><i class="fa-solid fa-circle-exclamation" style="font-size:1.2rem;"></i><span>' + (res.message || 'Error al enviar mensaje. Por favor intenta de nuevo.') + '</span></div>';
+            }
+        })
+        .catch(error => {
+            result.innerHTML = '<div class="form-alert error"><i class="fa-solid fa-triangle-exclamation" style="font-size:1.2rem;"></i><span>No se pudo enviar el mensaje. Puedes escribirnos directamente a nuestro WhatsApp: <a href="https://wa.me/51930246770" target="_blank" style="color:inherit;font-weight:700;text-decoration:underline;">+51 930 246 770</a></span></div>';
+        })
+        .finally(() => {
+            if(submitBtn){
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            }
+        });
+    });
+})();
+
 renderProducts();
 navigateTo('inicio');
 
 (function checkUrlDeepLink(){
-    try {
+    try{
         var params = new URLSearchParams(window.location.search);
         var pid = params.get('prod') || params.get('p');
         if(!pid && window.location.hash){
@@ -1274,4 +1866,5 @@ navigateTo('inicio');
     } catch(_) {}
 })();
 </script>
-</body></html>
+</body>
+</html>
