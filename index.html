@@ -2,7 +2,7 @@
 <html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibra Candela | Catálogo Artesanal</title>
+<title>Vibra Candela | Editor</title>
 <meta property="og:title" content="Vibra Candela | Velas y Difusores Artesanales">
 <meta property="og:description" content="Catálogo artesanal de velas de cera de soja, difusores aromáticos y home spray hechos a mano.">
 <meta property="og:type" content="website">
@@ -18,25 +18,48 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .logo-area{display:flex;align-items:center;gap:0.6rem;cursor:pointer;}
 .logo-img{height:44px;width:auto;max-width:150px;object-fit:contain;display:none;}
 .logo-text{font-size:1.4rem;font-weight:bold;color:var(--cp);}
-
-
+.logo-edit-btn{background:transparent;border:1px dashed var(--ca);color:#aaa;border-radius:4px;padding:0.12rem 0.45rem;font-size:0.68rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.logo-edit-btn:hover{border-color:var(--cp);color:var(--cp);}
 .nav{display:flex;flex-wrap:wrap;gap:0.2rem;}
 .nav a{text-decoration:none;color:var(--cd);margin-left:1.2rem;font-weight:500;transition:color 0.3s;cursor:pointer;font-size:0.95rem;}
 .nav a:hover,.nav a.active{color:var(--cp);}
 
+/* EDITOR TOOLBAR */
+.editor-toolbar{position:fixed;top:70px;width:100%;background:#2d2d2d;color:#fff;padding:0.5rem 8%;display:flex;align-items:center;gap:0.65rem;z-index:999;font-size:0.82rem;box-shadow:0 2px 8px rgba(0,0,0,0.25);flex-wrap:wrap;}
+.tlabel{color:#aaa;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
+.tbtn{background:#444;border:1px solid #555;color:#fff;padding:0.3rem 0.8rem;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:background 0.2s;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;}
+.tbtn:hover{background:#555;}
+.tbtn.gh-save-btn{background:#24292e;border-color:#444;font-weight:600;}
+.tbtn.gh-save-btn:hover{background:#383f47;}
+.gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
+.gh-accordion-toggle{width:100%;background:#f8fafc;border:none;padding:0.6rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#334155;text-align:left;transition:background 0.15s;}
+.gh-accordion-toggle:hover{background:#f1f5f9;}
+.gh-accordion-body{padding:0.85rem;border-top:1px solid #e2e8f0;background:#fff;}
+.save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
+
 /* PAGES */
-.page{display:none;margin-top:70px;flex:1;}
+.page{display:none;margin-top:116px;flex:1;}
 .page.active{display:block;}
 section{padding:3.5rem 8%;text-align:center;}
 h2{font-size:2.3rem;color:var(--cp);margin-bottom:3rem;position:relative;}
 h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);margin:0.4rem auto 0;}
 
+/* EDITABLE TEXT */
+[contenteditable="true"]{outline:none;border-radius:3px;transition:background 0.2s,box-shadow 0.2s;}
+[contenteditable="true"]:hover{background:rgba(110,129,116,0.08);box-shadow:0 0 0 2px rgba(110,129,116,0.3);cursor:text;}
+[contenteditable="true"]:focus{background:rgba(110,129,116,0.13);box-shadow:0 0 0 2px var(--cp);}
+
+/* IMAGE BOXES */
+.img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
+.img-editable::after{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='14' height='14' fill='white'%3E%3Cpath d='M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'/%3E%3C/svg%3E") '  Clic para cambiar imagen';font-family:var(--f);font-size:0.83rem;font-weight:600;text-transform:none;letter-spacing:normal;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);color:#fff;opacity:0;transition:opacity 0.22s;pointer-events:none;}
+.img-editable:hover::after{opacity:1;}
+
 /* ICON BOXES (beneficios/tips) */
 .icon-box{position:relative;display:flex;justify-content:center;margin-bottom:1rem;}
 .icon-img{width:72px;height:72px;object-fit:contain;display:none;}
 .icon-emoji{font-size:2.5rem;line-height:1;}
-
-.icon-box:hover 
+.icon-swap-btn{position:absolute;bottom:-6px;right:calc(50% - 42px);background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.12rem 0.4rem;font-size:0.65rem;cursor:pointer;opacity:0;transition:opacity 0.18s;white-space:nowrap;}
+.icon-box:hover .icon-swap-btn{opacity:1;}
 
 /* TIPS icon is smaller */
 .tips-section .icon-emoji{font-size:2rem;}
@@ -85,11 +108,11 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .about-bio{flex:1;}
 .about-bio h3{font-size:1.7rem;margin-bottom:1rem;color:var(--cp);}
 .about-bio .bio-p{margin-bottom:1.2rem;color:#555;position:relative;padding-right:2.2rem;}
-
-.about-bio .bio-p:hover 
+.para-controls{position:absolute;right:0;top:0;display:flex;gap:4px;opacity:0;transition:opacity 0.18s;}
+.about-bio .bio-p:hover .para-controls{opacity:1;}
 .para-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.4rem;font-size:0.65rem;cursor:pointer;white-space:nowrap;}
-
-
+.add-para-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.5rem;padding:0.4rem 0.9rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.8rem;transition:all 0.2s;}
+.add-para-btn:hover{border-color:var(--cp);color:var(--cp);}
 .about-img{flex:0 0 380px;width:380px;min-height:400px;align-self:stretch;border-radius:12px;box-shadow:10px 10px 0 var(--ca);background:#c5b8aa center/cover no-repeat;}
 
 /* CONTACT */
@@ -101,14 +124,14 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 .contact-info-intro{margin-bottom:1.5rem;color:#555;font-size:0.93rem;}
 .info-link{display:flex;align-items:center;gap:0.8rem;margin-bottom:1.2rem;position:relative;padding-right:2.2rem;}
 .info-link-icon{font-size:1.2rem;border-radius:4px;padding:0.1rem 0.2rem;}
-
-
+.editor-active .info-link-icon{cursor:pointer;transition:background 0.18s;}
+.editor-active .info-link-icon:hover{background:rgba(110,129,116,0.15);}
 .info-link-text{flex:1;}
-
-.info-link:hover 
+.info-link-actions{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;gap:3px;opacity:0;transition:opacity 0.18s;}
+.info-link:hover .info-link-actions{opacity:1;}
 .il-btn{background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:3px;padding:0.1rem 0.38rem;font-size:0.65rem;cursor:pointer;}
-
-
+.add-link-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.3rem;padding:0.35rem 0.8rem;background:transparent;border:1.5px dashed var(--ca);color:#888;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:all 0.2s;}
+.add-link-btn:hover{border-color:var(--cp);color:var(--cp);}
 .contact-form-panel{background:#fff;padding:2.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
 .form-group{margin-bottom:1.3rem;}
 .form-group label{display:block;margin-bottom:0.4rem;font-weight:500;font-size:0.88rem;}
@@ -152,12 +175,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 /* CARD WRAPPER */
 .seller-card-wrapper{position:relative;}
-
-
-
-
-
-
+.card-edt{position:absolute;top:8px;right:8px;background:rgba(30,30,30,0.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;border:1px solid rgba(255,255,255,0.22);border-radius:5px;padding:0.28rem 0.6rem;font-size:0.72rem;font-weight:600;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 6px rgba(0,0,0,0.3);transition:background 0.2s,transform 0.15s;}
+.card-edt:hover{background:rgba(0,0,0,0.95);transform:scale(1.04);}
+.card-edt:active{transform:scale(0.96);}
+.add-product-card{border:2px dashed var(--ca);border-radius:8px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;cursor:pointer;transition:border-color 0.2s,background 0.2s;color:#999;font-size:0.88rem;}
+.add-product-card:hover{border-color:var(--cp);background:rgba(110,129,116,0.05);color:var(--cp);}
+.add-product-card .ic{font-size:1.9rem;}
 
 /* IMAGE URL MODAL */
 .iu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;justify-content:center;align-items:center;z-index:4000;opacity:0;pointer-events:none;transition:opacity 0.18s;}
@@ -385,7 +408,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     .header{flex-direction:column;gap:0.6rem;padding:0.9rem 5%;}
     .nav a{margin:0 0.45rem;}
     .page{margin-top:160px;}
-    
+    .editor-toolbar{top:105px;}
     section{padding:3.5rem 5%;}
     .catalog-container{padding:3.5rem 5%;}
     .contact-page{padding:3.5rem 5%;}
@@ -541,14 +564,35 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     }
 }
 /* Para resoluciones menores o iguales a 900px */
-@media(max-width:900px){.page{margin-top:104px!important;}}
+@media (max-width: 900px) {
+    .page {
+        margin-top: 104px !important;
+    }
+}
 
 /* Para resoluciones mayores o iguales a 901px */
-@media(min-width:901px){.page{margin-top:70px!important;}}
+@media (min-width: 901px) {
+    .page {
+        margin-top: 80px !important;
+    }
+}
 </style>
-</head>
-<body>
+<style>
+        #editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
+        .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
+        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
+        {display:none!important;}
+        [contenteditable]{outline:none!important;box-shadow:none!important;}
+        [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
+        .img-editable::after{display:none!important;}
+        .img-editable{cursor:default!important;pointer-events:none!important;}
+        .info-link-icon{cursor:default!important;pointer-events:none!important;}
+        .page{margin-top:80px!important;}
+        @media(max-width:900px){.page{margin-top:104px!important;}}
+    </style></head>
+<body class="">
 
+<!-- EDITOR TOOLBAR -->
 
 
 <!-- HEADER -->
@@ -562,10 +606,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- Enlaces de texto -->
     <nav class="nav">
-        <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos">Productos</a>
-        <a onclick="navigateTo('acerca')" id="nav-acerca">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto">Contacto</a>
+        <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="active">Productos</a>
+        <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -585,20 +629,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: INICIO
      ========================================================= -->
-<main id="page-inicio" class="page active">
+<main id="page-inicio" class="page" style="margin-top: 70px;">
 
     <!-- HERO -->
-    <section class="hero" id="hero-bg">
+    <section class="hero" id="hero-bg" style="background-color: rgb(160, 176, 166);">
         <!-- Capa imagen (z-index:0) -->
-        <div class="hero-bg-img" id="heroBgImg"></div>
+        <div class="hero-bg-img" id="heroBgImg" style="background-image: none;"></div>
         <!-- Capa tinte + blend (z-index:1) — NO toca el texto ni el botón -->
-        <div class="hero-filter-layer" id="heroFilterLayer"></div>
+        <div class="hero-filter-layer" id="heroFilterLayer" style="background-color: rgba(0, 0, 0, 0.3); mix-blend-mode: normal;"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
             <h1 onclick="event.stopPropagation()">Ilumina tu sdasdasd de forma natural</h1>
             <p onclick="event.stopPropagation()">Velas artesanales de cera de soyasdasdasdaa y difusores ambientales para tu bienestar.</p>
-            <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
+            <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn" style="background: rgb(110, 129, 116); color: rgb(255, 255, 255);">Explorar Catálogo</button>
         </div>
+        <!-- Botón editor (z-index:10) -->
         
     </section>
 
@@ -641,7 +686,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <h2>Nuestros Favoritos de la Tempasdasdasdorada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card">
-                <div class="seller-img " id="bs1" ></div>
+                <div class="seller-img" id="bs1"></div>
                 <div class="seller-info">
                     <h3>Vela Lavanda Relajanteasdasdasd</h3>
                     <p>Infusionada con aceite esencial puro, ideal para meditaasdasdasdasdasdr o antes de dormir.</p>
@@ -649,7 +694,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 </div>
             </div>
             <div class="seller-card">
-                <div class="seller-img " id="bs2" ></div>
+                <div class="seller-img" id="bs2"></div>
                 <div class="seller-info">
                     <h3>Difusor Citrus Moodasdasdasd</h3>
                     <p>Notas vibrantes de mandarina y bergamota para activaasdasdasdasdasdr la energía de tu sala.</p>
@@ -712,7 +757,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <p style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.asdasd</p>
                 </div>
             </div>
-            <div class="faq-img " id="faq-img"  style="flex:1;min-width:260px;"></div>
+            <div class="faq-img" id="faq-img" style="flex:1;min-width:260px;"></div>
         </div>
     </section>
 
@@ -742,26 +787,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: PRODUCTOS
      ========================================================= -->
-<div id="page-productos" class="page">
+<div id="page-productos" class="page active" style="margin-top: 70px;">
     <div class="catalog-container">
         <h2 style="text-align:center;">Nuestro Catálogosadasdas</h2>
-        <div class="catalog-grid" id="catalogGrid">
-            <div class="seller-card" id="product-card-1" data-product-id="1" style="cursor:pointer;" onclick="openProductModal(1)">
-                <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
-                <div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p>
-                <div class="seller-meta"><span class="price">Desde s 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-            </div>
-            <div class="seller-card" id="product-card-2" data-product-id="2" style="cursor:pointer;" onclick="openProductModal(2)">
-                <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
-                <div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p>
-                <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-            </div>
-            <div class="seller-card" id="product-card-3" data-product-id="3" style="cursor:pointer;" onclick="openProductModal(3)">
-                <div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>
-                <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-                <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-            </div>
-        </div>
+        <div class="catalog-grid" id="catalogGrid" style="grid-template-columns: repeat(3, 1fr);"><div class="seller-card" id="product-card-1" data-product-id="1" onclick="openProductModal_v('Vela Lavanda Francesaasdad','100% Soyaasdasdas','Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas','[{&amp;quot;name&amp;quot;:&amp;quot;10ml&amp;quot;,&amp;quot;price&amp;quot;:&amp;quot;30s&amp;quot;,&amp;quot;img&amp;quot;:&amp;quot;vibraimgs/761278-800-auto.webp&amp;quot;},{&amp;quot;name&amp;quot;:&amp;quot;20ml&amp;quot;,&amp;quot;price&amp;quot;:&amp;quot;20s&amp;quot;,&amp;quot;img&amp;quot;:&amp;quot;vibraimgs/significado-velas-al-quemarse-scaled.webp&amp;quot;}]','')" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/761278-800-auto.webp');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Vela Lavanda Francesaasdad</h3><p>Calma el estrés cotidiano con notas florales suaves.asdasd</p><div class="seller-meta"><span class="price">Desde s 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" id="product-card-2" data-product-id="2" onclick="openProductModal_s('Difusor Vainilla Dulceasdasdas','Ambientalasdasdad','S/. 99.00','Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd','vibraimgs/tips1.png')" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Difusor Vainilla Dulceasdasdas</h3><p>Fragancia reconfortante de larga duración.asdasdasd</p><div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" id="product-card-3" data-product-id="3" onclick="openProductModal_s('Vela Bosque de Pino','100% Soya','S/. 45.00','Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.','')" style="cursor: pointer;"><div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div><div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p><div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div></div>
     </div>
 </div>
 
@@ -772,18 +801,18 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="modal-close" onclick="closeProductModal(null)">×</span>
         <div class="modal-flex">
-            <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
+            <div id="modal-product-img" class="modal-img" style="background-image: url(&quot;vibraimgs/tips3.png&quot;);"></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title">Difusor Vainilla Dulceasdasdas</h3>
-                    <div id="modal-product-meta" class="mprice">Ambientalasdasdad | S/. 99.00</div>
-                    <div class="variant-selector" id="modal-variant-selector" style="display: none;">
+                    <h3 id="modal-product-title">Vela Lavanda Francesaasdad</h3>
+                    <div id="modal-product-meta" class="mprice">100% Soyaasdasdas | 20s</div>
+                    <div class="variant-selector" id="modal-variant-selector" style="display: block;">
                         <label>Selecciona una variante:</label>
-                        <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
+                        <div class="variant-chips" id="modal-variant-chips"><button class="vchip">10ml</button><button class="vchip active">20ml</button></div>
                     </div>
-                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
+                    <p id="modal-product-desc">Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas</p>
                 </div>
-                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
+                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="1" data-active-variant="{&quot;name&quot;:&quot;20ml&quot;,&quot;price&quot;:&quot;20s&quot;,&quot;img&quot;:&quot;vibraimgs/tips3.png&quot;}" data-product-info="{&quot;name&quot;:&quot;Vela Lavanda Francesaasdad&quot;,&quot;cat&quot;:&quot;100% Soyaasdasdas&quot;,&quot;price&quot;:&quot;20s&quot;,&quot;variant&quot;:&quot;20ml&quot;,&quot;img&quot;:&quot;vibraimgs/tips3.png&quot;}"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
             </div>
         </div>
     </div>
@@ -810,7 +839,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: ACERCA DE
      ========================================================= -->
-<div id="page-acerca" class="page">
+<div id="page-acerca" class="page" style="margin-top: 70px;">
     <section>
         <h2>Nuestra Historiazxczxczxc</h2>
         <div class="about-wrapper">
@@ -826,7 +855,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 </div>
                 
             </div>
-            <div class="about-img " id="about-img"  style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
+            <div class="about-img" id="about-img" style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
         </div>
     </section>
 </div>
@@ -834,7 +863,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: CONTACTO
      ========================================================= -->
-<div id="page-contacto" class="page">
+<div id="page-contacto" class="page" style="margin-top: 70px;">
     <div class="contact-page">
         <h2>Cuéntanos tus Ideaszxczxczxc</h2>
         <div class="contact-wrapper">
@@ -843,21 +872,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <p class="contact-info-intro">¿Quieres ser distribuidor, necesitas recuerdos para un evento o tienes dudas? ¡Escríbenos!zxczxc</p>
                 <div id="infoLinksContainer">
                     <div class="info-link">
-                        <span class="info-link-icon"  >📍</span>
+                        <span class="info-link-icon">📍</span>
                         <span class="info-link-text">Callao, Perúzxczxc</span>
                         
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon"  >💬</span>
+                        <span class="info-link-icon">💬</span>
                         <span class="info-link-text">WhatsApp: +51 999 999 999zxczxc</span>
                         
                     </div>
                     <div class="info-link">
-                        <span class="info-link-icon"  >✉️</span>
+                        <span class="info-link-icon">✉️</span>
                         <span class="info-link-text">hola@aromanatural.comzxczxc</span>
                         
                     </div>
-                <div class="info-link"><span class="info-link-icon"  >📌</span><span class="info-link-text">Nuevo ítezxczxczxcm — edita este texto</span></div></div>
+                <div class="info-link"><span class="info-link-icon">📌</span><span class="info-link-text">Nuevo ítezxczxczxcm — edita este texto</span></div></div>
                 
             </div>
             <div class="contact-form-panel">
@@ -895,102 +924,27 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 
 
-<script>
-// ============================================================
-// CONFIGURACIÓN PÚBLICA
-// ============================================================
-const WA_NUMBER = "51930246770";
-let products = [
-    {
-        "id": 1,
-        "name": "Vela Lavanda Francesaasdad",
-        "cat": "100% Soyaasdasdas",
-        "price": "",
-        "shortDesc": "Calma el estrés cotidiano con notas florales suaves.asdasd",
-        "longDesc": "Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas",
-        "img": "",
-        "variants": [
-            {
-                "name": "10ml",
-                "price": "30s",
-                "img": "vibraimgs/faq.jpg"
-            },
-            {
-                "name": "20ml",
-                "price": "20s",
-                "img": "vibraimgs/tips3.png"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Difusor Vainilla Dulceasdasdas",
-        "cat": "Ambientalasdasdad",
-        "price": "S/. 99.00",
-        "shortDesc": "Fragancia reconfortante de larga duración.asdasdasd",
-        "longDesc": "Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd",
-        "img": "vibraimgs/tips1.png",
-        "variants": []
-    },
-    {
-        "id": 3,
-        "name": "Vela Bosque de Pino",
-        "cat": "100% Soya",
-        "price": "S/. 45.00",
-        "shortDesc": "Notas frescas y maderosas que te transportan a la naturaleza.",
-        "longDesc": "Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.",
-        "img": "",
-        "variants": []
-    }
-];
 
-// ============================================================
-// NAVEGACIÓN
-// ============================================================
+
+
+<script>
+const WA_NUMBER = "51930246770";
+let products = [{"id":1,"name":"Vela Lavanda Francesaasdad","cat":"100% Soyaasdasdas","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.asdasd","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.asdasdas","img":"","variants":[{"name":"10ml","price":"30s","img":"vibraimgs/761278-800-auto.webp"},{"name":"20ml","price":"20s","img":"vibraimgs/significado-velas-al-quemarse-scaled.webp"}]},{"id":2,"name":"Difusor Vainilla Dulceasdasdas","cat":"Ambientalasdasdad","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.asdasdasd","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd","img":"vibraimgs/tips1.png","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","img":"","variants":[]}];
 function navigateTo(p){
     document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
     document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
     var pg = document.getElementById('page-' + p); if(pg) pg.classList.add('active');
     var lk = document.getElementById('nav-' + p); if(lk) lk.classList.add('active');
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
 }
-
-// ============================================================
-// CATÁLOGO DE PRODUCTOS (MODO PÚBLICO)
-// ============================================================
-function getProductImg(p){
-    if(p.variants && p.variants.length > 0){
-        const v1 = p.variants[0];
-        return v1.img || p.img || '';
-    }
-    return p.img || '';
-}
-
-function getProductPriceLabel(p){
-    if(p.variants && p.variants.length > 0){
-        const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g, ''))).filter(x => !isNaN(x));
-        if(prices.length){
-            const min = Math.min(...prices);
-            const currency = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g, '').trim() || 'S/.';
-            return 'Desde ' + currency + ' ' + min.toFixed(2);
-        }
-    }
-    return p.price || '';
-}
-
-function esc(s){ return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function escA(s){ return (s || '').replace(/'/g,"\'").replace(/"/g,'&quot;'); }
-
+function getProductImg(p){if(p.variants && p.variants.length > 0){return p.variants[0].img || p.img || '';}return p.img || '';}
+function getProductPriceLabel(p){if(p.variants && p.variants.length > 0){const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g,''))).filter(x => !isNaN(x));if(prices.length){const min = Math.min(...prices);const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g,'').trim() || 'S/.';return 'Desde ' + cur + ' ' + min.toFixed(2);}}return p.price || '';}
+function esc(s){return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escA(s){return (s || '').replace(/'/g,"\'").replace(/"/g,'&quot;');}
 function renderProducts(){
-    const g = document.getElementById('catalogGrid');
-    if(!g) return;
-    g.innerHTML = '';
+    const g = document.getElementById('catalogGrid'); if(!g) return; g.innerHTML = '';
     products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'seller-card';
-        card.id = 'product-card-' + p.id;
-        card.dataset.productId = p.id;
-        card.style.cursor = 'pointer';
+        const card = document.createElement('div'); card.className = 'seller-card'; card.id = 'product-card-' + p.id; card.dataset.productId = p.id; card.style.cursor = 'pointer';
         card.onclick = () => openProductModal(p.id);
         const img = getProductImg(p);
         card.innerHTML = '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
@@ -999,204 +953,78 @@ function renderProducts(){
         g.appendChild(card);
     });
 }
-
-// ============================================================
-// MODAL DE PRODUCTO Y SELECCIÓN DE VARIANTES
-// ============================================================
 function openProductModal(id){
     const p = products.find(x => x.id === id); if(!p) return;
     document.getElementById('modal-product-title').innerText = p.name;
     document.getElementById('modal-product-desc').innerText = p.longDesc;
     document.getElementById('modal-whatsapp-link').dataset.productId = id;
-
-    const hasVariants = p.variants && p.variants.length > 0;
-    const varSelector = document.getElementById('modal-variant-selector');
-    const chipsEl = document.getElementById('modal-variant-chips');
-    const metaEl = document.getElementById('modal-product-meta');
-    const imgEl = document.getElementById('modal-product-img');
-
-    if(hasVariants){
-        varSelector.style.display = 'block';
-        chipsEl.innerHTML = '';
-        p.variants.forEach((v, i) => {
-            const chip = document.createElement('button');
-            chip.className = 'vchip' + (i === 0 ? ' active' : '');
-            chip.textContent = v.name;
-            chip.onclick = () => selectVariant(p, i);
-            chipsEl.appendChild(chip);
-        });
-        selectVariant(p, 0);
+    const hasV = p.variants && p.variants.length > 0;
+    const vs = document.getElementById('modal-variant-selector'); const ce = document.getElementById('modal-variant-chips');
+    const me = document.getElementById('modal-product-meta'); const ie = document.getElementById('modal-product-img');
+    if(hasV){
+        vs.style.display = 'block'; ce.innerHTML = '';
+        p.variants.forEach((v,i) => {const b = document.createElement('button'); b.className = 'vchip' + (i === 0 ? ' active' : ''); b.textContent = v.name; b.onclick = () => selectVariant(p,i); ce.appendChild(b);});
+        selectVariant(p,0);
     } else {
-        varSelector.style.display = 'none';
-        chipsEl.innerHTML = '';
-        metaEl.innerText = p.cat + ' | ' + p.price;
-        const baseImg = p.img || '';
-        imgEl.style.backgroundImage = baseImg ? "url('" + baseImg + "')" : 'none';
+        vs.style.display = 'none'; ce.innerHTML = ''; me.innerText = p.cat + ' | ' + p.price;
+        const bi = p.img || ''; ie.style.backgroundImage = bi ? "url('" + bi + "')" : 'none';
         document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: p.price, variant: '', img: p.img || '' });
+        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:p.price, variant:'', img:bi});
     }
     document.getElementById('product-modal').classList.add('open');
 }
-
-function selectVariant(p, idx){
-    const v = p.variants[idx];
-    document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + v.price;
+function selectVariant(p,idx){
+    const v = p.variants[idx]; document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + v.price;
     const img = v.img || (p.variants[0] && p.variants[0].img) || p.img || '';
     document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
-    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c, i) => c.classList.toggle('active', i === idx));
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({ name: v.name, price: v.price, img: v.img || img });
-    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: p.name, cat: p.cat, price: v.price, variant: v.name, img: v.img || img });
+    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i) => c.classList.toggle('active', i === idx));
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({name:v.name, price:v.price, img:img});
+    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:v.price, variant:v.name, img:img});
 }
-
-function closeProductModal(e){
-    if(!e || e.target === document.getElementById('product-modal')) document.getElementById('product-modal').classList.remove('open');
-}
-
-function openProductModal_s(title, cat, price, desc, img){
-    document.getElementById('modal-product-title').innerText = title;
-    document.getElementById('modal-product-desc').innerText = desc;
-    document.getElementById('modal-product-meta').innerText = cat + ' | ' + price;
-    const sel = document.getElementById('modal-variant-selector'); if(sel) sel.style.display = 'none';
-    const chips = document.getElementById('modal-variant-chips'); if(chips) chips.innerHTML = '';
-    const imgEl = document.getElementById('modal-product-img'); if(imgEl) imgEl.style.backgroundImage = img ? "url('" + img + "')" : 'none';
-    document.getElementById('modal-whatsapp-link').dataset.productId = '';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: price, variant: '', img: img });
-    document.getElementById('product-modal').classList.add('open');
-}
-
-function openProductModal_v(title, cat, desc, variantsJson, baseImg){
-    var variants = JSON.parse(variantsJson || '[]');
-    document.getElementById('modal-product-title').innerText = title;
-    document.getElementById('modal-product-desc').innerText = desc;
-    var sel = document.getElementById('modal-variant-selector');
-    var chips = document.getElementById('modal-variant-chips');
-    sel.style.display = variants.length ? 'block' : 'none';
-    chips.innerHTML = '';
-    document.getElementById('modal-whatsapp-link').dataset.productId = '';
-    document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
-    variants.forEach(function(v, i){
-        var ch = document.createElement('button');
-        ch.className = 'vchip' + (i === 0 ? ' active' : '');
-        ch.textContent = v.name;
-        ch.onclick = function(){
-            document.querySelectorAll('#modal-variant-chips .vchip').forEach(function(x){ x.classList.remove('active'); });
-            ch.classList.add('active');
-            document.getElementById('modal-product-meta').innerText = cat + ' | ' + v.price;
-            var img = v.img || variants[0].img || baseImg || '';
-            document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
-            document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v.price, variant: v.name, img: img });
-        };
-        chips.appendChild(ch);
-    });
-    if(variants.length){
-        var v0 = variants[0];
-        document.getElementById('modal-product-meta').innerText = cat + ' | ' + v0.price;
-        var img0 = v0.img || baseImg || '';
-        document.getElementById('modal-product-img').style.backgroundImage = img0 ? "url('" + img0 + "')" : 'none';
-        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({ name: title, cat: cat, price: v0.price, variant: v0.name, img: img0 });
-    }
-    document.getElementById('product-modal').classList.add('open');
-}
-
-// Convertir rutas relativas a URLs absolutas públicas para WhatsApp
+function closeProductModal(e){if(!e || e.target === document.getElementById('product-modal')) document.getElementById('product-modal').classList.remove('open');}
 function toAbsoluteUrl(url){
     if(!url || url.startsWith('data:')) return '';
     if(url.startsWith('http://') || url.startsWith('https://')) return url;
-    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null')
-        ? 'https://egeostyle.github.io/vctest/'
-        : window.location.href;
-    try {
-        return new URL(url, base).href;
-    } catch(_) {
-        return 'https://egeostyle.github.io/vctest/' + url.replace(/^\.?\//, '');
-    }
+    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null') ? 'https://egeostyle.github.io/vctest/' : window.location.href;
+    try{return new URL(url,base).href;}catch(_){return 'https://egeostyle.github.io/vctest/' + url.replace(/^\.?\//,'');}
 }
-
-// ============================================================
-// SOLICITAR POR WHATSAPP
-// ============================================================
 function sendWhatsApp(e){
     e.preventDefault();
     const btn = document.getElementById('modal-whatsapp-link');
     const id = parseInt(btn.dataset.productId);
-
-    let prodName = '';
-    let prodCat = '';
-    let prodPrice = '';
-    let prodVariant = '';
-    let prodImg = '';
-
-    if(btn.dataset.productInfo){
-        try {
-            const pi = JSON.parse(btn.dataset.productInfo);
-            prodName = pi.name || '';
-            prodCat = pi.cat || '';
-            prodPrice = pi.price || '';
-            prodVariant = pi.variant || '';
-            prodImg = pi.img || '';
-        } catch(_) {}
-    }
-
+    let n='', c='', p='', v='', img='';
+    if(btn.dataset.productInfo){try{const pi=JSON.parse(btn.dataset.productInfo); n=pi.name||''; c=pi.cat||''; p=pi.price||''; v=pi.variant||''; img=pi.img||'';}catch(_){}}
     if(typeof products !== 'undefined' && Array.isArray(products) && !isNaN(id) && id){
-        const p = products.find(x => x.id === id);
-        if(p){
-            prodName = p.name || prodName;
-            prodCat = p.cat || prodCat;
-            prodPrice = p.price || prodPrice;
-            prodImg = p.img || prodImg;
-
-            const activeVar = btn.dataset.activeVariant;
-            if(activeVar){
-                try {
-                    const av = JSON.parse(activeVar);
-                    if(av && av.name){
-                        prodVariant = av.name;
-                        prodPrice = av.price || prodPrice;
-                        if(av.img) prodImg = av.img;
-                    }
-                } catch(_) {}
-            }
+        const prod = products.find(x => x.id === id);
+        if(prod){ n = prod.name||n; c = prod.cat||c; p = prod.price||p; img = prod.img||img;
+            const av = btn.dataset.activeVariant; if(av){try{const a=JSON.parse(av); if(a && a.name){v=a.name; p=a.price||p; if(a.img) img=a.img;}}catch(_){}}
         }
     }
-
-    let textMsg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
-    textMsg += '• *Producto:* ' + prodName + '\n';
-    if(prodCat) textMsg += '• *Categoría:* ' + prodCat + '\n';
-    if(prodVariant) textMsg += '• *Variante:* ' + prodVariant + '\n';
-    if(prodPrice) textMsg += '• *Precio:* ' + prodPrice + '\n';
-
+    let msg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
+    msg += '• *Producto:* ' + n + '\n';
+    if(c) msg += '• *Categoría:* ' + c + '\n';
+    if(v) msg += '• *Variante:* ' + v + '\n';
+    if(p) msg += '• *Precio:* ' + p + '\n';
     function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/[^\w-]+/g,'').replace(/^-+|-+$/g,'');}
-    let prodSlug = _slug(prodName) || ('prod-' + id);
+    let prodSlug = _slug(n) || ('prod-' + id);
     let pageSlug = prodSlug;
-    if(prodVariant){
-        pageSlug = prodSlug + '-' + _slug(prodVariant);
+    if(v){
+        pageSlug = prodSlug + '-' + _slug(v);
     }
     let prodUrl = 'https://egeostyle.github.io/vctest/p/' + pageSlug;
-    textMsg += '• *Enlace:* ' + prodUrl + '\n';
-
-    textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
-
-    const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(textMsg);
-    window.open(waUrl, '_blank');
+    msg += '• *Enlace:* ' + prodUrl + '\n';
+    msg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
 }
-
-// ============================================================
-// INICIALIZACIÓN Y DEEP LINKING (?prod=ID o ?prod=Nombre o #prod-ID)
-// ============================================================
 renderProducts();
 navigateTo('inicio');
-
 (function checkUrlDeepLink(){
-    try {
+    try{
         var params = new URLSearchParams(window.location.search);
         var pid = params.get('prod') || params.get('p');
-        if(!pid && window.location.hash){
-            var m = window.location.hash.match(/#prod[=-]?([a-zA-Z0-9_À-ſ-]+)/);
-            if(m) pid = m[1];
-        }
+        if(!pid && window.location.hash){var m = window.location.hash.match(/#prod[=-]?([a-zA-Z0-9_-]+)/); if(m) pid = m[1];}
         if(pid){
-            function _slug(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[\s_-]+/g,'-').replace(/[^\w-]/g,'');}
+            function _slug(s){return (s||'').toLowerCase().replace(/[\s_-]+/g,'-').replace(/[^\w-]/g,'');}
             var targetSlug = _slug(pid);
             var numId = parseInt(pid);
             setTimeout(function(){
@@ -1219,7 +1047,6 @@ navigateTo('inicio');
                 if(card) card.click();
             }, 300);
         }
-    } catch(_) {}
+    }catch(_){}
 })();
-</script>
-</body></html>
+    </script></body></html>
