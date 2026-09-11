@@ -1535,12 +1535,13 @@ function sendWhatsApp(e){
     if(prodVariant)textMsg+='• *Variante:* '+prodVariant+'\n';
     if(prodPrice)textMsg+='• *Precio:* '+prodPrice+'\n';
 
-    function _slg(s){return (s||'').trim().replace(/[\s]+/g,'_').replace(/[^\w]/g,'');}
-    let prodSlug = prodName ? _slg(prodName) : (id || '');
-    let prodUrl = 'https://egeostyle.github.io/vctest/?prod=' + encodeURIComponent(prodSlug);
+    function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/[^\w-]+/g,'').replace(/^-+|-+$/g,'');}
+    let prodSlug = _slug(prodName) || ('prod-' + id);
+    let pageSlug = prodSlug;
     if(prodVariant){
-        prodUrl += '&var=' + encodeURIComponent(prodVariant);
+        pageSlug = prodSlug + '-' + _slug(prodVariant);
     }
+    let prodUrl = 'https://egeostyle.github.io/vctest/p/' + pageSlug;
     textMsg += '• *Enlace:* ' + prodUrl + '\n';
 
     textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
@@ -2960,6 +2961,132 @@ async function runGhPublish() {
             return dataUrl.split(',')[1];
         }
 
+        
+        // ── Helper: Listar archivos en una carpeta de GitHub ─────
+        async function ghListFolder(folder) {
+            try {
+                const res = await fetch(apiBase + folder + '?ref=' + branch, {
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Accept': 'application/vnd.github+json'
+                    }
+                });
+                if (res.status === 404) return [];
+                if (!res.ok) return [];
+                const json = await res.json();
+                return Array.isArray(json) ? json : [];
+            } catch(_) {
+                return [];
+            }
+        }
+
+        // ── Helper: Eliminar archivo en GitHub ──────────────────
+        async function ghDelete(path, sha, message) {
+            const res = await fetch(apiBase + path, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.github+json'
+                },
+                body: JSON.stringify({ message, sha, branch })
+            });
+            if (!res.ok) {
+                let errMsg = 'HTTP ' + res.status;
+                try { const e = await res.json(); errMsg = e.message || errMsg; } catch(_) {}
+                throw new Error('Error al eliminar ' + path + ': ' + errMsg);
+            }
+        }
+
+        // ── Generador de Micropáginas de Producto para WhatsApp ─
+        function generateProductMicroPages(prods, baseUrl) {
+    baseUrl = baseUrl || 'https://egeostyle.github.io/vctest/';
+    const pages = {};
+
+    prods.forEach(p => {
+        const prodSlug = slugify(p.name) || ('prod-' + p.id);
+        const hasV = p.variants && p.variants.length > 0;
+        const mainImg = hasV ? (p.variants[0].img || p.img || '') : (p.img || '');
+
+        let priceDesc = p.price || '';
+        if (hasV) {
+            const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g, ''))).filter(x => !isNaN(x));
+            if (prices.length) {
+                const min = Math.min(...prices);
+                const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g, '').trim() || 'S/.';
+                priceDesc = 'Desde ' + cur + ' ' + min.toFixed(2);
+            }
+        }
+
+        const baseTitle = 'Vibra Candela | ' + p.name;
+        const baseDesc = (p.cat ? p.cat + ' • ' : '') + priceDesc + ' — Vibra Candela';
+        const baseRedirect = '../?prod=' + encodeURIComponent(prodSlug);
+        const basePageUrl = baseUrl + 'p/' + prodSlug;
+        const baseImg = toAbsoluteUrl(mainImg, baseUrl);
+
+        pages['p/' + prodSlug + '.html'] = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${esc(baseTitle)}</title>
+    <meta property="og:site_name" content="Vibra Candela">
+    <meta property="og:title" content="${esc(baseTitle)}">
+    <meta property="og:description" content="${esc(baseDesc)}">
+    <meta property="og:image" content="${baseImg}">
+    <meta property="og:image:secure_url" content="${baseImg}">
+    <meta property="og:image:alt" content="${esc(baseTitle)}">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url" content="${basePageUrl}">
+    <meta property="og:type" content="product">
+    <meta http-equiv="refresh" content="0; url=${baseRedirect}">
+    <script>window.location.replace('${baseRedirect}');</script>
+</head>
+<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">
+    <p>Redirigiendo a <a href="${baseRedirect}" style="color:#6b7c72;">${esc(baseTitle)}</a> en Vibra Candela...</p>
+</body>
+</html>`;
+
+        if (hasV) {
+            p.variants.forEach(v => {
+                const varSlug = prodSlug + '-' + slugify(v.name);
+                const varImg = toAbsoluteUrl(v.img || p.img || '', baseUrl);
+                const varTitle = 'Vibra Candela | ' + p.name + ' (' + v.name + ')';
+                const varDesc = (p.cat ? p.cat + ' • ' : '') + (v.price || priceDesc) + ' — Vibra Candela';
+                const varRedirect = '../?prod=' + encodeURIComponent(prodSlug) + '&var=' + encodeURIComponent(v.name);
+                const varPageUrl = baseUrl + 'p/' + varSlug;
+
+                pages['p/' + varSlug + '.html'] = `<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${esc(varTitle)}</title>
+    <meta property="og:site_name" content="Vibra Candela">
+    <meta property="og:title" content="${esc(varTitle)}">
+    <meta property="og:description" content="${esc(varDesc)}">
+    <meta property="og:image" content="${varImg}">
+    <meta property="og:image:secure_url" content="${varImg}">
+    <meta property="og:image:alt" content="${esc(varTitle)}">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url" content="${varPageUrl}">
+    <meta property="og:type" content="product">
+    <meta http-equiv="refresh" content="0; url=${varRedirect}">
+    <script>window.location.replace('${varRedirect}');</script>
+</head>
+<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">
+    <p>Redirigiendo a <a href="${varRedirect}" style="color:#6b7c72;">${esc(varTitle)}</a> en Vibra Candela...</p>
+</body>
+</html>`;
+            });
+        }
+    });
+
+    return pages;
+}
+
         // ── Helper: texto → base64 ───────────────────────────────
         function strToBase64(str) {
             return btoa(unescape(encodeURIComponent(str)));
@@ -3087,6 +3214,31 @@ async function runGhPublish() {
         }
         ghLog('📄 Subiendo ' + fileName + '…', 'info');
         await ghPut(fileName, strToBase64(htmlContent), (ghMode==='editor'?'editor':'publish') + ': ' + fileName);
+
+        // Si publicamos la tienda limpia, sincronizar micropáginas en /p/ y depurar obsoletas
+        if (ghMode !== 'editor') {
+            ghLog('🌐 Generando micropáginas de producto para WhatsApp…', 'info');
+            const microPages = generateProductMicroPages(products, 'https://egeostyle.github.io/vctest/');
+            const neededPaths = Object.keys(microPages);
+            ghLog('📦 Sincronizando ' + neededPaths.length + ' micropágina(s)…', 'info');
+            for (const path of neededPaths) {
+                await ghPut(path, strToBase64(microPages[path]), 'micropage: ' + path);
+            }
+
+            // Depuración automática de huérfanos en /p/
+            ghLog('🧹 Verificando archivos huérfanos en /p/…', 'info');
+            const remotePFiles = await ghListFolder('p');
+            for (const rf of remotePFiles) {
+                if (rf.type === 'file' && rf.name.endsWith('.html')) {
+                    const fullPath = 'p/' + rf.name;
+                    if (!microPages[fullPath]) {
+                        ghLog('🗑 Eliminando micropágina obsoleta: ' + fullPath + '…', 'info');
+                        await ghDelete(fullPath, rf.sha, 'cleanup: borrar micropágina huérfana ' + fullPath);
+                    }
+                }
+            }
+            ghLog('✨ Micropáginas sincronizadas y depuradas.', 'ok');
+        }
 
         ghLog('🎉 ¡Listo! Cambios subidos a ' + repo, 'ok');
         showToast('🐙 Guardado en GitHub correctamente.');
@@ -3293,10 +3445,13 @@ function sendWhatsApp(e){
     if(c) msg += '• *Categoría:* ' + c + '\\n';
     if(v) msg += '• *Variante:* ' + v + '\\n';
     if(p) msg += '• *Precio:* ' + p + '\\n';
-    function _slg(s){return (s||'').trim().replace(/[\s]+/g,'_').replace(/[^\w]/g,'');}
-    let prodSlug = n ? _slg(n) : (id || '');
-    let prodUrl = 'https://egeostyle.github.io/vctest/?prod=' + encodeURIComponent(prodSlug);
-    if(v){ prodUrl += '&var=' + encodeURIComponent(v); }
+    function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').trim().replace(/[\\s_-]+/g,'-').replace(/[^\\w-]+/g,'').replace(/^-+|-+$/g,'');}
+    let prodSlug = _slug(n) || ('prod-' + id);
+    let pageSlug = prodSlug;
+    if(v){
+        pageSlug = prodSlug + '-' + _slug(v);
+    }
+    let prodUrl = 'https://egeostyle.github.io/vctest/p/' + pageSlug;
     msg += '• *Enlace:* ' + prodUrl + '\\n';
     msg += '\\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
     window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
