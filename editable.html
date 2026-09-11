@@ -3199,6 +3199,129 @@ function generateCleanHTML() {
     `;
     clone.querySelector('head').appendChild(ghOverrideStyle);
     clone.querySelector('body').classList.remove('editor-active');
+
+    // Limpiar scripts: remover scripts del editor y reemplazar por script limpio público
+    clone.querySelectorAll('script').forEach(s => s.remove());
+    const cleanProductsData = products.map(p => ({
+        id: p.id,
+        name: p.name,
+        cat: p.cat,
+        price: p.price,
+        shortDesc: p.shortDesc,
+        longDesc: p.longDesc,
+        img: p.img || '',
+        variants: (p.variants || []).map(v => ({ name: v.name, price: v.price, img: v.img || '' }))
+    }));
+
+    const cleanScriptEl = document.createElement('script');
+    cleanScriptEl.textContent = `
+const WA_NUMBER = "${WA_NUMBER}";
+let products = ` + JSON.stringify(cleanProductsData) + `;
+function navigateTo(p){
+    document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+    var pg = document.getElementById('page-' + p); if(pg) pg.classList.add('active');
+    var lk = document.getElementById('nav-' + p); if(lk) lk.classList.add('active');
+    window.scrollTo(0,0);
+}
+function getProductImg(p){if(p.variants && p.variants.length > 0){return p.variants[0].img || p.img || '';}return p.img || '';}
+function getProductPriceLabel(p){if(p.variants && p.variants.length > 0){const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g,''))).filter(x => !isNaN(x));if(prices.length){const min = Math.min(...prices);const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g,'').trim() || 'S/.';return 'Desde ' + cur + ' ' + min.toFixed(2);}}return p.price || '';}
+function esc(s){return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escA(s){return (s || '').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+function renderProducts(){
+    const g = document.getElementById('catalogGrid'); if(!g) return; g.innerHTML = '';
+    products.forEach(p => {
+        const card = document.createElement('div'); card.className = 'seller-card'; card.id = 'product-card-' + p.id; card.dataset.productId = p.id; card.style.cursor = 'pointer';
+        card.onclick = () => openProductModal(p.id);
+        const img = getProductImg(p);
+        card.innerHTML = '<div class="seller-img" style="background-image:' + (img ? "url('" + esc(img) + "')" : 'none') + ';background-size:cover;background-position:center;background-color:#e8e0d8;height:240px;"></div>'
+            + '<div class="seller-info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.shortDesc) + '</p>'
+            + '<div class="seller-meta"><span class="price">' + esc(getProductPriceLabel(p)) + '</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>';
+        g.appendChild(card);
+    });
+}
+function openProductModal(id){
+    const p = products.find(x => x.id === id); if(!p) return;
+    document.getElementById('modal-product-title').innerText = p.name;
+    document.getElementById('modal-product-desc').innerText = p.longDesc;
+    document.getElementById('modal-whatsapp-link').dataset.productId = id;
+    const hasV = p.variants && p.variants.length > 0;
+    const vs = document.getElementById('modal-variant-selector'); const ce = document.getElementById('modal-variant-chips');
+    const me = document.getElementById('modal-product-meta'); const ie = document.getElementById('modal-product-img');
+    if(hasV){
+        vs.style.display = 'block'; ce.innerHTML = '';
+        p.variants.forEach((v,i) => {const b = document.createElement('button'); b.className = 'vchip' + (i === 0 ? ' active' : ''); b.textContent = v.name; b.onclick = () => selectVariant(p,i); ce.appendChild(b);});
+        selectVariant(p,0);
+    } else {
+        vs.style.display = 'none'; ce.innerHTML = ''; me.innerText = p.cat + ' | ' + p.price;
+        const bi = p.img || ''; ie.style.backgroundImage = bi ? "url('" + bi + "')" : 'none';
+        document.getElementById('modal-whatsapp-link').dataset.activeVariant = '';
+        document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:p.price, variant:'', img:bi});
+    }
+    document.getElementById('product-modal').classList.add('open');
+}
+function selectVariant(p,idx){
+    const v = p.variants[idx]; document.getElementById('modal-product-meta').innerText = p.cat + ' | ' + v.price;
+    const img = v.img || (p.variants[0] && p.variants[0].img) || p.img || '';
+    document.getElementById('modal-product-img').style.backgroundImage = img ? "url('" + img + "')" : 'none';
+    document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i) => c.classList.toggle('active', i === idx));
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant = JSON.stringify({name:v.name, price:v.price, img:img});
+    document.getElementById('modal-whatsapp-link').dataset.productInfo = JSON.stringify({name:p.name, cat:p.cat, price:v.price, variant:v.name, img:img});
+}
+function closeProductModal(e){if(!e || e.target === document.getElementById('product-modal')) document.getElementById('product-modal').classList.remove('open');}
+function toAbsoluteUrl(url){
+    if(!url || url.startsWith('data:')) return '';
+    if(url.startsWith('http://') || url.startsWith('https://')) return url;
+    const base = (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.origin || window.location.origin === 'null') ? 'https://egeostyle.github.io/vctest/' : window.location.href;
+    try{return new URL(url,base).href;}catch(_){return 'https://egeostyle.github.io/vctest/' + url.replace(/^\\.?\\//,'');}
+}
+function sendWhatsApp(e){
+    e.preventDefault();
+    const btn = document.getElementById('modal-whatsapp-link');
+    const id = parseInt(btn.dataset.productId);
+    let n='', c='', p='', v='', img='';
+    if(btn.dataset.productInfo){try{const pi=JSON.parse(btn.dataset.productInfo); n=pi.name||''; c=pi.cat||''; p=pi.price||''; v=pi.variant||''; img=pi.img||'';}catch(_){}}
+    if(typeof products !== 'undefined' && Array.isArray(products) && !isNaN(id) && id){
+        const prod = products.find(x => x.id === id);
+        if(prod){ n = prod.name||n; c = prod.cat||c; p = prod.price||p; img = prod.img||img;
+            const av = btn.dataset.activeVariant; if(av){try{const a=JSON.parse(av); if(a && a.name){v=a.name; p=a.price||p; if(a.img) img=a.img;}}catch(_){}}
+        }
+    }
+    let msg = '¡Hola *Vibra Candela*! Me interesa solicitar este producto:\\n\\n';
+    msg += '• *Producto:* ' + n + '\\n';
+    if(c) msg += '• *Categoría:* ' + c + '\\n';
+    if(v) msg += '• *Variante:* ' + v + '\\n';
+    if(p) msg += '• *Precio:* ' + p + '\\n';
+    const full = toAbsoluteUrl(img);
+    if(full){const clean = full.replace(/^https?:\\/\\//,''); msg += '• *Ver foto:* ' + clean + '\\n';}
+    msg += '\\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
+    window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+}
+renderProducts();
+navigateTo('inicio');
+(function checkUrlDeepLink(){
+    try{
+        var params = new URLSearchParams(window.location.search);
+        var pid = params.get('prod');
+        if(!pid && window.location.hash){var m = window.location.hash.match(/#prod-(\\d+)/); if(m) pid = m[1];}
+        if(pid){
+            var nid = parseInt(pid);
+            if(!isNaN(nid)){
+                setTimeout(function(){
+                    if(typeof openProductModal === 'function' && typeof products !== 'undefined' && products.some(function(x){return x.id === nid;})){
+                        openProductModal(nid);
+                    } else {
+                        var card = document.getElementById('product-card-' + nid) || document.querySelector('[data-product-id="' + nid + '"]');
+                        if(card) card.click();
+                    }
+                }, 300);
+            }
+        }
+    }catch(_){}
+})();
+    `;
+    clone.querySelector('body').appendChild(cleanScriptEl);
+
     let cleanOutput = '<!DOCTYPE html>\n' + clone.outerHTML;
     cleanOutput = cleanOutput.replace(/url\((?:&quot;|['\"])?data:image\/[^;]+;base64,[^&'\")]+(?:&quot;|['\"])?\)/g, 'none');
     cleanOutput = cleanOutput.replace(/\s*data-data-url=\"[^\"]*\"/g, '');
