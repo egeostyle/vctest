@@ -599,10 +599,10 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- Enlaces de texto -->
     <nav class="nav">
-        <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
+        <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
         <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
         <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
-        <a onclick="navigateTo('contacto')" id="nav-contacto" class="active">Contacto</a>
+        <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
 
     <!-- Íconos sociales agrupados -->
@@ -622,7 +622,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: INICIO
      ========================================================= -->
-<main id="page-inicio" class="page">
+<main id="page-inicio" class="page active">
 
     <!-- HERO -->
     <section class="hero" id="hero-bg">
@@ -1174,7 +1174,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: CONTACTO
      ========================================================= -->
-<div id="page-contacto" class="page active">
+<div id="page-contacto" class="page">
     <div class="contact-page">
         <h2 contenteditable="true">Cuéntanos tus Ideaszxczxczxc</h2>
         <div class="contact-wrapper">
@@ -3000,92 +3000,100 @@ async function runGhPublish() {
 
         // ── Generador de Micropáginas de Producto para WhatsApp ─
         function generateProductMicroPages(prods, baseUrl) {
-    baseUrl = baseUrl || 'https://egeostyle.github.io/vctest/';
-    const pages = {};
-
-    prods.forEach(p => {
-        const prodSlug = slugify(p.name) || ('prod-' + p.id);
-        const hasV = p.variants && p.variants.length > 0;
-        const mainImg = hasV ? (p.variants[0].img || p.img || '') : (p.img || '');
-
-        let priceDesc = p.price || '';
-        if (hasV) {
-            const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g, ''))).filter(x => !isNaN(x));
-            if (prices.length) {
-                const min = Math.min(...prices);
-                const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g, '').trim() || 'S/.';
-                priceDesc = 'Desde ' + cur + ' ' + min.toFixed(2);
+            baseUrl = baseUrl || 'https://egeostyle.github.io/vctest/';
+            function _slug(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/[\s_-]+/g,'-').replace(/[^\w-]+/g,'').replace(/^-+|-+$/g,'');}
+            function _esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+            function _abs(url){
+                if(!url || url.startsWith('data:')) return baseUrl + 'vibraimgs/logo.png';
+                if(url.startsWith('http://') || url.startsWith('https://')) return url;
+                return baseUrl + url.replace(/^\.?\//,'');
             }
-        }
 
-        const baseTitle = 'Vibra Candela | ' + p.name;
-        const baseDesc = (p.cat ? p.cat + ' • ' : '') + priceDesc + ' — Vibra Candela';
-        const baseRedirect = '../?prod=' + encodeURIComponent(prodSlug);
-        const basePageUrl = baseUrl + 'p/' + prodSlug;
-        const baseImg = toAbsoluteUrl(mainImg, baseUrl);
+            const pages = {};
 
-        pages['p/' + prodSlug + '.html'] = `<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${esc(baseTitle)}</title>
-    <meta property="og:site_name" content="Vibra Candela">
-    <meta property="og:title" content="${esc(baseTitle)}">
-    <meta property="og:description" content="${esc(baseDesc)}">
-    <meta property="og:image" content="${baseImg}">
-    <meta property="og:image:secure_url" content="${baseImg}">
-    <meta property="og:image:alt" content="${esc(baseTitle)}">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="600">
-    <meta property="og:url" content="${basePageUrl}">
-    <meta property="og:type" content="product">
-    <meta http-equiv="refresh" content="0; url=${baseRedirect}">
-    <script>window.location.replace('${baseRedirect}');</script>
-</head>
-<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">
-    <p>Redirigiendo a <a href="${baseRedirect}" style="color:#6b7c72;">${esc(baseTitle)}</a> en Vibra Candela...</p>
-</body>
-</html>`;
+            prods.forEach(p => {
+                const prodSlug = _slug(p.name) || ('prod-' + p.id);
+                const hasV = p.variants && p.variants.length > 0;
+                const mainImg = hasV ? (p.variants[0].img || p.img || '') : (p.img || '');
 
-        if (hasV) {
-            p.variants.forEach(v => {
-                const varSlug = prodSlug + '-' + slugify(v.name);
-                const varImg = toAbsoluteUrl(v.img || p.img || '', baseUrl);
-                const varTitle = 'Vibra Candela | ' + p.name + ' (' + v.name + ')';
-                const varDesc = (p.cat ? p.cat + ' • ' : '') + (v.price || priceDesc) + ' — Vibra Candela';
-                const varRedirect = '../?prod=' + encodeURIComponent(prodSlug) + '&var=' + encodeURIComponent(v.name);
-                const varPageUrl = baseUrl + 'p/' + varSlug;
+                let priceDesc = p.price || '';
+                if (hasV) {
+                    const prices = p.variants.map(v => parseFloat((v.price || '0').replace(/[^0-9.]/g, ''))).filter(x => !isNaN(x));
+                    if (prices.length) {
+                        const min = Math.min(...prices);
+                        const cur = (p.variants[0].price || 'S/. 0').replace(/[0-9.,]/g, '').trim() || 'S/.';
+                        priceDesc = 'Desde ' + cur + ' ' + min.toFixed(2);
+                    }
+                }
 
-                pages['p/' + varSlug + '.html'] = `<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${esc(varTitle)}</title>
-    <meta property="og:site_name" content="Vibra Candela">
-    <meta property="og:title" content="${esc(varTitle)}">
-    <meta property="og:description" content="${esc(varDesc)}">
-    <meta property="og:image" content="${varImg}">
-    <meta property="og:image:secure_url" content="${varImg}">
-    <meta property="og:image:alt" content="${esc(varTitle)}">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="600">
-    <meta property="og:url" content="${varPageUrl}">
-    <meta property="og:type" content="product">
-    <meta http-equiv="refresh" content="0; url=${varRedirect}">
-    <script>window.location.replace('${varRedirect}');</script>
-</head>
-<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">
-    <p>Redirigiendo a <a href="${varRedirect}" style="color:#6b7c72;">${esc(varTitle)}</a> en Vibra Candela...</p>
-</body>
-</html>`;
+                const baseTitle = 'Vibra Candela | ' + p.name;
+                const baseDesc = (p.cat ? p.cat + ' • ' : '') + priceDesc + ' — Vibra Candela';
+                const baseRedirect = '../?prod=' + encodeURIComponent(prodSlug);
+                const basePageUrl = baseUrl + 'p/' + prodSlug;
+                const baseImg = _abs(mainImg);
+
+                pages['p/' + prodSlug + '.html'] = '<!DOCTYPE html>\n' +
+'<html lang="es">\n' +
+'<head>\n' +
+'    <meta charset="UTF-8">\n' +
+'    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+'    <title>' + _esc(baseTitle) + '</title>\n' +
+'    <meta property="og:site_name" content="Vibra Candela">\n' +
+'    <meta property="og:title" content="' + _esc(baseTitle) + '">\n' +
+'    <meta property="og:description" content="' + _esc(baseDesc) + '">\n' +
+'    <meta property="og:image" content="' + baseImg + '">\n' +
+'    <meta property="og:image:secure_url" content="' + baseImg + '">\n' +
+'    <meta property="og:image:alt" content="' + _esc(baseTitle) + '">\n' +
+'    <meta property="og:image:width" content="600">\n' +
+'    <meta property="og:image:height" content="600">\n' +
+'    <meta property="og:url" content="' + basePageUrl + '">\n' +
+'    <meta property="og:type" content="product">\n' +
+'    <meta http-equiv="refresh" content="0; url=' + baseRedirect + '">\n' +
+'    <' + 'script>window.location.replace("' + baseRedirect + '");<' + '/script>\n' +
+'</head>\n' +
+'<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">\n' +
+'    <p>Redirigiendo a <a href="' + baseRedirect + '" style="color:#6b7c72;">' + _esc(baseTitle) + '</a> en Vibra Candela...</p>\n' +
+'</body>\n' +
+'</html>';
+
+                if (hasV) {
+                    p.variants.forEach(v => {
+                        const varSlug = prodSlug + '-' + _slug(v.name);
+                        const varImg = _abs(v.img || p.img || '');
+                        const varTitle = 'Vibra Candela | ' + p.name + ' (' + v.name + ')';
+                        const varDesc = (p.cat ? p.cat + ' • ' : '') + (v.price || priceDesc) + ' — Vibra Candela';
+                        const varRedirect = '../?prod=' + encodeURIComponent(prodSlug) + '&var=' + encodeURIComponent(v.name);
+                        const varPageUrl = baseUrl + 'p/' + varSlug;
+
+                        pages['p/' + varSlug + '.html'] = '<!DOCTYPE html>\n' +
+'<html lang="es">\n' +
+'<head>\n' +
+'    <meta charset="UTF-8">\n' +
+'    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+'    <title>' + _esc(varTitle) + '</title>\n' +
+'    <meta property="og:site_name" content="Vibra Candela">\n' +
+'    <meta property="og:title" content="' + _esc(varTitle) + '">\n' +
+'    <meta property="og:description" content="' + _esc(varDesc) + '">\n' +
+'    <meta property="og:image" content="' + varImg + '">\n' +
+'    <meta property="og:image:secure_url" content="' + varImg + '">\n' +
+'    <meta property="og:image:alt" content="' + _esc(varTitle) + '">\n' +
+'    <meta property="og:image:width" content="600">\n' +
+'    <meta property="og:image:height" content="600">\n' +
+'    <meta property="og:url" content="' + varPageUrl + '">\n' +
+'    <meta property="og:type" content="product">\n' +
+'    <meta http-equiv="refresh" content="0; url=' + varRedirect + '">\n' +
+'    <' + 'script>window.location.replace("' + varRedirect + '");<' + '/script>\n' +
+'</head>\n' +
+'<body style="font-family:system-ui,-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#faf8f5;color:#555;">\n' +
+'    <p>Redirigiendo a <a href="' + varRedirect + '" style="color:#6b7c72;">' + _esc(varTitle) + '</a> en Vibra Candela...</p>\n' +
+'</body>\n' +
+'</html>';
+                    });
+                }
             });
-        }
-    });
 
-    return pages;
-}
+            return pages;
+        }
 
         // ── Helper: texto → base64 ───────────────────────────────
         function strToBase64(str) {
