@@ -3,6 +3,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vibra Candela | Editor</title>
+<meta property="og:title" content="Vibra Candela | Velas y Difusores Artesanales">
+<meta property="og:description" content="Catálogo artesanal de velas de cera de soja, difusores aromáticos y home spray hechos a mano.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://egeostyle.github.io/vctest/vibraimgs/tips1.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--cp:#6e8174;--cs:#f4eee6;--ca:#d9c3b0;--cd:#333333;--cl:#faf8f5;--f:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
@@ -816,7 +820,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     </div>
                     <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.asdasdasd</p>
                 </div>
-                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="2" data-active-variant="{&quot;name&quot;:&quot;10ml&quot;,&quot;price&quot;:&quot;30s&quot;}"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
+                <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
             </div>
         </div>
     </div>
@@ -1352,7 +1356,7 @@ function renderProducts(){
         const w=document.createElement('div');
         w.className='seller-card-wrapper';
         w.innerHTML=`<button class="card-edt" onclick="openProdEdit(${p.id},event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(${p.id})">
+        <div class="seller-card" id="product-card-${p.id}" data-product-id="${p.id}" style="cursor:pointer;" onclick="openProductModal(${p.id})">
             <div class="seller-img" style="background-image:${getProductImg(p)?'url(\''+getProductImg(p)+'\')':'none'};"></div>
             <div class="seller-info"><h3>${esc(p.name)}</h3><p>${esc(p.shortDesc)}</p>
             <div class="seller-meta"><span class="price">${esc(getProductPriceLabel(p))}</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
@@ -1394,9 +1398,12 @@ function openProductModal(id){
         selectVariant(p,0);
     } else {
         varSelector.style.display='none';
+        chipsEl.innerHTML='';
         metaEl.innerText=p.cat+' | '+p.price;
         const baseImg=p.imgData||p.img||'';
         imgEl.style.backgroundImage=baseImg?"url('"+baseImg+"')":'';
+        document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
+        document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:p.name,cat:p.cat,price:p.price,variant:'',img:p.img||''});
     }
     document.getElementById('product-modal').classList.add('open');
 }
@@ -1410,6 +1417,7 @@ function selectVariant(p,idx){
     document.querySelectorAll('#modal-variant-chips .vchip').forEach((c,i)=>c.classList.toggle('active',i===idx));
     // Guardar variante activa para WA (incluyendo la foto de la variante)
     document.getElementById('modal-whatsapp-link').dataset.activeVariant=JSON.stringify({name:v.name,price:v.price,img:v.img||img});
+    document.getElementById('modal-whatsapp-link').dataset.productInfo=JSON.stringify({name:p.name,cat:p.cat,price:v.price,variant:v.name,img:v.img||img});
 }
 function closeProductModal(e){if(!e||e.target===document.getElementById('product-modal'))document.getElementById('product-modal').classList.remove('open');}
 function openProductModal_s(title,cat,price,desc,img){
@@ -1435,6 +1443,8 @@ function openProductModal_v(title,cat,desc,variantsJson,baseImg){
     var chips=document.getElementById('modal-variant-chips');
     sel.style.display=variants.length?'block':'none';
     chips.innerHTML='';
+    document.getElementById('modal-whatsapp-link').dataset.productId='';
+    document.getElementById('modal-whatsapp-link').dataset.activeVariant='';
     variants.forEach(function(v,i){
         var ch=document.createElement('button');
         ch.className='vchip'+(i===0?' active':'');
@@ -1463,10 +1473,13 @@ function openProductModal_v(title,cat,desc,variantsJson,baseImg){
 function toAbsoluteUrl(url){
     if(!url||url.startsWith('data:'))return '';
     if(url.startsWith('http://')||url.startsWith('https://'))return url;
+    const base=(window.location.protocol==='file:'||window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1'||!window.location.origin||window.location.origin==='null')
+        ?'https://egeostyle.github.io/vctest/'
+        :window.location.href;
     try{
-        return new URL(url,window.location.href).href;
+        return new URL(url,base).href;
     }catch(_){
-        return url;
+        return 'https://egeostyle.github.io/vctest/'+url.replace(/^\.?\//,'');
     }
 }
 
@@ -1494,7 +1507,7 @@ function sendWhatsApp(e){
     }
 
     // 2. Si estamos en modo editor con array products cargado
-    if(typeof products!=='undefined'&&Array.isArray(products)&&!isNaN(id)){
+    if(typeof products!=='undefined'&&Array.isArray(products)&&!isNaN(id)&&id){
         const p=products.find(x=>x.id===id);
         if(p){
             prodName=p.name||prodName;
@@ -1506,23 +1519,27 @@ function sendWhatsApp(e){
             if(activeVar){
                 try{
                     const av=JSON.parse(activeVar);
-                    prodVariant=av.name||prodVariant;
-                    prodPrice=av.price||prodPrice;
-                    if(av.img)prodImg=av.img;
+                    if(av&&av.name){
+                        prodVariant=av.name;
+                        prodPrice=av.price||prodPrice;
+                        if(av.img)prodImg=av.img;
+                    }
                 }catch(_){}
             }
         }
     }
 
-    let textMsg='¡Hola Vibra Candela! 👋 Me interesa solicitar este producto:\n\n';
-    textMsg+='🛍️ *Producto:* '+prodName+'\n';
-    if(prodCat)textMsg+='🏷️ *Categoría:* '+prodCat+'\n';
-    if(prodVariant)textMsg+='📦 *Variante:* '+prodVariant+'\n';
-    if(prodPrice)textMsg+='💰 *Precio:* '+prodPrice+'\n';
+    let textMsg='¡Hola *Vibra Candela*! Me interesa solicitar este producto:\n\n';
+    textMsg+='• *Producto:* '+prodName+'\n';
+    if(prodCat)textMsg+='• *Categoría:* '+prodCat+'\n';
+    if(prodVariant)textMsg+='• *Variante:* '+prodVariant+'\n';
+    if(prodPrice)textMsg+='• *Precio:* '+prodPrice+'\n';
 
     const fullImgUrl=toAbsoluteUrl(prodImg);
     if(fullImgUrl){
-        textMsg+='🖼️ *Ver foto:* '+fullImgUrl+'\n';
+        // Omitir https:// para que WhatsApp NO genere la mini-ventana (tarjeta flotante molesta) y muestre solo texto limpio con enlace azul clickeable
+        const cleanImgUrl=fullImgUrl.replace(/^https?:\/\//,'');
+        textMsg+='• *Ver foto:* '+cleanImgUrl+'\n';
     }
 
     textMsg+='\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
@@ -3129,6 +3146,8 @@ function generateCleanHTML() {
         }
         const card=document.createElement('div');
         card.className='seller-card';card.style.cursor='pointer';
+        card.id='product-card-'+p.id;
+        card.dataset.productId=p.id;
         if(hasV){
             // onclick abre modal con variantes
             const vdata=escA(JSON.stringify(p.variants.map(v=>({name:v.name,price:v.price,img:v.img||''}))));
@@ -3290,6 +3309,31 @@ function renderVariantRows(variants){
 // INIT
 renderProducts();
 navigateTo('inicio');
+
+// Soporte para abrir producto por URL (?prod=id o #prod-id)
+(function checkUrlDeepLink(){
+    try{
+        var params=new URLSearchParams(window.location.search);
+        var pid=params.get('prod');
+        if(!pid&&window.location.hash){
+            var m=window.location.hash.match(/#prod-(\d+)/);
+            if(m)pid=m[1];
+        }
+        if(pid){
+            var nid=parseInt(pid);
+            if(!isNaN(nid)){
+                setTimeout(function(){
+                    if(typeof openProductModal==='function'&&typeof products!=='undefined'&&products.some(function(x){return x.id===nid;})){
+                        openProductModal(nid);
+                    }else{
+                        var card=document.getElementById('product-card-'+nid)||document.querySelector('[data-product-id="'+nid+'"]');
+                        if(card)card.click();
+                    }
+                },300);
+            }
+        }
+    }catch(_){}
+})();
 </script>
 
 
