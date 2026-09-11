@@ -24,13 +24,17 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .nav a{text-decoration:none;color:var(--cd);margin-left:1.2rem;font-weight:500;transition:color 0.3s;cursor:pointer;font-size:0.95rem;}
 .nav a:hover,.nav a.active{color:var(--cp);}
 
-/* EDITOR TOOLBAR */
-.editor-toolbar{position:fixed;top:70px;width:100%;background:#2d2d2d;color:#fff;padding:0.5rem 8%;display:flex;align-items:center;gap:0.65rem;z-index:999;font-size:0.82rem;box-shadow:0 2px 8px rgba(0,0,0,0.25);flex-wrap:wrap;}
-.tlabel{color:#aaa;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;}
-.tbtn{background:#444;border:1px solid #555;color:#fff;padding:0.3rem 0.8rem;border-radius:4px;cursor:pointer;font-size:0.78rem;transition:background 0.2s;display:flex;align-items:center;gap:0.3rem;white-space:nowrap;}
-.tbtn:hover{background:#555;}
-.tbtn.gh-save-btn{background:#24292e;border-color:#444;font-weight:600;}
-.tbtn.gh-save-btn:hover{background:#383f47;}
+/* BOTÓN FLOTANTE GUARDAR (FAB) */
+.editor-fab-save{position:fixed;bottom:28px;right:28px;width:60px;height:60px;border-radius:50%;background:#1e293b;color:#ffffff;border:2px solid rgba(255,255,255,0.25);box-shadow:0 8px 24px rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:all 0.25s cubic-bezier(0.4,0,0.2,1);outline:none;}
+.editor-fab-save i{font-size:1.25rem;color:#ffffff;}
+.editor-fab-save .fab-text{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;color:#f1f5f9;}
+.editor-fab-save:hover{background:#0f172a;transform:scale(1.08);box-shadow:0 10px 28px rgba(0,0,0,0.45);border-color:rgba(255,255,255,0.5);}
+.editor-fab-save:active{transform:scale(0.95);}
+@media(max-width:560px){
+    .editor-fab-save{bottom:20px;right:20px;width:54px;height:54px;}
+    .editor-fab-save i{font-size:1.15rem;}
+    .editor-fab-save .fab-text{font-size:0.52rem;}
+}
 .gh-accordion{border:1px solid #e2e8f0;border-radius:6px;margin-bottom:1rem;overflow:hidden;background:#f8fafc;}
 .gh-accordion-toggle{width:100%;background:#f8fafc;border:none;padding:0.6rem 0.85rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#334155;text-align:left;transition:background 0.15s;}
 .gh-accordion-toggle:hover{background:#f1f5f9;}
@@ -38,7 +42,7 @@ body{font-family:var(--f);color:var(--cd);background:var(--cl);line-height:1.6;d
 .save-grp{display:flex;align-items:center;gap:0.45rem;margin-left:auto;}
 
 /* PAGES */
-.page{display:none;margin-top:116px;flex:1;}
+.page{display:none;margin-top:70px;flex:1;}
 .page.active{display:block;}
 section{padding:3.5rem 8%;text-align:center;}
 h2{font-size:2.3rem;color:var(--cp);margin-bottom:3rem;position:relative;}
@@ -409,8 +413,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     .contact-wrapper{grid-template-columns:1fr;gap:1.8rem;}
     .header{flex-direction:column;gap:0.6rem;padding:0.9rem 5%;}
     .nav a{margin:0 0.45rem;}
-    .page{margin-top:160px;}
-    .editor-toolbar{top:105px;}
+    .page{margin-top:104px;}
     section{padding:3.5rem 5%;}
     .catalog-container{padding:3.5rem 5%;}
     .contact-page{padding:3.5rem 5%;}
@@ -575,20 +578,18 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 /* Para resoluciones mayores o iguales a 901px */
 @media (min-width: 901px) {
     .page {
-        margin-top: 80px !important;
+        margin-top: 70px !important;
     }
 }
 </style>
 </head>
 <body class="editor-active">
 
-<!-- EDITOR TOOLBAR -->
-<div class="editor-toolbar" id="editorToolbar">
-    <span class="tlabel">Modo Editor</span>
-    <div class="save-grp">
-        <button class="tbtn gh-save-btn" onclick="openGhModal()"><i class="fa-solid fa-floppy-disk" style="color: rgb(255, 255, 255);"></i> Guardar</button>
-    </div>
-</div>
+<!-- BOTÓN FLOTANTE MODO EDITOR -->
+<button class="editor-fab-save" id="editorFloatingSave" onclick="openGhModal()" title="Guardar cambios">
+    <i class="fa-solid fa-floppy-disk"></i>
+    <span class="fab-text">Guardar</span>
+</button>
 
 <!-- HEADER -->
 
@@ -3284,7 +3285,7 @@ async function runGhPublish() {
 // ── Genera el HTML limpio (igual que saveClean pero devuelve string) ──
 function generateCleanHTML() {
     const clone = document.documentElement.cloneNode(true);
-    const tb=clone.querySelector('#editorToolbar');if(tb)tb.remove();
+    clone.querySelectorAll('#editorFloatingSave, #editorToolbar').forEach(el => el.remove());
     ['prodEditOverlay','imgUrlOverlay','heroImgOverlay','iconSwapOverlay','ciOverlay','logoOverlay','ghOverlay'].forEach(id=>{
         const el=clone.querySelector('#'+id);if(el)el.remove();
     });
@@ -3311,7 +3312,7 @@ function generateCleanHTML() {
     clone.querySelectorAll('.img-editable').forEach(el=>{el.classList.remove('img-editable');el.removeAttribute('onclick');el.removeAttribute('title');el.style.cursor='';});
     clone.querySelectorAll('.icon-box').forEach(el=>el.removeAttribute('onclick'));
     clone.querySelectorAll('.info-link-icon').forEach(el=>{el.removeAttribute('onclick');el.removeAttribute('title');el.style.cursor='';});
-    clone.querySelectorAll('.page').forEach(el=>el.style.marginTop='70px');
+    clone.querySelectorAll('.page').forEach(el=>el.style.marginTop='');
     const cg=clone.querySelector('#catalogGrid');
     if(cg){
         cg.innerHTML='';
@@ -3367,7 +3368,7 @@ function generateCleanHTML() {
     // Override CSS seguro (igual que saveClean)
     const ghOverrideStyle=document.createElement('style');
     ghOverrideStyle.textContent=`
-        #editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
+        #editorFloatingSave,#editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
         .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
         .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
         {display:none!important;}
@@ -3376,8 +3377,9 @@ function generateCleanHTML() {
         .img-editable::after{display:none!important;}
         .img-editable{cursor:default!important;pointer-events:none!important;}
         .info-link-icon{cursor:default!important;pointer-events:none!important;}
-        .page{margin-top:80px!important;}
+        .page{margin-top:70px!important;}
         @media(max-width:900px){.page{margin-top:104px!important;}}
+        @media(min-width:901px){.page{margin-top:70px!important;}}
     `;
     clone.querySelector('head').appendChild(ghOverrideStyle);
     clone.querySelector('body').classList.remove('editor-active');
