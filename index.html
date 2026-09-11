@@ -1166,11 +1166,13 @@ function sendWhatsApp(e){
     if(prodVariant) textMsg += '• *Variante:* ' + prodVariant + '\n';
     if(prodPrice) textMsg += '• *Precio:* ' + prodPrice + '\n';
 
-    const fullImgUrl = toAbsoluteUrl(prodImg);
-    if(fullImgUrl){
-        const cleanImgUrl = fullImgUrl.replace(/^https?:\/\//, '');
-        textMsg += '• *Ver foto:* ' + cleanImgUrl + '\n';
+    function _slg(s){return (s||'').trim().replace(/[\s]+/g,'_').replace(/[^\w]/g,'');}
+    let prodSlug = prodName ? _slg(prodName) : (id || '');
+    let prodUrl = 'https://egeostyle.github.io/vctest/?prod=' + encodeURIComponent(prodSlug);
+    if(prodVariant){
+        prodUrl += '&var=' + encodeURIComponent(prodVariant);
     }
+    textMsg += '• *Enlace:* ' + prodUrl + '\n';
 
     textMsg += '\n¿Tienen disponibilidad para entrega? ¡Muchas gracias!';
 
@@ -1179,7 +1181,7 @@ function sendWhatsApp(e){
 }
 
 // ============================================================
-// INICIALIZACIÓN Y DEEP LINKING (?prod=ID o #prod-ID)
+// INICIALIZACIÓN Y DEEP LINKING (?prod=ID o ?prod=Nombre o #prod-ID)
 // ============================================================
 renderProducts();
 navigateTo('inicio');
@@ -1187,23 +1189,34 @@ navigateTo('inicio');
 (function checkUrlDeepLink(){
     try {
         var params = new URLSearchParams(window.location.search);
-        var pid = params.get('prod');
+        var pid = params.get('prod') || params.get('p');
         if(!pid && window.location.hash){
-            var m = window.location.hash.match(/#prod-(\d+)/);
+            var m = window.location.hash.match(/#prod[=-]?([a-zA-Z0-9_À-ſ-]+)/);
             if(m) pid = m[1];
         }
         if(pid){
-            var nid = parseInt(pid);
-            if(!isNaN(nid)){
-                setTimeout(function(){
-                    if(typeof openProductModal === 'function' && typeof products !== 'undefined' && products.some(function(x){ return x.id === nid; })){
-                        openProductModal(nid);
-                    } else {
-                        var card = document.getElementById('product-card-' + nid) || document.querySelector('[data-product-id="' + nid + '"]');
-                        if(card) card.click();
+            function _slug(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[\s_-]+/g,'-').replace(/[^\w-]/g,'');}
+            var targetSlug = _slug(pid);
+            var numId = parseInt(pid);
+            setTimeout(function(){
+                if(typeof products !== 'undefined' && Array.isArray(products)){
+                    var p = products.find(function(x){
+                        return (!isNaN(numId) && x.id === numId) || _slug(x.name) === targetSlug || _slug(x.name).includes(targetSlug) || targetSlug.includes(_slug(x.name));
+                    });
+                    if(p){
+                        openProductModal(p.id);
+                        var vParam = params.get('var') || params.get('v');
+                        if(vParam && p.variants && p.variants.length > 0){
+                            var vIdx = parseInt(vParam);
+                            if(isNaN(vIdx)){vIdx = p.variants.findIndex(function(v){return _slug(v.name) === _slug(vParam);});}
+                            if(vIdx >= 0 && vIdx < p.variants.length){selectVariant(p, vIdx);}
+                        }
+                        return;
                     }
-                }, 300);
-            }
+                }
+                var card = document.getElementById('product-card-' + pid) || document.querySelector('[data-product-id="' + pid + '"]');
+                if(card) card.click();
+            }, 300);
         }
     } catch(_) {}
 })();
