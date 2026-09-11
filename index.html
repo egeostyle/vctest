@@ -55,9 +55,9 @@ h2{font-size:2.3rem;color:var(--cp);margin-bottom:3rem;position:relative;}
 h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);margin:0.4rem auto 0;}
 
 /* EDITABLE TEXT */
-[]{outline:none;border-radius:3px;transition:background 0.2s,box-shadow 0.2s;}
-[]:hover{background:rgba(110,129,116,0.08);box-shadow:0 0 0 2px rgba(110,129,116,0.3);cursor:text;}
-[]:focus{background:rgba(110,129,116,0.13);box-shadow:0 0 0 2px var(--cp);}
+[contenteditable="true"]{outline:none;border-radius:3px;transition:background 0.2s,box-shadow 0.2s;}
+[contenteditable="true"]:hover{background:rgba(110,129,116,0.08);box-shadow:0 0 0 2px rgba(110,129,116,0.3);cursor:text;}
+[contenteditable="true"]:focus{background:rgba(110,129,116,0.13);box-shadow:0 0 0 2px var(--cp);}
 
 /* IMAGE BOXES */
 .img-editable{position:relative;cursor:pointer;overflow:hidden;background:#e8e0d8;}
@@ -803,8 +803,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 }
 
 </style>
-</head>
-<body >
+<style>
+        #editorFloatingSave,#editorToolbar,.logo-edit-btn,.icon-swap-btn,.para-controls,.add-para-btn,
+        .info-link-actions,.add-link-btn,.card-edt,.add-product-card,.toast,
+        .pe-overlay,.iu-overlay,.is-overlay,.lo-overlay,.ci-overlay,.gh-overlay
+        {display:none!important;}
+        [contenteditable]{outline:none!important;box-shadow:none!important;}
+        [contenteditable]:hover{background:none!important;box-shadow:none!important;cursor:inherit!important;}
+        .img-editable::after{display:none!important;}
+        .img-editable{cursor:default!important;pointer-events:none!important;}
+        .info-link-icon{cursor:default!important;pointer-events:none!important;}
+        .page{margin-top:70px!important;}
+        @media(max-width:900px){.page{margin-top:104px!important;}}
+        @media(min-width:901px){.page{margin-top:70px!important;}}
+    </style></head>
+<body class="" style="">
 
 <!-- BOTÓN FLOTANTE MODO EDITOR -->
 
@@ -820,8 +833,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- Enlaces de texto -->
     <nav class="nav">
-        <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
+        <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="active">Productos</a>
         <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
         <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
@@ -843,22 +856,22 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: INICIO
      ========================================================= -->
-<main id="page-inicio" class="page active">
+<main id="page-inicio" class="page">
 
     <!-- HERO -->
-    <section class="hero" id="hero-bg">
+    <section class="hero" id="hero-bg" style="background-color: rgb(160, 176, 166);">
         <!-- Capa imagen (z-index:0) -->
-        <div class="hero-bg-img" id="heroBgImg"></div>
+        <div class="hero-bg-img" id="heroBgImg" style="background-image: none;"></div>
         <!-- Capa tinte + blend (z-index:1) — NO toca el texto ni el botón -->
-        <div class="hero-filter-layer" id="heroFilterLayer"></div>
+        <div class="hero-filter-layer" id="heroFilterLayer" style="background-color: rgba(0, 0, 0, 0.3); mix-blend-mode: normal;"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
             <h1 onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
             <p onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
-            <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
+            <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn" style="background: rgb(110, 129, 116); color: rgb(255, 255, 255);">Explorar Catálogo</button>
         </div>
         <!-- Botón editor (z-index:10) -->
-        <button onclick="event.stopPropagation();openHeroImgModal()" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,0.55);color:#fff;border:none;border-radius:5px;padding:0.38rem 0.85rem;font-size:0.78rem;cursor:pointer;z-index:10;display:inline-flex;align-items:center;gap:5px;"><i class="fa-solid fa-camera"></i> Cambiar imagen y filtro</button>
+        
     </section>
 
     <!-- BENEFICIOS -->
@@ -900,7 +913,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <h2>Nuestros Favoritos de la Temporada</h2>
         <div class="bestsellers-grid">
             <div class="seller-card">
-                <div class="seller-img " id="bs1"></div>
+                <div class="seller-img" id="bs1"></div>
                 <div class="seller-info">
                     <h3>Vela Lavanda Relajante</h3>
                     <p>Infusionada con aceite esencial puro, ideal para meditar o antes de dormir.</p>
@@ -908,7 +921,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 </div>
             </div>
             <div class="seller-card">
-                <div class="seller-img " id="bs2"></div>
+                <div class="seller-img" id="bs2"></div>
                 <div class="seller-info">
                     <h3>Difusor Citrus Mood</h3>
                     <p>Notas vibrantes de mandarina y bergamota para activar la energía de tu sala.</p>
@@ -971,7 +984,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <p style="color:#555;font-size:0.92rem;">Sí, enviamos a nivel nacional con embalaje reforzado para que los envases de vidrio lleguen intactos.</p>
                 </div>
             </div>
-            <div class="faq-img " id="faq-img" style="flex:1;min-width:260px;"></div>
+            <div class="faq-img" id="faq-img" style="flex:1;min-width:260px;"></div>
         </div>
     </section>
 
@@ -1001,9 +1014,9 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: PRODUCTOS
      ========================================================= -->
-<div id="page-productos" class="page">
+<div id="page-productos" class="page active">
     <div class="catalog-container">
-        <h2 style="text-align:center;">Nuestro Catálogo</h2>
+        <h2 style="text-align:center;">Nuestro Catálogo Test</h2>
         <!-- TOOLBAR: BUSCADOR Y PÍLDORAS DE CATEGORÍA -->
         <div class="catalog-toolbar">
             <div class="catalog-search-wrap">
@@ -1011,28 +1024,13 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <input type="text" id="catalogSearchInput" class="catalog-search-input" placeholder="Buscar por nombre, aroma o categoría..." oninput="handleCatalogSearch(this.value)">
                 <button type="button" id="catalogSearchClear" class="catalog-search-clear" onclick="clearCatalogSearch()" title="Limpiar búsqueda" style="display:none;">×</button>
             </div>
-            <div class="catalog-cat-pills" id="catalogCategoryPills"></div>
+            <div class="catalog-cat-pills" id="catalogCategoryPills"><button type="button" class="cat-pill active">Todos</button><button type="button" class="cat-pill">100% Soya</button><button type="button" class="cat-pill">Ambiental</button></div>
         </div>
         <div id="catalogEmptyMsg" class="catalog-empty" style="display:none;">
             <p>No encontramos productos que coincidan con tu búsqueda.</p>
             <button type="button" class="catalog-empty-btn" onclick="resetCatalogFilters()">Ver todos los productos</button>
         </div>
-        <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper">
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
-            <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
-            <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
-            <div class="seller-meta"><span class="price">Desde S/. 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper">
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
-            <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
-            <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
-            <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper">
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div></div>
+        <div class="catalog-grid" id="catalogGrid" style="grid-template-columns: repeat(3, 1fr);"><div class="seller-card" id="product-card-1" data-product-id="1" onclick="openProductModal(1)" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');background-size:cover;background-position:center;background-color:#e8e0d8;"></div><div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p><div class="seller-meta"><span class="price">Desde S/ 0.20</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" id="product-card-2" data-product-id="2" onclick="openProductModal(2)" style="cursor: pointer;"><div class="seller-img" style="background-image:url('vibraimgs/tips1.png');background-size:cover;background-position:center;background-color:#e8e0d8;"></div><div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p><div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div><div class="seller-card" id="product-card-3" data-product-id="3" onclick="openProductModal(3)" style="cursor: pointer;"><div class="seller-img" style="background-image:none;background-size:cover;background-position:center;background-color:#e8e0d8;"></div><div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p><div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div></div></div>
     </div>
 </div>
 
@@ -1043,19 +1041,19 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="modal-content" onclick="event.stopPropagation()">
         <button type="button" class="modal-close" onclick="closeProductModal(null)" aria-label="Cerrar modal" title="Cerrar">×</button>
         <div class="modal-flex">
-            <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
+            <div id="modal-product-img" class="modal-img" style="background-image: url(&quot;vibraimgs/faq.jpg&quot;);"></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title">Difusor Vainilla Dulce</h3>
-                    <div id="modal-product-meta" class="mprice">Ambiental | S/. 99.00</div>
-                    <div class="variant-selector" id="modal-variant-selector" style="display: none;">
+                    <h3 id="modal-product-title">Vela Lavanda Francesa</h3>
+                    <div id="modal-product-meta" class="mprice">100% Soya | S/. 30.00</div>
+                    <div class="variant-selector" id="modal-variant-selector" style="display: block;">
                         <label>Selecciona una variante:</label>
                         <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
                     </div>
-                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.</p>
+                    <p id="modal-product-desc">Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.</p>
                 </div>
                 <div class="modal-actions-grp">
-                    <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
+                    <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa" data-product-id="1" data-active-variant="{&quot;name&quot;:&quot;10ml&quot;,&quot;price&quot;:&quot;S/. 30.00&quot;,&quot;img&quot;:&quot;vibraimgs/faq.jpg&quot;}" data-product-info="{&quot;name&quot;:&quot;Vela Lavanda Francesa&quot;,&quot;cat&quot;:&quot;100% Soya&quot;,&quot;price&quot;:&quot;S/. 30.00&quot;,&quot;variant&quot;:&quot;10ml&quot;,&quot;img&quot;:&quot;vibraimgs/faq.jpg&quot;,&quot;soldOut&quot;:false}"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
                     <button type="button" class="modal-btn-close" onclick="closeProductModal(null)">Cerrar</button>
                 </div>
             </div>
@@ -1065,290 +1063,21 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 <!-- MODAL: EDITAR PRODUCTO -->
 
-        <div class="fg"><label>Categoría</label><input type="text" id="pe-cat" placeholder="100% Soya"></div>
-
-        <!-- PRECIO (oculto cuando hay variantes) -->
-        <div class="fg" id="pe-price-group" style="">
-            <label>Precio</label>
-            <input type="text" id="pe-price" placeholder="S/. 45.00" onblur="if(this.value.trim()) this.value=formatPrice(this.value)" onchange="if(this.value.trim()) this.value=formatPrice(this.value)">
-        </div>
-
-        <div class="fg"><label>Descripción corta (tarjeta)</label><input type="text" id="pe-short" placeholder="Breve descripción..."></div>
-        <div class="fg"><label>Descripción larga (modal)</label><textarea id="pe-long" rows="3" placeholder="Descripción detallada..."></textarea></div>
-
-        <!-- IMAGEN BASE (oculta cuando hay variantes con imagen propia) -->
-        <div class="fg" id="pe-img-group" style="">
-            <label>Imagen del producto</label>
-            <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="img-tab active" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
-            </div>
-            <div class="img-panel" id="pePanelUrl">
-                <input type="text" id="pe-img" placeholder="https://...">
-            </div>
-            <div class="img-panel active" id="pePanelFile">
-                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display:none;">
-                <div class="img-upload-name" id="peFileName" style="display:none;"></div>
-                <div class="img-drop-zone">
-                    <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
-                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                    <p>Haz clic o arrastra una imagen</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- TOGGLE VARIANTES -->
-        <label class="pe-variants-toggle" onclick="toggleVariants()">
-            <input type="checkbox" id="peVariantsCheck" onclick="event.stopPropagation();toggleVariants()">
-            <span>Activar variantes (tallas, tamaños, volúmenes…)</span>
-        </label>
-
-        <!-- SECCIÓN VARIANTES -->
-        <div class="pe-variants-section" id="peVariantsSection">
-            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.75rem;">Cada variante puede tener su propio precio e imagen. La imagen de la variante 1 se usa como imagen principal si las demás no tienen.</p>
-            <div id="peVariantsList"></div>
-            <button class="add-variant-btn" onclick="addVariantRow()">＋ Agregar variante</button>
-        </div>
-
-        <!-- TOGGLE AGOTADO -->
-        <div class="fg" style="margin-top:0.8rem;">
-            <label style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.9rem;font-weight:600;color:#c0392b;">
-                <input type="checkbox" id="peSoldOutCheck" style="width:18px;height:18px;cursor:pointer;accent-color:#c0392b;">
-                <span>Marcar como Agotado (Sin stock)</span>
-            </label>
-            <p style="font-size:0.75rem;color:#777;margin:0.2rem 0 0 1.7rem;">El producto se colocará al final del catálogo con la imagen atenuada y un badge de "Agotado".</p>
-        </div>
-
-        <div class="pe-actions">
-            <button class="pe-cancel" onclick="closeProdEditDirect()">Cancelar</button>
-            <button class="pe-del" id="peDeleteBtn" onclick="deleteProduct()" style="display: inline-block;">🗑 Eliminar</button>
-            <button class="pe-ok" onclick="applyProductEdit()"><i class="fa-solid fa-check"></i> Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: IMAGEN GENÉRICA -->
 
-        <div class="img-panel active" id="iuPanelUrl">
-            <input type="text" id="imgUrlInput" placeholder="https://ejemplo.com/imagen.jpg">
-            <p class="iu-hint">URL completa o ruta relativa. La imagen cubrirá el área exacta.</p>
-        </div>
-        <div class="img-panel" id="iuPanelFile">
-            <img class="img-upload-preview" id="iuPreviewImg" src="" alt="" style="display:none;">
-            <div class="img-upload-name" id="iuFileName" style="display:none;"></div>
-            <div class="img-drop-zone" id="iuDropZone">
-                <input type="file" id="iuFileInput" accept="image/*" onchange="handleIuFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra una imagen aquí</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">JPG, PNG, WebP, GIF — se guardará en <code>vibraimgs/</code></p>
-            </div>
-        </div>
-        <div class="iu-actions">
-            <button style="background:#eee;color:#333;" onclick="closeImgModalDirect()">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyImgUrl()">Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: HERO IMAGEN + FILTRO + BOTÓN -->
 
-        <div class="img-panel active" id="heroPanelUrl">
-            <input type="text" id="heroUrlInput" placeholder="https://ejemplo.com/imagen.jpg" oninput="updateHeroPreview()" style="width:100%;padding:0.55rem 0.7rem;border:1px solid #ddd;border-radius:4px;font-size:0.87rem;margin-bottom:0.3rem;">
-            <p class="iu-hint">URL completa o ruta relativa a la imagen del banner.</p>
-        </div>
-        <div class="img-panel" id="heroPanelFile">
-            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height:80px;">
-            <div class="img-upload-name" id="heroUploadName"></div>
-            <div class="img-drop-zone" style="margin-bottom:0.5rem;">
-                <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra la imagen del banner</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">Se guardará en <code>vibraimgs/</code></p>
-            </div>
-        </div>
-
-        <!-- FILTRO DE COLOR -->
-        <div class="hero-img-section">
-            <h5><i class="fa-solid fa-palette" style="margin-right:4px;"></i> Filtro de color</h5>
-            <div class="filter-row">
-                <label>Color:</label>
-                <input type="color" id="heroFilterColor" value="#000000" oninput="updateHeroPreview()">
-                <label>Opacidad:</label>
-                <input type="range" id="heroFilterOpacity" min="0" max="100" value="30" oninput="updateHeroPreview()">
-                <span id="heroOpacityVal">30%</span>
-            </div>
-            <div class="filter-presets">
-                <span style="font-size:0.72rem;color:#aaa;align-self:center;margin-right:2px;">Presets:</span>
-                <button class="fpreset" style="background:#000;" onclick="setHeroPreset('#000000',30)">Oscuro</button>
-                <button class="fpreset" style="background:#6e8174;" onclick="setHeroPreset('#6e8174',45)">Verde</button>
-                <button class="fpreset" style="background:#8b5e3c;" onclick="setHeroPreset('#8b5e3c',40)">Tierra</button>
-                <button class="fpreset" style="background:#3b5998;" onclick="setHeroPreset('#3b5998',40)">Azul</button>
-                <button class="fpreset" style="background:#7e22ce;" onclick="setHeroPreset('#7e22ce',35)">Morado</button>
-                <button class="fpreset" style="background:#be185d;" onclick="setHeroPreset('#be185d',35)">Rosa</button>
-                <button class="fpreset" style="background:transparent;color:#555;border:1px solid #ccc;" onclick="setHeroPreset('#000000',0)">Sin filtro</button>
-            </div>
-
-            <!-- BLEND MODES -->
-            <h5 style="margin-top:0.8rem;"><i class="fa-solid fa-shuffle" style="margin-right:4px;"></i> Modo de fusión (blend mode)</h5>
-            <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.5rem;">Controla cómo el color de filtro interactúa con la imagen.</p>
-            <div class="blend-chips" id="blendChips">
-                <button class="bchip active" onclick="setBlendMode('normal',this)">Normal</button>
-                <button class="bchip" onclick="setBlendMode('multiply',this)">Multiply</button>
-                <button class="bchip" onclick="setBlendMode('screen',this)">Screen</button>
-                <button class="bchip" onclick="setBlendMode('overlay',this)">Overlay</button>
-                <button class="bchip" onclick="setBlendMode('darken',this)">Darken</button>
-                <button class="bchip" onclick="setBlendMode('lighten',this)">Lighten</button>
-                <button class="bchip" onclick="setBlendMode('color-dodge',this)">Color Dodge</button>
-                <button class="bchip" onclick="setBlendMode('color-burn',this)">Color Burn</button>
-                <button class="bchip" onclick="setBlendMode('hard-light',this)">Hard Light</button>
-                <button class="bchip" onclick="setBlendMode('soft-light',this)">Soft Light</button>
-                <button class="bchip" onclick="setBlendMode('difference',this)">Difference</button>
-                <button class="bchip" onclick="setBlendMode('exclusion',this)">Exclusion</button>
-                <button class="bchip" onclick="setBlendMode('hue',this)">Hue</button>
-                <button class="bchip" onclick="setBlendMode('saturation',this)">Saturation</button>
-                <button class="bchip" onclick="setBlendMode('color',this)">Color</button>
-                <button class="bchip" onclick="setBlendMode('luminosity',this)">Luminosity</button>
-            </div>
-
-            <!-- PREVIEW -->
-            <div class="hero-preview-bar" id="heroPreviewBar">
-                <div class="hero-preview-tint" id="heroPreviewTint"></div>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                    <span style="color:#fff;font-size:0.7rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,0.8);opacity:0.7;letter-spacing:0.05em;">VISTA PREVIA</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTÓN CTA -->
-        <div class="hero-btn-section">
-            <h5><i class="fa-solid fa-toggle-on" style="margin-right:4px;"></i> Botón del banner</h5>
-            <div class="hero-btn-row">
-                <label>Texto:</label>
-                <input type="text" id="heroBtnText" value="Explorar Catálogo" oninput="updateHeroBtnPreview()">
-            </div>
-            <div class="hero-btn-row">
-                <label>Color fondo:</label>
-                <input type="color" id="heroBtnColor" value="#6e8174" oninput="updateHeroBtnPreview()">
-                <label>Color texto:</label>
-                <input type="color" id="heroBtnTextColor" value="#ffffff" oninput="updateHeroBtnPreview()">
-            </div>
-            <div style="text-align:center;padding:0.6rem 0 0.2rem;">
-                <span class="hero-btn-preview" id="heroBtnPreview">Explorar Catálogo</span>
-            </div>
-        </div>
-
-        <div class="iu-actions" style="margin-top:1.2rem;">
-            <button style="background:#eee;color:#333;" onclick="closeHeroImgModal(null)">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyHeroImg()">Aplicar todo</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: CAMBIAR ÍCONO (emoji o imagen) -->
 
-        <div class="is-panel active" id="isPanelEmoji">
-            <input type="text" class="is-emoji-input" id="isEmojiInput" placeholder="🌱" maxlength="4">
-            <p style="font-size:0.72rem;color:#aaa;text-align:center;margin-top:0.3rem;">Pega o escribe un emoji</p>
-        </div>
-        <div class="is-panel" id="isPanelImg">
-            <input type="text" id="isImgInput" placeholder="https://... o ruta/icono.png" oninput="updateIsPreview()">
-            <p style="font-size:0.72rem;color:#aaa;margin-top:0.3rem;">PNG, SVG, WebP — se mostrará cuadrado ~64px</p>
-        </div>
-        <div class="is-panel" id="isPanelFile">
-            <div class="img-drop-zone" id="isDropZone" style="margin-top:0.3rem;">
-                <input type="file" id="isFileInput" accept="image/*" onchange="handleIsFile(this)">
-                <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                <p>Haz clic o arrastra un ícono/imagen aquí</p>
-                <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
-            </div>
-            <div class="img-upload-name" id="isFileName" style="display:none;margin-top:0.3rem;"></div>
-        </div>
-        <div class="is-preview" id="isPreview"><span style="color:#ccc;font-size:0.8rem;">Vista previa</span></div>
-        <div class="is-actions">
-            <button style="background:#eee;color:#333;" onclick="closeIconSwapDirect()">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyIconSwap()">Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: ÍCONO DE LINK DE CONTACTO -->
 
-        <div class="ci-panel active" id="ciPanelEmoji">
-            <input type="text" class="ci-emoji-input" id="ciEmojiInput" placeholder="📍" oninput="updateCiPreview()">
-            <p style="font-size:0.72rem;color:#aaa;text-align:center;">Pega o escribe un emoji</p>
-        </div>
-        <div class="ci-panel" id="ciPanelFa">
-            <input type="text" class="ci-fa-input" id="ciFaInput" placeholder="fa-solid fa-location-dot" oninput="updateCiPreview();highlightFaIcon(this.value)">
-            <p class="ci-fa-hint">Ej: <code>fa-solid fa-phone</code> — busca o escribe cualquier clase FA</p>
-            <button type="button" class="ci-catalog-toggle" id="ciCatalogToggle" onclick="toggleFaCatalog()">
-                <i class="fa-solid fa-icons" id="ciCatalogToggleIcon"></i> <span id="ciCatalogToggleTxt">Mostrar catálogo de íconos</span>
-            </button>
-            <div class="ci-catalog-box" id="ciCatalogBox" style="display:none;">
-                <div class="ci-catalog-search-wrap">
-                    <i class="fa-solid fa-magnifying-glass ci-search-icon"></i>
-                    <input type="text" id="ciFaSearchInput" class="ci-catalog-search" placeholder="Buscar ícono (ej: whatsapp, teléfono, vela...)" oninput="filterFaIcons(this.value)">
-                </div>
-                <div class="ci-catalog-categories" id="ciCatalogCategories">
-                    <button type="button" class="ci-cat-btn active" data-cat="all" onclick="filterFaCategory('all')">Todos</button>
-                    <button type="button" class="ci-cat-btn" data-cat="contacto" onclick="filterFaCategory('contacto')">Contacto</button>
-                    <button type="button" class="ci-cat-btn" data-cat="redes" onclick="filterFaCategory('redes')">Redes</button>
-                    <button type="button" class="ci-cat-btn" data-cat="tienda" onclick="filterFaCategory('tienda')">Tienda</button>
-                    <button type="button" class="ci-cat-btn" data-cat="velas" onclick="filterFaCategory('velas')">Velas/Aromas</button>
-                    <button type="button" class="ci-cat-btn" data-cat="interfaz" onclick="filterFaCategory('interfaz')">General</button>
-                </div>
-                <div class="ci-catalog-grid" id="ciCatalogGrid"></div>
-            </div>
-        </div>
-        <div class="ci-color-row">
-            <label>Color del ícono:</label>
-            <input type="color" id="ciColorInput" value="#6e8174" oninput="updateCiPreview()">
-            <button onclick="document.getElementById('ciColorInput').value='#6e8174';updateCiPreview()">Reset</button>
-        </div>
-        <div class="ci-preview" id="ciPreview"><span style="font-size:1.8rem;color:#6e8174">📌</span></div>
-        <div class="ci-actions">
-            <button style="background:#eee;color:#333;" onclick="closeCiModal(null)">Cancelar</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyCiIcon()">Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- MODAL: LOGO -->
 
-        <div class="lo-panel" id="loPanelText">
-            <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">Nombre de la marca</label>
-            <input type="text" id="loTextInput" placeholder="Vibra Candela">
-        </div>
-        <div class="lo-panel" id="loPanelImg">
-            <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab active" id="loTabUrl" onclick="switchLoSubTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="img-tab" id="loTabFile" onclick="switchLoSubTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir archivo</button>
-            </div>
-            <div class="img-panel active" id="loPanelUrl">
-                <label style="font-size:0.78rem;font-weight:600;color:#555;display:block;margin-bottom:0.28rem;">URL del logo</label>
-                <input type="text" id="loImgInput" placeholder="https://... o logo.png" oninput="previewLo()">
-                <p class="lo-hint">PNG transparente o SVG recomendado. Altura: 44px.</p>
-            </div>
-            <div class="img-panel" id="loPanelFile">
-                <div class="img-drop-zone" id="loDropZone" style="margin-top:0.3rem;">
-                    <input type="file" id="loFileInput" accept="image/*" onchange="handleLoFile(this)">
-                    <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
-                    <p>Haz clic o arrastra el logo aqu��</p>
-                    <p style="font-size:0.68rem;margin-top:0.3rem;">PNG transparente o SVG — se guardará en <code>vibraimgs/</code></p>
-                </div>
-                <div class="img-upload-name" id="loFileName" style="display:none;margin-top:0.3rem;"></div>
-            </div>
-            <div class="lo-preview" id="loPreview" style="margin-top:0.6rem;">
-                <img id="loPreviewImg" src="" alt="" style="height:36px;max-width:140px;object-fit:contain;display:none;">
-                <span id="loPreviewEmpty" style="color:#ccc;font-size:0.8rem;">Vista previa…</span>
-            </div>
-        </div>
-        <div class="lo-actions">
-            <button style="background:#eee;color:#333;" onclick="closeLogoModalDirect()">Cancelar</button>
-            <button style="background:#fee2e2;color:#b91c1c;" onclick="resetLogo()">Restablecer</button>
-            <button style="background:var(--cp);color:#fff;" onclick="applyLogo()">Aplicar</button>
-        </div>
-    </div>
-</div>
 
 <!-- =========================================================
      PÁGINA: ACERCA DE
@@ -1369,7 +1098,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 </div>
                 
             </div>
-            <div class="about-img " id="about-img" style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
+            <div class="about-img" id="about-img" style="background-image: url('vibraimgs/why1.png'); background-size: cover; background-position: center center;"></div>
         </div>
     </section>
 </div>
@@ -1435,62 +1164,13 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 <!-- MODAL: GUARDAR -->
 
-        <div class="gh-accordion" id="ghConfigAccordion">
-            <button type="button" class="gh-accordion-toggle" onclick="toggleGhConfigAccordion()">
-                <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
-                <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
-            </button>
-            <div class="gh-accordion-body" id="ghAccordionBody">
-                <div class="gh-group">
-                    <label>Repositorio <span style="color:#aaa;font-weight:400;">(usuario/nombre-repo)</span></label>
-                    <input type="text" id="ghRepo" placeholder="usuario/mi-web">
-                </div>
-                <div class="gh-group" id="ghTokenGroup">
-                    <label>Token de acceso personal
-                        <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
-                    </label>
-                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
-                        <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
-                        <div class="gh-btn-group">
-                            <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
-                            <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
-                        </div>
-                    </div>
-                    <div id="ghTokenInputBox">
-                        <input type="password" id="ghToken" placeholder="github_pat_...">
-                        <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read &amp; Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
-                    </div>
-                </div>
-                <div class="gh-group" style="margin-bottom:0;">
-                    <label>Rama</label>
-                    <input type="text" id="ghBranch" value="main" placeholder="main">
-                </div>
-            </div>
-        </div>
 
-        <label style="font-size:0.78rem;font-weight:700;color:#555;display:block;margin-bottom:0.5rem;">¿Qué quieres guardar?</label>
-        <div class="gh-mode-group">
-            <button class="gh-mode-btn active" id="ghModeEditor" onclick="selectGhMode('editor')">editor</button>
-            <button class="gh-mode-btn" id="ghModePublish" onclick="selectGhMode('publish')">web</button>
-        </div>
 
-        <div class="gh-pass-group">
-            <div class="gh-group" style="margin-bottom:0;">
-                <label id="ghPassLabel"><i class="fa-solid fa-lock" style="margin-right: 4px;"></i> Contraseña de autorización</label>
-                <input type="password" id="ghPass" placeholder="••••••••" oninput="checkAutoUnlock()">
-            </div>
-        </div>
 
-        <div class="gh-log" id="ghLog"></div>
 
-        <div class="gh-actions">
-            <button class="gh-cancel" onclick="closeGhModal(null)">Cancelar</button>
-            <button class="gh-submit" onclick="runGhPublish()">Guardar</button>
-        </div>
-    </div>
-</div>
-<script>
-let products = [{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","soldOut":false,"img":"","imgData":"","variants":[{"name":"10ml","price":"S/. 30.00","img":"vibraimgs/faq.jpg","imgData":""},{"name":"20ml","price":"S/. 20.00","img":"vibraimgs/tips3.png","imgData":""}]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","soldOut":false,"img":"vibraimgs/tips1.png","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","soldOut":false,"img":"","imgData":"","variants":[]}];
+
+
+<script>let products = [{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","soldOut":false,"img":"","variants":[{"name":"10ml","price":"S/. 30.00","img":"vibraimgs/faq.jpg"},{"name":"20ml","price":"S/. 20.00","img":"vibraimgs/tips3.png"}]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","soldOut":false,"img":"vibraimgs/tips1.png","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","soldOut":false,"img":"","variants":[]}];
 const WA_NUMBER = "51930246770";
 
 function navigateTo(p){
@@ -1865,6 +1545,4 @@ navigateTo('inicio');
         }
     } catch(_) {}
 })();
-</script>
-</body>
-</html>
+</script></body></html>
