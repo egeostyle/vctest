@@ -1002,7 +1002,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
 </style>
 </head>
-<body class="editor-active">
+<body class="editor-active" style="">
 
 <!-- BOTÓN FLOTANTE MODO EDITOR -->
 <button class="editor-fab-save" id="editorFloatingSave" onclick="openGhModal()" title="Guardar cambios">
@@ -1021,8 +1021,8 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 
     <!-- Enlaces de texto -->
     <nav class="nav">
-        <a onclick="navigateTo('inicio')" id="nav-inicio" class="active">Inicio</a>
-        <a onclick="navigateTo('productos')" id="nav-productos" class="">Productos</a>
+        <a onclick="navigateTo('inicio')" id="nav-inicio" class="">Inicio</a>
+        <a onclick="navigateTo('productos')" id="nav-productos" class="active">Productos</a>
         <a onclick="navigateTo('acerca')" id="nav-acerca" class="">Acerca de</a>
         <a onclick="navigateTo('contacto')" id="nav-contacto" class="">Contacto</a>
     </nav>
@@ -1044,7 +1044,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: INICIO
      ========================================================= -->
-<main id="page-inicio" class="page active">
+<main id="page-inicio" class="page">
 
     <!-- HERO -->
     <section class="hero" id="hero-bg">
@@ -1054,7 +1054,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="hero-filter-layer" id="heroFilterLayer"></div>
         <!-- Contenido (z-index:10) — completamente fuera del blend -->
         <div class="hero-content">
-            <h1 contenteditable="true" onclick="event.stopPropagation()">Ilumina tu espacio de forma natural</h1>
+            <h1 contenteditable="true" onclick="event.stopPropagation()">Algún texto</h1>
             <p contenteditable="true" onclick="event.stopPropagation()">Velas artesanales de cera de soya y difusores ambientales para tu bienestar.</p>
             <button id="heroCTABtn" onclick="navigateTo('productos');event.stopPropagation();" class="btn">Explorar Catálogo</button>
         </div>
@@ -1210,7 +1210,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 <!-- =========================================================
      PÁGINA: PRODUCTOS
      ========================================================= -->
-<div id="page-productos" class="page">
+<div id="page-productos" class="page active">
     <div class="catalog-container">
         <h2 contenteditable="true" style="text-align:center;">Nuestro Catálogo</h2>
         <!-- TOOLBAR: BUSCADOR Y PÍLDORAS DE CATEGORÍA -->
@@ -1218,30 +1218,35 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <div class="catalog-search-wrap">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" id="catalogSearchInput" class="catalog-search-input" placeholder="Buscar por nombre, aroma o categoría..." oninput="handleCatalogSearch(this.value)">
-                <button type="button" id="catalogSearchClear" class="catalog-search-clear" onclick="clearCatalogSearch()" title="Limpiar búsqueda" style="display:none;">×</button>
+                <button type="button" id="catalogSearchClear" class="catalog-search-clear" onclick="clearCatalogSearch()" title="Limpiar búsqueda" style="display: none;">×</button>
             </div>
-            <div class="catalog-cat-pills" id="catalogCategoryPills"></div>
+            <div class="catalog-cat-pills" id="catalogCategoryPills"><button type="button" class="cat-pill active">Todos</button><button type="button" class="cat-pill">100% Soya</button><button type="button" class="cat-pill">Ambiental</button><button type="button" class="cat-pill">muestra</button></div>
         </div>
         <div id="catalogEmptyMsg" class="catalog-empty" style="display:none;">
             <p>No encontramos productos que coincidan con tu búsqueda.</p>
             <button type="button" class="catalog-empty-btn" onclick="resetCatalogFilters()">Ver todos los productos</button>
         </div>
         <div class="catalog-grid" id="catalogGrid"><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(1,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
-            <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
-            <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
-            <div class="seller-meta"><span class="price">Desde S/. 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
-            <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
-            <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
-            <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-        <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
-            <div class="seller-img" style="background-image:none;"></div>
-            <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
-            <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
-        </div></div><div class="add-product-card"><span class="ic">＋</span><span>Agregar producto</span></div></div>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(1)">
+                        <div class="seller-img" style="background-image:url('vibraimgs/faq.jpg');"></div>
+                        <div class="seller-info"><h3>Vela Lavanda Francesa</h3><p>Calma el estrés cotidiano con notas florales suaves.</p>
+                        <div class="seller-meta"><span class="price">Desde S/. 20.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(2,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(2)">
+                        <div class="seller-img" style="background-image:url('vibraimgs/tips1.png');"></div>
+                        <div class="seller-info"><h3>Difusor Vainilla Dulce</h3><p>Fragancia reconfortante de larga duración.</p>
+                        <div class="seller-meta"><span class="price">S/. 99.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(3,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(3)">
+                        <div class="seller-img" style="background-image:none;"></div>
+                        <div class="seller-info"><h3>Vela Bosque de Pino</h3><p>Notas frescas y maderosas que te transportan a la naturaleza.</p>
+                        <div class="seller-meta"><span class="price">S/. 45.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="seller-card-wrapper"><button class="card-edt" onclick="openProdEdit(4,event)"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+                    <div class="seller-card" style="cursor:pointer;" onclick="openProductModal(4)">
+                        <div class="seller-img" style="background-image:url('vibraimgs/photo-1520209759809-a9bcb6cb3241.avif');"></div>
+                        <div class="seller-info"><h3>test1</h3><p>desc. corta</p>
+                        <div class="seller-meta"><span class="price">Desde S/. 10.00</span><span style="font-size:0.82rem;color:var(--cp);">Ver más →</span></div></div>
+                    </div></div><div class="add-product-card"><span class="ic">＋</span><span>Agregar producto</span></div></div>
     </div>
 </div>
 
@@ -1252,19 +1257,19 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
     <div class="modal-content" onclick="event.stopPropagation()">
         <button type="button" class="modal-close" onclick="closeProductModal(null)" aria-label="Cerrar modal" title="Cerrar">×</button>
         <div class="modal-flex">
-            <div id="modal-product-img" class="modal-img" style="background-image: url('vibraimgs/why1.png');"></div>
+            <div id="modal-product-img" class="modal-img" style=""></div>
             <div class="modal-info">
                 <div>
-                    <h3 id="modal-product-title">Difusor Vainilla Dulce</h3>
-                    <div id="modal-product-meta" class="mprice">Ambiental | S/. 99.00</div>
-                    <div class="variant-selector" id="modal-variant-selector" style="display: none;">
+                    <h3 id="modal-product-title">Vela Lavanda Francesa</h3>
+                    <div id="modal-product-meta" class="mprice">100% Soya | S/. 30.00 <span class="modal-sold-out-badge">Agotado</span></div>
+                    <div class="variant-selector" id="modal-variant-selector" style="display: block;">
                         <label>Selecciona una variante:</label>
                         <div class="variant-chips" id="modal-variant-chips"><button class="vchip active">10ml</button><button class="vchip">20ml</button></div>
                     </div>
-                    <p id="modal-product-desc">Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.</p>
+                    <p id="modal-product-desc">Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.</p>
                 </div>
                 <div class="modal-actions-grp">
-                    <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa"><i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp</a>
+                    <a id="modal-whatsapp-link" href="#" onclick="sendWhatsApp(event)" class="btn btn-wa btn-wa-soldout" data-product-id="1" data-active-variant="{&quot;name&quot;:&quot;10ml&quot;,&quot;price&quot;:&quot;S/. 30.00&quot;,&quot;img&quot;:&quot;vibraimgs/faq.jpg&quot;}" data-product-info="{&quot;name&quot;:&quot;Vela Lavanda Francesa&quot;,&quot;cat&quot;:&quot;100% Soya&quot;,&quot;price&quot;:&quot;S/. 30.00&quot;,&quot;variant&quot;:&quot;10ml&quot;,&quot;img&quot;:&quot;vibraimgs/faq.jpg&quot;,&quot;soldOut&quot;:true}"><i class="fa-brands fa-whatsapp"></i> Consultar reposición por WhatsApp</a>
                     <button type="button" class="modal-btn-close" onclick="closeProductModal(null)">Cerrar</button>
                 </div>
             </div>
@@ -1297,7 +1302,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="fg"><label>Categoría</label><input type="text" id="pe-cat" placeholder="100% Soya"></div>
 
         <!-- PRECIO (oculto cuando hay variantes) -->
-        <div class="fg" id="pe-price-group" style="">
+        <div class="fg" id="pe-price-group" style="display: none;">
             <label>Precio</label>
             <input type="text" id="pe-price" placeholder="S/. 45.00" onblur="if(this.value.trim()) this.value=formatPrice(this.value)" onchange="if(this.value.trim()) this.value=formatPrice(this.value)">
         </div>
@@ -1306,18 +1311,18 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         <div class="fg"><label>Descripción larga (modal)</label><textarea id="pe-long" rows="3" placeholder="Descripción detallada..."></textarea></div>
 
         <!-- IMAGEN BASE (oculta cuando hay variantes con imagen propia) -->
-        <div class="fg" id="pe-img-group" style="">
+        <div class="fg" id="pe-img-group" style="display: none;">
             <label>Imagen del producto</label>
             <div class="img-tabs" style="margin-bottom:0.6rem;">
-                <button class="img-tab" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
-                <button class="img-tab active" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
+                <button class="img-tab active" id="peTabUrl" onclick="switchPeTab('url')"><i class="fa-solid fa-link"></i> URL</button>
+                <button class="img-tab" id="peTabFile" onclick="switchPeTab('file')"><i class="fa-solid fa-arrow-up-from-bracket"></i> Subir</button>
             </div>
-            <div class="img-panel" id="pePanelUrl">
+            <div class="img-panel active" id="pePanelUrl">
                 <input type="text" id="pe-img" placeholder="https://...">
             </div>
-            <div class="img-panel active" id="pePanelFile">
-                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display:none;">
-                <div class="img-upload-name" id="peFileName" style="display:none;"></div>
+            <div class="img-panel" id="pePanelFile">
+                <img class="img-upload-preview" id="pePreviewImg" src="" alt="" style="display: none;">
+                <div class="img-upload-name" id="peFileName" style="display: none;"></div>
                 <div class="img-drop-zone">
                     <input type="file" id="peFileInput" accept="image/*" onchange="handlePeFile(this)">
                     <div class="dz-icon"><i class="fa-solid fa-image" style="font-size:1.8rem;color:#aaa;"></i></div>
@@ -1333,9 +1338,65 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
         </label>
 
         <!-- SECCIÓN VARIANTES -->
-        <div class="pe-variants-section" id="peVariantsSection">
+        <div class="pe-variants-section active" id="peVariantsSection">
             <p style="font-size:0.72rem;color:#aaa;margin-bottom:0.75rem;">Cada variante puede tener su propio precio e imagen. La imagen de la variante 1 se usa como imagen principal si las demás no tienen.</p>
-            <div id="peVariantsList"></div>
+            <div id="peVariantsList"><div class="pe-variant-item" data-uid="vr17896108314651">
+        <div class="variant-header">
+            <span class="variant-label">Variante 1</span>
+            <button class="variant-del" onclick="this.closest('.pe-variant-item').remove();renumberVariants();" title="Eliminar variante"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="pe-variant-row">
+            <div><label>Nombre / tamaño</label><input class="v-name" type="text" placeholder="Ej. 100ml" value="10ml"></div>
+            <div><label>Precio</label><input class="v-price" type="text" placeholder="S/. 35.00" value="S/. 30.00" onblur="if(this.value.trim()) this.value=formatPrice(this.value)" onchange="if(this.value.trim()) this.value=formatPrice(this.value)"></div>
+        </div>
+        <div class="pe-variant-row full">
+            <div>
+                <label>Imagen (opcional)</label>
+                <div class="vimg-tabs">
+                    <button class="vimg-tab active" onclick="switchVTab('vr17896108314651','url');event.preventDefault()"><i class="fa-solid fa-link"></i> URL</button>
+                    <button class="vimg-tab" onclick="switchVTab('vr17896108314651','file');event.preventDefault()"><i class="fa-solid fa-upload"></i> Subir</button>
+                </div>
+                <div class="vimg-panel active" id="vurl-vr17896108314651">
+                    <input class="v-img" type="text" placeholder="https://... o vibraimgs/..." value="vibraimgs/faq.jpg">
+                </div>
+                <div class="vimg-panel" id="vfile-vr17896108314651">
+                    <img class="vimg-preview" id="vprev-vr17896108314651" src="" alt="" style="display: none;">
+                    <div class="vimg-name" id="vname-vr17896108314651"></div>
+                    <div class="vimg-drop">
+                        <input type="file" accept="image/*" onchange="handleVariantFile(this,'vr17896108314651')">
+                        <p><i class="fa-solid fa-camera"></i> Clic o arrastra imagen</p>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="pe-variant-item" data-uid="vr17896108314662">
+        <div class="variant-header">
+            <span class="variant-label">Variante 2</span>
+            <button class="variant-del" onclick="this.closest('.pe-variant-item').remove();renumberVariants();" title="Eliminar variante"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="pe-variant-row">
+            <div><label>Nombre / tamaño</label><input class="v-name" type="text" placeholder="Ej. 100ml" value="20ml"></div>
+            <div><label>Precio</label><input class="v-price" type="text" placeholder="S/. 35.00" value="S/. 20.00" onblur="if(this.value.trim()) this.value=formatPrice(this.value)" onchange="if(this.value.trim()) this.value=formatPrice(this.value)"></div>
+        </div>
+        <div class="pe-variant-row full">
+            <div>
+                <label>Imagen (opcional)</label>
+                <div class="vimg-tabs">
+                    <button class="vimg-tab active" onclick="switchVTab('vr17896108314662','url');event.preventDefault()"><i class="fa-solid fa-link"></i> URL</button>
+                    <button class="vimg-tab" onclick="switchVTab('vr17896108314662','file');event.preventDefault()"><i class="fa-solid fa-upload"></i> Subir</button>
+                </div>
+                <div class="vimg-panel active" id="vurl-vr17896108314662">
+                    <input class="v-img" type="text" placeholder="https://... o vibraimgs/..." value="vibraimgs/tips3.png">
+                </div>
+                <div class="vimg-panel" id="vfile-vr17896108314662">
+                    <img class="vimg-preview" id="vprev-vr17896108314662" src="" alt="" style="display: none;">
+                    <div class="vimg-name" id="vname-vr17896108314662"></div>
+                    <div class="vimg-drop">
+                        <input type="file" accept="image/*" onchange="handleVariantFile(this,'vr17896108314662')">
+                        <p><i class="fa-solid fa-camera"></i> Clic o arrastra imagen</p>
+                    </div>
+                </div>
+            </div>
+        </div></div></div>
             <button class="add-variant-btn" onclick="addVariantRow()">＋ Agregar variante</button>
         </div>
 
@@ -1400,7 +1461,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
             <p class="iu-hint">URL completa o ruta relativa a la imagen del banner.</p>
         </div>
         <div class="img-panel" id="heroPanelFile">
-            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height:80px;">
+            <img class="img-upload-preview" id="heroUploadPreview" src="" alt="" style="max-height: 80px; display: none;">
             <div class="img-upload-name" id="heroUploadName"></div>
             <div class="img-drop-zone" style="margin-bottom:0.5rem;">
                 <input type="file" id="heroFileInput" accept="image/*" onchange="handleHeroFile(this)">
@@ -1721,7 +1782,7 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                 <span id="ghAccordionLabel"><i class="fa-solid fa-sliders" style="color: #334155; margin-right: 6px;"></i> Repositorio y credenciales</span>
                 <span id="ghAccordionArrow" style="color: #64748b;">▾</span>
             </button>
-            <div class="gh-accordion-body" id="ghAccordionBody">
+            <div class="gh-accordion-body" id="ghAccordionBody" style="display: none;">
                 <div class="gh-group">
                     <label>Repositorio <span style="color:#aaa;font-weight:400;">(usuario/nombre-repo)</span></label>
                     <input type="text" id="ghRepo" placeholder="usuario/mi-web">
@@ -1730,14 +1791,14 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
                     <label>Token de acceso personal
                         <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="margin-left:6px;font-size:0.7rem;color:var(--cp);font-weight:400;"><i class="fa-solid fa-gear"></i> Fine-grained token</a>
                     </label>
-                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display:none;">
+                    <div id="ghTokenSavedBox" class="gh-token-saved-box" style="display: none;">
                         <span class="status-text"><i class="fa-solid fa-circle-check" style="color: #16a34a; margin-right: 4px;"></i> <span>Token vinculado y activo (••••••••)</span></span>
                         <div class="gh-btn-group">
                             <button type="button" class="gh-small-btn" onclick="changeGhToken()"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 3px;"></i> Cambiar</button>
                             <button type="button" class="gh-small-btn danger" onclick="clearGhCredentials()"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i> Desvincular</button>
                         </div>
                     </div>
-                    <div id="ghTokenInputBox">
+                    <div id="ghTokenInputBox" style="display: block;">
                         <input type="password" id="ghToken" placeholder="github_pat_...">
                         <p class="gh-token-hint">El token necesita permisos <strong>Contents: Read &amp; Write</strong> sobre el repositorio. Se guardará cifrado para futuras ediciones.</p>
                     </div>
@@ -1778,12 +1839,12 @@ h2::after{content:'';display:block;width:50px;height:2px;background:var(--ca);ma
 // ESTADO GLOBAL
 // ============================================================
 const WA_NUMBER="51930246770";
-let products=[{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","soldOut":false,"img":"","imgData":"","variants":[{"name":"10ml","price":"S/. 30.00","img":"vibraimgs/faq.jpg","imgData":""},{"name":"20ml","price":"S/. 20.00","img":"vibraimgs/tips3.png","imgData":""}]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","soldOut":false,"img":"vibraimgs/tips1.png","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","soldOut":false,"img":"","imgData":"","variants":[]}];
-let nextId=4;
+let products=[{"id":1,"name":"Vela Lavanda Francesa","cat":"100% Soya","price":"","shortDesc":"Calma el estrés cotidiano con notas florales suaves.","longDesc":"Relaja tu mente y cuerpo con el sutil aroma de la lavanda orgánica. Ideal para meditación, lectura o antes de dormir.","soldOut":true,"img":"","imgData":"","variants":[{"name":"10ml","price":"S/. 30.00","img":"vibraimgs/faq.jpg","imgData":""},{"name":"20ml","price":"S/. 20.00","img":"vibraimgs/tips3.png","imgData":""}]},{"id":2,"name":"Difusor Vainilla Dulce","cat":"Ambiental","price":"S/. 99.00","shortDesc":"Fragancia reconfortante de larga duración.","longDesc":"Base eco-amigable libre de alcohol. Notas cálidas de vainilla que envuelven tus espacios por más de 3 meses.","soldOut":false,"img":"vibraimgs/tips1.png","imgData":"","variants":[]},{"id":3,"name":"Vela Bosque de Pino","cat":"100% Soya","price":"S/. 45.00","shortDesc":"Notas frescas y maderosas que te transportan a la naturaleza.","longDesc":"Evoca la frescura de un bosque matutino. Pabilo de algodón puro y esencias maderosas que purifican el ambiente.","soldOut":false,"img":"","imgData":"","variants":[]},{"id":4,"name":"test1","cat":"muestra","price":"","shortDesc":"desc. corta","longDesc":"ioasjda sdjoiasjd iajsd oiajsdoaisjdaoisd ad asidjioasj","soldOut":false,"img":"","imgData":"","variants":[{"name":"10ml","price":"S/. 10","img":"vibraimgs/photo-1520209759809-a9bcb6cb3241.avif","imgData":""},{"name":"20ml","price":"S/. 20","img":"vibraimgs/closeup-foto-hermosa-mariposa-texturas-interesantes-flor-petalos-naranja_181624-7640.avif","imgData":""}]}];
+let nextId=5;
 let editingProductId=null;
 let logoState={"mode":"text","text":"Vibra Candela","imgUrl":""};
 let heroState={"url":"","color":"#000000","opacity":30,"blend":"normal","btnText":"Explorar Catálogo","btnBg":"#6e8174","btnColor":"#ffffff"};
-let ghEncryptedToken = "{\"v\":2,\"s\":\"c8f6197dbbd4cb1a\",\"c\":\"ed878be746aed665eb6a30380930320a3fec4c4fccb4389d85cffe63508071527fccd6aa0bf01472760c59c88aa12540b4e691f60eb1424c08812eba2d24f06ab46cda5a8401edd13b173bb398872e45004f8f20537eec5022ee477b34\",\"a\":\"390add4e36d4932ff057eb93caac430202e334b52e07c1295d7534ce5d94d5a8\"}";
+let ghEncryptedToken = "{\"v\":2,\"s\":\"0ee51ced2ab79d80\",\"c\":\"36963ab39fb1b4b235973634bd9dba90642bddaaa914d3e058705a963e8bbef38075c2f13c79eb1137357cc20e80ea0a51beed04bc91dc6403fc5967e6a5e651ac2953b409788509bab90dd89499350e570896dbeb0ba3a184e1e51649\",\"a\":\"38a32052a2b5cacdfa447c05aa949190d3d09fd23a4af7c77ff2c01059f3593b\"}";
 let ghSavedRepo = "egeostyle/vctest";
 let ghSavedBranch = "main";
 let ghAuthHash = "c620d7dec27fe977ffb786cda8010c431c59ff1f0d20f20129e9df78e2e25ac5";
